@@ -1,0 +1,27 @@
+/*!***********************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./modules/germanized/assets/src/less/style-public.less ***!
+  \***********************************************************************************************************************************************/
+.dokan-germanized-options .width_98 {
+  width: 98%;
+}
+.dokan-germanized-options .dokan-input-group {
+  width: 100%;
+}
+.dokan-germanized-options .dokan-input-group input,
+.dokan-germanized-options .dokan-input-group select {
+  width: 98% !important;
+}
+.dokan-germanized-options .dokan-input-group input:first-child,
+.dokan-germanized-options .dokan-input-group select:first-child {
+  width: 100%;
+}
+.dokan-germanized-options hr {
+  margin: 10px auto;
+}
+.dokan-germanized-options input[type='checkbox'] {
+  outline: none;
+}
+.dokan-single-store .profile-frame .profile-info-box.profile-layout-layout1 .profile-info-summery-wrapper {
+  height: 240px;
+}
+

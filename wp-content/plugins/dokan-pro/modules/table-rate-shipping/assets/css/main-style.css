@@ -1,0 +1,122 @@
+/*!******************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./modules/table-rate-shipping/assets/src/less/main-style.less ***!
+  \******************************************************************************************************************************************************/
+#dokan_table_rate_class_priorities table input,
+#dokan_table_rate_class_priorities table select {
+  width: 100%;
+}
+#dokan_table_rate_class_priorities table input[type="checkbox"] {
+  width: auto;
+}
+#dokan_table_rate_class_priorities table td {
+  cursor: move;
+}
+#dokan_table_rate_class_priorities table a.dupe,
+#dokan_table_rate_class_priorities table a.remove {
+  float: right;
+  margin-left: 4px;
+}
+#dokan_table_rate_class_priorities table td,
+#dokan_table_rate_class_priorities table th {
+  padding: 15px 10px;
+  vertical-align: middle;
+}
+#dokan_table_rate_class_priorities table tr:nth-child(even) td,
+#dokan_table_rate_class_priorities table tr:nth-child(even) th {
+  background: #fafafa;
+}
+#dokan_table_rate_class_priorities table td.checkbox,
+#dokan_table_rate_class_priorities table th.checkbox {
+  text-align: center;
+}
+#dokan_table_rate_class_priorities table td .disabled {
+  opacity: 0.5;
+}
+#dokan_table_rate_class_priorities table .check-column {
+  width: 24px;
+  min-width: 24px !important;
+  text-align: center;
+  padding: 15px 10px;
+}
+#dokan_table_rate_class_priorities table .check-column input {
+  width: auto;
+  vertical-align: middle;
+  margin: 0 0 0 8px;
+}
+table#dokan_shipping_rates {
+  background-color: #fff;
+  border: 1px solid #c3c4c7;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+table#dokan_shipping_rates input,
+table#dokan_shipping_rates select {
+  width: 100%;
+}
+table#dokan_shipping_rates input[type="checkbox"] {
+  width: 100%;
+}
+table#dokan_shipping_rates td {
+  cursor: move;
+}
+table#dokan_shipping_rates a.dupe,
+table#dokan_shipping_rates a.remove {
+  float: right;
+  margin-left: 4px;
+}
+table#dokan_shipping_rates td,
+table#dokan_shipping_rates th {
+  padding: 15px 10px;
+  vertical-align: middle;
+}
+table#dokan_shipping_rates tr:nth-child(even) td,
+table#dokan_shipping_rates tr:nth-child(even) th {
+  background: #fafafa;
+}
+table#dokan_shipping_rates td.checkbox,
+table#dokan_shipping_rates th.checkbox {
+  text-align: center;
+}
+table#dokan_shipping_rates td .disabled {
+  opacity: 0.5;
+}
+table#dokan_shipping_rates .check-column {
+  width: 24px;
+  min-width: 24px !important;
+  text-align: center;
+  padding: 15px 10px;
+}
+table#dokan_shipping_rates .check-column input {
+  width: auto;
+  vertical-align: middle;
+  margin: 0 0 0 8px;
+}
+table#dokan_shipping_rates thead th {
+  background-color: #fff;
+  border-bottom: 1px solid #c3c4c7;
+  font-size: 14px;
+}
+table#dokan_shipping_rates tfoot th {
+  background-color: #fff;
+}
+table#dokan_shipping_rates a {
+  text-decoration: none;
+}
+#dokan_shipping_rates_classes {
+  background-color: #fff;
+  border: 1px solid #c3c4c7;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+#dokan_shipping_rates_classes thead th {
+  background-color: #fff;
+  border-bottom: 1px solid #c3c4c7;
+}
+#dokan_shipping_rates_classes tbody th {
+  background-color: #fff;
+}
+#dokan_shipping_rates_classes thead th,
+#dokan_shipping_rates_classes tbody td,
+#dokan_shipping_rates_classes tbody th,
+#dokan_shipping_rates_classes tfoot td {
+  padding: 15px;
+}
+

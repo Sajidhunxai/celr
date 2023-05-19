@@ -1,0 +1,405 @@
+.dokan-store-support-btn {
+  margin-top: 3px;
+  width: 100%;
+}
+.dokan-store-support-btn-product {
+  width: auto;
+  margin-left: 3px !important;
+}
+.dokan-support-login-wrapper {
+  width: 430px !important;
+  padding: 16px !important;
+  margin: 0 auto !important;
+}
+
+.dokan-support-login-wrapper h2 {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.dokan-support-table .dokan-support-customer-name img {
+  float: left;
+  margin-right: 10px;
+}
+
+.dokan-support-intro-text {
+  padding: 10px 0px;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+.dokan-support-topic-counts {
+    padding-left: 0px !important;
+}
+.dokan-support-topic-counts li{
+    display: inline-block;
+}
+.dokan-support-topic-counts li.active a {
+  color: #999;
+}
+.dokan-support-topic-wrapper .dokan-support-single-title {
+  margin-bottom: 30px;
+}
+.dokan-support-topic-wrapper .dokan-support-topic-header {
+  background: #222;
+  color: #fff;
+  padding: 10px;
+}
+.dokan-support-topic-wrapper .dokan-suppport-topic-body {
+  margin-top: 20px;
+  border: 2px solid #eee;
+  margin-bottom: 0px;
+}
+.dokan-support-topic-wrapper .dokan-suppport-topic-body * {
+  box-sizing: border-box;
+}
+
+.dokan-support-topic-wrapper .dokan-support-user-image {
+  text-align: center;
+  padding: 15px 0px;
+  background: #eee;
+}
+.dokan-support-topic-wrapper .dokan-support-user-image img {
+  margin-bottom: 6px;
+}
+.dokan-support-topic-wrapper .dokan-support-user-image h4,
+.dokan-support-topic-wrapper .dokan-support-user-image p {
+  margin: 0;
+}
+.dokan-support-topic-wrapper .dokan-support-date-time {
+  font-size: 12px;
+  font-style: italic;
+}
+.dokan-support-topic-wrapper .dokan-support-reply {
+  padding: 0px 20px;
+}
+.dokan-support-topic-wrapper .dokan-support-user-image {
+  _border-right: 2px solid #eee;
+}
+.dokan-support-topic-wrapper ul.dokan-support-commentlist {
+  padding-left: 0px;
+  list-style: none;
+}
+.dokan-support-topic-wrapper ul.dokan-support-commentlist li {
+  padding: 0;
+  margin: 0;
+}
+
+.dokan-support-topic-wrapper .comment-reply-title {
+  display: none;
+}
+.dokan-support-topic-wrapper .dokan-dss-comment-textarea {
+  width: 100%;
+}
+.dokan-support-topic-wrapper .dokan-support-topic-select {
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.dokan-support-reply-form #respond,
+.dokan-support-reply-form #respond form {
+  margin: 0;
+}
+
+.dokan-single-store .dokan-store-tabs ul li.dokan-store-support-btn-wrap{
+    margin-right: 5px;
+}
+
+.dokan-dss-chat-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.dokan-main-topic {
+    width: 98%;
+    background-color: white;
+}
+
+.dokan-main-topic {
+    border-bottom: 1px solid #F0F0F1;
+    margin-bottom: 10px;
+    padding-bottom: 30px;
+}
+
+.dokan-dss-chat-box .dokan-chat-image-box {
+    width: 8%;
+    display: flex;
+    justify-content: center;
+    align-content: stretch;
+}
+
+.dokan-dss-chat-box .dokan-chat-image-box .dokan-chat-image-container {
+    display: inline-block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.dokan-dss-chat-box .dokan-chat-image-box .dokan-chat-image-container .dokan-chat-image {
+    width: auto;
+    height: 100%;
+}
+
+.dokan-dss-chat-box .dokan-chat-info-box {
+    width: 100%;
+}
+
+.dokan-dss-chat-box .dokan-chat-info-box .dokan-chat-sender-info {
+    display: flex;
+    justify-content: space-between;
+    height: 28px;
+    align-items: center;
+}
+
+.dokan-dss-chat-box .dokan-chat-info-box .dokan-chat-sender-info .dokan-chat-user-box {
+    color: #717171;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.dokan-dss-chat-box .dokan-chat-info-box .dokan-chat-time-box {
+    color: rgba(120, 129, 143, 0.5);
+    font-weight: 400;
+    float: right;
+    margin-top: 9px;
+}
+
+.dokan-dss-chat-box .dokan-chat-info-box .dokan-chat-text {
+    border-radius: 0px 10px 10px 10px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin-top: 9px;
+}
+
+.dokan-dss-chat-box .dokan-chat-info-box .dokan-customer-chat-text {
+    background: #f6f6f6;
+    color: #717171;
+}
+
+.dokan-dss-chat-box .dokan-chat-info-box .dokan-vendor-chat-text {
+    background: #5353bb25;
+    color: #5353bb;
+}
+
+.dokan-dss-chat-box .dokan-chat-info-box .dokan-admin-chat-text {
+    background: #f2faff;
+    color: #1a9ed4;
+}
+
+.dokan-dss-chat-box .dokan-chat-info-box .dokan-chat-text p {
+    margin: 0;
+}
+
+.dokan-dss-chat-box .dokan-chat-action-box {
+    width: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 1000px) {
+    .dokan-dss-chat-box {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    .dokan-dss-chat-box .dokan-chat-image-box {
+        width: 13%;
+        display: flex;
+        justify-content: center;
+        align-content: stretch;
+    }
+    .dokan-dss-chat-box .dokan-chat-image-box .dokan-chat-image-container {
+        display: inline-block;
+        position: relative;
+        width: 30px;
+        height: 30px;
+        overflow: hidden;
+        border-radius: 50%;
+    }
+    .dokan-dss-chat-box .dokan-chat-image-box .dokan-chat-image-container .dokan-chat-image {
+        width: auto;
+        height: 100%;
+    }
+    .dokan-dss-chat-box .dokan-chat-info-box {
+        width: 77%;
+    }
+    .dokan-dss-chat-box .dokan-chat-info-box .dokan-chat-sender-info {
+        display: flex;
+        justify-content: space-between;
+        height: 28px;
+        align-items: center;
+    }
+    .dokan-dss-chat-box .dokan-chat-info-box .dokan-chat-sender-info .dokan-chat-user-box {
+        color: #717171;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    .dokan-dss-chat-box .dokan-chat-info-box .dokan-chat-time-box {
+        color: rgba(120, 129, 143, 0.5);
+        font-weight: 400;
+        float: right;
+        margin-top: 9px;
+    }
+    .dokan-dss-chat-box .dokan-chat-info-box .dokan-chat-text {
+        background: #f2faff;
+        border-radius: 0px 10px 10px 10px;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        color: #1a9ed4;
+        margin-top: 10px;
+    }
+    .dokan-dss-chat-box .dokan-chat-info-box .dokan-chat-text p {
+        margin: 0;
+    }
+    .dokan-dss-chat-box .dokan-chat-action-box {
+        width: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .dokan-dss-chat-box .dokan-chat-action-box .dokan-chat-delete {
+        margin-top: 35px;
+        display: none;
+        visibility: hidden;
+        color: #e0e6f0;
+        cursor: pointer;
+    }
+    .dokan-dss-chat-box .dokan-chat-action-box .dokan-chat-delete:hover {
+        color: #f2624d;
+    }
+    .dokan-dss-chat-box:hover .dokan-chat-delete {
+        display: block;
+        visibility: visible;
+    }
+}
+
+.dokan-support-commentlist {
+    width: 100%;
+    max-height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    margin: 20px 0 0 0;
+}
+
+.dokan-support-commentlist::-webkit-scrollbar {
+    width: 5px;
+}
+
+.dokan-support-commentlist::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+
+.dokan-support-commentlist::-webkit-scrollbar-thumb {
+    background: rgba(241, 133, 29, 0.3);
+    border-radius: 3px;
+}
+
+.dokan-support-commentlist::-webkit-scrollbar-thumb:hover {
+    background: #f1851d;
+}
+
+.dokan-support-topic-wrapper ul.dokan-support-commentlist li .chat-box {
+    padding-right: 10px;
+}
+
+.dokan-dss-chat-header {
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #F0F0F1;
+}
+
+.dokan-dss-chat-header .dokan-chat-title-box {
+    width: 50%;
+    display: block;
+}
+
+.dokan-dss-chat-header .dokan-chat-title-box .dokan-chat-title {
+    float: left;
+    padding: 20px 20px 20px 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.dokan-dss-chat-header .dokan-chat-title-box .dokan-chat-status {
+    color: rgb(201, 201, 201);
+}
+
+.dokan-dss-chat-header .dokan-chat-status-box {
+    width: 50%;
+    display: block;
+}
+
+.dokan-dss-chat-header .dokan-chat-status-box .dokan-chat-status {
+    float: right;
+    margin: 15px 20px;
+    padding: 5px 15px;
+    border-radius: 3px;
+}
+
+.dokan-dss-chat-header .dokan-chat-status-box .dokan-chat-open {
+    background-color: rgba(46, 204, 113, 0.15);
+    color: #039440;
+}
+
+.dokan-dss-chat-header .dokan-chat-status-box .dokan-chat-closed {
+    background-color: rgba(168, 168, 168, 0.1);
+    color: #828282;
+}
+
+.dokan-dss-panel-default {
+    border: none;
+    margin-top: 20px;
+}
+
+.dokan-dss-panel-default .dokan-dss-panel-heading {
+    background-color: white;
+    padding: 0;
+    border: none;
+}
+
+.dokan-dss-panel-default .dokan-dss-panel-body {
+    padding: 0;
+}
+
+.dokan-dss-panel-default .dokan-dss-panel-body .comment-respond {
+    background-color: white !important;
+    padding: 0 5px 0 0 !important;
+    margin-top: 20px !important;
+}
+
+.dokan-dss-panel-default .dokan-dss-panel-body .comment-respond .comment-form .comment-form-comment .dokan-dss-comment-textarea {
+    background: #FFFFFF;
+    border: 1px solid rgba(225, 233, 248, 0.945);
+    box-sizing: border-box;
+    border-radius: 3px;
+    box-shadow: none;
+}
+
+.dokan-dss-panel-default .dokan-dss-panel-body .comment-respond .comment-form .form-submit .submit {
+    background: #3D566E !important;
+    color: #FFFFFF !important;
+    border: none;
+}
+.dokan-store-support-ticket-search-form #dokan-search-support-customers {
+    width:220px;
+}
+
+.dokan-store-support-ticket-search-form #support_ticket_date_filter {
+    min-width: 180px;
+    padding: 4px 10px;
+}
+
+.dokan-store-support-ticket-search-form #dokan-support-ticket-search-input {
+    width: 160px;
+    padding: 4px 10px;
+}

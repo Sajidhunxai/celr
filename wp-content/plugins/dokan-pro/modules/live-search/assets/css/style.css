@@ -1,0 +1,164 @@
+#loading{
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    opacity: 1;
+    display: none;
+}
+
+.dokan-ajax-search-category{
+    border:none;
+    background-color: #eeeeee;
+    width: 90px;
+    height: auto;
+    padding-left: 3px;
+    margin: 0px;
+}
+
+.ajaxsearchform .input-group-addon{
+    padding: 0px;
+    display: table-cell;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555555;
+    text-align: center;
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+}
+
+.site-header .widget_dokna_product_search{
+    max-width: 70%;
+    float: right;
+}
+.ajaxsearchform-dokan {
+    position: relative;
+}
+
+#dokan-ajax-search-suggestion-result{
+    display: none;
+    position: absolute;
+    width: 200%;
+    background: #ffffff;
+    z-index: 15;
+    transform: translateY(-1px);
+    max-width: 400px;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#dokan-ajax-search-suggestion-result ul{
+    list-style: none;
+    margin:0 !important;
+    padding:15px;
+    border: 1px solid #e0e0e0;
+}
+
+#dokan-ajax-search-suggestion-result li{
+    display: block;
+    padding: 8px 0;
+    position: relative;
+    border-bottom: 1px dashed #e0e0e0;
+    margin-left: 0px;
+}
+
+#dokan-ajax-search-suggestion-result li:last-child{
+    border-bottom: none;
+}
+
+#dokan-ajax-search-suggestion-result a{
+    display: table;
+    width: 100%;
+}
+
+#dokan-ajax-search-suggestion-result a > * {
+    display: table-cell;
+    vertical-align: top;
+}
+
+#dokan-ajax-search-suggestion-result .dokan-ls-product-image{
+    width: 40px;
+    max-width: 40px;
+}
+
+.dokan-ls-product-data {
+    padding-left: 20px;
+}
+
+#dokan-ajax-search-suggestion-result h3{
+    display: block;
+    margin: 0px;
+    font-size: 15px;
+}
+
+.dokan-ls-product-data div:not(.dokan-ls-product-categories){
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.dokan-ls-product-data .dokan-ls-product-price{
+    position: absolute;
+    top: 12px;
+    right: 0;
+}
+
+.dokan-ls-product-data .dokan-ls-product-stock{
+    padding: 4px 8px;
+    background: #eeeeee;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+}
+
+.dokan-ls-product-categories > span{
+    display: inline-block;
+    margin-right: 4px;
+    font-size: 13px;
+}
+
+.dokan-ls-product-categories > span:after{
+    content: ",";
+}
+
+.dokan-ls-product-categories > span:last-child:after{
+    content: "";
+}
+
+.dokan-ls-product-categories > span:last-child{
+    margin-right:0;
+}
+
+.ajaxsearchform-dokan .dokan-ajax-search-loader{
+    background-image: url('../images/big_circle_loader.gif');
+    background-position:right center;
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    z-index: 999;
+}
+
+.ajaxsearchform-dokan .form-control{
+    display: table-cell;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    margin: 0px;
+}
+
+.ajaxsearchform-dokan .input-group{
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+
+#dokan-ajax-search-suggestion-result .product-price{
+    font-size: 14px;
+    font-weight: bold;
+    bottom: 10px;
+    text-align: right;
+}
+#dokan-ajax-search-suggestion-result .dokan-ls-sale-price{
+    color: #8f949b;
+    text-decoration: line-through;
+    margin-left: 8px;
+}

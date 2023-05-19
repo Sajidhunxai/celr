@@ -1,0 +1,10 @@
+{
+  "require": {
+    "stripe/stripe-php": "7.52.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "WeDevs\\DokanPro\\Modules\\Stripe\\": "includes"
+    }
+  }
+}

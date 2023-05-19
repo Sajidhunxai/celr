@@ -1,0 +1,18 @@
+.dce-posts-container.dce-skin-accordion .acc_section.acc_active .acc_head .icon {
+  display: none;
+}
+.dce-posts-container.dce-skin-accordion .acc_section:not(.acc_active) .acc_head .icon-active {
+  display: none;
+}
+.dce-posts-container.dce-skin-accordion .icon-active, .dce-posts-container.dce-skin-accordion .icon {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.dce-posts-container.dce-skin-accordion .accordion-icon-right {
+  float: right;
+  text-align: right;
+}
+
+.dce-accordion-icon svg {
+    width: 1em;
+}

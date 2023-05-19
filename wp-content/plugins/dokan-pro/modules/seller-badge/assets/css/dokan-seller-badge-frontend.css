@@ -1,0 +1,980 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/components/Modal.vue?vue&type=style&index=0&id=2a485b87&lang=less&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.seller-badge-modal-backdrop[data-v-2a485b87] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 360px;
+  background: #000;
+  opacity: 0.7;
+  z-index: 99900;
+}
+.seller-badge-modal[data-v-2a485b87] {
+  font-family: "SF Pro Text", sans-serif;
+}
+.seller-badge-modal *[data-v-2a485b87] {
+  box-sizing: border-box;
+}
+.seller-badge-modal .seller-badge-modal-content[data-v-2a485b87] {
+  position: fixed;
+  background: #fff;
+  z-index: 100000;
+  left: 50%;
+  top: 50%;
+  border-radius: 3px;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+@media (max-width: 767px) {
+.seller-badge-modal .seller-badge-modal-content[data-v-2a485b87] {
+    width: calc(100% - 20px) !important;
+    height: calc(100% - 40px) !important;
+}
+}
+.seller-badge-modal .seller-badge-modal-main[data-v-2a485b87] {
+  padding: 50px 30px 35px;
+  border-radius: 3px;
+}
+.seller-badge-modal .seller-badge-modal-main.has-footer[data-v-2a485b87] {
+  padding-bottom: 55px;
+}
+.seller-badge-modal .modal-header[data-v-2a485b87] {
+  display: flex;
+  margin-bottom: 50px;
+}
+.seller-badge-modal .modal-header .modal-img[data-v-2a485b87] {
+  width: 50px;
+  margin-right: 20px;
+}
+.seller-badge-modal .modal-header .modal-img img[data-v-2a485b87] {
+  width: 100%;
+}
+.seller-badge-modal .modal-header .modal-title h2[data-v-2a485b87] {
+  font-size: 1.4375rem;
+  font-weight: 700;
+  line-height: 1em;
+  margin: 0 0 10px;
+}
+.seller-badge-modal .modal-header .modal-title h3[data-v-2a485b87] {
+  font-weight: 700;
+  font-size: 23px;
+}
+.seller-badge-modal .modal-header .modal-title p[data-v-2a485b87] {
+  color: #B3B3B3;
+  line-height: 1;
+  margin: 0;
+}
+.seller-badge-modal .modal-header .modal-title p .color-blue[data-v-2a485b87] {
+  color: #1A9ED4;
+}
+.seller-badge-modal .modal-header .modal-close-link[data-v-2a485b87] {
+  cursor: pointer;
+  color: #777;
+  height: 54px;
+  width: 54px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: center;
+  border: 0;
+  background-color: transparent;
+  -webkit-transition: color 0.1s ease-in-out, background 0.1s ease-in-out;
+  transition: color 0.1s ease-in-out, background 0.1s ease-in-out;
+}
+.seller-badge-modal .modal-header .modal-close-link[data-v-2a485b87]::before {
+  font: normal 22px/50px dashicons !important;
+  color: #1F1F1F;
+  display: block;
+  content: '\f335';
+  font-weight: 300;
+}
+.seller-badge-modal .modal-header .modal-close-link[data-v-2a485b87]:hover {
+  background: #ddd;
+  border-color: #ccc;
+  color: #000;
+}
+.seller-badge-modal .modal-sub-title h3[data-v-2a485b87] {
+  color: #000000;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.1875em;
+  margin: 0 0 12px;
+}
+.seller-badge-modal .modal-body[data-v-2a485b87] {
+  min-height: 100px;
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+}
+.seller-badge-modal .modal-body .modal-level-box[data-v-2a485b87] {
+  padding: 15px 18px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  border: 1px solid #e2e2e2;
+}
+.seller-badge-modal .modal-body .modal-level-box[data-v-2a485b87]:last-child {
+  margin-bottom: 0;
+}
+.seller-badge-modal .modal-body .level_description[data-v-2a485b87] {
+  display: flex;
+  align-items: flex-start;
+  gap: 25px;
+  color: #000000;
+  font-size: 13px;
+}
+.seller-badge-modal .modal-body .level_description .left-content .modal-img[data-v-2a485b87] {
+  width: 30px;
+  height: 32px;
+}
+.seller-badge-modal .modal-body .level_description .left-content .modal-img img[data-v-2a485b87] {
+  width: 100%;
+}
+.seller-badge-modal .modal-body .level_description .left-content .container[data-v-2a485b87] {
+  position: relative;
+  text-align: center;
+}
+.seller-badge-modal .modal-body .level_description .left-content .bottom-center[data-v-2a485b87] {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  bottom: 0;
+  left: 2px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  transform: translate(5px, 10px);
+}
+.seller-badge-modal .modal-body .level_description .right-content p[data-v-2a485b87] {
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1em;
+  margin: 0 0 10px;
+}
+.seller-badge-modal .modal-body .level_description .right-content p[data-v-2a485b87]:last-child {
+  margin-bottom: 0;
+}
+.seller-badge-modal .modal-body .level_description .right-content p i[data-v-2a485b87] {
+  color: #c8c8c8;
+  font-size: 0.75rem;
+  margin-left: 3px;
+}
+.seller-badge-modal .modal-body .level_description .right-content p i.has-level[data-v-2a485b87] {
+  color: #139f84;
+}
+.seller-badge-modal .modal-body .level_description .right-content .no_of_vendor[data-v-2a485b87] {
+  color: #b3b3b3;
+  font-weight: 400;
+  line-height: 1.25em;
+}
+.seller-badge-modal .modal-body .level_description .right-content .no_of_vendor .vendor-count[data-v-2a485b87] {
+  color: #1a9ed4;
+}
+.seller-badge-modal footer[data-v-2a485b87] {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -30px;
+  z-index: 100;
+  padding: 1em 1.5em;
+  background: #fcfcfc;
+  border-top: 1px solid #dfdfdf;
+  -webkit-box-shadow: 0 -4px 4px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -4px 4px -4px rgba(0, 0, 0, 0.1);
+}
+.seller-badge-modal footer .inner[data-v-2a485b87] {
+  text-align: right;
+  line-height: 23px;
+}
+
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/components/Bars.vue?vue&type=style&index=0&id=f5de2754&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+
+.seller-badge-loader[data-v-f5de2754] {
+    position: absolute;
+    top: 20%;
+    left: 45%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/components/BadgeDetails.vue?vue&type=style&index=0&id=c5023d96&lang=less&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.level_acquisition[data-v-c5023d96] {
+  display: flex;
+  gap: 5px;
+  color: #b3b3b3 !important;
+  font-weight: 400 !important;
+}
+.level_acquisition strong[data-v-c5023d96] {
+  color: #78818f;
+}
+
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/frontend/components/UnseenBadges.vue?vue&type=style&index=0&id=be61e4da&lang=less&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.badge-details-frontend-site .modal-title[data-v-be61e4da] {
+  text-align: center;
+  width: 100%;
+}
+.badge-details-frontend-site .modal-title h2[data-v-be61e4da],
+.badge-details-frontend-site .modal-title p[data-v-be61e4da] {
+  color: #000 !important;
+  font-size: 1.125rem !important;
+  font-weight: 600;
+}
+.badge-details-frontend-site .right-content .level_acquisition[data-v-be61e4da] {
+  font-weight: 400 !important;
+}
+
+/*!*******************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./modules/seller-badge/assets/src/css/list-tables.css ***!
+  \*******************************************************************************************************/
+/*------------------------------------------------------------------------------
+  10.0 - List Posts (/Pages/etc)
+------------------------------------------------------------------------------*/
+
+table.fixed {
+	table-layout: fixed;
+}
+
+.fixed .column-rating,
+.fixed .column-visible {
+	width: 8%;
+}
+
+.fixed .column-posts,
+.fixed .column-parent,
+.fixed .column-links,
+.fixed .column-author,
+.fixed .column-format {
+	width: 10%;
+}
+
+.fixed .column-date {
+	width: 14%;
+}
+
+.column-date span[title] {
+	-webkit-text-decoration: dotted underline;
+	text-decoration: dotted underline;
+}
+
+.fixed .column-posts {
+	width: 74px;
+}
+
+.fixed .column-role,
+.fixed .column-posts {
+	-webkit-hyphens: auto;
+	hyphens: auto;
+}
+
+.fixed .column-comment .comment-author {
+	display: none;
+}
+
+.fixed .column-response,
+.fixed .column-categories,
+.fixed .column-tags,
+.fixed .column-rel,
+.fixed .column-role {
+	width: 15%;
+}
+
+.fixed .column-slug {
+	width: 25%;
+}
+
+.fixed .column-locations {
+	width: 35%;
+}
+
+.fixed .column-comments {
+	width: 5.5em;
+	padding: 8px 0;
+	text-align: left;
+}
+
+.fixed .column-comments .vers {
+	padding-left: 3px;
+}
+
+td.column-title strong,
+td.plugin-title strong {
+	display: block;
+	margin-bottom: .2em;
+	font-size: 14px;
+}
+
+td.column-title p,
+td.plugin-title p {
+	margin: 6px 0;
+}
+
+/* @todo: pick a consistent list table selector */
+.wp-list-table a {
+	transition: none;
+}
+
+#the-list tr:last-child td,
+#the-list tr:last-child th {
+	border-bottom: none !important;
+	box-shadow: none;
+}
+
+.sorting-indicator {
+	display: block;
+	visibility: hidden;
+	width: 10px;
+	height: 4px;
+	margin-top: 8px;
+	margin-left: 7px;
+}
+
+.sorting-indicator:before {
+	content: "\f142";
+	font: normal 20px/1 dashicons;
+	speak: never;
+	display: inline-block;
+	padding: 0;
+	top: -4px;
+	left: -8px;
+	color: #3c434a;
+	line-height: 0.5;
+	position: relative;
+	vertical-align: top;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-decoration: none !important;
+	color: #3c434a;
+}
+
+th.sorted.asc .sorting-indicator:before,
+th.desc:hover span.sorting-indicator:before,
+th.desc a:focus span.sorting-indicator:before {
+	content: "\f142";
+}
+
+th.sorted.desc .sorting-indicator:before,
+th.asc:hover span.sorting-indicator:before,
+th.asc a:focus span.sorting-indicator:before {
+	content: "\f140";
+}
+
+.wp-list-table .toggle-row {
+	position: absolute;
+	right: 8px;
+	top: 10px;
+	display: none;
+	padding: 0;
+	width: 40px;
+	height: 40px;
+	border: none;
+	outline: none;
+	background: transparent;
+}
+
+.wp-list-table .toggle-row:hover {
+	cursor: pointer;
+}
+
+.wp-list-table .toggle-row:focus:before {
+	box-shadow:
+		0 0 0 1px #4f94d4,
+		0 0 2px 1px rgba(79, 148, 212, 0.8);
+}
+
+.wp-list-table .toggle-row:active {
+	box-shadow: none;
+}
+
+.wp-list-table .toggle-row:before {
+	position: absolute;
+	top: -5px;
+	left: 10px;
+	border-radius: 50%;
+	display: block;
+	padding: 1px 2px 1px 0;
+	color: #3c434a; /* same as table headers sort arrows */
+	content: "\f140";
+	font: normal 20px/1 dashicons;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	speak: never;
+}
+
+.wp-list-table .is-expanded .toggle-row:before {
+	content: "\f142";
+}
+
+.locked-indicator {
+	display: none;
+	margin-left: 6px;
+	height: 20px;
+	width: 16px;
+}
+
+.locked-indicator-icon:before {
+	color: #8c8f94;
+	content: "\f160";
+	display: inline-block;
+	font: normal 20px/1 dashicons;
+	speak: never;
+	vertical-align: middle;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.locked-info {
+	display: none;
+	margin-top: 4px;
+}
+
+.locked-text {
+	vertical-align: top;
+}
+
+.wp-locked .locked-indicator,
+.wp-locked .locked-info {
+	display: block;
+}
+
+tr.wp-locked .check-column label,
+tr.wp-locked .check-column input[type="checkbox"],
+tr.wp-locked .row-actions .inline,
+tr.wp-locked .row-actions .trash {
+	display: none;
+}
+
+.fixed .column-comments .sorting-indicator {
+	margin-top: 3px;
+}
+
+#menu-locations-wrap .widefat {
+	width: 60%;
+}
+
+.widefat th.sortable,
+.widefat th.sorted {
+	padding: 0;
+}
+
+th.sortable a,
+th.sorted a {
+	display: block;
+	overflow: hidden;
+	padding: 8px;
+}
+
+.fixed .column-comments.sortable a,
+.fixed .column-comments.sorted a {
+	padding: 8px 0;
+}
+
+th.sortable a span,
+th.sorted a span {
+	float: left;
+	cursor: pointer;
+}
+
+th.sorted .sorting-indicator,
+th.desc:hover span.sorting-indicator,
+th.desc a:focus span.sorting-indicator,
+th.asc:hover span.sorting-indicator,
+th.asc a:focus span.sorting-indicator {
+	visibility: visible;
+}
+
+.tablenav-pages .current-page {
+	margin: 0 2px 0 0;
+	font-size: 13px;
+	text-align: center;
+}
+
+.tablenav .total-pages {
+	margin-right: 2px;
+}
+
+.tablenav #table-paging {
+	margin-left: 2px;
+}
+
+.tablenav {
+	clear: both;
+	height: 30px;
+	margin: 6px 0 4px;
+	padding-top: 5px;
+	vertical-align: middle;
+}
+
+.tablenav.themes {
+	max-width: 98%;
+}
+
+.tablenav .tablenav-pages {
+	float: right;
+	margin: 0 0 9px;
+}
+
+.tablenav .no-pages,
+.tablenav .one-page .pagination-links {
+	display: none;
+}
+
+.tablenav .tablenav-pages .button,
+.tablenav .tablenav-pages .tablenav-pages-navspan {
+	display: inline-block;
+	vertical-align: baseline;
+	min-width: 30px;
+	min-height: 30px;
+	margin: 0;
+	padding: 0 4px;
+	font-size: 16px;
+	line-height: 1.625; /* 26px */
+	text-align: center;
+}
+
+.tablenav .displaying-num {
+	margin-right: 7px;
+}
+
+.tablenav .one-page .displaying-num {
+	display: inline-block;
+	margin: 5px 0;
+}
+
+.tablenav .actions {
+	padding: 0 8px 0 0;
+}
+
+.wp-filter .actions {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.tablenav .delete {
+	margin-right: 20px;
+}
+
+/* This view-switcher is still used on multisite. */
+.tablenav .view-switch {
+	float: right;
+	margin: 0 5px;
+	padding-top: 3px;
+}
+
+.wp-filter .view-switch {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 12px 0;
+	margin: 0 8px 0 2px;
+}
+
+.media-toolbar.wp-filter .view-switch {
+	margin: 0 12px 0 2px;
+}
+
+.view-switch a {
+	float: left;
+	width: 28px;
+	height: 28px;
+	text-align: center;
+	line-height: 1.84615384;
+	text-decoration: none;
+}
+
+.view-switch a:before {
+	color: #c3c4c7;
+	display: inline-block;
+	font: normal 20px/1 dashicons;
+	speak: never;
+	vertical-align: middle;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.view-switch a:hover:before,
+.view-switch a:focus:before {
+	color: #787c82;
+}
+
+.view-switch a.current:before {
+	color: #2271b1;
+}
+
+.view-switch .view-list:before {
+	content: "\f163";
+}
+
+.view-switch .view-excerpt:before {
+	content: "\f164";
+}
+
+.view-switch .view-grid:before {
+	content: "\f509";
+}
+
+.filter {
+	float: left;
+	margin: -5px 0 0 10px;
+}
+
+.filter .subsubsub {
+	margin-left: -10px;
+	margin-top: 13px;
+}
+.screen-per-page {
+	width: 4em;
+}
+
+#posts-filter .wp-filter {
+	margin-bottom: 0;
+}
+
+#posts-filter fieldset {
+	float: left;
+	margin: 0 1.5ex 1em 0;
+	padding: 0;
+}
+
+#posts-filter fieldset legend {
+	padding: 0 0 .2em 1px;
+}
+
+p.pagenav {
+	margin: 0;
+	display: inline;
+}
+
+.pagenav span {
+	font-weight: 600;
+	margin: 0 6px;
+}
+
+.row-title {
+	font-size: 14px !important;
+	font-weight: 600;
+}
+
+.column-comment .comment-author {
+	margin-bottom: 0.6em;
+}
+
+.column-author img,
+.column-username img,
+.column-comment .comment-author img {
+	float: left;
+	margin-right: 10px;
+	margin-top: 1px;
+}
+
+.row-actions {
+	color: #a7aaad;
+	font-size: 13px;
+	padding: 2px 0 0;
+	position: relative;
+	left: -9999em;
+}
+
+/* ticket #34150 */
+.rtl .row-actions a {
+	display: inline-block;
+}
+
+.row-actions .network_only,
+.row-actions .network_active {
+	color: #000;
+}
+
+.no-js .row-actions,
+tr:hover .row-actions,
+.mobile .row-actions,
+.row-actions.visible,
+.comment-item:hover .row-actions {
+	position: static;
+}
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(359deg);
+	}
+}
+
+/* =Media Queries
+-------------------------------------------------------------- */
+
+@media screen and (max-width: 782px) {
+	/* WP List Table Options & Filters */
+	.tablenav {
+		height: auto;
+	}
+
+	.tablenav.top {
+		margin: 20px 0 5px;
+	}
+
+	.tablenav.bottom {
+		position: relative;
+		margin-top: 15px;
+	}
+
+	.tablenav br {
+		display: none;
+	}
+
+	.tablenav br.clear {
+		display: block;
+	}
+
+	.tablenav.top .actions,
+	.tablenav .view-switch {
+		display: none;
+	}
+
+	.view-switch a {
+		width: 36px;
+		height: 36px;
+		line-height: 2.53846153;
+	}
+
+	/* Pagination */
+	.tablenav.top .displaying-num {
+		display: none;
+	}
+
+	.tablenav.bottom .displaying-num {
+		position: absolute;
+		right: 0;
+		top: 11px;
+		margin: 0;
+		font-size: 14px;
+	}
+
+	.tablenav .tablenav-pages {
+		width: 100%;
+		text-align: center;
+		margin: 0 0 25px;
+	}
+
+	.tablenav.bottom .tablenav-pages {
+		margin-top: 25px;
+	}
+
+	.tablenav.top .tablenav-pages.one-page {
+		display: none;
+	}
+
+	.tablenav.bottom .actions select {
+		margin-bottom: 5px;
+	}
+
+	.tablenav.bottom .actions.alignleft + .actions.alignleft {
+		clear: left;
+		margin-top: 10px;
+	}
+
+	.tablenav.bottom .tablenav-pages.one-page {
+		margin-top: 15px;
+		height: 0;
+	}
+
+	.tablenav-pages .pagination-links {
+		font-size: 16px;
+	}
+
+	.tablenav .tablenav-pages .button,
+	.tablenav .tablenav-pages .tablenav-pages-navspan {
+		min-width: 44px;
+		padding: 12px 8px;
+		font-size: 18px;
+		line-height: 1;
+	}
+
+	.tablenav-pages .pagination-links .current-page {
+		min-width: 44px;
+		padding: 12px 6px;
+		font-size: 16px;
+		line-height: 1.125;
+	}
+
+	/* WP List Table Adjustments: General */
+	.form-wrap > p {
+		display: none;
+	}
+
+	.wp-list-table th.column-primary ~ th,
+	.wp-list-table tr:not(.inline-edit-row):not(.no-items) td.column-primary ~ td:not(.check-column) {
+		display: none;
+	}
+
+	.wp-list-table thead th.column-primary {
+		width: 100%;
+	}
+
+	/* Checkboxes need to show */
+	.wp-list-table tr th.check-column {
+		display: table-cell;
+	}
+
+	.wp-list-table .check-column {
+		width: 2.5em;
+	}
+
+	.wp-list-table .column-primary .toggle-row {
+		display: block;
+	}
+
+	.wp-list-table tr:not(.inline-edit-row):not(.no-items) td:not(.check-column) {
+		position: relative;
+		clear: both;
+		width: auto !important; /* needs to override some columns that are more specifically targeted */
+	}
+
+	.wp-list-table td.column-primary {
+		padding-right: 50px; /* space for toggle button */
+	}
+
+	.wp-list-table tr:not(.inline-edit-row):not(.no-items) td.column-primary ~ td:not(.check-column) {
+		padding: 3px 8px 3px 35%;
+	}
+
+	.wp-list-table tr:not(.inline-edit-row):not(.no-items) td:not(.column-primary)::before {
+		position: absolute;
+		left: 10px; /* match padding of regular table cell */
+		display: block;
+		overflow: hidden;
+		width: 32%; /* leave a little space for a gutter */
+		content: attr(data-colname);
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.wp-list-table .is-expanded td:not(.hidden) {
+		display: block !important;
+		overflow: hidden; /* clearfix */
+	}
+
+	.row-actions {
+		margin-left: -8px;
+		margin-right: -8px;
+		padding-top: 4px;
+	}
+
+	/* Make row actions more easy to select on mobile */
+	body:not(.plugins-php) .row-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		color: transparent;
+	}
+
+	.row-actions span a,
+	.row-actions span .button-link {
+		display: inline-block;
+		padding: 4px 8px;
+		line-height: 1.5;
+	}
+
+	.row-actions span.approve:before,
+	.row-actions span.unapprove:before {
+		content: "| ";
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.tablenav-pages .current-page {
+		margin: 0;
+	}
+
+	.tablenav.bottom .displaying-num {
+		position: relative;
+		top: 0;
+		display: block;
+		text-align: right;
+		padding-bottom: 0.5em;
+	}
+
+	.tablenav.bottom .tablenav-pages.one-page {
+		height: auto;
+	}
+
+	.tablenav-pages .tablenav-paging-text {
+		float: left;
+		width: 100%;
+		padding-top: 0.5em;
+	}
+}
+
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/frontend/pages/SellerBadgeList.vue?vue&type=style&index=0&id=15f6fc6d&lang=less&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.seller-badge-list .dokan-store-setting-header-wrap[data-v-15f6fc6d] {
+  display: flex;
+}
+.seller-badge-list .dokan-store-setting-header-wrap .entry-title[data-v-15f6fc6d] {
+  flex: 1;
+}
+.seller-badge-list .button-secondary[data-v-15f6fc6d] {
+  font-size: 12px;
+  min-width: 58px;
+  border: 1px solid #1A9ED4;
+  color: #1A9ED4;
+  background-color: transparent;
+  padding: 7px 15px 7px 15px;
+}
+.seller-badge-list #seller_badge_list_table .badge_name[data-v-15f6fc6d] {
+  width: 30%;
+}
+.seller-badge-list #seller_badge_list_table .badge_view .view_badge_icon[data-v-15f6fc6d]:hover {
+  color: #00a0d2;
+  cursor: pointer;
+}
+.seller-badge-list #seller_badge_list_table td img[data-v-15f6fc6d] {
+  float: left;
+  margin-right: 10px;
+  margin-top: 1px;
+  width: 60px;
+  height: auto;
+}
+.seller-badge-list #seller_badge_list_table .badge_logo img[data-v-15f6fc6d] {
+  width: 41px;
+}
+.seller-badge-list #seller_badge_list_table .badge_logo .info[data-v-15f6fc6d] {
+  font-size: 14px;
+}
+.seller-badge-list #seller_badge_list_table .badge_logo .info .fa-check-circle[data-v-15f6fc6d] {
+  font-size: 0.875rem;
+  margin-left: 3px;
+}
+.seller-badge-list #seller_badge_list_table .badge_logo .info .fa-check-circle.badge-published[data-v-15f6fc6d] {
+  color: #139F84;
+}
+.seller-badge-list #seller_badge_list_table .badge_logo .info .fa-check-circle.badge-draft[data-v-15f6fc6d] {
+  color: #c8c8c8;
+}
+.seller-badge-list #seller_badge_list_table .badge_logo .badge_level_text[data-v-15f6fc6d] {
+  font-size: 13px;
+}
+.seller-badge-list #seller_badge_list_table .badge_description[data-v-15f6fc6d] {
+  font-size: 13px;
+}
+

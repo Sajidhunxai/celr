@@ -1,0 +1,156 @@
+.elementor-widget.dokan-btn-wrap {
+    margin-bottom: 0;
+}
+
+.elementor-widget-dokan-store-info .elementor-icon-list-items .elementor-icon-list-item .elementor-icon-list-text span.seller-rating {
+    display: none;
+}
+
+.elementor-widget-dokan-store-live-chat-button .fa.fa-circle {
+    margin-right: 4px;
+    color: #79e379;
+}
+
+.dokan-elementor-flex-right .elementor-widget-wrap {
+    justify-content: flex-end;
+}
+
+.dokan-follow-store-buttons-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.dokan-store-info .elementor-widget-container {
+    overflow: visible !important;
+}
+
+.elementor-icon-list-text,
+.elementor-times-list-icon {
+    cursor: pointer;
+}
+
+.elementor-times-list-icon .fa-angle-down {
+    position: relative;
+    padding-left: 20px;
+}
+
+.elementor-icon-list-item:hover .fa-angle-down::after {
+    content: "";
+    top: 90%;
+    left: 35%;
+    width: 25px;
+    height: 40px;
+    z-index: 1;
+    position: absolute;
+    transform: rotate(45deg);
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.elementor-icon-list-item:hover #vendor-store-times {
+    display: block;
+}
+
+#vendor-store-times {
+    top: 115%;
+    left: -3%;
+    color: #3E474F;
+    width: 300px;
+    z-index: 1;
+    display: none;
+    padding: 1.5em 2em;
+    overflow: auto;
+    position: absolute;
+    max-height: 435px;
+    background: #fff;
+    box-shadow: 0 10px 15px -3px #00000040, 0 4px 6px -4px #00000010;
+    border-radius: 6px;
+}
+
+#vendor-store-times span {
+    margin-left: 10px;
+}
+
+#vendor-store-times .store-time-tags {
+    display: flex;
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+#vendor-store-times::-webkit-scrollbar {
+    width: 10px;
+}
+
+#vendor-store-times::-webkit-scrollbar-thumb {
+    background: #8d9399;
+    border-radius: 5px;
+}
+
+#vendor-store-times::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.store-time-tags .store-days {
+    flex: 2.3;
+    text-align: left;
+}
+
+.store-times {
+    flex: 4;
+    text-align: left;
+}
+
+.store-open,
+.store-close {
+    cursor: pointer;
+    display: inline-block;
+    padding: 2px 3px 3.5px;
+    transition: 0.5s ease;
+    list-style: none;
+    margin-bottom: 5.5px;
+    border-radius: 0.375rem;
+    text-decoration: none;
+}
+
+.store-close {
+    color: #D07272;
+    padding: 1px 12px;
+    border-radius: 16px;
+    background-color: #F8E8E7;
+    max-width: 75px;
+    text-align: center;
+}
+
+.store-time-tags .current_day,
+.store-time-tags .current_time {
+    font-weight: 700;
+}
+
+.store-time-tags:last-child {
+    margin-bottom: 0;
+}
+
+.store-times-heading {
+    margin: 10px 0 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.store-times-heading .fa-calendar-day {
+    color: #2471A9;
+    width: 30px;
+    margin: 0 10px 0 -10px;
+    height: 30px;
+    border: 1px solid #CBD9DC;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    justify-content: center;
+}
+
+.store-times-heading h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 0;
+}

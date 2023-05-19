@@ -1,0 +1,10 @@
+{
+  "autoload" : {
+    "psr-4": {
+      "WeDevs\\DokanPro\\Modules\\Elementor\\": "includes"
+    },
+    "files": [
+      "includes/functions.php"
+    ]
+  }
+}

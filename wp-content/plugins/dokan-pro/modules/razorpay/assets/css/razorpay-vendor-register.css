@@ -1,0 +1,99 @@
+/*!*********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./modules/razorpay/assets/src/less/razorpay-vendor-register.less ***!
+  \*********************************************************************************************************************************************************/
+.dokan-razorpay-account-popup-wrapper .account-hint {
+  font-size: 12px;
+}
+.dokan-razorpay-account-popup-wrapper .account-note {
+  background: #ff000024;
+  border-left: 2px solid red;
+  font-size: 12px;
+  padding: 5px 5px 5px 10px;
+}
+.dokan-razorpay-account-popup-wrapper .dokan-razorpay-already-registered {
+  padding-bottom: 20px;
+}
+.dokan-razorpay-account-popup-wrapper .dokan-razorpay-already-registered .dokan-existing-account-info {
+  margin-top: 10px;
+}
+.dokan-razorpay-account-popup-wrapper .dokan-razorpay-already-registered #dokan_razorpay_account_id {
+  margin-top: 20px;
+}
+.dokan-razorpay-account-popup-wrapper h2 {
+  font-size: 22px;
+  color: #5d5d5d;
+  overflow: hidden;
+  width: 600px;
+  z-index: 99;
+  background: #fff;
+  margin-top: -14px;
+  margin-left: -18px;
+  padding: 14px 35px 16px !important;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+.dokan-razorpay-account-popup-wrapper .vendor-register-form-container {
+  padding: 5px 20px 20px;
+  margin-top: 15px;
+  height: 680px;
+  overflow-y: auto;
+}
+.dokan-razorpay-account-popup-wrapper .dokan-razorpay-form-group {
+  border: 1px solid #80808029;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.dokan-razorpay-account-popup-wrapper .dokan-razorpay-form-group select {
+  width: 96%;
+  margin-top: 0px;
+  margin-left: 2px;
+  padding: 12px 0px 13px 16px;
+}
+.dokan-razorpay-account-popup-wrapper .dokan-control-label {
+  font-size: 14px;
+  margin-bottom: 4px !important;
+  margin-top: 4px !important;
+  display: block;
+}
+.dokan-razorpay-account-popup-wrapper .mfp-close {
+  top: 6px !important;
+}
+.dokan-razorpay-account-popup-wrapper .content-half-part:last-child {
+  padding-left: 0px;
+}
+.dokan-razorpay-account-popup-wrapper .dokan-razorpay-connect-spinner {
+  margin-top: 8px;
+}
+.dokan-razorpay-account-popup-wrapper .dokan-text-required {
+  color: #d9534f;
+}
+/**
+ * Vendor Setup wizard form
+ */
+.wc-setup .dokan-razorpay-container .dokan-btn,
+.wc-setup .dokan-razorpay-container .vendor_razorpay_connect {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+.wc-setup .dokan-razorpay-account-popup-wrapper .vendor-register-form-container {
+  height: 590px;
+}
+.wc-setup .dokan-razorpay-account-popup-wrapper h2 {
+  width: 566px;
+}
+.wc-setup .dokan-razorpay-account-popup-wrapper .content-half-part {
+  width: 48%;
+}
+.wc-setup .dokan-razorpay-account-popup-wrapper .content-half-part:first-child {
+  padding-right: 10px;
+}
+.wc-setup .dokan-razorpay-account-popup-wrapper .dokan-razorpay-form-group select {
+  width: 100%;
+  padding: 0px 0px 2px 5px;
+}
+.wc-setup .dokan-razorpay-account-popup-wrapper .vendor_razorpay_connect {
+  color: #fff !important;
+}
+

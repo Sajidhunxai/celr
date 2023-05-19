@@ -1,0 +1,71 @@
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/subscription/assets/src/js/admin/components/Subscriptions.vue?vue&type=style&index=0&id=1c472578&lang=less& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.subscription-list table .action-btn {
+  cursor: pointer;
+}
+.subscription-list .swal2-radio {
+  flex-direction: column;
+}
+.subscription-list .swal2-radio label {
+  padding-bottom: 8px;
+}
+.subscription-list .swal2-actions button:focus {
+  display: none;
+  outline: none;
+}
+.subscription-list .swal2-content .swal2-label {
+  font-weight: normal;
+}
+.subscription-list .swal2-content .swal2-label span.date {
+  color: #919191;
+  font-weight: lighter;
+}
+.subscription-list input.multiselect__input {
+  border: none;
+}
+.subscription-list .flex-container {
+  display: flex;
+}
+.subscription-list .flex-child {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 5px;
+}
+.subscription-list .flex-child:first-child {
+  margin-right: 10px;
+}
+.subscription-list .label {
+  display: inline-block;
+  padding: 0px 6px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: #5cb85c;
+  border-radius: 10px;
+}
+.subscription-list .trial {
+  background-color: #fb7369;
+}
+.subscription-list .widefat .store_name {
+  width: 15em;
+}
+.subscription-list .widefat .subscription_title {
+  width: 20em;
+}
+.subscription-list .widefat .start_date {
+  min-width: 12em;
+}
+.subscription-list .widefat .end_date {
+  min-width: 12em;
+}
+.subscription-list .widefat .status {
+  min-width: 12em;
+}
+.subscription-list .widefat .order_id {
+  min-width: 5em;
+}
+.subscription-list .widefat .action {
+  min-width: 5em;
+}
+

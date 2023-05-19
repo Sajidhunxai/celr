@@ -1,0 +1,305 @@
+/*!*************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./modules/mangopay/assets/src/less/vendor-dashboard.less ***!
+  \*************************************************************************************************************************************************/
+#dokan-mangopay-payment select {
+  max-height: 20em;
+  height: 2.9em;
+  background-color: #f2f2f2;
+  color: #43454b;
+  border: 0;
+  box-sizing: border-box;
+  font-weight: 400;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.13);
+  padding: 0.61804697em;
+}
+#dokan-mangopay-payment p {
+  padding: 0 5px;
+}
+#dokan-mangopay-payment .hidden {
+  display: none !important;
+}
+#dokan-mangopay-payment .inline-field {
+  width: 50%;
+  display: inline-block;
+}
+#dokan-mangopay-payment .dokan-mangopay-account:not(.hidden),
+#dokan-mangopay-payment .dokan-mangopay-kyc-form-block:not(.hidden),
+#dokan-mangopay-payment .bank-account-fields:not(.hidden) {
+  border: 1px solid #0f0f0fc2;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 5px 0;
+}
+#dokan-mangopay-payment .dokan-mangopay-ubo-block:not(.hidden) {
+  border: 1px solid #0f0f0fc2;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 20px 0 5px 0;
+}
+#dokan-mangopay-payment .list-table {
+  border: 1px solid #0f0f0fc2;
+  border-radius: 4px;
+}
+#dokan-mangopay-payment .list-table thead {
+  border: 1px solid #0f0f0fc2 !important;
+  color: #f5f5f5;
+  font-weight: 600;
+}
+#dokan-mangopay-payment .list-table td {
+  padding: 0.5em;
+  vertical-align: middle;
+}
+#dokan-mangopay-payment .list-table tr {
+  background-color: #0f0f0fc2;
+}
+#dokan-mangopay-payment .dokan-mp-btn-submit {
+  background: #0f0f0fc2 !important;
+  color: #fff !important;
+}
+#dokan-mangopay-payment #dokan-mangopay-bank-account {
+  margin-top: 5.8em;
+}
+#dokan-mangopay-payment #dokan-mangopay-bank-account .bank-account-list .bank-account-status {
+  text-align: center;
+}
+#dokan-mangopay-payment #dokan-mangopay-bank-account .bank-account-list .bank-account-status span.active {
+  background: #282828a8;
+  color: #fff;
+  border-radius: 3px;
+  padding: 1px 8px;
+}
+#dokan-mangopay-payment #dokan-mangopay-bank-account .bank-account-list .bank-account-status button {
+  border-radius: 1px;
+  padding: 2px 7px;
+  font-weight: 400;
+  font-size: 12px;
+}
+#dokan-mangopay-payment #dokan-mangopay-account.tab-shown {
+  margin-top: 5.8em;
+}
+#dokan-mangopay-account {
+  margin-bottom: 10px;
+}
+#dokan-mangopay-account-disconnect {
+  background: #bf0000c2 !important;
+  color: #fff !important;
+}
+#dokan-mangopay-bank-account-notice {
+  display: none;
+}
+#dokan-mangopay-tabs {
+  display: inline-flex;
+  justify-content: center;
+  margin: 5px 0 30px 0;
+}
+#dokan-mangopay-tabs li {
+  border: 1px solid #b3b3b3;
+  border-right: none;
+  border-radius: 2px;
+  padding: 9px;
+  cursor: pointer;
+}
+#dokan-mangopay-tabs li:hover {
+  background-color: #b9b9b958;
+  color: #030303c4;
+  font-weight: 500;
+  transition: cubic-bezier(0.27, -0.34, 0.95, 0.24);
+}
+#dokan-mangopay-tabs li.active {
+  background-color: #b9b9b958;
+  color: #030303c4;
+  font-weight: 600;
+}
+#dokan-mangopay-tabs li:last-child {
+  border-right: 1px solid #b3b3b3;
+}
+/** KYC **/
+#dokan-mangopay-verification .kyc-doc-info {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+#dokan-mangopay-verification .kyc-doc-list thead {
+  background: #0f0f0fc2;
+}
+#dokan-mangopay-verification .kyc-doc-list tr {
+  background: unset !important;
+}
+#dokan-mangopay-verification .kyc-doc-list td {
+  vertical-align: top !important;
+}
+#dokan-mangopay-verification .kyc-doc-list .kyc-doc-list-data .kyc-doc-status-icon {
+  display: block;
+  text-indent: -9999px;
+  position: relative;
+  height: 5px;
+  width: 5px;
+  background: 0 0 !important;
+  font-size: 1.4em;
+  margin: 0 auto;
+  top: -0.2em;
+}
+#dokan-mangopay-verification .kyc-doc-list .kyc-doc-list-data .kyc-doc-status-icon mark {
+  padding: 15px 5px;
+}
+#dokan-mangopay-verification .kyc-doc-list .kyc-doc-list-data .kyc-doc-status-icon mark.kyc::after {
+  font-family: WooCommerce;
+  text-indent: 0;
+  position: absolute;
+  left: 0;
+  margin: 0 auto;
+  font-size: 1.4em;
+  background: 0 0;
+  line-height: 1;
+}
+#dokan-mangopay-verification .kyc-doc-list .kyc-doc-list-data .kyc-doc-status-icon mark.kyc.not_sent::after {
+  content: '\e012';
+  color: #ffba00;
+}
+#dokan-mangopay-verification .kyc-doc-list .kyc-doc-list-data .kyc-doc-status-icon mark.kyc.validation_asked::after {
+  content: '\e014';
+  color: #73a724;
+}
+#dokan-mangopay-verification .kyc-doc-list .kyc-doc-list-data .kyc-doc-status-icon mark.kyc.out_of_date::after {
+  content: '\e016';
+  color: #cbe74f;
+}
+#dokan-mangopay-verification .kyc-doc-list .kyc-doc-list-data .kyc-doc-status-icon mark.kyc.created::after {
+  content: '\e011';
+  color: #73a724;
+}
+#dokan-mangopay-verification .kyc-doc-list .kyc-doc-list-data .kyc-doc-status-icon mark.kyc.validated::after {
+  content: '\e015';
+  color: #2ea2cc;
+}
+#dokan-mangopay-verification .kyc-doc-list .kyc-doc-list-data .kyc-doc-status-icon mark.kyc.refused::after {
+  content: '\e013';
+  color: #a00;
+}
+#dokan-mangopay-kyc-submit-container .progress-wrap {
+  position: relative;
+  text-align: left;
+  line-height: 1;
+}
+#dokan-mangopay-kyc-submit-container .progress-wrap .progress-bar {
+  height: 20px;
+  border-radius: 3px;
+  background-color: #008EC2;
+  width: 0;
+  box-shadow: inset 1px 1px 10px rgba(0, 0, 0, 0.11);
+  transition: width 1s;
+}
+#dokan-mangopay-kyc-submit-container .progress-wrap .status {
+  top: 3px;
+  left: 50%;
+  position: absolute;
+  display: inline-block;
+  color: #000000;
+}
+#dokan-mangopay-kyc-submit-container .upload-progress-status {
+  display: none;
+}
+#dokan-mangopay-kyc-notice {
+  display: none;
+}
+#ubo_create_error_div {
+  color: rgba(250, 44, 44, 0.822);
+}
+#dokan-mangopay-kyc #dokan-kyc-file {
+  border: 3px dashed #9b9a9a;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 5px;
+  background: rgba(243, 228, 208, 0.849);
+  cursor: pointer;
+}
+#dokan-mangopay-kyc #dokan-kyc-file::-webkit-file-upload-button {
+  border: none;
+  padding: 10px;
+  color: white;
+  background: #9b9a9f;
+  border-radius: 3px;
+  cursor: pointer;
+}
+#dokan-mangopay-kyc #ubo_data {
+  margin-top: 20px;
+}
+#dokan-mangopay-kyc .ubo_buttons_div {
+  display: inline-flex;
+}
+#dokan-mangopay-kyc .ubo_buttons_div input {
+  margin: 2px;
+}
+#dokan-mangopay-kyc .ubo_tr_list_elements td {
+  padding: 0;
+}
+#dokan-mangopay-kyc .ubo_tr_list_elements td .ubo_table_list_elements {
+  margin-bottom: 0;
+}
+#dokan-mangopay-kyc .ubo_tr_list_elements thead tr td {
+  padding: 5px;
+}
+#dokan-mangopay-kyc .ubo_tr_list_elements tbody tr td {
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+}
+#dokan-mangopay-kyc button[id*='uboelementbutton_'] {
+  margin: 0;
+  background: none;
+  padding: 0;
+}
+#dokan-mangopay-kyc button[id*='uboelementbutton_'] .dashicons {
+  line-height: 1.2;
+  font-size: 1.2em;
+  color: #0f0f0fc2;
+}
+#dokan-mangopay-kyc button[id*='uboelementbutton_'] .dashicons:hover {
+  color: #9b9b9b;
+}
+#dokan-mangopay-kyc button[id*='show_ubo_elements'] {
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+#dokan-mangopay-kyc button[id*='show_ubo_elements'] .dashicons {
+  line-height: 1.2;
+  line-height: 1.6;
+  font-size: 1.1em;
+  color: #0f0f0fc2;
+}
+#dokan-mangopay-kyc button[id*='show_ubo_elements'] .dashicons:hover {
+  color: #9b9b9b;
+}
+#dokan-mangopay-kyc .ubo_table_list_declarations thead {
+  font-weight: 600;
+  color: #fff;
+  border: 0.5px solid #f1eded;
+}
+#dokan-mangopay-kyc .ubo_table_list_declarations thead tr {
+  background: #0f0f0fc2;
+}
+#dokan-mangopay-kyc .ubo_table_list_declarations tbody {
+  background-color: #e7e7e7ab;
+}
+#dokan-mangopay-kyc .ubo_table_list_declarations tbody tr td {
+  border-bottom: 1px solid #0f0f0f0f;
+  border-right: 1px solid #0f0f0f0f;
+  border-left: 1px solid #0f0f0f0f;
+}
+#dokan-mangopay-kyc .ubo_table_list_declarations tbody tr.ubo_tr_list_elements thead {
+  color: #050505;
+}
+#dokan-mangopay-kyc .ubo_table_list_declarations tbody tr.ubo_tr_list_elements thead tr {
+  background: #bfbfbfbd;
+}
+#dokan-mangopay-kyc .ubo_table_list_declarations tbody tr.ubo_tr_list_elements thead tr td {
+  border: none;
+}
+#dokan-mangopay-kyc .ubo_table_list_declarations tbody tr.ubo_tr_list_elements tbody tr td {
+  border: none;
+}
+#dokan-mangopay-kyc .dokan-mp-ubo-action {
+  display: inline-flex;
+  margin: 0 50%;
+}
+

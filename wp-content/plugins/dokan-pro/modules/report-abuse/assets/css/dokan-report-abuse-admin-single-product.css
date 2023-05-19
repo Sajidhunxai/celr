@@ -1,0 +1,14 @@
+/*!***************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./modules/report-abuse/assets/src/less/single-product.less ***!
+  \***************************************************************************************************************************************************/
+#dokan_report_abuse_reports > .inside {
+  padding: 0;
+  margin: 0;
+}
+#dokan_report_abuse_reports .wp-list-table {
+  border: 0;
+}
+#dokan_report_abuse_reports .wp-list-table .action-column {
+  width: 90px;
+}
+

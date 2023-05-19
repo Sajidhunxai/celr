@@ -1,0 +1,87 @@
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/delivery-time/assets/src/js/component/FieldDeliveryTime.vue?vue&type=style&index=0&id=643a4c2b&lang=less& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.dokan-settings-field-type-day_timer fieldset {
+  align-items: center;
+  justify-content: right;
+}
+.dokan-settings-field-type-day_timer fieldset .working-status {
+  flex: 0.6;
+  text-align: left;
+}
+.dokan-settings-field-type-day_timer fieldset .field_data {
+  flex: 1.6 !important;
+}
+.dokan-settings-field-type-day_timer fieldset .field {
+  flex: 2.2;
+}
+.dokan-settings-field-type-day_timer fieldset .field .times {
+  display: flex;
+  align-items: center;
+  flex: 3;
+}
+.dokan-settings-field-type-day_timer fieldset .field .times .time-to {
+  margin: 0 1rem;
+  align-self: baseline;
+  font-size: 18px;
+  color: #666;
+}
+.dokan-settings-field-type-day_timer fieldset .field .times .clock-picker {
+  width: 9.375rem;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 3.82974px 3.82974px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+.dokan-settings-field-type-day_timer fieldset .field .times .clock-picker .dashicons-clock {
+  margin: 0 0.483rem 0 0.738rem;
+  bottom: 6px;
+  display: block;
+  position: absolute;
+}
+.dokan-settings-field-type-day_timer fieldset .field .times .clock-picker .fa-exclamation-triangle {
+  right: 0.483rem;
+  color: #ffd500;
+  bottom: 8px;
+  position: absolute;
+}
+.dokan-settings-field-type-day_timer fieldset .field .times .clock-picker .dokan-form-control {
+  width: 100%;
+  padding-left: 42px;
+}
+.dokan-settings-field-type-day_timer fieldset .field .times .clock-picker .dokan-clock-error {
+  color: red;
+}
+.ui-timepicker-wrapper {
+  width: 150px !important;
+  max-height: 230px !important;
+  border-radius: 5px;
+}
+.ui-timepicker-wrapper ul.ui-timepicker-list li {
+  padding: 8px 25px;
+}
+.ui-timepicker-wrapper ul.ui-timepicker-list li:hover {
+  background-color: #8d93993b;
+  color: #000;
+}
+.ui-timepicker-wrapper ul.ui-timepicker-list .ui-timepicker-selected {
+  background-color: #8d93993b;
+  color: #000;
+}
+.ui-timepicker-wrapper ul.ui-timepicker-list .fullDayClock {
+  padding: 10px 25px !important;
+  border-bottom: 1px solid #ccc;
+  margin-top: 6px;
+}
+.ui-timepicker-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+.ui-timepicker-wrapper::-webkit-scrollbar-thumb {
+  background: #8d9399;
+  border-radius: 5px;
+}
+.ui-timepicker-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+

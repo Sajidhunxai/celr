@@ -1,0 +1,44 @@
+/*!*******************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./modules/store-reviews/assets/src/less/style.less ***!
+  \*******************************************************************************************************************************************/
+.white-popup.dokan-seller-rating-add-wrapper {
+  padding: 30px;
+}
+#dokan-seller-rating {
+  padding: 10px 0px;
+}
+.dokan-seller-rating-intro-text {
+  font-size: 16px;
+  margin-top: 10px;
+  font-style: italic;
+}
+#dokan-store-listing-filter-form-wrap .store-lists-other-filter-wrap .store-ratings {
+  display: flex;
+}
+#dokan-store-listing-filter-form-wrap .store-lists-other-filter-wrap .store-ratings .dokan-stars {
+  margin: 0 0 0 8px;
+}
+#dokan-store-listing-filter-form-wrap .store-lists-other-filter-wrap .store-ratings .dokan-stars i.dashicons {
+  font-size: 17px;
+  width: 17px;
+  color: #fa9a00 !important;
+  cursor: pointer;
+}
+#dokan-store-listing-filter-form-wrap .store-lists-other-filter-wrap .store-ratings .dokan-stars i.dashicons.active::before {
+  content: "\f155" !important;
+}
+#dokan-store-listing-filter-form-wrap .store-lists-other-filter-wrap .store-ratings .dokan-stars.selected i.dashicons:not(.active)::before {
+  content: "\f155" !important;
+}
+#dokan-store-listing-filter-form-wrap .store-lists-other-filter-wrap .store-ratings .dokan-stars.selected i.dashicons.active ~ i::before {
+  content: "\f154" !important;
+}
+#dokan-store-listing-filter-form-wrap .store-lists-other-filter-wrap .store-ratings .dokan-stars .up {
+  position: relative;
+  top: -2px;
+  padding-left: 5px;
+  padding: 0;
+  margin: 0;
+  left: 0;
+}
+

@@ -1,0 +1,126 @@
+/*!*****************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./modules/mangopay/assets/src/less/checkout.less ***!
+  \*****************************************************************************************************************************************/
+#dokan-mangopay-payment-options {
+  border-radius: 5px;
+  padding: 0 10px;
+  font-weight: 400;
+}
+#dokan-mangopay-payment-options select {
+  border: 1px solid #747474;
+  border-radius: 3px;
+  display: block !important;
+  font-size: 16px;
+  color: #555555;
+}
+#dokan-mangopay-payment-options label {
+  font-size: 18px;
+}
+#dokan-mangopay-payment-options .pay-method-wrap select,
+#dokan-mangopay-payment-options .card-dropdown-wrap select {
+  margin-left: 20px;
+}
+#dokan-mangopay-payment-options .dokan-mp-card-save-error {
+  display: none;
+  color: rgba(165, 42, 40, 0.9);
+}
+#dokan-mangopay-payment-options .dokan-mp-saved-cards-list {
+  display: none;
+  margin-left: 15px;
+}
+#dokan-mangopay-payment-options .dokan-mp-card-save-processing {
+  display: none;
+}
+#dokan-mangopay-payment-options .dokan-mp-card-empty {
+  color: #7c5353;
+}
+#dokan-mangopay-payment-options .ccdate {
+  margin-bottom: 15px;
+}
+#dokan-mangopay-payment-options .dokan-mp-ccdate {
+  display: inline-flex;
+  width: 100%;
+}
+#dokan-mangopay-payment-options .mp-cccrypto {
+  width: 100%;
+  display: block;
+  height: 30px;
+  margin-bottom: 5px;
+}
+#dokan-mangopay-payment-options .mp-ccnumber {
+  width: 100%;
+  height: 30px;
+}
+#dokan-mangopay-payment-options .mp-registered-card-type {
+  width: 100%;
+  margin-bottom: 5px;
+}
+#dokan-mangopay-payment-options .ccnumber {
+  margin-bottom: 5px;
+}
+#dokan-mangopay-payment-options .mp-ccdate-month {
+  width: 120%;
+}
+#dokan-mangopay-payment-options .mp-ccdate-year {
+  width: 80%;
+}
+#dokan-mangopay-payment-options #dokan-mp-cancel-card {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  color: brown;
+  font-size: 26px;
+  cursor: pointer;
+}
+#dokan-mangopay-payment-options #dokan-mp-cancel-card:hover {
+  color: #290f0a;
+}
+#dokan-mangopay-payment-options #dokan-mp-card-registration-fields {
+  margin: 10px 0 0 15px;
+  border-radius: 3px;
+  padding: 20px;
+  background: #fff;
+  display: none;
+}
+#dokan-mangopay-payment-options #dokan-mangopay-registered-cards .registered-card-type {
+  clear: both;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+#dokan-mangopay-payment-options #dokan-mangopay-registered-cards .cancel-card-bin {
+  max-width: 26px !important;
+  height: 15px;
+  width: 15px;
+  float: none !important;
+}
+#dokan-mangopay-payment-options #dokan-mangopay-registered-cards div.saved-cards {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5px;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 3px;
+}
+#dokan-mangopay-payment-options #dokan-mangopay-registered-cards div.card-type,
+#dokan-mangopay-payment-options #dokan-mangopay-registered-cards div.card-provider,
+#dokan-mangopay-payment-options #dokan-mangopay-registered-cards div.card-alias,
+#dokan-mangopay-payment-options #dokan-mangopay-registered-cards div.card-expiration {
+  margin: 2px;
+}
+#dokan-mangopay-payment-options #dokan-mp-add-card {
+  margin-left: 20px;
+  height: 23px;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 0 5px;
+  border: 0.5px solid white;
+  border-radius: 3px;
+  color: white;
+  background: linear-gradient(60deg, rgba(255, 38, 0, 0.562), rgba(253, 57, 31, 0.767));
+}
+#dokan-mangopay-payment-options #dokan-mp-add-card .dashicons {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+

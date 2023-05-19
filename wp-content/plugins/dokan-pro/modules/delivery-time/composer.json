@@ -1,0 +1,7 @@
+{
+  "autoload" : {
+    "psr-4": {
+      "WeDevs\\DokanPro\\Modules\\DeliveryTime\\": "includes"
+    }
+  }
+}

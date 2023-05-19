@@ -1,0 +1,981 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/components/Modal.vue?vue&type=style&index=0&id=2a485b87&lang=less&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.seller-badge-modal-backdrop[data-v-2a485b87] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 360px;
+  background: #000;
+  opacity: 0.7;
+  z-index: 99900;
+}
+.seller-badge-modal[data-v-2a485b87] {
+  font-family: "SF Pro Text", sans-serif;
+}
+.seller-badge-modal *[data-v-2a485b87] {
+  box-sizing: border-box;
+}
+.seller-badge-modal .seller-badge-modal-content[data-v-2a485b87] {
+  position: fixed;
+  background: #fff;
+  z-index: 100000;
+  left: 50%;
+  top: 50%;
+  border-radius: 3px;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+@media (max-width: 767px) {
+.seller-badge-modal .seller-badge-modal-content[data-v-2a485b87] {
+    width: calc(100% - 20px) !important;
+    height: calc(100% - 40px) !important;
+}
+}
+.seller-badge-modal .seller-badge-modal-main[data-v-2a485b87] {
+  padding: 50px 30px 35px;
+  border-radius: 3px;
+}
+.seller-badge-modal .seller-badge-modal-main.has-footer[data-v-2a485b87] {
+  padding-bottom: 55px;
+}
+.seller-badge-modal .modal-header[data-v-2a485b87] {
+  display: flex;
+  margin-bottom: 50px;
+}
+.seller-badge-modal .modal-header .modal-img[data-v-2a485b87] {
+  width: 50px;
+  margin-right: 20px;
+}
+.seller-badge-modal .modal-header .modal-img img[data-v-2a485b87] {
+  width: 100%;
+}
+.seller-badge-modal .modal-header .modal-title h2[data-v-2a485b87] {
+  font-size: 1.4375rem;
+  font-weight: 700;
+  line-height: 1em;
+  margin: 0 0 10px;
+}
+.seller-badge-modal .modal-header .modal-title h3[data-v-2a485b87] {
+  font-weight: 700;
+  font-size: 23px;
+}
+.seller-badge-modal .modal-header .modal-title p[data-v-2a485b87] {
+  color: #B3B3B3;
+  line-height: 1;
+  margin: 0;
+}
+.seller-badge-modal .modal-header .modal-title p .color-blue[data-v-2a485b87] {
+  color: #1A9ED4;
+}
+.seller-badge-modal .modal-header .modal-close-link[data-v-2a485b87] {
+  cursor: pointer;
+  color: #777;
+  height: 54px;
+  width: 54px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: center;
+  border: 0;
+  background-color: transparent;
+  -webkit-transition: color 0.1s ease-in-out, background 0.1s ease-in-out;
+  transition: color 0.1s ease-in-out, background 0.1s ease-in-out;
+}
+.seller-badge-modal .modal-header .modal-close-link[data-v-2a485b87]::before {
+  font: normal 22px/50px dashicons !important;
+  color: #1F1F1F;
+  display: block;
+  content: '\f335';
+  font-weight: 300;
+}
+.seller-badge-modal .modal-header .modal-close-link[data-v-2a485b87]:hover {
+  background: #ddd;
+  border-color: #ccc;
+  color: #000;
+}
+.seller-badge-modal .modal-sub-title h3[data-v-2a485b87] {
+  color: #000000;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.1875em;
+  margin: 0 0 12px;
+}
+.seller-badge-modal .modal-body[data-v-2a485b87] {
+  min-height: 100px;
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+}
+.seller-badge-modal .modal-body .modal-level-box[data-v-2a485b87] {
+  padding: 15px 18px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  border: 1px solid #e2e2e2;
+}
+.seller-badge-modal .modal-body .modal-level-box[data-v-2a485b87]:last-child {
+  margin-bottom: 0;
+}
+.seller-badge-modal .modal-body .level_description[data-v-2a485b87] {
+  display: flex;
+  align-items: flex-start;
+  gap: 25px;
+  color: #000000;
+  font-size: 13px;
+}
+.seller-badge-modal .modal-body .level_description .left-content .modal-img[data-v-2a485b87] {
+  width: 30px;
+  height: 32px;
+}
+.seller-badge-modal .modal-body .level_description .left-content .modal-img img[data-v-2a485b87] {
+  width: 100%;
+}
+.seller-badge-modal .modal-body .level_description .left-content .container[data-v-2a485b87] {
+  position: relative;
+  text-align: center;
+}
+.seller-badge-modal .modal-body .level_description .left-content .bottom-center[data-v-2a485b87] {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  bottom: 0;
+  left: 2px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  transform: translate(5px, 10px);
+}
+.seller-badge-modal .modal-body .level_description .right-content p[data-v-2a485b87] {
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1em;
+  margin: 0 0 10px;
+}
+.seller-badge-modal .modal-body .level_description .right-content p[data-v-2a485b87]:last-child {
+  margin-bottom: 0;
+}
+.seller-badge-modal .modal-body .level_description .right-content p i[data-v-2a485b87] {
+  color: #c8c8c8;
+  font-size: 0.75rem;
+  margin-left: 3px;
+}
+.seller-badge-modal .modal-body .level_description .right-content p i.has-level[data-v-2a485b87] {
+  color: #139f84;
+}
+.seller-badge-modal .modal-body .level_description .right-content .no_of_vendor[data-v-2a485b87] {
+  color: #b3b3b3;
+  font-weight: 400;
+  line-height: 1.25em;
+}
+.seller-badge-modal .modal-body .level_description .right-content .no_of_vendor .vendor-count[data-v-2a485b87] {
+  color: #1a9ed4;
+}
+.seller-badge-modal footer[data-v-2a485b87] {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -30px;
+  z-index: 100;
+  padding: 1em 1.5em;
+  background: #fcfcfc;
+  border-top: 1px solid #dfdfdf;
+  -webkit-box-shadow: 0 -4px 4px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -4px 4px -4px rgba(0, 0, 0, 0.1);
+}
+.seller-badge-modal footer .inner[data-v-2a485b87] {
+  text-align: right;
+  line-height: 23px;
+}
+
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/components/Bars.vue?vue&type=style&index=0&id=f5de2754&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+
+.seller-badge-loader[data-v-f5de2754] {
+    position: absolute;
+    top: 20%;
+    left: 45%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/components/BadgeDetails.vue?vue&type=style&index=0&id=c5023d96&lang=less&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.level_acquisition[data-v-c5023d96] {
+  display: flex;
+  gap: 5px;
+  color: #b3b3b3 !important;
+  font-weight: 400 !important;
+}
+.level_acquisition strong[data-v-c5023d96] {
+  color: #78818f;
+}
+
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/admin/pages/SellerBadgeList.vue?vue&type=style&index=0&id=15ab2ad8&lang=less&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.seller-badge-list[data-v-15ab2ad8] {
+  font-family: "SF Pro Text", sans-serif;
+}
+.seller-badge-list .wp-heading-inline[data-v-15ab2ad8] {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 20px;
+}
+.seller-badge-list .list_description[data-v-15ab2ad8] {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 13px;
+}
+.seller-badge-list #seller_badge_list_table .badge_name[data-v-15ab2ad8] {
+  width: 30%;
+}
+.seller-badge-list #seller_badge_list_table td.badge_name img[data-v-15ab2ad8] {
+  float: left;
+  margin-right: 10px;
+  margin-top: 1px;
+  width: 40px;
+  height: auto;
+}
+.seller-badge-list #seller_badge_list_table span.dashicons.dashicons-admin-users[data-v-15ab2ad8] {
+  margin-right: 7px;
+  color: #A5B1C1;
+}
+.seller-badge-list #seller_badge_list_table .count[data-v-15ab2ad8] {
+  color: #525252;
+}
+.seller-badge-list #seller_badge_list_table td.badge_status[data-v-15ab2ad8] {
+  padding: 15px 0 0 0;
+}
+.seller-badge-list #seller_badge_list_table td.badge_status span.draft[data-v-15ab2ad8] {
+  color: #777777;
+  background: #e5e5e5;
+  padding: 6px 15px 6px 15px;
+  border-radius: 3px;
+}
+.seller-badge-list #seller_badge_list_table td.badge_status span.published[data-v-15ab2ad8] {
+  color: #138972;
+  background: #ddf0ed;
+  padding: 6px 15px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+.seller-badge-list #seller_badge_list_table td.event_type span[data-v-15ab2ad8] {
+  display: block;
+}
+.seller-badge-list #seller_badge_list_table td.event_type span.level_count[data-v-15ab2ad8] {
+  font-size: 11px;
+}
+
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/admin/pages/SellerBadgeList.vue?vue&type=style&index=1&id=15ab2ad8&lang=less& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.seller-badge-cs-font {
+  font-family: "SF Pro Text", sans-serif !important;
+}
+.seller-badge-cs-font .swal2-html-container {
+  line-height: 1.4325;
+}
+
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/admin/components/BadgeEvents.vue?vue&type=style&index=0&id=daf7be14&lang=less&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+#badge_event[data-v-daf7be14] {
+  width: 48%;
+  float: left;
+}
+#badge_event .selected[data-v-daf7be14] {
+  background: #FFFFFF;
+  border: 1px solid #E2E2E2;
+  border-radius: 2.5px;
+  height: 40px !important;
+  color: #000;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+}
+#badge_event h3[data-v-daf7be14] {
+  font-size: 1rem;
+  margin: 0 0 0.625em;
+}
+.seller-badge-event-dropdown .custom-select[data-v-daf7be14] {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  height: 47px;
+  line-height: 40px;
+}
+.seller-badge-event-dropdown .custom-select .selected[data-v-daf7be14] {
+  border-radius: 6px;
+  border: 1px solid #666666;
+  padding-left: 1em;
+  cursor: pointer;
+  user-select: none;
+}
+.seller-badge-event-dropdown .custom-select .selected[data-v-daf7be14]::after {
+  content: "";
+  position: absolute;
+  border: solid #646970;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  top: 15px;
+  right: 1em;
+  transform: rotate(45deg);
+}
+.seller-badge-event-dropdown .event-dropdown[data-v-daf7be14] {
+  position: absolute;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 20px;
+  width: 200%;
+  min-height: 50px;
+  border-radius: 3px;
+  padding: 33px 25px 25px;
+  background: #FFFFFF;
+  border: 1px solid rgba(233, 238, 248, 0.9);
+  box-shadow: 0px 14px 37px rgba(0, 0, 0, 0.1);
+  margin: 22px -25px;
+  z-index: 3;
+}
+@media (max-width: 767px) {
+.seller-badge-event-dropdown .event-dropdown[data-v-daf7be14] {
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+}
+.seller-badge-event-dropdown .event-dropdown[data-v-daf7be14]::before {
+  content: "";
+  background: #FFFFFF;
+  border: 1px solid #E9EEF8;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: -9px;
+  left: 46.5%;
+  transform: translateX(-50%) rotate(45deg);
+  border-bottom-width: 0;
+  border-right-width: 0;
+  margin-left: 12px;
+}
+.seller-badge-event-dropdown .event-dropdown[data-v-daf7be14]::after {
+  content: "";
+  position: absolute;
+  background: #F2F2F2;
+  left: 48%;
+  width: 1px;
+  height: 92%;
+  top: 29px;
+}
+@media (max-width: 767px) {
+.seller-badge-event-dropdown .event-dropdown[data-v-daf7be14]::after {
+    display: none;
+}
+}
+.seller-badge-event-dropdown .event-dropdown h4[data-v-daf7be14] {
+  margin: 0 0 17px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #6D6D6D;
+}
+.seller-badge-event-dropdown .dropdown__group[data-v-daf7be14] {
+  flex-basis: 48%;
+  max-width: 100%;
+}
+.seller-badge-event-dropdown .dropdown__group .info .fa-check-circle[data-v-daf7be14] {
+  font-size: 0.875rem;
+  margin-left: 3px;
+}
+.seller-badge-event-dropdown .dropdown__group .info .fa-check-circle.badge-published[data-v-daf7be14] {
+  color: #139F84;
+}
+.seller-badge-event-dropdown .dropdown__group .info .fa-check-circle.badge-draft[data-v-daf7be14] {
+  color: #c8c8c8;
+}
+.seller-badge-event-dropdown .single-item[data-v-daf7be14] {
+  display: flex;
+  gap: 14px;
+  transition: 0.3s linear 0s;
+  position: relative;
+  z-index: 1;
+  padding: 10px;
+  cursor: pointer;
+}
+.seller-badge-event-dropdown .single-item[data-v-daf7be14]:hover {
+  background: #D3ECF7;
+}
+.seller-badge-event-dropdown .single-item h3[data-v-daf7be14] {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+  margin: 0 0 5px;
+}
+.seller-badge-event-dropdown .single-item p[data-v-daf7be14] {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  color: #575D64;
+  margin: 0;
+}
+.seller-badge-event-dropdown .already_created[data-v-daf7be14] {
+  background-color: #f1f1f1;
+  margin: 2px;
+}
+.seller-badge-event-dropdown .already_created[data-v-daf7be14]:hover {
+  background-color: #f1f1f1;
+  cursor: default !important;
+}
+.seller-badge-event-dropdown .selectHide[data-v-daf7be14] {
+  display: none;
+}
+
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/admin/components/BadgeLevels/DummyLevels.vue?vue&type=style&index=0&id=4c9e34d4&lang=less&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.dokan-logical-container .dokan-logical-label-li[data-v-4c9e34d4] {
+  margin-bottom: 20px;
+}
+.dokan-logical-container .badge-level[data-v-4c9e34d4] {
+  background: #B9B9B9;
+  border-radius: 1rem;
+  padding: 0.3rem 1rem;
+  vertical-align: middle;
+  display: inline-block;
+  margin-bottom: 1rem;
+  line-height: 16px;
+  letter-spacing: 0.08px;
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.dokan-logical-container .remove-level[data-v-4c9e34d4] {
+  background: url("data:image/svg+xml,%3csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M5.72856 6.9144L0.666622 1.85221C0.337199 1.52293 0.337199 0.990538 0.666622 0.661263C0.995891 0.331988 1.52827 0.331988 1.85754 0.661263L6.91963 5.72346L11.9816 0.661263C12.311 0.331988 12.8432 0.331988 13.1725 0.661263C13.5019 0.990538 13.5019 1.52293 13.1725 1.85221L8.11055 6.9144L13.1725 11.9766C13.5019 12.3059 13.5019 12.8383 13.1725 13.1675C13.0084 13.3318 12.7926 13.4143 12.577 13.4143C12.3614 13.4143 12.1458 13.3318 11.9816 13.1675L6.91963 8.10535L1.85754 13.1675C1.69329 13.3318 1.47769 13.4143 1.26208 13.4143C1.04648 13.4143 0.830871 13.3318 0.666622 13.1675C0.337199 12.8383 0.337199 12.3059 0.666622 11.9766L5.72856 6.9144Z' fill='%23BBBFC6'/%3e %3c/svg%3e");
+  width: 14px;
+  height: 14px;
+  line-height: 17px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.dokan-logical-container .dokan-logical-container-div[data-v-4c9e34d4] {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 20px;
+}
+@media (max-width: 767px) {
+.dokan-logical-container .dokan-logical-container-div[data-v-4c9e34d4] {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 40px;
+}
+}
+.dokan-logical-container .dokan-logical-container-div .demo-title[data-v-4c9e34d4] {
+  flex-basis: 25%;
+  border: 2px dashed #808080;
+  border-top: 0;
+  height: 1px;
+  border-left: 0;
+  border-right: 0;
+  margin-right: 26px;
+}
+@media (max-width: 767px) {
+.dokan-logical-container .dokan-logical-container-div .demo-title[data-v-4c9e34d4] {
+    margin-right: 0;
+}
+}
+.dokan-logical-container .dokan-logical-container-div .demo-input[data-v-4c9e34d4] {
+  flex-basis: 45%;
+}
+.dokan-logical-container .dokan-logical-container-div .demo-input[data-v-4c9e34d4]::placeholder {
+  width: 95%;
+  height: 2px;
+  background: #E2E2E2;
+  position: relative;
+  top: 7.5px;
+  left: 9px;
+}
+
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/admin/components/BadgeLevels/LogicalComponent.vue?vue&type=style&index=0&id=71111127&lang=less&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.dokan-logical-container .dokan-logical-label-li[data-v-71111127] {
+  margin-bottom: 20px;
+}
+.dokan-logical-container .badge-level[data-v-71111127] {
+  background: #B9B9B9;
+  border-radius: 1rem;
+  padding: 0.3rem 1rem;
+  vertical-align: middle;
+  display: inline-block;
+  margin-bottom: 1rem;
+  line-height: 16px;
+  letter-spacing: 0.08px;
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.dokan-logical-container .remove-level[data-v-71111127] {
+  background: url("data:image/svg+xml,%3csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M5.72856 6.9144L0.666622 1.85221C0.337199 1.52293 0.337199 0.990538 0.666622 0.661263C0.995891 0.331988 1.52827 0.331988 1.85754 0.661263L6.91963 5.72346L11.9816 0.661263C12.311 0.331988 12.8432 0.331988 13.1725 0.661263C13.5019 0.990538 13.5019 1.52293 13.1725 1.85221L8.11055 6.9144L13.1725 11.9766C13.5019 12.3059 13.5019 12.8383 13.1725 13.1675C13.0084 13.3318 12.7926 13.4143 12.577 13.4143C12.3614 13.4143 12.1458 13.3318 11.9816 13.1675L6.91963 8.10535L1.85754 13.1675C1.69329 13.3318 1.47769 13.4143 1.26208 13.4143C1.04648 13.4143 0.830871 13.3318 0.666622 13.1675C0.337199 12.8383 0.337199 12.3059 0.666622 11.9766L5.72856 6.9144Z' fill='%23BBBFC6'/%3e %3c/svg%3e");
+  width: 14px;
+  height: 14px;
+  line-height: 17px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.dokan-logical-container .logical-select[data-v-71111127],
+.dokan-logical-container .logical-number[data-v-71111127] {
+  border: 1px solid #e2e2e2;
+  border-radius: 3px;
+  height: 42px ;
+  font-size: 15px;
+  width: 145px;
+}
+.dokan-logical-container .level-condition[data-v-71111127] {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+}
+@media (max-width: 767px) {
+.dokan-logical-container .level-condition[data-v-71111127] {
+    flex-flow: row wrap;
+    grid-column-gap: 15px;
+    grid-row-gap: 25px;
+    margin-bottom: 40px;
+}
+}
+
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/admin/components/BadgeLevels/TrendingProduct.vue?vue&type=style&index=0&id=e373e6b2&lang=less&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.dokan-logical-container .level-condition[data-v-e373e6b2] {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+@media (max-width: 767px) {
+.dokan-logical-container .level-condition[data-v-e373e6b2] {
+    align-items: start;
+    flex-direction: column;
+}
+}
+.dokan-logical-container select[data-v-e373e6b2],
+.dokan-logical-container input[data-v-e373e6b2] {
+  border: 1px solid #e2e2e2;
+  border-radius: 3px;
+  height: 42px ;
+  font-size: 15px;
+  width: 145px;
+}
+
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/admin/components/BadgeLevels/VerifiedSeller.vue?vue&type=style&index=0&id=504fd3da&lang=less&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.dokan-logical-container .badge-level[data-v-504fd3da] {
+  background: #B9B9B9;
+  border-radius: 1rem;
+  padding: 0.3rem 1rem;
+  vertical-align: middle;
+  display: inline-block;
+  margin-bottom: 1rem;
+  line-height: 16px;
+  letter-spacing: 0.08px;
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.dokan-logical-container .remove-level[data-v-504fd3da] {
+  background: url("data:image/svg+xml,%3csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M5.72856 6.9144L0.666622 1.85221C0.337199 1.52293 0.337199 0.990538 0.666622 0.661263C0.995891 0.331988 1.52827 0.331988 1.85754 0.661263L6.91963 5.72346L11.9816 0.661263C12.311 0.331988 12.8432 0.331988 13.1725 0.661263C13.5019 0.990538 13.5019 1.52293 13.1725 1.85221L8.11055 6.9144L13.1725 11.9766C13.5019 12.3059 13.5019 12.8383 13.1725 13.1675C13.0084 13.3318 12.7926 13.4143 12.577 13.4143C12.3614 13.4143 12.1458 13.3318 11.9816 13.1675L6.91963 8.10535L1.85754 13.1675C1.69329 13.3318 1.47769 13.4143 1.26208 13.4143C1.04648 13.4143 0.830871 13.3318 0.666622 13.1675C0.337199 12.8383 0.337199 12.3059 0.666622 11.9766L5.72856 6.9144Z' fill='%23BBBFC6'/%3e %3c/svg%3e");
+  width: 14px;
+  height: 14px;
+  line-height: 17px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.dokan-logical-container .level-condition[data-v-504fd3da] {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+}
+.dokan-logical-container .level-condition select[data-v-504fd3da] {
+  border: 1px solid #e2e2e2;
+  border-radius: 3px;
+  height: 42px ;
+  font-size: 15px;
+}
+
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/admin/components/BadgeLevels/NoLevels.vue?vue&type=style&index=0&id=7f864dc3&lang=less&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.dokan-logical-container .level-condition[data-v-7f864dc3] {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+@media (max-width: 767px) {
+.dokan-logical-container .level-condition[data-v-7f864dc3] {
+    align-items: start;
+    flex-direction: column;
+}
+}
+.dokan-logical-container select[data-v-7f864dc3],
+.dokan-logical-container input[data-v-7f864dc3] {
+  border: 1px solid #e2e2e2;
+  border-radius: 3px;
+  height: 42px ;
+  font-size: 15px;
+  width: 145px;
+}
+
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/admin/components/Modules/VideoPopup.vue?vue&type=style&index=0&id=64744f6e&lang=less& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************/
+.dokan-video-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  overflow-y: auto;
+}
+.dokan-video-popup::-webkit-scrollbar {
+  display: none;
+}
+.dokan-video-popup .modal-content {
+  margin: 4% auto;
+  max-width: 955px;
+  text-align: center;
+  position: relative;
+  box-sizing: border-box;
+}
+@media only screen and (max-width: 375px) {
+.dokan-video-popup .modal-content {
+    max-width: 340px;
+    margin: 16% auto;
+}
+}
+@media (min-width: 376px) and (max-width: 576px) {
+.dokan-video-popup .modal-content {
+    max-width: 360px;
+    margin: 15% auto;
+}
+}
+@media (min-width: 577px) and (max-width: 1024px) {
+.dokan-video-popup .modal-content {
+    max-width: 738px;
+    margin: 8% auto;
+}
+}
+.dokan-video-popup .modal-content span.close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dokan-video-popup .modal-content .body iframe {
+  background-color: #fff;
+  border-radius: 5px;
+  height: 525px;
+  width: 100%;
+}
+@media only screen and (max-width: 576px) {
+.dokan-video-popup .modal-content .body iframe {
+    height: 214px;
+}
+}
+@media (min-width: 577px) and (max-width: 1023px) {
+.dokan-video-popup .modal-content .body iframe {
+    height: 395px;
+}
+}
+@media (min-width: 1024px) and (max-width: 1200px) {
+.dokan-video-popup .modal-content .body iframe {
+    height: 405px;
+}
+}
+
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/admin/pages/NewSellerBadge.vue?vue&type=style&index=0&id=195ed822&lang=less&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.dokan-seller-badge-form-wrapper .docs_and_videos[data-v-195ed822] {
+  display: flex;
+  gap: 20px;
+}
+.dokan-seller-badge-form-wrapper .docs_and_videos a[data-v-195ed822] {
+  color: #788383;
+  font-size: 0.8125rem;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+}
+.dokan-seller-badge-form-wrapper h1.badge_photo[data-v-195ed822] {
+  display: block !important;
+}
+.dokan-seller-badge-form-wrapper #post-body[data-v-195ed822] {
+  display: grid;
+  grid-template-columns: 1fr 346px;
+  column-gap: 20px;
+  width: 100%;
+}
+@media (max-width: 776px) {
+.dokan-seller-badge-form-wrapper #post-body[data-v-195ed822] {
+    grid-template-columns: 1fr;
+}
+}
+.dokan-seller-badge-form-wrapper #post-body .postbox[data-v-195ed822] {
+  border: 1px solid #E2E2E2;
+  padding: 25px;
+  width: 100% !important;
+}
+.dokan-seller-badge-form-wrapper #post-body > div[data-v-195ed822]:nth-child(2) {
+  display: grid;
+  height: fit-content;
+}
+.dokan-seller-badge-form-wrapper #post-body div.badge-description .info-icon[data-v-195ed822] {
+  background: url("data:image/svg+xml,%3csvg width='17' height='17' viewBox='0 0 17 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M14.4582 2.75106C11.3697 -0.337096 6.36212 -0.33744 3.27328 2.75106C0.184777 5.83956 0.185121 10.8471 3.27328 13.936C6.36178 17.0238 11.3693 17.0241 14.4582 13.936C17.5463 10.8471 17.546 5.83991 14.4582 2.75106ZM9.89695 11.7821C9.89695 12.3518 9.43515 12.8136 8.86539 12.8136C8.29562 12.8136 7.83382 12.3518 7.83382 11.7821V7.6558C7.83382 7.08604 8.29562 6.62424 8.86539 6.62424C9.43515 6.62424 9.89695 7.08604 9.89695 7.6558V11.7821ZM8.84716 5.89252C8.25298 5.89252 7.85686 5.47164 7.86924 4.95208C7.85686 4.40741 8.25298 3.99925 8.8592 3.99925C9.46576 3.99925 9.8495 4.40775 9.86222 4.95208C9.86188 5.47164 9.4661 5.89252 8.84716 5.89252Z' fill='%23B1B1B1'/%3e %3c/svg%3e") no-repeat center;
+  width: 17px;
+  height: 17px;
+  line-height: 17px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.dokan-seller-badge-form-wrapper #post-body div.badge-description p[data-v-195ed822] {
+  display: inline-block;
+  margin-left: 6px;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 17px;
+  vertical-align: middle;
+  color: #575D64;
+}
+.dokan-seller-badge-form-wrapper #titlediv[data-v-195ed822] {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 20px;
+}
+@media (max-width: 767px) {
+.dokan-seller-badge-form-wrapper #titlediv[data-v-195ed822] {
+    flex-direction: column;
+}
+}
+.dokan-seller-badge-form-wrapper #titlediv > div[data-v-195ed822] {
+  flex: 1;
+}
+@media (max-width: 767px) {
+.dokan-seller-badge-form-wrapper #titlediv > div[data-v-195ed822] {
+    width: 100%;
+}
+}
+.dokan-seller-badge-form-wrapper #titlediv h3[data-v-195ed822] {
+  margin: 0 0 0.625em;
+}
+.dokan-seller-badge-form-wrapper #title[data-v-195ed822],
+.dokan-seller-badge-form-wrapper #status[data-v-195ed822] {
+  border: 1px solid #E2E2E2;
+  border-radius: 3px;
+  height: 42px !important;
+  font-size: 15px !important;
+}
+.dokan-seller-badge-form-wrapper #titlediv h3[data-v-195ed822],
+.dokan-seller-badge-form-wrapper .postbox-status h1[data-v-195ed822],
+.dokan-seller-badge-form-wrapper .badge_photo[data-v-195ed822] {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0;
+  margin: 0 0 0.625em;
+}
+.dokan-seller-badge-form-wrapper .badge_photo + p[data-v-195ed822] {
+  margin-top: 0;
+}
+.dokan-seller-badge-form-wrapper .pull-right[data-v-195ed822] {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin-top: 20px;
+}
+.lang_rtl[data-v-195ed822] {
+  float: right !important;
+}
+
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/admin/pages/NewSellerBadge.vue?vue&type=style&index=1&id=195ed822&lang=less& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.dokan-seller-badge-form-wrapper {
+  font-family: "SF Pro Text", sans-serif;
+}
+.dokan-seller-badge-form-wrapper * {
+  box-sizing: border-box;
+}
+.dokan-seller-badge-form-wrapper .input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.dokan-seller-badge-form-wrapper .input-group:not(.has-validation) > :not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.dokan-seller-badge-form-wrapper .input-group .input-group-text {
+  display: flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #f5f5f5;
+  border: 1px solid #e2e2e2;
+  border-radius: 0.375rem;
+}
+.dokan-seller-badge-form-wrapper .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  margin-left: calc(1px * -1);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.dokan-seller-badge-form-wrapper .input-group .form-control {
+  display: block;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #424242;
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border: 1px solid #e2e2e2;
+  appearance: none;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.dokan-seller-badge-form-wrapper .input-group button,
+.dokan-seller-badge-form-wrapper .input-group input,
+.dokan-seller-badge-form-wrapper .input-group optgroup,
+.dokan-seller-badge-form-wrapper .input-group select,
+.dokan-seller-badge-form-wrapper .input-group textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+.dokan-seller-badge-form-wrapper .input-group .icon {
+  width: 17px;
+  height: 17px;
+  line-height: 17px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.dokan-seller-badge-form-wrapper .input-group .icon-compare {
+  background: url("data:image/svg+xml,%3csvg width='18' height='12' viewBox='0 0 18 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M5.96176 9.06966L0.366211 6.35569V4.96983L5.96176 2.25586V4.04593L2.49926 5.66276L5.96176 7.27959V9.06966Z' fill='%23B1B1B1'/%3e %3cpath d='M10.9719 0.0961914L8.18409 11.4718H6.4082L9.2159 0.0961914H10.9719Z' fill='%23B1B1B1'/%3e %3cpath d='M11.4185 2.25586L17.014 4.95828V6.34414L11.4185 9.06966V7.27959L14.871 5.66276L11.4185 4.04593V2.25586Z' fill='%23B1B1B1'/%3e %3c/svg%3e") no-repeat center;
+}
+.dokan-seller-badge-form-wrapper .input-group .icon-count {
+  background: url("data:image/svg+xml,%3csvg width='15' height='16' viewBox='0 0 15 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M0.933105 3.05936L7.9036 5.414L14.8741 3.05936L7.9036 0.472168L0.933105 3.05936Z' fill='%23B1B1B1'/%3e %3cpath d='M8.36865 15.4722L14.8744 13.4414V4.42578L8.36865 6.45662V15.4722Z' fill='%23B1B1B1'/%3e %3cpath d='M0.933105 12.8141C0.933105 13.1888 1.18449 13.5213 1.55728 13.6398L7.32272 15.4722V6.45662L0.933105 4.42578V12.8141Z' fill='%23B1B1B1'/%3e %3c/svg%3e") no-repeat center;
+}
+.dokan-seller-badge-form-wrapper .input-group .icon-order {
+  background: url("data:image/svg+xml,%3csvg width='13' height='16' viewBox='0 0 13 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M4.71079 9.23437C4.88247 9.06269 5.1605 9.06269 5.33188 9.23437L5.57153 9.47373H6.60103L8.048 8.02676C8.21938 7.85537 8.4977 7.85537 8.66909 8.02676C8.84077 8.19844 8.84077 8.47646 8.66909 8.64814L7.84351 9.47373H12.3538L11.9597 4.50586C11.9181 3.96211 11.4582 3.53613 10.9126 3.53613H9.5896V5.49668C9.5896 5.73955 9.39302 5.93584 9.15044 5.93584C8.90786 5.93584 8.71099 5.73926 8.71099 5.49668V3.53613H4.66919V5.49668C4.66919 5.73955 4.47231 5.93584 4.23003 5.93584C3.98716 5.93584 3.79087 5.73926 3.79087 5.49668V3.53613H2.46753C1.92231 3.53613 1.46206 3.96182 1.42046 4.50469L1.02612 9.47373H4.58833C4.60269 9.38613 4.64341 9.30176 4.71079 9.23437Z' fill='%23B1B1B1'/%3e %3cpath d='M4.66968 3.47695C4.66968 2.3625 5.57612 1.45576 6.69058 1.45576C7.80503 1.45576 8.71147 2.3625 8.71147 3.47695V3.53613H9.59009V3.47666C9.58979 1.87793 8.28901 0.577148 6.69028 0.577148C5.09155 0.577148 3.79077 1.87793 3.79077 3.47695V3.53613H4.66938V3.47695H4.66968Z' fill='%23B1B1B1'/%3e %3cpath d='M1.39385 14.7942C1.85469 15.2914 2.50772 15.577 3.18565 15.577H10.1946C10.8726 15.577 11.5256 15.2914 11.9864 14.7942C12.447 14.2971 12.6816 13.6238 12.6295 12.9465L12.3538 9.47363H7.84385L6.39717 10.9203C6.31133 11.0062 6.19883 11.0492 6.08633 11.0492C5.97383 11.0492 5.86133 11.0062 5.77549 10.9203L4.71055 9.85537C4.60655 9.75137 4.56612 9.6084 4.58809 9.47363H1.02618L0.750492 12.9477C0.698637 13.6238 0.933305 14.2971 1.39385 14.7942Z' fill='%23B1B1B1'/%3e %3cpath d='M6.60132 9.47363H5.57153L6.08657 9.98838L6.60132 9.47363Z' fill='%23B1B1B1'/%3e %3c/svg%3e") no-repeat center;
+}
+.dokan-seller-badge-form-wrapper .input-group .icon-price {
+  background: url("data:image/svg+xml,%3csvg width='9' height='16' viewBox='0 0 9 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M5.45885 13.6193V15.0811C5.45885 15.3091 5.28135 15.4751 5.05275 15.4751H4.07843C3.84982 15.4751 3.66573 15.3091 3.66573 15.0811V13.7479C2.7689 13.7073 1.86437 13.516 1.17965 13.2555C0.808718 13.1149 0.602095 12.7176 0.700461 12.3329L0.859275 11.7141C0.914778 11.497 1.05985 11.3157 1.25823 11.214C1.45662 11.1107 1.68962 11.1003 1.89789 11.18C2.55018 11.4322 3.32062 11.6157 4.14327 11.6157C5.19068 11.6157 5.90782 11.2113 5.90782 10.476C5.90782 9.77756 5.31982 9.33629 3.95918 8.87633C1.99241 8.21469 0.645508 7.29588 0.645508 5.51265C0.645508 3.89538 1.79018 2.62706 3.74706 2.24074V0.907579C3.74706 0.679523 3.94214 0.475098 4.17075 0.475098H5.14507C5.37367 0.475098 5.54128 0.679523 5.54128 0.907579V2.1116C6.3969 2.14842 7.01457 2.27536 7.53113 2.44352C7.92185 2.57101 8.15265 2.98041 8.04989 3.37937L7.91031 3.9333C7.8559 4.14432 7.71632 4.32346 7.52509 4.42678C7.33385 4.53009 7.10799 4.54877 6.90137 4.47788C6.43207 4.31687 5.81989 4.17069 5.04395 4.17069C3.84927 4.17069 3.46295 4.68561 3.46295 5.20052C3.46295 5.8072 4.10645 6.19297 5.66877 6.78152C7.85591 7.55361 8.7346 8.56474 8.7346 10.2183C8.73405 11.8542 7.57839 13.2522 5.45885 13.6193Z' fill='%23B1B1B1'/%3e %3c/svg%3e") no-repeat center;
+}
+.dokan-seller-badge-form-wrapper .input-group .icon-review {
+  background: url("data:image/svg+xml,%3csvg width='17' height='16' viewBox='0 0 17 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M16.4738 5.95168C16.3704 5.6349 16.0896 5.41024 15.7586 5.38029L11.2406 4.9699L9.45532 0.789671C9.32351 0.482632 9.02321 0.28418 8.68996 0.28418C8.35671 0.28418 8.05567 0.482632 7.92536 0.789671L6.14004 4.9699L1.62132 5.38029C1.29031 5.41099 1.00949 5.6349 0.90614 5.95168C0.802795 6.26845 0.897903 6.61593 1.14878 6.8361L4.5644 9.83086L3.55716 14.2665C3.48377 14.5922 3.61033 14.93 3.88068 15.1254C4.02596 15.231 4.1967 15.2842 4.3682 15.2842C4.51573 15.2842 4.66325 15.2452 4.79506 15.1659L8.69071 12.8361L12.5856 15.1659C12.8717 15.3366 13.2304 15.3209 13.5007 15.1254C13.7711 14.93 13.8977 14.593 13.8243 14.2665L12.817 9.83086L16.2327 6.8361C16.482 6.61593 16.5771 6.2692 16.4738 5.95168Z' fill='%23B1B1B1'/%3e %3c/svg%3e") no-repeat center;
+}
+.dokan-seller-badge-form-wrapper .input-group .icon-timing {
+  background: url("data:image/svg+xml,%3csvg width='15' height='14' viewBox='0 0 15 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M7.69 0.277832C6.3654 0.277832 5.07054 0.670623 3.96917 1.40653C2.8678 2.14245 2.00939 3.18843 1.50248 4.4122C0.995578 5.63598 0.862948 6.98259 1.12137 8.28174C1.37978 9.5809 2.01764 10.7742 2.95428 11.7109C3.89092 12.6475 5.08427 13.2854 6.38342 13.5438C7.68257 13.8022 9.02918 13.6696 10.253 13.1627C11.4767 12.6558 12.5227 11.7974 13.2586 10.696C13.9945 9.59462 14.3873 8.29976 14.3873 6.97516C14.3852 5.19956 13.679 3.49729 12.4234 2.24175C11.1679 0.986209 9.4656 0.279927 7.69 0.277832ZM9.947 9.23216C9.83283 9.3463 9.67799 9.41042 9.51655 9.41042C9.3551 9.41042 9.20027 9.3463 9.08609 9.23216L7.25955 7.40561C7.14536 7.29146 7.08119 7.13662 7.08116 6.97516V3.32207C7.08116 3.16059 7.1453 3.00573 7.25948 2.89155C7.37366 2.77737 7.52853 2.71322 7.69 2.71322C7.85148 2.71322 8.00634 2.77737 8.12052 2.89155C8.2347 3.00573 8.29885 3.16059 8.29885 3.32207V6.72309L9.947 8.37125C10.0611 8.48542 10.1253 8.64026 10.1253 8.8017C10.1253 8.96315 10.0611 9.11798 9.947 9.23216Z' fill='%23B1B1B1'/%3e %3c/svg%3e") no-repeat center;
+}
+.dokan-seller-badge-form-wrapper .input-group .icon-trending {
+  background: url("data:image/svg+xml,%3csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M5.65505 8.74761C5.65505 8.5597 5.50263 8.40747 5.31457 8.40747H4.12643C3.93858 8.40747 3.78613 8.5597 3.78613 8.74761V9.9356C3.78613 10.1238 3.93858 10.276 4.12643 10.276H5.31457C5.50263 10.276 5.65505 10.1238 5.65505 9.9356V8.74761Z' fill='%23B1B1B1'/%3e %3cpath d='M8.62509 8.74761C8.62509 8.5597 8.47264 8.40747 8.28494 8.40747H7.09664C6.9088 8.40747 6.75635 8.5597 6.75635 8.74761V9.9356C6.75635 10.1238 6.9088 10.276 7.09664 10.276H8.28494C8.47264 10.276 8.62509 10.1238 8.62509 9.9356V8.74761Z' fill='%23B1B1B1'/%3e %3cpath d='M11.5935 8.74761C11.5935 8.5597 11.4411 8.40747 11.2532 8.40747H10.0651C9.87703 8.40747 9.72461 8.5597 9.72461 8.74761V9.9356C9.72461 10.1238 9.87703 10.276 10.0651 10.276H11.2532C11.4411 10.276 11.5935 10.1238 11.5935 9.9356V8.74761Z' fill='%23B1B1B1'/%3e %3cpath d='M5.65505 11.717C5.65505 11.5288 5.50263 11.3767 5.31457 11.3767H4.12643C3.93858 11.3767 3.78613 11.5288 3.78613 11.717V12.9048C3.78613 13.0928 3.93858 13.2451 4.12643 13.2451H5.31457C5.50263 13.2451 5.65505 13.0928 5.65505 12.9048V11.717Z' fill='%23B1B1B1'/%3e %3cpath d='M8.62509 11.717C8.62509 11.5288 8.47264 11.3767 8.28494 11.3767H7.09664C6.9088 11.3767 6.75635 11.5288 6.75635 11.717V12.9048C6.75635 13.0928 6.9088 13.2451 7.09664 13.2451H8.28494C8.47264 13.2451 8.62509 13.0928 8.62509 12.9048V11.717Z' fill='%23B1B1B1'/%3e %3cpath d='M11.5935 11.717C11.5935 11.5288 11.4411 11.3767 11.2534 11.3767H10.0651C9.87703 11.3767 9.72461 11.5288 9.72461 11.717V12.9048C9.72461 13.0928 9.87703 13.2451 10.0651 13.2451H11.2534C11.4411 13.2451 11.5935 13.0928 11.5935 12.9048V11.717Z' fill='%23B1B1B1'/%3e %3cpath d='M13.7183 2.14201V3.95657C13.7183 4.77673 13.053 5.43765 12.2329 5.43765H11.2959C10.4758 5.43765 9.80163 4.77673 9.80163 3.95657V2.1355H5.57822V3.95657C5.57822 4.77673 4.90409 5.43765 4.08411 5.43765H3.1469C2.32689 5.43765 1.66158 4.77673 1.66158 3.95657V2.14201C0.944881 2.16362 0.355957 2.75666 0.355957 3.48558V14.1197C0.355957 14.8624 0.95788 15.4723 1.70051 15.4723H13.6793C14.4209 15.4723 15.0239 14.8611 15.0239 14.1197V3.48558C15.0239 2.75666 14.435 2.16362 13.7183 2.14201ZM13.2831 13.4575C13.2831 13.7785 13.0229 14.0388 12.7018 14.0388H2.65244C2.33138 14.0388 2.07117 13.7785 2.07117 13.4575V7.9646C2.07117 7.64354 2.33135 7.38317 2.65244 7.38317H12.7018C13.0228 7.38317 13.2831 7.64354 13.2831 7.9646L13.2831 13.4575Z' fill='%23B1B1B1'/%3e %3cpath d='M3.14395 4.46527H4.0708C4.35213 4.46527 4.58023 4.2375 4.58023 3.95618V0.981442C4.58023 0.700086 4.35213 0.472168 4.0708 0.472168H3.14395C2.86259 0.472168 2.63452 0.700086 2.63452 0.981442V3.95618C2.63452 4.2375 2.86259 4.46527 3.14395 4.46527Z' fill='%23B1B1B1'/%3e %3cpath d='M11.2841 4.46527H12.2109C12.492 4.46527 12.7202 4.2375 12.7202 3.95618V0.981442C12.7202 0.700086 12.4921 0.472168 12.2109 0.472168H11.2841C11.0028 0.472168 10.7747 0.700086 10.7747 0.981442V3.95618C10.7747 4.2375 11.0028 4.46527 11.2841 4.46527Z' fill='%23B1B1B1'/%3e %3c/svg%3e") no-repeat center;
+}
+.dokan-seller-badge-form-wrapper .input-group .icon-document {
+  background: url("data:image/svg+xml,%3csvg width='13' height='16' viewBox='0 0 13 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M8.71094 0.303467V4.04861H12.4561L8.71094 0.303467Z' fill='%23B1B1B1'/%3e %3cpath d='M8.20559 5.05878C7.92672 5.05878 7.70043 4.8325 7.70043 4.55363V0.00732422H1.13357C0.854703 0.00732422 0.628418 0.233609 0.628418 0.512479V14.9933C0.628418 15.2722 0.854703 15.4984 1.13357 15.4984H12.2467C12.5256 15.4984 12.7519 15.2722 12.7519 14.9933V5.05878H8.20559ZM7.19531 12.4675H3.15413C2.87526 12.4675 2.64898 12.2413 2.64898 11.9624C2.64898 11.6835 2.87526 11.4572 3.15413 11.4572H7.19528C7.47415 11.4572 7.70043 11.6835 7.70043 11.9624C7.70043 12.2413 7.47418 12.4675 7.19531 12.4675ZM10.2262 10.447H3.15413C2.87526 10.447 2.64898 10.2207 2.64898 9.9418C2.64898 9.66293 2.87526 9.43665 3.15413 9.43665H10.2262C10.505 9.43665 10.7313 9.66293 10.7313 9.9418C10.7313 10.2207 10.505 10.447 10.2262 10.447ZM10.2262 8.4264H3.15413C2.87526 8.4264 2.64898 8.20011 2.64898 7.92124C2.64898 7.64237 2.87526 7.41609 3.15413 7.41609H10.2262C10.505 7.41609 10.7313 7.64237 10.7313 7.92124C10.7313 8.20011 10.505 8.4264 10.2262 8.4264Z' fill='%23B1B1B1'/%3e %3c/svg%3e") no-repeat center;
+}
+.dokan-seller-badge-form-wrapper .input-group .icon-support {
+  background: url("data:image/svg+xml,%3csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M13.0576 5.69465V5.64108C13.0576 4.22028 12.4921 2.85767 11.4855 1.85301C10.4788 0.848347 9.11355 0.283936 7.68997 0.283936C6.26639 0.283936 4.90111 0.848347 3.89448 1.85301C2.88786 2.85767 2.32234 4.22028 2.32234 5.64108V5.69465C1.71656 5.81899 1.17225 6.14796 0.781147 6.62612C0.390046 7.10428 0.176074 7.7024 0.175293 8.31965V8.85536C0.176145 9.5655 0.459177 10.2463 0.962305 10.7485C1.46543 11.2506 2.14758 11.5331 2.85911 11.5339H3.93263C4.21735 11.5339 4.4904 11.4211 4.69173 11.2201C4.89305 11.0192 5.00616 10.7467 5.00616 10.4625V6.71251C5.00616 6.42835 4.89305 6.15582 4.69173 5.95489C4.4904 5.75396 4.21735 5.64108 3.93263 5.64108H3.39587C3.39587 4.50444 3.84828 3.41435 4.65358 2.61062C5.45888 1.80689 6.5511 1.35536 7.68997 1.35536C8.82884 1.35536 9.92106 1.80689 10.7264 2.61062C11.5317 3.41435 11.9841 4.50444 11.9841 5.64108H11.4473C11.1626 5.64108 10.8895 5.75396 10.6882 5.95489C10.4869 6.15582 10.3738 6.42835 10.3738 6.71251V10.4625C10.3738 10.7467 10.4869 11.0192 10.6882 11.2201C10.8895 11.4211 11.1626 11.5339 11.4473 11.5339H11.9841V12.6054C11.9841 12.7474 11.9275 12.8837 11.8269 12.9842C11.7262 13.0846 11.5897 13.1411 11.4473 13.1411H9.73826C9.62764 12.8288 9.42305 12.5583 9.15249 12.3665C8.88192 12.1747 8.55859 12.071 8.22673 12.0696H7.15321C6.72613 12.0696 6.31655 12.239 6.01456 12.5404C5.71257 12.8418 5.54292 13.2506 5.54292 13.6768C5.54292 14.103 5.71257 14.5118 6.01456 14.8132C6.31655 15.1146 6.72613 15.2839 7.15321 15.2839H8.22673C8.55859 15.2826 8.88192 15.1789 9.15249 14.9871C9.42305 14.7953 9.62764 14.5248 9.73826 14.2125H11.4473C11.8744 14.2125 12.284 14.0432 12.586 13.7418C12.8879 13.4404 13.0576 13.0316 13.0576 12.6054V11.5339C13.0551 11.5159 13.0515 11.498 13.0469 11.4804C13.6547 11.3584 14.2016 11.0304 14.5949 10.552C14.9881 10.0736 15.2036 9.47417 15.2046 8.85536V8.31965C15.2039 7.7024 14.9899 7.10428 14.5988 6.62612C14.2077 6.14796 13.6634 5.81899 13.0576 5.69465Z' fill='%23B1B1B1'/%3e %3c/svg%3e") no-repeat center;
+}
+
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/admin/components/vendor/SellerBadgeListCard.vue?vue&type=style&index=0&id=8f7c283e&lang=less&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.seller-badge-list-card[data-v-8f7c283e] {
+  padding: 0 20px 0 20px;
+  background-color: #fff;
+}
+.seller-badge-list-card .wp-heading-inline[data-v-8f7c283e] {
+  margin-bottom: 20px;
+}
+.seller-badge-list-card .myGallery[data-v-8f7c283e] {
+  position: relative;
+  display: grid;
+  grid-gap: 15% 10%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+}
+.seller-badge-list-card .myGallery .item[data-v-8f7c283e] {
+  position: relative;
+}
+.seller-badge-list-card .myGallery .item img[data-v-8f7c283e] {
+  width: 100%;
+  cursor: pointer;
+}
+.seller-badge-list-card .myGallery .item .bottom-center[data-v-8f7c283e] {
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  background-color: white;
+  border-radius: 50%;
+  color: black;
+  bottom: 0;
+  left: 6px;
+  transform: translate(5px, 10px);
+  box-shadow: 0px 3.21062px 6.42124px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  font-size: 10px;
+}
+.seller-badge-list-card .badge_loader[data-v-8f7c283e] {
+  position: relative;
+}
+
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./modules/seller-badge/assets/src/admin/components/BadgeDropDown.vue?vue&type=style&index=0&id=ef5b6264&lang=less&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.seller-badge-vendor-dropdown .column[data-v-ef5b6264] {
+  display: flex;
+}
+

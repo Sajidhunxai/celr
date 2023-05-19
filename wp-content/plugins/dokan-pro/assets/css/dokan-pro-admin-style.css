@@ -1,0 +1,256 @@
+/*!*******************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./assets/src/less/dokan-pro-admin.less ***!
+  \*******************************************************************************************************************************/
+@-webkit-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+@keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+.dokan-progress {
+  overflow: hidden;
+  height: 20px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.dokan-progress-bar {
+  float: left;
+  width: 0%;
+  height: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+  text-align: center;
+  background-color: #337ab7;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-transition: width 0.6s ease;
+  transition: width 0.6s ease;
+}
+.dokan-progress-striped .dokan-progress-bar,
+.dokan-progress-bar-striped {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.dokan-progress.active .dokan-progress-bar,
+.dokan-progress-bar.active {
+  -webkit-animation: progress-bar-stripes 2s linear infinite;
+  animation: progress-bar-stripes 2s linear infinite;
+}
+.dokan-progress-bar-success {
+  background-color: #5cb85c;
+}
+.progress-striped .dokan-progress-bar-success {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+}
+.dokan-progress-bar-info {
+  background-color: #5bc0de;
+}
+.progress-striped .dokan-progress-bar-info {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+}
+.dokan-progress-bar-warning {
+  background-color: #f0ad4e;
+}
+.progress-striped .dokan-progress-bar-warning {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+}
+.dokan-progress-bar-danger {
+  background-color: #d9534f;
+}
+.progress-striped .dokan-progress-bar-danger {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+}
+#dokan-profile-progressbar-closer {
+  cursor: pointer !important;
+}
+.shipping-status-provider,
+.shipped-status-date,
+.tracking-status-other-provider,
+.tracking-status-other-p-url,
+.shippments-tracking-title,
+.shippments-tracking-footer-status,
+.shippments-tracking-footer-button {
+  float: left;
+  width: 48%;
+  margin-right: 2%;
+}
+.shippments-tracking-footer-button {
+  text-align: right;
+  margin-top: 27px;
+}
+.shippments-tracking-status strong {
+  background-color: #eee;
+  padding: 8px 20px;
+  border-radius: 35px;
+}
+.shippments-tracking-status .ss_cancelled {
+  background-color: #f05025;
+  color: #fff;
+}
+.shippments-tracking-status .ss_delivered {
+  background-color: #5cb85c;
+  color: #fff;
+}
+.shippments-tracking-via .dashicons-external {
+  font-size: 20px;
+  margin: 0px 10px;
+}
+.shipping-status-tracking-shippments-inner {
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+.shipping-status-tracking-shippments-inner .shippments-tracking-header {
+  padding: 20px 20px 20px 20px;
+}
+.shipping-status-tracking-shippments-inner .shippments-tracking-items {
+  border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+  padding: 20px;
+}
+.shipping-status-tracking-shippments-inner .shippments-tracking-footer {
+  padding: 20px;
+}
+.shipping-status-tracking-shippments-inner .dokan-hide {
+  display: none;
+}
+.shippments-tracking-header .shippments-tracking-status {
+  float: right;
+  width: 48%;
+  margin-left: 2%;
+  text-align: right;
+  margin: 10px 0px 0px 0px;
+}
+.shippments-tracking-header .shippments-tracking-via {
+  margin: 0px;
+}
+.shippments-tracking-header .shippments-tracking-via a {
+  text-decoration: none;
+}
+.shippments-tracking-header .shippments-tracking-title {
+  margin: 0px;
+}
+.shippments-tracking-header .shipment-item-details-tab-toggle {
+  cursor: pointer;
+  margin-left: 15px;
+}
+.shippments-tracking-items table {
+  width: 100%;
+  margin: 0px;
+}
+.create-shippment-tracking-action-button {
+  text-align: center;
+}
+#tracking_status_number {
+  width: 98%;
+}
+.shipping-status-track-info-heading {
+  font-size: 16px;
+}
+.shippments-tracking-items td.thumb {
+  width: 60px;
+  padding-right: 10px;
+}
+.shippments-tracking-items td.thumb img {
+  max-width: 50px;
+  border: solid 1px #eee;
+  height: auto;
+}
+.shipping_status_tracking .dokan-label {
+  display: inline;
+  padding: 0.2em 0.6em 0.3em;
+  font-size: 90%;
+  font-weight: 400;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
+}
+.shipping_status_tracking .dokan-label-success {
+  background-color: #5cb85c;
+}
+.shipping_status_tracking .dokan-label-default {
+  background-color: #777777;
+}
+.shipping_status_tracking .dokan-label-info {
+  background-color: #5bc0de;
+}
+.dokan-customer-shipment-notes-list-area {
+  padding: 20px;
+  position: relative;
+  border-top: solid 1px #dcdcdc;
+  background-color: #f5f5f5;
+}
+.dokan-customer-shipment-notes-list-area .shipment-notes-details-tab-toggle {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.dokan-customer-shipment-notes-list-area h5 {
+  margin: 0px;
+  font-size: 14px;
+  padding: 0px;
+}
+.dokan-customer-shipment-notes-list-area .customer-shipment-list-notes-inner-area {
+  margin-top: 20px;
+}
+.dokan-customer-shipment-notes-list-area .customer-shipment-list-notes-inner-area .dokan-order-updates {
+  margin: 15px;
+}
+.dokan-order-shipment-notes-updates .dokan-order-update-meta {
+  font-weight: 700;
+}
+ol.dokan-order-shipment-notes-updates {
+  list-style-type: none;
+}
+.dokan-order-shipment-notes-updates li {
+  position: relative;
+  margin: 0;
+  padding-bottom: 1em;
+  padding-left: 20px;
+  padding-top: 0px;
+  border: none;
+}
+.dokan-order-shipment-notes-updates li:before {
+  content: '';
+  background-color: #ccc;
+  position: absolute;
+  bottom: 0px;
+  top: 0px;
+  left: 6px;
+  width: 3px;
+}
+.dokan-order-shipment-notes-updates li:after {
+  content: '';
+  background-color: #777;
+  border-radius: 50%;
+  height: 11px;
+  left: 2px;
+  position: absolute;
+  top: 4px;
+  width: 11px;
+}
+

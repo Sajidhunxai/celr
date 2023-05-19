@@ -1,0 +1,290 @@
+/*!***************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./assets/src/less/store-times.less ***!
+  \***************************************************************************************************************************/
+.dokan-time-slots {
+  padding-top: 1rem;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group {
+  position: relative;
+  padding-bottom: 0.8rem;
+  display: flex;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .day {
+  width: 10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .and-time {
+  width: 19rem;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .day span {
+  margin-right: 1.25rem;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group label select {
+  border-radius: 0.313rem;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .dokan-status {
+  display: flex;
+  align-items: center;
+  width: 10rem;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .time {
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .and-time {
+  padding: 0.297rem 3.294rem;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .open-close-actions {
+  padding-left: 0.95rem;
+  display: flex;
+  align-items: center;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .open-close-actions a {
+  text-decoration: none;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .open-close-actions a:first-child {
+  margin: 0 1.938rem 0 0.21rem;
+  font-size: 1.125rem;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .open-close-actions a:focus {
+  outline: 0;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .open-close-actions .added-store-opening-time {
+  margin-left: 0.125rem;
+  color: #2271b1 !important;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .open-close-actions .remove-store-closing-time {
+  color: #3c434a !important;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .open-close-actions .remove-store-closing-time .dashicons-no-alt {
+  font-size: 1.5rem;
+  margin-top: 3px;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .working-status {
+  margin-left: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .working-status .open-status {
+  display: none;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .time-to {
+  margin: 0 1.2rem 0.5rem 1.1rem;
+  align-self: center;
+  font-size: 1rem;
+  color: #666666;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .open-all-day {
+  position: absolute;
+  top: 10%;
+  transform: translate(80%, -5%);
+  font-size: 0.938rem;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .clock-picker {
+  display: flex;
+  width: 9.375rem;
+  align-items: center;
+  border-bottom: 0.063rem solid #bbb;
+  position: relative;
+  overflow: auto;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .clock-picker .fa-clock {
+  display: block;
+  margin: 0 0.483rem 0 0.738rem;
+  margin-bottom: 0 !important;
+  position: absolute;
+  bottom: 9px;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .clock-picker .fa-exclamation-triangle {
+  color: #ffd500;
+  display: none;
+  position: absolute;
+  right: 0.483rem;
+  bottom: 10px;
+}
+.dokan-time-slots .dokan-store-times .dokan-form-group .clock-picker .dokan-form-control {
+  border: 0;
+  outline: 0;
+  padding: 0 0 5px 42px;
+  background-color: transparent;
+  box-shadow: none;
+  font-size: 1rem;
+}
+.dokan-time-slots .dokan-store-times .hide-element {
+  visibility: hidden !important;
+}
+.switch {
+  display: block;
+  overflow: hidden;
+  margin: 0;
+}
+.switch:hover {
+  cursor: pointer;
+}
+@media only screen and (max-width: 415px) {
+  .dokan-time-slots .dokan-store-times .dokan-form-group {
+    flex-wrap: wrap;
+    padding-bottom: 0;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .day.control-label {
+    width: 50%;
+    margin-bottom: 1.563rem;
+    padding-right: 0;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group label select {
+    margin-bottom: 1.563rem !important;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .and-time,
+  .dokan-time-slots .dokan-store-times .dokan-form-group .time-from {
+    display: none;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .time-to {
+    margin-right: 0.663rem;
+    margin-left: 0.35rem;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .time input {
+    width: 2.625rem;
+    font-size: 0.75rem;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .open-all-day {
+    top: 65%;
+    transform: translate(0%, 0%);
+    font-size: 0.9rem;
+    left: 0;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group:first-child {
+    margin-top: 0;
+  }
+  .dokan-time-slots .dokan-store-times hr {
+    margin-top: 1.875rem;
+  }
+  .dokan-time-slots .dokan-store-times hr:last-child {
+    margin-top: 0rem;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .dokan-time-slots .dokan-store-times .dokan-form-group {
+    flex-wrap: wrap;
+    padding-bottom: 0;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .day {
+    display: none;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .day.control-label {
+    width: 50%;
+    margin-top: 0.463rem;
+    padding-right: 0;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .day span {
+    margin-left: 1.25rem;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group label select {
+    margin-bottom: 1.563rem !important;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group label:nth-child(2) {
+    width: 50%;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .and-time,
+  .dokan-time-slots .dokan-store-times .dokan-form-group .time-from {
+    display: none;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .time-to {
+    margin-right: 0.863rem;
+    margin-left: 0.5rem;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .time input {
+    width: 5.825rem;
+    font-size: 0.85rem;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .open-all-day {
+    top: 65%;
+    transform: translate(0%, 0%);
+    font-size: 0.95rem;
+    left: 0;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group:first-child label.day {
+    display: block;
+  }
+  .dokan-time-slots .dokan-store-times hr {
+    margin-top: 1.875rem;
+  }
+  .dokan-time-slots .dokan-store-times hr:last-child {
+    margin-top: 0rem;
+  }
+}
+.ui-timepicker-wrapper {
+  width: 155px;
+  max-height: 230px;
+  overflow: overlay;
+  border-radius: 5px;
+  /* width */
+  /* Handle */
+  /* Handle on hover */
+}
+.ui-timepicker-wrapper ul.ui-timepicker-list li {
+  padding: 8px 20px;
+}
+.ui-timepicker-wrapper ul.ui-timepicker-list li:hover {
+  background-color: #8d93993b;
+  color: #000;
+}
+.ui-timepicker-wrapper ul.ui-timepicker-list .ui-timepicker-selected {
+  background-color: #8d93993b;
+  color: #000;
+}
+.ui-timepicker-wrapper ul.ui-timepicker-list .fullDayClockOne,
+.ui-timepicker-wrapper ul.ui-timepicker-list .fullDayClockTwo {
+  padding: 10px 20px !important;
+  border-bottom: 1px solid #ccc;
+  margin-top: 6px;
+}
+.ui-timepicker-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+.ui-timepicker-wrapper::-webkit-scrollbar-thumb {
+  background: #8d9399;
+  border-radius: 5px;
+}
+.ui-timepicker-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+@media only screen and (max-width: 1199px) {
+  .dokan-time-slots .dokan-store-times .dokan-form-group .day {
+    width: 6.5rem;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .open-all-day {
+    position: absolute;
+    top: auto;
+    transform: translate(0%, 0%);
+    font-size: 0.87rem;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group input.dokan-form-control {
+    width: 35px;
+    font-size: 11px;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .open-close-actions a:first-child {
+    margin: 0 0.115rem 0 0.238rem;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .added-store-opening-time {
+    margin-left: 0;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .and-time {
+    padding: 0.297rem 1.9rem;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .time-from {
+    margin-right: 0.75rem;
+    margin-left: 0.563rem;
+  }
+  .dokan-time-slots .dokan-store-times .dokan-form-group .time-to {
+    margin-right: 0.563rem;
+    margin-left: 0.25rem;
+  }
+}
+

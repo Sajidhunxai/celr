@@ -1,0 +1,2 @@
+2023-05-19T07:51:54+00:00 CRITICAL Cannot redeclare enqueue_jquery() (previously declared in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php:113) in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 217
+

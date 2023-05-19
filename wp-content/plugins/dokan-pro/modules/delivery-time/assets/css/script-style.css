@@ -1,0 +1,463 @@
+/*!*******************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./modules/delivery-time/assets/src/less/style.less ***!
+  \*******************************************************************************************************************************************/
+/*
+Dokan delivery time vendor styles
+*/
+/* Delivery time settings */
+.dokan-delivery-time-wrapper {
+  position: relative;
+}
+.dokan-delivery-time-wrapper .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+}
+#dokan-delivery-time-vendor-settings .dokan-page-help {
+  margin-bottom: 20px;
+}
+#dokan-delivery-time-vendor-settings .select-box {
+  margin-bottom: 30px;
+}
+#dokan-delivery-time-vendor-settings .select-box span.select2,
+#dokan-delivery-time-vendor-settings .select-box li.select2-search {
+  width: 100% !important;
+}
+#dokan_delivery_time .checkbox {
+  display: flex;
+  flex-direction: column;
+}
+#dokan_delivery_time .checkbox label {
+  cursor: pointer;
+}
+#dokan_delivery_time .checkbox div {
+  display: inline;
+}
+.delivery-time-slot-tabs .tab-panels {
+  margin-bottom: 16px;
+}
+.delivery-time-slot-tabs .tab-panels ul {
+  margin: 0;
+  padding: 0 !important;
+}
+.delivery-time-slot-tabs .tab-panels ul li {
+  position: relative;
+  list-style-type: none;
+  display: inline-block;
+  margin: 0;
+  padding: 10px 20px;
+  border-radius: 12px 12px 0 0;
+  color: #6d6d6d;
+  cursor: pointer;
+  background: #f5f5f5;
+}
+.delivery-time-slot-tabs .tab-panels ul li.available {
+  background: #f5f5f5;
+}
+.delivery-time-slot-tabs .tab-panels ul li:hover {
+  background: #efefef;
+}
+.delivery-time-slot-tabs .tab-panels ul li.active {
+  background: #e5e5e5;
+}
+.delivery-time-slot-tabs .tab-panels ul li.deactivated {
+  color: rgba(109, 109, 109, 0.2);
+}
+.delivery-time-slot-tabs .tab-panels .panel {
+  background: #f5f5f5;
+  border-radius: 12px;
+  position: relative;
+  padding: 30px;
+  display: none;
+}
+.delivery-time-slot-tabs .tab-panels .panel .delivery-settings-overlay {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: none;
+  position: absolute;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.delivery-time-slot-tabs .tab-panels .panel.active {
+  display: block;
+}
+#dokan-delivery-time-slot-order-details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #43454b;
+  background: #f8f8f8;
+  padding: 18px;
+}
+#dokan-delivery-time-slot-order-details .main {
+  margin-left: 4px;
+  display: flex;
+  align-items: center;
+}
+.vendor-delivery-time-box form {
+  display: flex;
+  flex-direction: column;
+}
+.vendor-delivery-time-box form input {
+  margin: 16px 0px;
+  position: relative;
+}
+.vendor-delivery-time-box form .store-pickup-select-options {
+  margin-top: 16px;
+}
+.vendor-delivery-time-box form .store-pickup-select-options .store-address {
+  display: none;
+}
+.vendor-delivery-time-box form .store-address {
+  margin-top: 16px;
+  padding: 8px 16px;
+  background: #f3f3f3;
+  border-radius: 3px;
+  line-height: 1.4;
+}
+.vendor-delivery-time-box form #delivery-store-location-address {
+  font-size: 12px;
+}
+.vendor-delivery-time-box form #vendor-delivery-type input {
+  margin: 20px 0 15px;
+  position: relative;
+}
+.vendor-delivery-time-box form #vendor-delivery-type input[type='radio']:after {
+  top: -4.5px;
+  left: -1px;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2px solid white;
+  content: '';
+  position: absolute;
+  border-radius: 15px;
+  background-color: #6d6d6d;
+}
+.vendor-delivery-time-box form #vendor-delivery-type input[type='radio']:checked:after {
+  top: -4.5px;
+  left: -1px;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2px solid white;
+  content: '';
+  position: absolute;
+  border-radius: 15px;
+  background-color: #f05025;
+}
+.vendor-delivery-time-box form #vendor-delivery-type input[type='radio']:checked:before {
+  width: 0.56rem;
+  height: 0.56rem;
+  z-index: 1;
+  content: '';
+  position: absolute;
+  border-radius: 60%;
+  background-color: #fff;
+  transform: translate(68%, 22%);
+}
+.vendor-delivery-time-box form #vendor-delivery-type .delivery-type-delivery {
+  padding: 0 30px 0 8px;
+}
+.vendor-delivery-time-box form #vendor-delivery-type .delivery-type-pickup {
+  padding-left: 8px;
+}
+.vendor-delivery-time-box form #vendor-delivery-type label:hover {
+  cursor: pointer;
+}
+.vendor-delivery-time-box form input[type='radio']:focus {
+  outline-color: transparent;
+}
+/* Delivery time vendor dashboard */
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+  background-color: white !important;
+  border: 1px solid #d6d6d6;
+  color: #6d6d6d;
+}
+.fc .fc-button-primary {
+  background-color: #eeeeee;
+  color: #6d6d6d;
+  border: 1px solid #d6d6d6;
+}
+.fc .fc-button-primary:disabled {
+  background-color: #f3f3f3;
+  color: #a7a7a7;
+  border: 1px solid #a7a7a7;
+}
+.fc .fc-view-harness .fc-col-header-cell a,
+.fc .fc-view-harness .fc-scroller-harness .fc-daygrid-day-number,
+.fc .fc-view-harness .fc-scroller-harness .fc-daygrid-event {
+  color: #6d6d6d;
+  transition: 0.2s linear;
+}
+.fc .fc-view-harness .fc-scroller-harness .fc-daygrid-event:hover {
+  color: #000;
+}
+.fc-col-header {
+  margin-bottom: 0px;
+}
+.dokan-delivery-type-wrapper {
+  margin-bottom: 16px;
+}
+.dokan-delivery-type-wrapper select {
+  display: inline-block;
+  width: 120px;
+}
+.dokan-delivery-type-wrapper form {
+  display: flex;
+  align-items: center;
+}
+.dokan-delivery-type-wrapper button {
+  margin-left: 8px;
+}
+
+/*!**********************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./modules/delivery-time/assets/src/less/frontend.less ***!
+  \**********************************************************************************************************************************************/
+/*
+Dokan delivery time frontend styles
+*/
+#dokan-delivery-time-box {
+  margin: 50px 0px;
+  /*== Dokan Store location selector ==*/
+}
+#dokan-delivery-time-box .header .delivery-timezone {
+  display: flex;
+  align-items: center;
+  background: #FAFAFA;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 8px 16px;
+  color: #666666;
+}
+#dokan-delivery-time-box .header .delivery-timezone span {
+  font-size: 12px;
+}
+#dokan-delivery-time-box span {
+  color: #333333;
+  border-radius: 6px;
+  margin: 0px 4px;
+  font-size: 12px;
+}
+#dokan-delivery-time-box .delivery-time-body {
+  position: relative;
+  margin-top: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 25px 25px 5px 25px;
+  background: #FAFAFA;
+}
+#dokan-delivery-time-box .delivery-time-body .delivery-group {
+  width: 100%;
+  margin-bottom: 32px;
+}
+#dokan-delivery-time-box .delivery-time-body .delivery-group .title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+#dokan-delivery-time-box .delivery-time-body .delivery-group .title span {
+  font-size: 18px;
+  font-weight: bold;
+}
+#dokan-delivery-time-box .delivery-time-body .delivery-group .vendor-info {
+  margin-top: 8px;
+  padding: 8px 16px;
+  background: #f3f3f3;
+  border-radius: 8px;
+}
+#dokan-delivery-time-box .delivery-time-body .delivery-group .vendor-info span {
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  color: #a2a2a2;
+}
+#dokan-delivery-time-box .delivery-time-body .delivery-group span {
+  margin-left: 8px;
+  font-weight: normal;
+  color: #333333;
+}
+#dokan-delivery-time-box .delivery-time-body .delivery-group hr {
+  margin: 18px 0px;
+  border: 0;
+  height: 1px;
+  background-color: #e5e5e5;
+}
+#dokan-delivery-time-box .delivery-time-body input {
+  background: white;
+  box-shadow: none;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+  width: 100%;
+  margin-top: 16px;
+  font-weight: normal;
+  color: #6d6d6d;
+}
+#dokan-delivery-time-box .delivery-time-body input:focus {
+  border: 2px solid #f2624d;
+  outline: none;
+}
+#dokan-delivery-time-box .delivery-time-body select {
+  padding: 0.66em;
+  border-radius: 8px;
+  width: 100%;
+  border: 1px solid #E5E7EB;
+  appearance: none;
+  margin-top: 8px;
+  color: #6d6d6d;
+  display: none;
+}
+#dokan-delivery-time-box .delivery-time-body select:focus {
+  border: 2px solid #f2624d;
+  outline: none;
+}
+#dokan-delivery-time-box #dokan-spinner-overlay {
+  display: none;
+  position: absolute;
+  border-radius: 8px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+#dokan-delivery-time-box #dokan-spinner-overlay .dokan-spinner-wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#dokan-delivery-time-box #dokan-spinner-overlay .dokan-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px #fff solid;
+  border-top: 4px #f2624d solid;
+  border-radius: 50%;
+  animation: dokan-loading-anime 0.8s infinite linear;
+}
+#dokan-delivery-time-box .dokan-store-location-selector .selector-wrapper {
+  display: flex;
+  align-items: center;
+}
+#dokan-delivery-time-box .dokan-store-location-selector .selector-wrapper .selector {
+  position: relative;
+  margin-top: 16px;
+  background: #f3f3f3;
+  padding: 14px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+#dokan-delivery-time-box .dokan-store-location-selector .selector-wrapper .selector span {
+  font-size: 12px;
+  font-weight: bold;
+}
+#dokan-delivery-time-box .dokan-store-location-selector .selector-wrapper .selector .info-icon {
+  position: absolute;
+  top: 1px;
+  right: 4px;
+  color: #3d3d3d;
+}
+#dokan-delivery-time-box .dokan-store-location-selector .selector-wrapper .mr-16 {
+  margin-right: 16px;
+}
+#dokan-delivery-time-box .dokan-store-location-selector .selector-wrapper .active-selector {
+  border: 2px solid rgba(242, 98, 77, 0.3);
+  background: rgba(242, 98, 77, 0.07);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+/*== Start of code for tooltips ==*/
+.dokan-delivery-time-tooltip {
+  cursor: help;
+  position: relative;
+  text-align: center;
+}
+/*== Common styles for both parts of tool tip ==*/
+.dokan-delivery-time-tooltip::before,
+.dokan-delivery-time-tooltip::after {
+  left: 50%;
+  opacity: 0;
+  position: absolute;
+  z-index: -100;
+}
+.dokan-delivery-time-tooltip:hover::before,
+.dokan-delivery-time-tooltip:focus::before,
+.dokan-delivery-time-tooltip:hover::after,
+.dokan-delivery-time-tooltip:focus::after {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  z-index: 100;
+}
+/*== Pointer tip ==*/
+.dokan-delivery-time-tooltip::before {
+  border-style: solid;
+  border-width: 1em 0.75em 0 0.75em;
+  border-color: #3E474F transparent transparent transparent;
+  bottom: 100%;
+  content: "";
+  margin-left: -0.5em;
+  transition: all 0.65s cubic-bezier(0.84, -0.18, 0.31, 1.26), opacity 0.65s 0.5s;
+  transform: scale(0.6) translateY(-90%);
+}
+.dokan-delivery-time-tooltip:hover::before,
+.dokan-delivery-time-tooltip:focus::before {
+  transition: all 0.65s cubic-bezier(0.84, -0.18, 0.31, 1.26) 0.2s;
+}
+/*== Speech bubble ==*/
+.dokan-delivery-time-tooltip::after {
+  background: #3E474F;
+  border-radius: 6px;
+  bottom: 120%;
+  color: #EDEFF0;
+  content: attr(data-tip);
+  margin-left: -8.75em;
+  padding: 1em;
+  transition: all 0.65s cubic-bezier(0.84, -0.18, 0.31, 1.26) 0.2s;
+  transform: scale(0.6) translateY(50%);
+  width: 17.5em;
+}
+.dokan-delivery-time-tooltip:hover::after,
+.dokan-delivery-time-tooltip:focus::after {
+  transition: all 0.65s cubic-bezier(0.84, -0.18, 0.31, 1.26);
+}
+@media (max-width: 760px) {
+  .dokan-delivery-time-tooltip::after {
+    font-size: 0.75em;
+    margin-left: -5em;
+    width: 10em;
+  }
+}
+@keyframes dokan-loading-anime {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/*
+    Dokan store location pickup
+ */
+#dokan-store-location-order-details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  color: #43454b;
+}
+#dokan-store-location-order-details .main {
+  display: flex;
+  align-items: center;
+  background: #f8f8f8;
+  padding: 18px;
+}
+.store-pickup-select-options .store-address {
+  margin-top: 8px;
+}
+

@@ -1,0 +1,213 @@
+2023-05-18T17:48:28+00:00 CRITICAL Uncaught TypeError: Cannot access offset of type string on string in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\woocommerce\single-product.php:23
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\template-loader.php(106): include()
+#1 C:\wamp64\www\celr\wp-blog-header.php(19): require_once('C:\\wamp64\\www\\c...')
+#2 C:\wamp64\www\celr\index.php(17): require('C:\\wamp64\\www\\c...')
+#3 {main}
+  thrown in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\woocommerce\single-product.php on line 23
+
+2023-05-18T17:54:24+00:00 CRITICAL Uncaught Error: Call to a member function set_price() on null in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php:74
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(310): update_cart_item_price(Array, 15845)
+#1 C:\wamp64\www\celr\wp-includes\plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1138): apply_filters('woocommerce_add...', Array, 15845, 0, 1)
+#3 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(824): WC_Cart->add_to_cart(15845, 1)
+#4 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(796): WC_Form_Handler::add_to_cart_handler_simple(15845)
+#5 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): WC_Form_Handler::add_to_cart_action('')
+#6 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#7 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#8 C:\wamp64\www\celr\wp-settings.php(645): do_action('wp_loaded')
+#9 C:\wamp64\www\celr\wp-config.php(96): require_once('C:\\wamp64\\www\\c...')
+#10 C:\wamp64\www\celr\wp-load.php(50): require_once('C:\\wamp64\\www\\c...')
+#11 C:\wamp64\www\celr\wp-admin\admin-ajax.php(22): require_once('C:\\wamp64\\www\\c...')
+#12 {main}
+  thrown in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 74
+
+2023-05-18T17:55:09+00:00 CRITICAL Uncaught Error: Call to a member function set_price() on null in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php:74
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(310): update_cart_item_price(Array, 15845)
+#1 C:\wamp64\www\celr\wp-includes\plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1138): apply_filters('woocommerce_add...', Array, 15845, 0, 1)
+#3 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(824): WC_Cart->add_to_cart(15845, 1)
+#4 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(796): WC_Form_Handler::add_to_cart_handler_simple(15845)
+#5 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): WC_Form_Handler::add_to_cart_action('')
+#6 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#7 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#8 C:\wamp64\www\celr\wp-settings.php(645): do_action('wp_loaded')
+#9 C:\wamp64\www\celr\wp-config.php(96): require_once('C:\\wamp64\\www\\c...')
+#10 C:\wamp64\www\celr\wp-load.php(50): require_once('C:\\wamp64\\www\\c...')
+#11 C:\wamp64\www\celr\wp-admin\admin-ajax.php(22): require_once('C:\\wamp64\\www\\c...')
+#12 {main}
+  thrown in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 74
+
+2023-05-18T17:55:45+00:00 CRITICAL Uncaught Error: Call to a member function set_price() on null in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php:74
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(310): update_cart_item_price(Array, 15845)
+#1 C:\wamp64\www\celr\wp-includes\plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1138): apply_filters('woocommerce_add...', Array, 15845, 0, 1)
+#3 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(824): WC_Cart->add_to_cart(15845, 1)
+#4 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(796): WC_Form_Handler::add_to_cart_handler_simple(15845)
+#5 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): WC_Form_Handler::add_to_cart_action('')
+#6 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#7 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#8 C:\wamp64\www\celr\wp-settings.php(645): do_action('wp_loaded')
+#9 C:\wamp64\www\celr\wp-config.php(96): require_once('C:\\wamp64\\www\\c...')
+#10 C:\wamp64\www\celr\wp-load.php(50): require_once('C:\\wamp64\\www\\c...')
+#11 C:\wamp64\www\celr\wp-admin\admin-ajax.php(22): require_once('C:\\wamp64\\www\\c...')
+#12 {main}
+  thrown in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 74
+
+2023-05-18T17:56:06+00:00 CRITICAL Uncaught Error: Call to a member function set_price() on null in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php:74
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(310): update_cart_item_price(Array, 15845)
+#1 C:\wamp64\www\celr\wp-includes\plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1138): apply_filters('woocommerce_add...', Array, 15845, 0, 1)
+#3 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(824): WC_Cart->add_to_cart(15845, 1)
+#4 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(796): WC_Form_Handler::add_to_cart_handler_simple(15845)
+#5 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): WC_Form_Handler::add_to_cart_action('')
+#6 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#7 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#8 C:\wamp64\www\celr\wp-settings.php(645): do_action('wp_loaded')
+#9 C:\wamp64\www\celr\wp-config.php(96): require_once('C:\\wamp64\\www\\c...')
+#10 C:\wamp64\www\celr\wp-load.php(50): require_once('C:\\wamp64\\www\\c...')
+#11 C:\wamp64\www\celr\wp-admin\admin-ajax.php(22): require_once('C:\\wamp64\\www\\c...')
+#12 {main}
+  thrown in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 74
+
+2023-05-18T17:56:33+00:00 CRITICAL Uncaught Error: Call to a member function set_price() on null in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php:74
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(310): update_cart_item_price(Array, 232)
+#1 C:\wamp64\www\celr\wp-includes\plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1138): apply_filters('woocommerce_add...', Array, 232, 0, 1)
+#3 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(824): WC_Cart->add_to_cart(232, 1)
+#4 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(796): WC_Form_Handler::add_to_cart_handler_simple(232)
+#5 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): WC_Form_Handler::add_to_cart_action('')
+#6 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#7 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#8 C:\wamp64\www\celr\wp-settings.php(645): do_action('wp_loaded')
+#9 C:\wamp64\www\celr\wp-config.php(96): require_once('C:\\wamp64\\www\\c...')
+#10 C:\wamp64\www\celr\wp-load.php(50): require_once('C:\\wamp64\\www\\c...')
+#11 C:\wamp64\www\celr\wp-admin\admin-ajax.php(22): require_once('C:\\wamp64\\www\\c...')
+#12 {main}
+  thrown in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 74
+
+2023-05-18T17:57:06+00:00 CRITICAL Uncaught Error: Call to a member function set_price() on null in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php:74
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(310): update_cart_item_price(Array, 334)
+#1 C:\wamp64\www\celr\wp-includes\plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1138): apply_filters('woocommerce_add...', Array, 334, 0, 1)
+#3 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(824): WC_Cart->add_to_cart(334, 1)
+#4 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(796): WC_Form_Handler::add_to_cart_handler_simple(334)
+#5 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): WC_Form_Handler::add_to_cart_action('')
+#6 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#7 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#8 C:\wamp64\www\celr\wp-settings.php(645): do_action('wp_loaded')
+#9 C:\wamp64\www\celr\wp-config.php(96): require_once('C:\\wamp64\\www\\c...')
+#10 C:\wamp64\www\celr\wp-load.php(50): require_once('C:\\wamp64\\www\\c...')
+#11 C:\wamp64\www\celr\wp-admin\admin-ajax.php(22): require_once('C:\\wamp64\\www\\c...')
+#12 {main}
+  thrown in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 74
+
+2023-05-18T17:57:32+00:00 CRITICAL Uncaught Error: Call to a member function set_price() on null in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php:74
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(310): update_cart_item_price(Array, 334)
+#1 C:\wamp64\www\celr\wp-includes\plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1138): apply_filters('woocommerce_add...', Array, 334, 0, 1)
+#3 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(824): WC_Cart->add_to_cart(334, 1)
+#4 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(796): WC_Form_Handler::add_to_cart_handler_simple(334)
+#5 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): WC_Form_Handler::add_to_cart_action('')
+#6 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#7 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#8 C:\wamp64\www\celr\wp-settings.php(645): do_action('wp_loaded')
+#9 C:\wamp64\www\celr\wp-config.php(96): require_once('C:\\wamp64\\www\\c...')
+#10 C:\wamp64\www\celr\wp-load.php(50): require_once('C:\\wamp64\\www\\c...')
+#11 C:\wamp64\www\celr\wp-admin\admin-ajax.php(22): require_once('C:\\wamp64\\www\\c...')
+#12 {main}
+  thrown in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 74
+
+2023-05-18T17:58:26+00:00 CRITICAL Uncaught Error: Call to a member function set_price() on null in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php:74
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(310): update_cart_item_price(Array, 232)
+#1 C:\wamp64\www\celr\wp-includes\plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1138): apply_filters('woocommerce_add...', Array, 232, 0, 1)
+#3 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(824): WC_Cart->add_to_cart(232, 1)
+#4 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(796): WC_Form_Handler::add_to_cart_handler_simple(232)
+#5 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): WC_Form_Handler::add_to_cart_action('')
+#6 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#7 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#8 C:\wamp64\www\celr\wp-settings.php(645): do_action('wp_loaded')
+#9 C:\wamp64\www\celr\wp-config.php(96): require_once('C:\\wamp64\\www\\c...')
+#10 C:\wamp64\www\celr\wp-load.php(50): require_once('C:\\wamp64\\www\\c...')
+#11 C:\wamp64\www\celr\wp-blog-header.php(13): require_once('C:\\wamp64\\www\\c...')
+#12 C:\wamp64\www\celr\index.php(17): require('C:\\wamp64\\www\\c...')
+#13 {main}
+  thrown in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 74
+
+2023-05-18T18:04:11+00:00 CRITICAL Uncaught Error: Call to a member function set_price() on null in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php:79
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(310): update_cart_item_price(Array, 15845)
+#1 C:\wamp64\www\celr\wp-includes\plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1138): apply_filters('woocommerce_add...', Array, 15845, 0, 1)
+#3 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(824): WC_Cart->add_to_cart(15845, 1)
+#4 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(796): WC_Form_Handler::add_to_cart_handler_simple(15845)
+#5 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): WC_Form_Handler::add_to_cart_action('')
+#6 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#7 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#8 C:\wamp64\www\celr\wp-settings.php(645): do_action('wp_loaded')
+#9 C:\wamp64\www\celr\wp-config.php(96): require_once('C:\\wamp64\\www\\c...')
+#10 C:\wamp64\www\celr\wp-load.php(50): require_once('C:\\wamp64\\www\\c...')
+#11 C:\wamp64\www\celr\wp-blog-header.php(13): require_once('C:\\wamp64\\www\\c...')
+#12 C:\wamp64\www\celr\index.php(17): require('C:\\wamp64\\www\\c...')
+#13 {main}
+  thrown in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 79
+
+2023-05-18T18:05:09+00:00 CRITICAL Uncaught Error: Call to a member function set_price() on null in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php:79
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(310): update_cart_item_price(Array, 15845)
+#1 C:\wamp64\www\celr\wp-includes\plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1138): apply_filters('woocommerce_add...', Array, 15845, 0, 1)
+#3 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(824): WC_Cart->add_to_cart(15845, 1)
+#4 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-form-handler.php(796): WC_Form_Handler::add_to_cart_handler_simple(15845)
+#5 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): WC_Form_Handler::add_to_cart_action('')
+#6 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#7 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#8 C:\wamp64\www\celr\wp-settings.php(645): do_action('wp_loaded')
+#9 C:\wamp64\www\celr\wp-config.php(96): require_once('C:\\wamp64\\www\\c...')
+#10 C:\wamp64\www\celr\wp-load.php(50): require_once('C:\\wamp64\\www\\c...')
+#11 C:\wamp64\www\celr\wp-blog-header.php(13): require_once('C:\\wamp64\\www\\c...')
+#12 C:\wamp64\www\celr\index.php(17): require('C:\\wamp64\\www\\c...')
+#13 {main}
+  thrown in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 79
+
+2023-05-18T22:07:20+00:00 CRITICAL Uncaught Error: Class "Frontend_Admin\Field_Types\WP_Error" not found in C:\wamp64\www\celr\wp-content\plugins\acf-frontend-form-element\main\frontend\fields\post\class-post-author.php:86
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): Frontend_Admin\Field_Types\post_author->ajax_query_init(Array, Object(ACF_Ajax_Query_Users))
+#1 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\wamp64\www\celr\wp-content\plugins\advanced-custom-fields\includes\ajax\class-acf-ajax-query-users.php(40): do_action('acf/ajax/query_...', Array, Object(ACF_Ajax_Query_Users))
+#4 C:\wamp64\www\celr\wp-content\plugins\advanced-custom-fields\includes\ajax\class-acf-ajax-query.php(49): ACF_Ajax_Query_Users->init_request(Array)
+#5 C:\wamp64\www\celr\wp-content\plugins\advanced-custom-fields\includes\ajax\class-acf-ajax.php(141): ACF_Ajax_Query->get_response(Array)
+#6 C:\wamp64\www\celr\wp-content\plugins\acf-frontend-form-element\main\frontend\fields\post\class-post-author.php(70): ACF_Ajax->request()
+#7 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): Frontend_Admin\Field_Types\post_author->ajax_query('')
+#8 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#9 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#10 C:\wamp64\www\celr\wp-admin\admin-ajax.php(188): do_action('wp_ajax_fea/fie...')
+#11 {main}
+  thrown in C:\wamp64\www\celr\wp-content\plugins\acf-frontend-form-element\main\frontend\fields\post\class-post-author.php on line 86
+
+2023-05-18T22:07:21+00:00 CRITICAL Uncaught Error: Class "Frontend_Admin\Field_Types\WP_Error" not found in C:\wamp64\www\celr\wp-content\plugins\acf-frontend-form-element\main\frontend\fields\post\class-post-author.php:86
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): Frontend_Admin\Field_Types\post_author->ajax_query_init(Array, Object(ACF_Ajax_Query_Users))
+#1 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\wamp64\www\celr\wp-content\plugins\advanced-custom-fields\includes\ajax\class-acf-ajax-query-users.php(40): do_action('acf/ajax/query_...', Array, Object(ACF_Ajax_Query_Users))
+#4 C:\wamp64\www\celr\wp-content\plugins\advanced-custom-fields\includes\ajax\class-acf-ajax-query.php(49): ACF_Ajax_Query_Users->init_request(Array)
+#5 C:\wamp64\www\celr\wp-content\plugins\advanced-custom-fields\includes\ajax\class-acf-ajax.php(141): ACF_Ajax_Query->get_response(Array)
+#6 C:\wamp64\www\celr\wp-content\plugins\acf-frontend-form-element\main\frontend\fields\post\class-post-author.php(70): ACF_Ajax->request()
+#7 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): Frontend_Admin\Field_Types\post_author->ajax_query('')
+#8 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#9 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#10 C:\wamp64\www\celr\wp-admin\admin-ajax.php(188): do_action('wp_ajax_fea/fie...')
+#11 {main}
+  thrown in C:\wamp64\www\celr\wp-content\plugins\acf-frontend-form-element\main\frontend\fields\post\class-post-author.php on line 86
+
