@@ -81,7 +81,7 @@ $table_prefix = 'celr';
  */
 ini_set('display_errors','Off');
 ini_set('error_reporting', E_ALL );
-define('WP_DEBUG', false);
+define('WP_DEBUG', true);
 define('WP_DEBUG_DISPLAY', false);
 /* Add any custom values between this line and the "stop editing" line. */
 
