@@ -1,0 +1,387 @@
+[21-May-2023 19:55:40 UTC] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 7053
+[21-May-2023 19:55:40 UTC] PHP Stack trace:
+[21-May-2023 19:55:40 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:40 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:40 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:40 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:40 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:40 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:40 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:40 UTC] PHP   8. XTS\Inc\Admin\Dashboard\Dashboard->add_pages_to_dashboard_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:40 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = 'Theme settings backup', $menu_title = 'Theme settings backup', $capability = 'manage_options', $menu_slug = 'xts_theme_settings_backup', $callback = [0 => class XTS\Inc\Admin\Dashboard\Dashboard {  }, 1 => 'page_content'], $position = 1) C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\inc\admin\dashboard\class-dashboard.php:394
+[21-May-2023 19:55:40 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:40 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:40 UTC] PHP  12. wp_is_stream($path = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2158
+[21-May-2023 19:55:40 UTC] PHP  13. strpos($haystack = NULL, $needle = '://') C:\wamp64\www\celr\wp-includes\functions.php:7053
+[21-May-2023 19:55:40 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 2165
+[21-May-2023 19:55:40 UTC] PHP Stack trace:
+[21-May-2023 19:55:40 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:40 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:40 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:40 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:40 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:40 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:40 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:40 UTC] PHP   8. XTS\Inc\Admin\Dashboard\Dashboard->add_pages_to_dashboard_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:40 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = 'Theme settings backup', $menu_title = 'Theme settings backup', $capability = 'manage_options', $menu_slug = 'xts_theme_settings_backup', $callback = [0 => class XTS\Inc\Admin\Dashboard\Dashboard {  }, 1 => 'page_content'], $position = 1) C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\inc\admin\dashboard\class-dashboard.php:394
+[21-May-2023 19:55:40 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:40 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:40 UTC] PHP  12. str_replace($search = '\\', $replace = '/', $subject = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2165
+[21-May-2023 19:55:40 UTC] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 7053
+[21-May-2023 19:55:40 UTC] PHP Stack trace:
+[21-May-2023 19:55:40 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:40 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:40 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:40 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:40 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:40 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:40 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:40 UTC] PHP   8. XTS\Inc\Admin\Dashboard\Dashboard->add_pages_to_dashboard_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:40 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = 'Theme settings presets', $menu_title = 'Theme settings presets', $capability = 'manage_options', $menu_slug = 'xts_theme_settings_presets', $callback = [0 => class XTS\Inc\Admin\Dashboard\Dashboard {  }, 1 => 'page_content'], $position = 2) C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\inc\admin\dashboard\class-dashboard.php:404
+[21-May-2023 19:55:40 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:40 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:40 UTC] PHP  12. wp_is_stream($path = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2158
+[21-May-2023 19:55:40 UTC] PHP  13. strpos($haystack = NULL, $needle = '://') C:\wamp64\www\celr\wp-includes\functions.php:7053
+[21-May-2023 19:55:40 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 2165
+[21-May-2023 19:55:40 UTC] PHP Stack trace:
+[21-May-2023 19:55:40 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:40 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:40 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:40 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:40 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:40 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:40 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:40 UTC] PHP   8. XTS\Inc\Admin\Dashboard\Dashboard->add_pages_to_dashboard_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:40 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = 'Theme settings presets', $menu_title = 'Theme settings presets', $capability = 'manage_options', $menu_slug = 'xts_theme_settings_presets', $callback = [0 => class XTS\Inc\Admin\Dashboard\Dashboard {  }, 1 => 'page_content'], $position = 2) C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\inc\admin\dashboard\class-dashboard.php:404
+[21-May-2023 19:55:40 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:40 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:40 UTC] PHP  12. str_replace($search = '\\', $replace = '/', $subject = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2165
+[21-May-2023 19:55:40 UTC] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 7053
+[21-May-2023 19:55:40 UTC] PHP Stack trace:
+[21-May-2023 19:55:40 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:40 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:40 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:40 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:40 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:40 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:40 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:40 UTC] PHP   8. WeDevs\Dokan\Admin\Menu->add_admin_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:40 UTC] PHP   9. do_action($hook_name = 'dokan_admin_menu', ...$arg = variadic('manage_woocommerce', '55.4')) C:\wamp64\www\celr\wp-content\plugins\dokan-lite\includes\Admin\Menu.php:63
+[21-May-2023 19:55:40 UTC] PHP  10. WP_Hook->do_action($args = [0 => 'manage_woocommerce', 1 => '55.4']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:40 UTC] PHP  11. WP_Hook->apply_filters($value = '', $args = [0 => 'manage_woocommerce', 1 => '55.4']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:40 UTC] PHP  12. WeDevs\DokanPro\Admin\Admin->load_admin_settings($capability = 'manage_woocommerce', $menu_position = '55.4') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:40 UTC] PHP  13. add_submenu_page($parent_slug = NULL, $page_title = 'Whats New', $menu_title = 'Whats New', $capability = 'manage_woocommerce', $menu_slug = 'whats-new-dokan', $callback = [0 => class WeDevs\DokanPro\Admin\Admin {  }, 1 => 'whats_new_page'], $position = *uninitialized*) C:\wamp64\www\celr\wp-content\plugins\dokan-pro\includes\Admin\Admin.php:136
+[21-May-2023 19:55:40 UTC] PHP  14. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:40 UTC] PHP  15. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:40 UTC] PHP  16. wp_is_stream($path = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2158
+[21-May-2023 19:55:40 UTC] PHP  17. strpos($haystack = NULL, $needle = '://') C:\wamp64\www\celr\wp-includes\functions.php:7053
+[21-May-2023 19:55:40 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 2165
+[21-May-2023 19:55:40 UTC] PHP Stack trace:
+[21-May-2023 19:55:40 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:40 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:40 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:40 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:40 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:40 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:40 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:40 UTC] PHP   8. WeDevs\Dokan\Admin\Menu->add_admin_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:40 UTC] PHP   9. do_action($hook_name = 'dokan_admin_menu', ...$arg = variadic('manage_woocommerce', '55.4')) C:\wamp64\www\celr\wp-content\plugins\dokan-lite\includes\Admin\Menu.php:63
+[21-May-2023 19:55:40 UTC] PHP  10. WP_Hook->do_action($args = [0 => 'manage_woocommerce', 1 => '55.4']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:40 UTC] PHP  11. WP_Hook->apply_filters($value = '', $args = [0 => 'manage_woocommerce', 1 => '55.4']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:40 UTC] PHP  12. WeDevs\DokanPro\Admin\Admin->load_admin_settings($capability = 'manage_woocommerce', $menu_position = '55.4') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:40 UTC] PHP  13. add_submenu_page($parent_slug = NULL, $page_title = 'Whats New', $menu_title = 'Whats New', $capability = 'manage_woocommerce', $menu_slug = 'whats-new-dokan', $callback = [0 => class WeDevs\DokanPro\Admin\Admin {  }, 1 => 'whats_new_page'], $position = *uninitialized*) C:\wamp64\www\celr\wp-content\plugins\dokan-pro\includes\Admin\Admin.php:136
+[21-May-2023 19:55:40 UTC] PHP  14. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:40 UTC] PHP  15. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:40 UTC] PHP  16. str_replace($search = '\\', $replace = '/', $subject = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2165
+[21-May-2023 19:55:40 UTC] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 7053
+[21-May-2023 19:55:40 UTC] PHP Stack trace:
+[21-May-2023 19:55:40 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:40 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:40 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:40 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:40 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:40 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:40 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:40 UTC] PHP   8. WeDevs\Dokan\Admin\SetupWizard->admin_menus('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:40 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = '', $menu_title = '', $capability = 'manage_woocommerce', $menu_slug = 'dokan-setup', $callback = '', $position = *uninitialized*) C:\wamp64\www\celr\wp-content\plugins\dokan-lite\includes\Admin\SetupWizard.php:133
+[21-May-2023 19:55:40 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:40 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:40 UTC] PHP  12. wp_is_stream($path = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2158
+[21-May-2023 19:55:40 UTC] PHP  13. strpos($haystack = NULL, $needle = '://') C:\wamp64\www\celr\wp-includes\functions.php:7053
+[21-May-2023 19:55:40 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 2165
+[21-May-2023 19:55:40 UTC] PHP Stack trace:
+[21-May-2023 19:55:40 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:40 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:40 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:40 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:40 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:40 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:40 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:40 UTC] PHP   8. WeDevs\Dokan\Admin\SetupWizard->admin_menus('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:40 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = '', $menu_title = '', $capability = 'manage_woocommerce', $menu_slug = 'dokan-setup', $callback = '', $position = *uninitialized*) C:\wamp64\www\celr\wp-content\plugins\dokan-lite\includes\Admin\SetupWizard.php:133
+[21-May-2023 19:55:40 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:40 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:40 UTC] PHP  12. str_replace($search = '\\', $replace = '/', $subject = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2165
+[21-May-2023 19:55:40 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\celr\wp-includes\functions.php:7053) in C:\wamp64\www\celr\wp-admin\includes\misc.php on line 1431
+[21-May-2023 19:55:40 UTC] PHP Stack trace:
+[21-May-2023 19:55:40 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:40 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:40 UTC] PHP   3. do_action($hook_name = 'admin_init') C:\wamp64\www\celr\wp-admin\admin.php:175
+[21-May-2023 19:55:40 UTC] PHP   4. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:40 UTC] PHP   5. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:40 UTC] PHP   6. wp_admin_headers('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:40 UTC] PHP   7. header($header = 'Referrer-Policy: strict-origin-when-cross-origin') C:\wamp64\www\celr\wp-admin\includes\misc.php:1431
+[21-May-2023 19:55:40 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\celr\wp-includes\functions.php:7053) in C:\wamp64\www\celr\wp-includes\functions.php on line 6896
+[21-May-2023 19:55:40 UTC] PHP Stack trace:
+[21-May-2023 19:55:40 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:40 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:40 UTC] PHP   3. do_action($hook_name = 'admin_init') C:\wamp64\www\celr\wp-admin\admin.php:175
+[21-May-2023 19:55:40 UTC] PHP   4. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:40 UTC] PHP   5. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:40 UTC] PHP   6. send_frame_options_header() C:\wamp64\www\celr\wp-includes\class-wp-hook.php:306
+[21-May-2023 19:55:40 UTC] PHP   7. header($header = 'X-Frame-Options: SAMEORIGIN') C:\wamp64\www\celr\wp-includes\functions.php:6896
+[21-May-2023 19:55:43 UTC] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 7053
+[21-May-2023 19:55:43 UTC] PHP Stack trace:
+[21-May-2023 19:55:43 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:43 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:43 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:43 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:43 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:43 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:43 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:43 UTC] PHP   8. XTS\Inc\Admin\Dashboard\Dashboard->add_pages_to_dashboard_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:43 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = 'Theme settings backup', $menu_title = 'Theme settings backup', $capability = 'manage_options', $menu_slug = 'xts_theme_settings_backup', $callback = [0 => class XTS\Inc\Admin\Dashboard\Dashboard {  }, 1 => 'page_content'], $position = 1) C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\inc\admin\dashboard\class-dashboard.php:394
+[21-May-2023 19:55:43 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:43 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:43 UTC] PHP  12. wp_is_stream($path = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2158
+[21-May-2023 19:55:43 UTC] PHP  13. strpos($haystack = NULL, $needle = '://') C:\wamp64\www\celr\wp-includes\functions.php:7053
+[21-May-2023 19:55:43 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 2165
+[21-May-2023 19:55:43 UTC] PHP Stack trace:
+[21-May-2023 19:55:43 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:43 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:43 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:43 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:43 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:43 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:43 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:43 UTC] PHP   8. XTS\Inc\Admin\Dashboard\Dashboard->add_pages_to_dashboard_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:43 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = 'Theme settings backup', $menu_title = 'Theme settings backup', $capability = 'manage_options', $menu_slug = 'xts_theme_settings_backup', $callback = [0 => class XTS\Inc\Admin\Dashboard\Dashboard {  }, 1 => 'page_content'], $position = 1) C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\inc\admin\dashboard\class-dashboard.php:394
+[21-May-2023 19:55:43 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:43 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:43 UTC] PHP  12. str_replace($search = '\\', $replace = '/', $subject = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2165
+[21-May-2023 19:55:43 UTC] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 7053
+[21-May-2023 19:55:43 UTC] PHP Stack trace:
+[21-May-2023 19:55:43 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:43 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:43 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:43 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:43 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:43 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:43 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:43 UTC] PHP   8. XTS\Inc\Admin\Dashboard\Dashboard->add_pages_to_dashboard_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:43 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = 'Theme settings presets', $menu_title = 'Theme settings presets', $capability = 'manage_options', $menu_slug = 'xts_theme_settings_presets', $callback = [0 => class XTS\Inc\Admin\Dashboard\Dashboard {  }, 1 => 'page_content'], $position = 2) C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\inc\admin\dashboard\class-dashboard.php:404
+[21-May-2023 19:55:43 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:43 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:43 UTC] PHP  12. wp_is_stream($path = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2158
+[21-May-2023 19:55:43 UTC] PHP  13. strpos($haystack = NULL, $needle = '://') C:\wamp64\www\celr\wp-includes\functions.php:7053
+[21-May-2023 19:55:43 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 2165
+[21-May-2023 19:55:43 UTC] PHP Stack trace:
+[21-May-2023 19:55:43 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:43 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:43 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:43 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:43 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:43 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:43 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:43 UTC] PHP   8. XTS\Inc\Admin\Dashboard\Dashboard->add_pages_to_dashboard_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:43 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = 'Theme settings presets', $menu_title = 'Theme settings presets', $capability = 'manage_options', $menu_slug = 'xts_theme_settings_presets', $callback = [0 => class XTS\Inc\Admin\Dashboard\Dashboard {  }, 1 => 'page_content'], $position = 2) C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\inc\admin\dashboard\class-dashboard.php:404
+[21-May-2023 19:55:43 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:43 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:43 UTC] PHP  12. str_replace($search = '\\', $replace = '/', $subject = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2165
+[21-May-2023 19:55:43 UTC] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 7053
+[21-May-2023 19:55:43 UTC] PHP Stack trace:
+[21-May-2023 19:55:43 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:43 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:43 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:43 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:43 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:43 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:43 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:43 UTC] PHP   8. WeDevs\Dokan\Admin\Menu->add_admin_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:43 UTC] PHP   9. do_action($hook_name = 'dokan_admin_menu', ...$arg = variadic('manage_woocommerce', '55.4')) C:\wamp64\www\celr\wp-content\plugins\dokan-lite\includes\Admin\Menu.php:63
+[21-May-2023 19:55:43 UTC] PHP  10. WP_Hook->do_action($args = [0 => 'manage_woocommerce', 1 => '55.4']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:43 UTC] PHP  11. WP_Hook->apply_filters($value = '', $args = [0 => 'manage_woocommerce', 1 => '55.4']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:43 UTC] PHP  12. WeDevs\DokanPro\Admin\Admin->load_admin_settings($capability = 'manage_woocommerce', $menu_position = '55.4') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:43 UTC] PHP  13. add_submenu_page($parent_slug = NULL, $page_title = 'Whats New', $menu_title = 'Whats New', $capability = 'manage_woocommerce', $menu_slug = 'whats-new-dokan', $callback = [0 => class WeDevs\DokanPro\Admin\Admin {  }, 1 => 'whats_new_page'], $position = *uninitialized*) C:\wamp64\www\celr\wp-content\plugins\dokan-pro\includes\Admin\Admin.php:136
+[21-May-2023 19:55:43 UTC] PHP  14. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:43 UTC] PHP  15. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:43 UTC] PHP  16. wp_is_stream($path = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2158
+[21-May-2023 19:55:43 UTC] PHP  17. strpos($haystack = NULL, $needle = '://') C:\wamp64\www\celr\wp-includes\functions.php:7053
+[21-May-2023 19:55:43 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 2165
+[21-May-2023 19:55:43 UTC] PHP Stack trace:
+[21-May-2023 19:55:43 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:43 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:43 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:43 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:43 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:43 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:43 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:43 UTC] PHP   8. WeDevs\Dokan\Admin\Menu->add_admin_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:43 UTC] PHP   9. do_action($hook_name = 'dokan_admin_menu', ...$arg = variadic('manage_woocommerce', '55.4')) C:\wamp64\www\celr\wp-content\plugins\dokan-lite\includes\Admin\Menu.php:63
+[21-May-2023 19:55:43 UTC] PHP  10. WP_Hook->do_action($args = [0 => 'manage_woocommerce', 1 => '55.4']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:43 UTC] PHP  11. WP_Hook->apply_filters($value = '', $args = [0 => 'manage_woocommerce', 1 => '55.4']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:43 UTC] PHP  12. WeDevs\DokanPro\Admin\Admin->load_admin_settings($capability = 'manage_woocommerce', $menu_position = '55.4') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:43 UTC] PHP  13. add_submenu_page($parent_slug = NULL, $page_title = 'Whats New', $menu_title = 'Whats New', $capability = 'manage_woocommerce', $menu_slug = 'whats-new-dokan', $callback = [0 => class WeDevs\DokanPro\Admin\Admin {  }, 1 => 'whats_new_page'], $position = *uninitialized*) C:\wamp64\www\celr\wp-content\plugins\dokan-pro\includes\Admin\Admin.php:136
+[21-May-2023 19:55:43 UTC] PHP  14. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:43 UTC] PHP  15. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:43 UTC] PHP  16. str_replace($search = '\\', $replace = '/', $subject = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2165
+[21-May-2023 19:55:44 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\celr\wp-includes\functions.php:7053) in C:\wamp64\www\celr\wp-admin\customize.php on line 126
+[21-May-2023 19:55:44 UTC] PHP Stack trace:
+[21-May-2023 19:55:44 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:44 UTC] PHP   2. header($header = 'Content-Type: text/html; charset=UTF-8') C:\wamp64\www\celr\wp-admin\customize.php:126
+[21-May-2023 19:55:46 UTC] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 7053
+[21-May-2023 19:55:46 UTC] PHP Stack trace:
+[21-May-2023 19:55:46 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:46 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:46 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:46 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:46 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:46 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:46 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:46 UTC] PHP   8. XTS\Inc\Admin\Dashboard\Dashboard->add_pages_to_dashboard_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:46 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = 'Theme settings backup', $menu_title = 'Theme settings backup', $capability = 'manage_options', $menu_slug = 'xts_theme_settings_backup', $callback = [0 => class XTS\Inc\Admin\Dashboard\Dashboard {  }, 1 => 'page_content'], $position = 1) C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\inc\admin\dashboard\class-dashboard.php:394
+[21-May-2023 19:55:46 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:46 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:46 UTC] PHP  12. wp_is_stream($path = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2158
+[21-May-2023 19:55:46 UTC] PHP  13. strpos($haystack = NULL, $needle = '://') C:\wamp64\www\celr\wp-includes\functions.php:7053
+[21-May-2023 19:55:46 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 2165
+[21-May-2023 19:55:46 UTC] PHP Stack trace:
+[21-May-2023 19:55:46 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:46 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:46 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:46 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:46 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:46 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:46 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:46 UTC] PHP   8. XTS\Inc\Admin\Dashboard\Dashboard->add_pages_to_dashboard_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:46 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = 'Theme settings backup', $menu_title = 'Theme settings backup', $capability = 'manage_options', $menu_slug = 'xts_theme_settings_backup', $callback = [0 => class XTS\Inc\Admin\Dashboard\Dashboard {  }, 1 => 'page_content'], $position = 1) C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\inc\admin\dashboard\class-dashboard.php:394
+[21-May-2023 19:55:46 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:46 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:46 UTC] PHP  12. str_replace($search = '\\', $replace = '/', $subject = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2165
+[21-May-2023 19:55:46 UTC] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 7053
+[21-May-2023 19:55:46 UTC] PHP Stack trace:
+[21-May-2023 19:55:46 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:46 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:46 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:46 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:46 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:46 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:46 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:46 UTC] PHP   8. XTS\Inc\Admin\Dashboard\Dashboard->add_pages_to_dashboard_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:46 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = 'Theme settings presets', $menu_title = 'Theme settings presets', $capability = 'manage_options', $menu_slug = 'xts_theme_settings_presets', $callback = [0 => class XTS\Inc\Admin\Dashboard\Dashboard {  }, 1 => 'page_content'], $position = 2) C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\inc\admin\dashboard\class-dashboard.php:404
+[21-May-2023 19:55:46 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:46 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:46 UTC] PHP  12. wp_is_stream($path = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2158
+[21-May-2023 19:55:46 UTC] PHP  13. strpos($haystack = NULL, $needle = '://') C:\wamp64\www\celr\wp-includes\functions.php:7053
+[21-May-2023 19:55:46 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 2165
+[21-May-2023 19:55:46 UTC] PHP Stack trace:
+[21-May-2023 19:55:46 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:46 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:46 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:46 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:46 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:46 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:46 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:46 UTC] PHP   8. XTS\Inc\Admin\Dashboard\Dashboard->add_pages_to_dashboard_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:46 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = 'Theme settings presets', $menu_title = 'Theme settings presets', $capability = 'manage_options', $menu_slug = 'xts_theme_settings_presets', $callback = [0 => class XTS\Inc\Admin\Dashboard\Dashboard {  }, 1 => 'page_content'], $position = 2) C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\inc\admin\dashboard\class-dashboard.php:404
+[21-May-2023 19:55:46 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:46 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:46 UTC] PHP  12. str_replace($search = '\\', $replace = '/', $subject = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2165
+[21-May-2023 19:55:46 UTC] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 7053
+[21-May-2023 19:55:46 UTC] PHP Stack trace:
+[21-May-2023 19:55:46 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:46 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:46 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:46 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:46 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:46 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:46 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:46 UTC] PHP   8. WeDevs\Dokan\Admin\Menu->add_admin_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:46 UTC] PHP   9. do_action($hook_name = 'dokan_admin_menu', ...$arg = variadic('manage_woocommerce', '55.4')) C:\wamp64\www\celr\wp-content\plugins\dokan-lite\includes\Admin\Menu.php:63
+[21-May-2023 19:55:46 UTC] PHP  10. WP_Hook->do_action($args = [0 => 'manage_woocommerce', 1 => '55.4']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:46 UTC] PHP  11. WP_Hook->apply_filters($value = '', $args = [0 => 'manage_woocommerce', 1 => '55.4']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:46 UTC] PHP  12. WeDevs\DokanPro\Admin\Admin->load_admin_settings($capability = 'manage_woocommerce', $menu_position = '55.4') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:46 UTC] PHP  13. add_submenu_page($parent_slug = NULL, $page_title = 'Whats New', $menu_title = 'Whats New', $capability = 'manage_woocommerce', $menu_slug = 'whats-new-dokan', $callback = [0 => class WeDevs\DokanPro\Admin\Admin {  }, 1 => 'whats_new_page'], $position = *uninitialized*) C:\wamp64\www\celr\wp-content\plugins\dokan-pro\includes\Admin\Admin.php:136
+[21-May-2023 19:55:46 UTC] PHP  14. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:46 UTC] PHP  15. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:46 UTC] PHP  16. wp_is_stream($path = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2158
+[21-May-2023 19:55:46 UTC] PHP  17. strpos($haystack = NULL, $needle = '://') C:\wamp64\www\celr\wp-includes\functions.php:7053
+[21-May-2023 19:55:46 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 2165
+[21-May-2023 19:55:46 UTC] PHP Stack trace:
+[21-May-2023 19:55:46 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:46 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:46 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:46 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:46 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:46 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:46 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:46 UTC] PHP   8. WeDevs\Dokan\Admin\Menu->add_admin_menu('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:46 UTC] PHP   9. do_action($hook_name = 'dokan_admin_menu', ...$arg = variadic('manage_woocommerce', '55.4')) C:\wamp64\www\celr\wp-content\plugins\dokan-lite\includes\Admin\Menu.php:63
+[21-May-2023 19:55:46 UTC] PHP  10. WP_Hook->do_action($args = [0 => 'manage_woocommerce', 1 => '55.4']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:46 UTC] PHP  11. WP_Hook->apply_filters($value = '', $args = [0 => 'manage_woocommerce', 1 => '55.4']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:46 UTC] PHP  12. WeDevs\DokanPro\Admin\Admin->load_admin_settings($capability = 'manage_woocommerce', $menu_position = '55.4') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:46 UTC] PHP  13. add_submenu_page($parent_slug = NULL, $page_title = 'Whats New', $menu_title = 'Whats New', $capability = 'manage_woocommerce', $menu_slug = 'whats-new-dokan', $callback = [0 => class WeDevs\DokanPro\Admin\Admin {  }, 1 => 'whats_new_page'], $position = *uninitialized*) C:\wamp64\www\celr\wp-content\plugins\dokan-pro\includes\Admin\Admin.php:136
+[21-May-2023 19:55:46 UTC] PHP  14. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:46 UTC] PHP  15. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:46 UTC] PHP  16. str_replace($search = '\\', $replace = '/', $subject = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2165
+[21-May-2023 19:55:46 UTC] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 7053
+[21-May-2023 19:55:46 UTC] PHP Stack trace:
+[21-May-2023 19:55:46 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:46 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:46 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:46 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:46 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:46 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:46 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:46 UTC] PHP   8. WeDevs\Dokan\Admin\SetupWizard->admin_menus('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:46 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = '', $menu_title = '', $capability = 'manage_woocommerce', $menu_slug = 'dokan-setup', $callback = '', $position = *uninitialized*) C:\wamp64\www\celr\wp-content\plugins\dokan-lite\includes\Admin\SetupWizard.php:133
+[21-May-2023 19:55:46 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:46 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:46 UTC] PHP  12. wp_is_stream($path = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2158
+[21-May-2023 19:55:46 UTC] PHP  13. strpos($haystack = NULL, $needle = '://') C:\wamp64\www\celr\wp-includes\functions.php:7053
+[21-May-2023 19:55:46 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\wamp64\www\celr\wp-includes\functions.php on line 2165
+[21-May-2023 19:55:46 UTC] PHP Stack trace:
+[21-May-2023 19:55:46 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:46 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:46 UTC] PHP   3. require() C:\wamp64\www\celr\wp-admin\admin.php:158
+[21-May-2023 19:55:46 UTC] PHP   4. require_once() C:\wamp64\www\celr\wp-admin\menu.php:420
+[21-May-2023 19:55:46 UTC] PHP   5. do_action($hook_name = 'admin_menu', ...$arg = variadic('')) C:\wamp64\www\celr\wp-admin\includes\menu.php:155
+[21-May-2023 19:55:46 UTC] PHP   6. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:46 UTC] PHP   7. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:46 UTC] PHP   8. WeDevs\Dokan\Admin\SetupWizard->admin_menus('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:46 UTC] PHP   9. add_submenu_page($parent_slug = NULL, $page_title = '', $menu_title = '', $capability = 'manage_woocommerce', $menu_slug = 'dokan-setup', $callback = '', $position = *uninitialized*) C:\wamp64\www\celr\wp-content\plugins\dokan-lite\includes\Admin\SetupWizard.php:133
+[21-May-2023 19:55:46 UTC] PHP  10. plugin_basename($file = NULL) C:\wamp64\www\celr\wp-admin\includes\plugin.php:1405
+[21-May-2023 19:55:46 UTC] PHP  11. wp_normalize_path($path = NULL) C:\wamp64\www\celr\wp-includes\plugin.php:768
+[21-May-2023 19:55:46 UTC] PHP  12. str_replace($search = '\\', $replace = '/', $subject = NULL) C:\wamp64\www\celr\wp-includes\functions.php:2165
+[21-May-2023 19:55:47 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\celr\wp-includes\functions.php:7053) in C:\wamp64\www\celr\wp-admin\includes\misc.php on line 1431
+[21-May-2023 19:55:47 UTC] PHP Stack trace:
+[21-May-2023 19:55:47 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:47 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:47 UTC] PHP   3. do_action($hook_name = 'admin_init') C:\wamp64\www\celr\wp-admin\admin.php:175
+[21-May-2023 19:55:47 UTC] PHP   4. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:47 UTC] PHP   5. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:47 UTC] PHP   6. wp_admin_headers('') C:\wamp64\www\celr\wp-includes\class-wp-hook.php:308
+[21-May-2023 19:55:47 UTC] PHP   7. header($header = 'Referrer-Policy: strict-origin-when-cross-origin') C:\wamp64\www\celr\wp-admin\includes\misc.php:1431
+[21-May-2023 19:55:47 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\celr\wp-includes\functions.php:7053) in C:\wamp64\www\celr\wp-includes\functions.php on line 6896
+[21-May-2023 19:55:47 UTC] PHP Stack trace:
+[21-May-2023 19:55:47 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:47 UTC] PHP   2. require_once() C:\wamp64\www\celr\wp-admin\customize.php:13
+[21-May-2023 19:55:47 UTC] PHP   3. do_action($hook_name = 'admin_init') C:\wamp64\www\celr\wp-admin\admin.php:175
+[21-May-2023 19:55:47 UTC] PHP   4. WP_Hook->do_action($args = [0 => '']) C:\wamp64\www\celr\wp-includes\plugin.php:517
+[21-May-2023 19:55:47 UTC] PHP   5. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\wamp64\www\celr\wp-includes\class-wp-hook.php:332
+[21-May-2023 19:55:47 UTC] PHP   6. send_frame_options_header() C:\wamp64\www\celr\wp-includes\class-wp-hook.php:306
+[21-May-2023 19:55:47 UTC] PHP   7. header($header = 'X-Frame-Options: SAMEORIGIN') C:\wamp64\www\celr\wp-includes\functions.php:6896
+[21-May-2023 19:55:49 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\celr\wp-includes\functions.php:7053) in C:\wamp64\www\celr\wp-admin\customize.php on line 126
+[21-May-2023 19:55:49 UTC] PHP Stack trace:
+[21-May-2023 19:55:49 UTC] PHP   1. {main}() C:\wamp64\www\celr\wp-admin\customize.php:0
+[21-May-2023 19:55:49 UTC] PHP   2. header($header = 'Content-Type: text/html; charset=UTF-8') C:\wamp64\www\celr\wp-admin\customize.php:126

@@ -181,3 +181,13 @@ Stack trace:
 #6 {main}
   thrown in C:\wamp64\www\celr\wp-includes\class-wp-hook.php on line 308
 
+2023-05-20T13:40:25+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 135168 bytes) in C:\wamp64\www\celr\wp-content\plugins\elementor\includes\base\controls-stack.php on line 620
+
+2023-05-20T13:40:46+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 135168 bytes) in C:\wamp64\www\celr\wp-content\plugins\elementor\includes\base\controls-stack.php on line 620
+
+2023-05-20T13:41:40+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 135168 bytes) in C:\wamp64\www\celr\wp-content\plugins\elementor\includes\base\controls-stack.php on line 620
+
+2023-05-20T13:44:29+00:00 CRITICAL Maximum execution time of 120 seconds exceeded in C:\wamp64\www\celr\wp-content\plugins\woocommerce\packages\woocommerce-blocks\build\product-on-sale.asset.php on line 1
+
+2023-05-20T13:45:55+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 65536 bytes) in C:\wamp64\www\celr\wp-content\plugins\dokan-lite\vendor\composer\ClassLoader.php on line 571
+

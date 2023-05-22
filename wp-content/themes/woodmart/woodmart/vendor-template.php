@@ -1,11 +1,36 @@
 <?php
-/* Template name: vendor */
-if ( ! woodmart_is_woo_ajax() ) {
-	get_header();
-} else {
-	woodmart_page_top_part();
-}
+/*
+Template Name: Vendor Template
+*/
 
-$product_id = get_the_ID(); // Get the product ID
-echo do_shortcode("[vendor_form product_id=15845]");
+// Get the product ID from the query string parameter
+get_header();
+
 ?>
+<div class="site-content <?php echo esc_attr($content_class); ?>" role="main">
+
+    <?php /* The loop */
+    while (have_posts()) : the_post(); ?>
+        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+
+            <div class="entry-content">
+                <?php echo woodmart_get_the_content(); ?>
+                <?php wp_link_pages(array('before' => '<div class="page-links"><span class="page-links-title">' . esc_html__('Pages:', 'woodmart') . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>')); ?>
+            </div>
+
+            <?php woodmart_entry_meta(); ?>
+
+        </article><!-- #post -->
+
+        <?php
+        // If comments are open or we have at least one comment, load up the comment template.
+        if (woodmart_get_opt('page_comments') && (comments_open() || get_comments_number())) :
+            comments_template();
+        endif;
+        ?>
+
+    <?php endwhile; ?>
+
+</div><!-- .site-content -->
+
+<?php get_footer(); ?>

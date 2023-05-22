@@ -1,17 +1,38 @@
 jQuery(document).ready(function($) {
-    $('#add-vendor').on('click', function(e) {
-        e.preventDefault();
-        var row = '<div class="vendor-row">' +
-            '<input type="text" name="vendor_name[]" placeholder="Vendor Name" />' +
-            '<input type="text" name="vendor_price[]" placeholder="Vendor Price" />' +
-            '<input type="text" name="vendor_color[]" placeholder="Vendor Color" />' +
-            '<button class="remove-vendor">Remove</button>' +
-            '</div>';
-        $('#vendor-repeater').append(row);
-    });
+    var searchInput = $('#product_search');
+    var productDropdown = $('#productDropdown');
+    var searchResults = $('#product_search_results');
 
-    $(document).on('click', '.remove-vendor', function(e) {
-        e.preventDefault();
-        $(this).closest('.vendor-row').remove();
+    searchInput.on('input', function() {
+        var searchTerm = searchInput.val().trim();
+
+        if (searchTerm.length > 0) {
+            var ajaxData = {
+                action: 'product_search_ajax',
+                product_search: searchTerm
+            };
+
+            $.ajax({
+                url: productSearchAjax.ajaxurl, // Access the AJAX URL through the localized object
+                method: 'GET',
+                data: ajaxData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        searchResults.html(response.data);
+                        productDropdown.show();
+                    } else {
+                        searchResults.html('No products found.');
+                        productDropdown.show();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        } else {
+            searchResults.empty();
+            productDropdown.hide();
+        }
     });
 });
