@@ -355,7 +355,8 @@ function vendor_form_shortcode($atts) {
                 <?php endif; ?>
 
                 </div>
-                <div class="column">
+         
+                <div class="column large">
                     <h3><?php echo esc_html($post_title); ?></h3>
                     <div id="vendor-repeater">
                     <form method="post">
@@ -371,43 +372,57 @@ function vendor_form_shortcode($atts) {
                                 $current_user = wp_get_current_user();
                                 $user_name = $current_user->display_name; ?>
                         <input
-                            type="text"
+                            type="hidden"
                             name="vendor_name[]"
                             placeholder="Vendor Name"
                             value="<?php echo esc_attr($user_name); ?>"
                             readonly
                         />
-                        <input type="text" name="vendor_price[]" placeholder="Vendor Price" />
-                        <select name="vendor_location[]">
-                            <?php
-                                    $attribute_name = 'pa_location'; // Replace with your actual attribute slug
-                                    $terms = get_terms(array(
-                                        'taxonomy' =>
-                            $attribute_name, 'hide_empty' => false, )); foreach ($terms as
-                            $term) { echo '
-                            <option value="' . esc_attr($term->name) . '">
-                            ' . esc_html($term->name) . '
-                            </option>
-                            '; } ?>
-                        </select>
-                        <select name="vendor_quantity[]">
-                            <?php
-                                    $attribute_quantity = 'pa_quantity'; // Replace with your actual attribute slug
-                                    $terms_quantity = get_terms(array(
-                                        'taxonomy' =>
-                            $attribute_quantity, 'hide_empty' => false, )); foreach
-                            ($terms_quantity as $term_quantity) { echo '
-                            <option value="' . esc_attr($term_quantity->name) . '">
-                            ' . esc_html($term_quantity->name) . '
-                            </option>
-                            '; } ?>
-                        </select>
+                        <div class="form-control">
+                            <label for="fname" required style="display: inline-block;">My offer price<span class="required">*</span></label>
+                                <input type="text" name="vendor_price[]" placeholder="£" />
+                            </div>
+                        <div class="form-control">
+                            <label for="fname" required style="display: inline-block;">Warehouse<span class="required">*</span></label>
+                            <select name="vendor_location[]">
+                                <?php
+                                        $attribute_name = 'pa_location'; // Replace with your actual attribute slug
+                                        $terms = get_terms(array(
+                                            'taxonomy' =>
+                                $attribute_name, 'hide_empty' => false, )); foreach ($terms as
+                                $term) { echo '
+                                <option value="' . esc_attr($term->name) . '">
+                                ' . esc_html($term->name) . '
+                                </option>
+                                '; } ?>
+                            </select>
+                        </div>
+                        <div class="form-control">
+                            <label for="fname" required style="display: inline-block;">Quantity<span class="required">*</span></label>
+                            <select name="vendor_quantity[]">
+                                <?php
+                                        $attribute_quantity = 'pa_quantity'; // Replace with your actual attribute slug
+                                        $terms_quantity = get_terms(array(
+                                            'taxonomy' =>
+                                $attribute_quantity, 'hide_empty' => false, )); foreach
+                                ($terms_quantity as $term_quantity) { echo '
+                                <option value="' . esc_attr($term_quantity->name) . '">
+                                ' . esc_html($term_quantity->name) . '
+                                </option>
+                                '; } ?>
+                            </select>
+                        </div>
 
                         <!-- Display product tags -->
-                        <select name="vendor_tags[]" class="product-tags">
-                            <option value="">Select Tag</option>
-                        </select>
+                        <div class="form-control">
+                            <label for="fname" required style="display: inline-block;">Vintage<span class="required">*</span></label>
+                            <select name="vendor_tags[]">
 
+                                <?php foreach ($product_tag_names as $tag) : ?>
+                                    <option value="<?php echo esc_attr($tag); ?>"><?php echo esc_html($tag); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                         <button class="remove-vendor">Remove</button>
                         </div>
 
