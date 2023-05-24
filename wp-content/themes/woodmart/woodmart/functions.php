@@ -651,6 +651,32 @@ function vendor_form_shortcode($atts)
             </div>
 
         </div>
+        <div class="form-product-description">
+                <h3> Description </h3>
+                <?php echo $post_content; ?>
+                <?php
+
+                // Check if the product object is valid
+                if ($product_price) {
+                    // Get the product attributes
+                    $attributes = $product_price->get_attributes();
+
+                    // Check if there are attributes
+                    if (!empty($attributes)) {
+                        // Output the attributes as a list
+                        echo '<ul class="attributes-add-form">';
+                        foreach ($attributes as $attribute) {
+                            echo '<li class="attribute-add-form-item"> <b>' .str_replace('pa_', '', $attribute->get_name() ) .
+                             ': </b>' . esc_html(implode(', ', $attribute->get_options())) . 
+                            
+                            '</li>';
+                        }
+                        echo '</ul>';
+                    }
+                }
+                ?>
+
+            </div>
 
 
         <script>
@@ -843,6 +869,8 @@ function enqueue_product_search_scripts()
         '1.0',
         true
     );
+    wp_enqueue_style( 'form', get_template_directory_uri() . '/custom.css', false, '1.1', 'all');
+
 
     // Localize the AJAX URL
     wp_localize_script(

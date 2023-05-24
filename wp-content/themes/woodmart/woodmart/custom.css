@@ -1,0 +1,311 @@
+button.single_add_to_cart_button::after {
+    content: "+";
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+.whb-empty-column{
+	display:none !important;
+}
+.nav-link-text{
+	font-size:26px;
+}
+/* .wd-nav.wd-gap-l {
+    --nav-gap: 68px;
+} */
+
+.product-search-form {
+  display: flex;
+  padding-left: 12px;
+  border: 4px solid #FE5757;
+  border-radius: 25px;
+}
+
+
+.product-search-form button[type="submit"] {
+  text-indent: -999px;
+  overflow: hidden;
+  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+
+.dropdown .dropdown-content {
+/*   display: none; */
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 999;
+	width:100%;
+  border-radius: 25px;}
+
+.dropdown .dropdown-toggle {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+	width: 100%;
+	z-index: 9999;
+}
+
+.dropdown .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown .dropdown-toggle:hover {
+  background-color: #fe5757;
+}
+
+.dropdown .dropdown-content a:hover {
+  background-color: #fe5757;
+}
+
+
+#vendor-form-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: none;
+}
+
+#vendor-form-container.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#vendor-form-blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  z-index: -1;
+}
+
+#vendor-form-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+#vendor-form-content p {
+  margin-bottom: 10px;
+}
+
+#vendor-form-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+#vendor-form-content form p {
+  margin-bottom: 10px;
+}
+
+#vendor-form-content form .submit {
+  margin-top: 10px;
+}
+
+.column-container {
+  display: flex; /* Use flexbox for container */
+	gap: 20px;
+}
+
+.column {
+  flex-grow: 1; /* Allow columns to grow equally */
+  padding: 10px;
+}
+
+.large {
+  flex-grow: 1.5; 
+}
+
+label {
+  position: relative;
+}
+
+input[required]::before {
+  content: 'z';
+  width: 10px;
+  height: 10px;
+  top: -5px;
+  border-radius: 50%;
+  position: relative;
+  background: red;
+  display: inline-block;
+}
+
+.form-control{
+		display: flex;
+    align-content: space-around;
+    white-space: nowrap;
+    align-items: center;
+    gap: 50px;
+    font-size: 18px;
+		font-weight: bold;
+		padding-top:10px
+}
+
+.form-control label {
+    width: 120px;
+  }
+
+
+.form-control input,
+.form-control select {
+    flex: 1;
+		border: 1px solid #1C4130 !important;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+.form-control input{
+	width: 120px !important;
+	margin-right:30px
+}
+
+.form-control :is(input[type='email'],input[type='date'],input[type='search'],input[type='number'],input[type='text'],input[type='tel'],input[type='url'],input[type='password'],select,textarea){
+	padding: 0px 20px !important;
+}
+
+
+
+/* Custom select styles */
+.custom-select-wrapper {
+  position: relative;
+  display: inline-block;
+	width: 50%;
+}
+
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('http://localhost:8080/celr/wp-content/uploads/2023/05/Polygon-13.png'); /* Replace with the path to your custom image */
+  background-repeat: no-repeat;
+  background-position: right 10px center !important;
+  background-size: 16px 8px; /* Adjust the size of the image as needed */
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  width: 100%;
+	max-width: 180px;
+  cursor: pointer;
+}
+.custom-select-icon {
+  position: fixed;
+  top: 100%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 16px; /* Adjust the width of the icon as needed */
+  height: 2000px; /* Adjust the height of the icon as needed */
+  padding: 2004px; /* Add padding to the icon */
+}
+.vendor-submit-button {
+	padding-bottom:10px;
+	padding-top:10px;
+}
+.vendor-submit-button input[type='submit']{
+		width: 100%;
+    background: #FE5757;
+    color: #FFFFFF;
+    font-size: 20px;
+		padding:12px;
+		border-radius: 20px;
+		font-family: 'Inter';
+		font-style: normal;
+}
+@media (max-width: 567px) {
+
+	.column-container{
+		display: inline-block;
+	}
+}
+.market-price-box{
+		    width: 101%;
+
+}
+.price-box {
+	border-collapse: unset !important;
+    border: 1px solid black;
+    padding: 0px;
+    margin-bottom: 10px;
+		border-radius: 20px;
+  }
+.price-box th{
+    border-radius: 20px 20px 0 0;
+    background: #1C4130;
+    height: 10px;
+    text-align: center;
+		padding: 10px 10px 0;
+    color: #ffff;
+	text-transform: uppercase;
+}
+.price-box td{
+    height: 10px;
+    text-align: center;
+    color: #000 !important;
+		font-size: 24px;
+			font-weight: bolder;
+
+	 padding: 10px 30px 10px 30px;
+}
+.price-box span{
+		font-weight: bolder;
+    color: #000 !important;
+}
+.form-control {
+    position: relative;
+}
+
+.tooltip-icon {
+      position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #FE5757;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 10px;
+}
+
+.tooltip-icon .tooltip-box {
+	z-index: 10;
+	visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip-icon:hover .tooltip-box {
+  visibility: visible;
+}
+.form-product-description{
+    padding: 10px;
+}
