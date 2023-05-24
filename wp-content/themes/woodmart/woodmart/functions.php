@@ -125,7 +125,7 @@ function render_vendor_meta_box($post)
     foreach ($terms_formats as $term) {
         $formats_options[] = $term->name;
     }
-   
+
 
 
     // Get the tags used for the product
@@ -137,83 +137,80 @@ function render_vendor_meta_box($post)
         }
     }
 
-    ?>
+?>
     <div id="vendor-repeater">
-        <?php if ($vendors): ?>
-            <?php foreach ($vendors as $vendor): ?>
+        <?php if ($vendors) : ?>
+            <?php foreach ($vendors as $vendor) : ?>
                 <div class="vendor-row">
                     <input type="hidden" name="vendor_id[]" value="<?php echo esc_attr($vendor['id']); ?>" />
-                    <input type="text" name="vendor_name[]" value="<?php echo esc_attr($vendor['name']); ?>"
-                        placeholder="Vendor Name" />
-                    <input type="text" name="vendor_price[]" value="<?php echo esc_attr($vendor['price']); ?>"
-                        placeholder="Vendor Price" />
+                    <input type="text" name="vendor_name[]" value="<?php echo esc_attr($vendor['name']); ?>" placeholder="Vendor Name" />
+                    <input type="text" name="vendor_price[]" value="<?php echo esc_attr($vendor['price']); ?>" placeholder="Vendor Price" />
                     <select name="vendor_location[]">
                         <option value="">Select Location</option>
-                        <?php foreach ($location_options as $option): ?>
+                        <?php foreach ($location_options as $option) : ?>
                             <option value="<?php echo esc_attr($option); ?>" <?php selected($vendor['location'], $option); ?>><?php echo esc_html($option); ?></option>
                         <?php endforeach; ?>
                     </select>
                     <select name="vendor_quantity[]">
                         <option value="">Select Quantity</option>
-                        <?php foreach ($quantity_options as $option): ?>
+                        <?php foreach ($quantity_options as $option) : ?>
                             <option value="<?php echo esc_attr($option); ?>" <?php selected($vendor['quantity'], $option); ?>><?php echo esc_html($option); ?></option>
                         <?php endforeach; ?>
                     </select>
                     <select name="vendor_vintage[]">
                         <option value="">Select Vintage</option>
-                        <?php foreach ($vintages_options as $option): ?>
+                        <?php foreach ($vintages_options as $option) : ?>
                             <option value="<?php echo esc_attr($option); ?>" <?php selected($vendor['vintage'], $option); ?>><?php echo esc_html($option); ?></option>
                         <?php endforeach; ?>
                     </select>
                     <select name="vendor_format[]">
                         <option value="">Select Formats</option>
-                        <?php foreach ($formats_options as $option): ?>
+                        <?php foreach ($formats_options as $option) : ?>
                             <option value="<?php echo esc_attr($option); ?>" <?php selected($vendor['format'], $option); ?>><?php echo esc_html($option); ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <input type="number" name="vendor_purchase[]" value="<?php echo esc_attr($vendor['purchase']); ?>"
-                        placeholder="Vendor Purchase Price" />
+                    <input type="number" name="vendor_purchase[]" value="<?php echo esc_attr($vendor['purchase']); ?>" placeholder="Vendor Purchase Price" />
                     <select name="vendor_tags[]">
                         <option value="">Select Tag</option>
-                        <?php foreach ($product_tag_names as $tag): ?>
+                        <?php foreach ($product_tag_names as $tag) : ?>
                             <option value="<?php echo esc_attr($tag); ?>"><?php echo esc_html($tag); ?></option>
                         <?php endforeach; ?>
                     </select>
                     <button class="remove-vendor">Remove</button>
                 </div>
             <?php endforeach; ?>
-        <?php else: ?>
+        <?php else : ?>
             <div class="vendor-row">
                 <input type="text" name="vendor_name[]" value="<?php echo esc_attr($user_name); ?>" placeholder="Vendor Name" />
                 <input type="text" name="vendor_price[]" placeholder="Vendor Price" />
                 <select name="vendor_location[]">
                     <option value="">Select Location</option>
-                    <?php foreach ($location_options as $option): ?>
+                    <?php foreach ($location_options as $option) : ?>
                         <option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>
                     <?php endforeach; ?>
                 </select>
                 <select name="vendor_quantity[]">
                     <option value="">Select Quantity</option>
-                    <?php foreach ($quantity_options as $option): ?>
+                    <?php foreach ($quantity_options as $option) : ?>
                         <option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>
                     <?php endforeach; ?>
                 </select>
                 <select name="vendor_vintage[]">
                     <option value="">Select Vintage</option>
-                    <?php foreach ($vintages_options as $option): ?>
+                    <?php foreach ($vintages_options as $option) : ?>
                         <option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>
                     <?php endforeach; ?>
                 </select>
                 <select name="vendor_format[]">
                     <option value="">Select Formats</option>
-                    <?php foreach ($formats_options as $option): ?>
+                    <?php foreach ($formats_options as $option) : ?>
                         <option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>
                     <?php endforeach; ?>
                 </select>
                 <input type="number" name="vendor_purchase[]" placeholder="Vendor Purchase Price" />
                 <select name="vendor_tags[]">
                     <option value="">Select Tag</option>
-                    <?php foreach ($product_tag_names as $tag): ?>
+                    <?php foreach ($product_tag_names as $tag) : ?>
                         <option value="<?php echo esc_attr($tag); ?>"><?php echo esc_html($tag); ?></option>
                     <?php endforeach; ?>
                 </select>
@@ -224,49 +221,49 @@ function render_vendor_meta_box($post)
         <button type="submit" name="submit_vendor_form">Submit</button> <!-- Added submit button -->
     </div>
     <script>
-        jQuery(function ($) {
-            $('#add-vendor').on('click', function (e) {
+        jQuery(function($) {
+            $('#add-vendor').on('click', function(e) {
                 e.preventDefault();
                 var row = '<div class="vendor-row">' +
                     '<input type="text" name="vendor_name[]" value="<?php echo esc_attr($user_name); ?>" placeholder="Vendor Name" />' +
                     '<input type="text" name="vendor_price[]" placeholder="Vendor Price" />' +
                     '<select name="vendor_location[]">' +
                     '<option value="">Select Location</option>' +
-                    '<?php foreach ($location_options as $option): ?>' +
-                        '<option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>' +
-                        '<?php endforeach; ?>' +
+                    '<?php foreach ($location_options as $option) : ?>' +
+                    '<option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>' +
+                    '<?php endforeach; ?>' +
                     '</select>' +
                     '<select name="vendor_quantity[]">' +
                     '<option value="">Select Quantity</option>' +
-                    '<?php foreach ($quantity_options as $option): ?>' +
-                        '<option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>' +
-                        '<?php endforeach; ?>' +
+                    '<?php foreach ($quantity_options as $option) : ?>' +
+                    '<option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>' +
+                    '<?php endforeach; ?>' +
                     '</select>' +
                     '<select name="vendor_vintage[]">' +
                     '<option value="">Select Vintage</option>' +
-                    '<?php foreach ($vintages_options as $option): ?>' +
-                        '<option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>' +
-                        '<?php endforeach; ?>' +
+                    '<?php foreach ($vintages_options as $option) : ?>' +
+                    '<option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>' +
+                    '<?php endforeach; ?>' +
                     '</select>' +
                     '<select name="vendor_format[]">' +
                     '<option value="">Select Format</option>' +
-                    '<?php foreach ($formats_options as $option): ?>' +
-                        '<option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>' +
-                        '<?php endforeach; ?>' +
+                    '<?php foreach ($formats_options as $option) : ?>' +
+                    '<option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>' +
+                    '<?php endforeach; ?>' +
                     '</select>' +
                     '<select name="vendor_tags[]">' +
                     '<option value="">Select Tag</option>' +
                     '<input type="number" name="vendor_purchase[]" placeholder="Vendor Purchase Price" />' +
-                    '<?php foreach ($product_tag_names as $tag): ?>' +
-                        '<option value="<?php echo esc_attr($tag); ?>"><?php echo esc_html($tag); ?></option>' +
-                        '<?php endforeach; ?>' +
+                    '<?php foreach ($product_tag_names as $tag) : ?>' +
+                    '<option value="<?php echo esc_attr($tag); ?>"><?php echo esc_html($tag); ?></option>' +
+                    '<?php endforeach; ?>' +
                     '</select>' +
                     '<button class="remove-vendor">Remove</button>' +
                     '</div>';
                 $('#vendor-repeater').append(row);
             });
 
-            $(document).on('click', '.remove-vendor', function (e) {
+            $(document).on('click', '.remove-vendor', function(e) {
                 e.preventDefault();
                 var vendorRow = $(this).closest('.vendor-row');
                 var vendorId = vendorRow.find('input[name="vendor_id[]"]').val();
@@ -278,21 +275,21 @@ function render_vendor_meta_box($post)
                         action: 'remove_vendor',
                         vendor_id: vendorId,
                     },
-                    success: function (response) {
+                    success: function(response) {
                         if (response.success) {
                             vendorRow.remove();
                         } else {
                             console.log(response.error);
                         }
                     },
-                    error: function (jqXHR, textStatus, errorThrown) {
+                    error: function(jqXHR, textStatus, errorThrown) {
                         console.log(errorThrown);
                     }
                 });
             });
 
             // Submit form on button click
-            $('button[name="submit_vendor_form"]').on('click', function (e) {
+            $('button[name="submit_vendor_form"]').on('click', function(e) {
                 e.preventDefault();
                 $('form#post').submit();
             });
@@ -404,7 +401,9 @@ function vendor_form_shortcode($atts)
         $atts = shortcode_atts(
             array(
                 'product_id' => 0,
-            ), $atts);
+            ),
+            $atts
+        );
 
         // Get the product ID
         $product_id = intval($atts['product_id']);
@@ -435,22 +434,21 @@ function vendor_form_shortcode($atts)
 
 
         ob_start();
-        ?>
+    ?>
         <div class="column-container">
             <div class="column large">
-                <?php if ($post_image): ?>
+                <?php if ($post_image) : ?>
                     <img src="<?php echo esc_url($post_image); ?>" alt="<?php echo esc_html($post_title); ?>" width="400" />
-                <?php else: ?>
-                    <img src="<?php echo get_site_url() . '/wp-content/uploads/2023/05/image-44.png'; ?> " alt="Default Image"
-                        width="400" />
+                <?php else : ?>
+                    <img src="<?php echo get_site_url() . '/wp-content/uploads/2023/05/image-44.png'; ?> " alt="Default Image" width="400" />
                 <?php endif; ?>
 
             </div>
 
             <div class="column large">
-                <h3>
-                <?php echo esc_html(strtoupper($post_title)); ?>
-                </h3>
+                <h2>
+                    <?php echo esc_html(strtoupper($post_title)); ?>
+                </h2>
                 <div id="vendor-repeater">
                     <form method="post">
                         <?php wp_nonce_field(basename(__FILE__), 'vendor_meta_nonce'); ?>
@@ -461,25 +459,16 @@ function vendor_form_shortcode($atts)
                             $current_user = wp_get_current_user();
                             $user_name = $current_user->display_name;
                             ?>
-                            <input type="hidden" name="vendor_name[]" placeholder="Vendor Name"
-                                value="<?php echo esc_attr($user_name); ?>" readonly />
-                            <!-- <div class="form-control">
-                                <label for="price" required style="display: inline-block;">My offer price<span
-                                        class="required">*</span></label>
-                                <input type="text" name="vendor_price[]" placeholder="£" />
-                            </div> -->
+                            <input type="hidden" name="vendor_name[]" placeholder="Vendor Name" value="<?php echo esc_attr($user_name); ?>" readonly />
                             <div class="form-control">
-                                <label for="price" required style="display: inline-block;">My offer price<span
-                                        class="required">*</span></label>
+                                <label for="price" required style="display: inline-block;">My offer price<span class="required">*</span></label>
                                 <div style="position: relative;">
                                     <input type="number" name="vendor_price[]" placeholder="" max="1000" min="1" required />
-                                    <span
-                                        style="position: absolute; top: 45%; transform: translateY(-50%); left: 20px;">£</span>
+                                    <span style="position: absolute; top: 45%; transform: translateY(-50%); left: 20px;">£</span>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="form-control">
-                                <label for="vintage" required style="display: inline-block;">Vintage<span
-                                        class="required">*</span></label>
+                                <label for="vintage" required style="display: inline-block;">Vintage<span class="required">*</span></label>
                                 <div class="custom-select-wrapper"> <!-- Add a custom select wrapper -->
                                     <select name="vendor_vintage[]" class="custom-select">
                                         <!-- Assign a class for custom select styling -->
@@ -504,8 +493,7 @@ function vendor_form_shortcode($atts)
                                 </div>
                             </div>
                             <div class="form-control">
-                                <label for="fname" required style="display: inline-block;">Quantity<span
-                                        class="required">*</span></label>
+                                <label for="fname" required style="display: inline-block;">Quantity<span class="required">*</span></label>
                                 <div class="custom-select-wrapper"> <!-- Add a custom select wrapper -->
                                     <select name="vendor_quantity[]" class="custom-select">
                                         <!-- Assign a class for custom select styling -->
@@ -530,8 +518,7 @@ function vendor_form_shortcode($atts)
                                 </div>
                             </div>
                             <div class="form-control">
-                                <label for="fname" required style="display: inline-block;">Format<span
-                                        class="required">*</span></label>
+                                <label for="fname" required style="display: inline-block;">Format<span class="required">*</span></label>
                                 <div class="custom-select-wrapper"> <!-- Add a custom select wrapper -->
                                     <select name="vendor_format[]" class="custom-select">
                                         <!-- Assign a class for custom select styling -->
@@ -556,8 +543,7 @@ function vendor_form_shortcode($atts)
                                 </div>
                             </div>
                             <div class="form-control">
-                                <label for="fname" required style="display: inline-block;">Warehouse<span
-                                        class="required">*</span></label>
+                                <label for="fname" required style="display: inline-block;">Warehouse<span class="required">*</span></label>
                                 <div class="custom-select-wrapper"> <!-- Add a custom select wrapper -->
                                     <select name="vendor_location[]" class="custom-select">
                                         <!-- Assign a class for custom select styling -->
@@ -580,67 +566,70 @@ function vendor_form_shortcode($atts)
                                     </select>
                                 </div>
                             </div>
-                          
-                            
+
                             <div class="form-control">
-                                <label for="purchase" required style="display: inline-block;">My Purchase price<span
-                                        class="required">*</span></label>
-                                <div style="position: relative;">
-                                    <input type="number" name="vendor_purchase[]" placeholder="" max="10" min="1" required />
-                                    <span
-                                        style="position: absolute; top: 45%; transform: translateY(-50%); left: 20px;">£</span>
-                                </div>
-                            </div>                            
+    <label for="purchase" required style="display: inline-block;">Purchase price</label>
+    <div style="position: relative;">
+        <input type="number" name="vendor_purchase[]" placeholder="" max="1000" min="1" />
+        <div class="tooltip-icon">i
+        <div class="tooltip-box">
+            <span class="tooltip-text">Please provide the price at which you made the purchase or the total amount paid.</span>
+        </div>
+        </div>
+    </div>
+
+</div>
+
                         </div>
-                        
+
                 </div>
             </div>
 
             <div class="column">
-                <div class="market-price-box" style="display:flex; gap:10px;">
+                <div class="market-price-box" style="display:flex; gap:10px;padding-top:40px;">
 
-                        <table class="market price-box">
-                            <th>Market Price</th>
+                    <table class="market price-box">
+                        <th>Market Price</th>
                         <tr>
                             <td><?php echo wc_price($regular_price); ?></td>
                         </tr>
                     </table>
                     <table class="lowest price-box">
-                       
-                            <th>Lowest Price</th>
-                        
+
+                        <th>Lowest Price</th>
+
                         <tbody>
-                        <tr>
-                            <td> <?php
-                            if (!empty($vendors)) {
-                                $lowest_price = null;
+                            <tr>
+                                <td> <?php
+                                        if (!empty($vendors)) {
+                                            $lowest_price = null;
 
-                                foreach ($vendors as $vendor) {
-                                    $price = $vendor['price'];
+                                            foreach ($vendors as $vendor) {
+                                                $price = $vendor['price'];
 
-                                    if ($lowest_price === null || $price < $lowest_price) {
-                                        $lowest_price = $price;
-                                    }
-                                }
+                                                if ($lowest_price === null || $price < $lowest_price) {
+                                                    $lowest_price = $price;
+                                                }
+                                            }
 
-                                if ($lowest_price !== null) {
-                                    // Display the lowest price in your desired format or HTML structure
-                                    echo '$ ' . $lowest_price;
-                                } else {
-                                    echo wc_price($regular_price);
-                                }
-                            } else {
-                                echo wc_price($regular_price);
-                            }
+                                            if ($lowest_price !== null) {
+                                                // Display the lowest price in your desired format or HTML structure
+                                                echo '$ ' . $lowest_price;
+                                            } else {
+                                                echo wc_price($regular_price);
+                                            }
+                                        } else {
+                                            echo wc_price($regular_price);
+                                        }
 
-                            ?></td>
-                        </tr>
+                                        ?></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <table>
-  
+
                     <tr>
                         <th>Robert Parker:</th>
                         <td>98/100</td>
@@ -660,19 +649,26 @@ function vendor_form_shortcode($atts)
                 </div>
                 </form>
             </div>
-            
+
         </div>
 
 
         <script>
-            
+function toggleTooltip() {
+    var tooltipBox = document.querySelector('.tooltip-box');
+    if (tooltipBox.style.display === 'none') {
+        tooltipBox.style.display = 'block';
+    } else {
+        tooltipBox.style.display = 'none';
+    }
+}
         </script>
-        <?php
+    <?php
         return ob_get_clean();
     } else {
         // User is not logged in, show a popup with a login form
         ob_start();
-        ?>
+    ?>
 
         <div id="vendor-form-container">
             <div id="vendor-form-blur">
@@ -687,19 +683,19 @@ function vendor_form_shortcode($atts)
         </div>
 
         <script>
-            jQuery(document).ready(function ($) {
+            jQuery(document).ready(function($) {
                 // Show the form with blur effect
                 $('#vendor-form-container').addClass('show');
 
                 // Close the form when clicking outside the content area
-                $('#vendor-form-container').on('click', function (e) {
+                $('#vendor-form-container').on('click', function(e) {
                     if (!$(e.target).closest('#vendor-form-content').length) {
                         $(this).removeClass('show');
                     }
                 });
             });
         </script>
-        <?php
+    <?php
         return ob_get_clean();
     }
 }
@@ -811,15 +807,14 @@ function product_search_ajax_handler()
         ob_start();
 
         if ($products->have_posts()) {
-            while ($products->have_posts()):
+            while ($products->have_posts()) :
                 $products->the_post();
                 $product_id = get_the_ID();
-                ?>
-                <a
-                    href="<?php echo esc_url(add_query_arg('product_id', $product_id, get_permalink(get_page_by_path('add-vendor-price')))); ?>">
+    ?>
+                <a href="<?php echo esc_url(add_query_arg('product_id', $product_id, get_permalink(get_page_by_path('add-vendor-price')))); ?>">
                     <?php echo get_the_title(); ?>
                 </a>
-                <?php
+<?php
             endwhile;
         } else {
             echo 'No products found.';
