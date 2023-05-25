@@ -568,17 +568,17 @@ function vendor_form_shortcode($atts)
                             </div>
 
                             <div class="form-control">
-    <label for="purchase" required style="display: inline-block;">Purchase price</label>
-    <div style="position: relative;">
-        <input type="number" name="vendor_purchase[]" placeholder="" max="1000" min="1" />
-        <div class="tooltip-icon">i
-        <div class="tooltip-box">
-            <span class="tooltip-text">Please provide the price at which you made the purchase or the total amount paid.</span>
-        </div>
-        </div>
-    </div>
+                                <label for="purchase" required style="display: inline-block;">Purchase price</label>
+                                <div style="position: relative;">
+                                    <input type="number" name="vendor_purchase[]" placeholder="" max="1000" min="1" />
+                                    <div class="tooltip-icon">i
+                                        <div class="tooltip-box">
+                                            <span class="tooltip-text">Please provide the price at which you made the purchase or the total amount paid.</span>
+                                        </div>
+                                    </div>
+                                </div>
 
-</div>
+                            </div>
 
                         </div>
 
@@ -652,42 +652,42 @@ function vendor_form_shortcode($atts)
 
         </div>
         <div class="form-product-description">
-                <h3> Description </h3>
-                <?php echo $post_content; ?>
-                <?php
+            <h3> Description </h3>
+            <?php echo $post_content; ?>
+            <?php
 
-                // Check if the product object is valid
-                if ($product_price) {
-                    // Get the product attributes
-                    $attributes = $product_price->get_attributes();
+            // Check if the product object is valid
+            if ($product_price) {
+                // Get the product attributes
+                $attributes = $product_price->get_attributes();
 
-                    // Check if there are attributes
-                    if (!empty($attributes)) {
-                        // Output the attributes as a list
-                        echo '<ul class="attributes-add-form">';
-                        foreach ($attributes as $attribute) {
-                            echo '<li class="attribute-add-form-item"> <b>' .str_replace('pa_', '', $attribute->get_name() ) .
-                             ': </b>' . esc_html(implode(', ', $attribute->get_options())) . 
-                            
+                // Check if there are attributes
+                if (!empty($attributes)) {
+                    // Output the attributes as a list
+                    echo '<ul class="attributes-add-form">';
+                    foreach ($attributes as $attribute) {
+                        echo '<li class="attribute-add-form-item"> <b>' . str_replace('pa_', '', $attribute->get_name()) .
+                            ': </b>' . esc_html(implode(', ', $attribute->get_options())) .
+
                             '</li>';
-                        }
-                        echo '</ul>';
                     }
+                    echo '</ul>';
                 }
-                ?>
+            }
+            ?>
 
-            </div>
+        </div>
 
 
         <script>
-function toggleTooltip() {
-    var tooltipBox = document.querySelector('.tooltip-box');
-    if (tooltipBox.style.display === 'none') {
-        tooltipBox.style.display = 'block';
-    } else {
-        tooltipBox.style.display = 'none';
-    }
-}
+            function toggleTooltip() {
+                var tooltipBox = document.querySelector('.tooltip-box');
+                if (tooltipBox.style.display === 'none') {
+                    tooltipBox.style.display = 'block';
+                } else {
+                    tooltipBox.style.display = 'none';
+                }
+            }
         </script>
     <?php
         return ob_get_clean();
@@ -739,14 +739,7 @@ function save_vendor_data_frontend()
 
         $existing_vendors = get_post_meta($product_id, 'vendors', true); // Get existing vendors
 
-        // Check if there are existing vendors for the current product
-        if (!empty($existing_vendors)) {
-            // Output JavaScript alert and prevent saving new post
-            echo '<script>alert("Vendor data already exists for this product. Please update the existing data!"); window.history.back();</script>';
-            exit();
-        }
-
-        $vendors = array();
+        $vendors = $existing_vendors ? $existing_vendors : array();
         $names = !empty($_POST['vendor_name']) ? array_map('sanitize_text_field', $_POST['vendor_name']) : array();
         $prices = !empty($_POST['vendor_price']) ? array_map('sanitize_text_field', $_POST['vendor_price']) : array();
         $locations = !empty($_POST['vendor_location']) ? array_map('sanitize_text_field', $_POST['vendor_location']) : array();
@@ -754,7 +747,6 @@ function save_vendor_data_frontend()
         $vintage = !empty($_POST['vendor_vintage']) ? array_map('sanitize_text_field', $_POST['vendor_vintage']) : array();
         $format = !empty($_POST['vendor_format']) ? array_map('sanitize_text_field', $_POST['vendor_format']) : array();
         $purchase = !empty($_POST['vendor_purchase']) ? array_map('sanitize_text_field', $_POST['vendor_purchase']) : array();
-
         $tags = !empty($_POST['vendor_tags']) ? array_map('sanitize_text_field', $_POST['vendor_tags']) : array();
 
         $current_user = wp_get_current_user();
@@ -771,7 +763,6 @@ function save_vendor_data_frontend()
                     'vintage' => $vintage[$i],
                     'format' => $format[$i],
                     'purchase' => $purchase[$i],
-
                     'tags' => $vendor_tags,
                 );
             }
@@ -794,6 +785,7 @@ function save_vendor_data_frontend()
 
 add_shortcode('vendor_form', 'vendor_form_shortcode');
 add_action('init', 'save_vendor_data_frontend');
+
 
 
 
@@ -869,7 +861,7 @@ function enqueue_product_search_scripts()
         '1.0',
         true
     );
-    wp_enqueue_style( 'form', get_template_directory_uri() . '/custom.css', false, '1.1', 'all');
+    wp_enqueue_style('form', get_template_directory_uri() . '/custom.css', false, '1.1', 'all');
 
 
     // Localize the AJAX URL
@@ -880,3 +872,117 @@ function enqueue_product_search_scripts()
     );
 }
 add_action('wp_enqueue_scripts', 'enqueue_product_search_scripts');
+
+function display_vendor_data($product_id) {
+    // Retrieve the vendor data for the product
+    $vendors = get_post_meta($product_id, 'vendors', true);
+    $warehouse_fees = get_option('custom_warehouses', array());
+
+    // Check if there are any vendors for the product
+    if ($vendors) {
+        // Get unique location and format values from vendors
+        $locations = array_unique(array_column($vendors, 'location'));
+        $formats = array_unique(array_column($vendors, 'format'));
+
+        // Check for location and format filter checkboxes
+        $location_filters = isset($_GET['location_filter']) ? $_GET['location_filter'] : $locations;
+        $format_filters = isset($_GET['format_filter']) ? $_GET['format_filter'] : $formats;
+
+        // Check for sort option
+        $sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'price_asc';
+
+        // Pagination
+        $limit = 2; // Number of vendors per page
+        $total_vendors = count($vendors);
+        $total_pages = ceil($total_vendors / $limit);
+        $current_page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+        $offset = ($current_page - 1) * $limit;
+        echo 'Total Vendors: ' . count($vendors);
+
+        // Display the filter form
+        echo '<form action="" method="get" id="vendor-filter-form">';
+        echo '<label for="location_filter">Filter by Location:</label><br/>';
+
+        // Generate checkbox for each unique location
+        foreach ($locations as $location) {
+            $checked = (in_array($location, $location_filters)) ? 'checked' : '';
+            echo '<input type="checkbox" class="location-filter" name="location_filter[]" value="' . $location . '" ' . $checked . '>' . $location . '<br/>';
+        }
+
+        echo '<label for="format_filter">Filter by Format:</label><br/>';
+
+        // Generate checkbox for each unique format
+        foreach ($formats as $format) {
+            $checked = (in_array($format, $format_filters)) ? 'checked' : '';
+            echo '<input type="checkbox" class="format-filter" name="format_filter[]" value="' . $format . '" ' . $checked . '>' . $format . '<br/>';
+        }
+
+        echo '<label for="sort_by">Sort by:</label><br/>';
+        echo '<select id="sort_by" name="sort_by">
+                <option value="price_asc" ' . ($sort_by == 'price_asc' ? 'selected' : '') . '>Price: Low to High</option>
+                <option value="price_desc" ' . ($sort_by == 'price_desc' ? 'selected' : '') . '>Price: High to Low</option>
+              </select><br/>';
+
+        echo '</form>';
+
+        // Add the JavaScript that will automatically submit the form when a checkbox is changed or sort option is modified
+        echo '
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(".location-filter, .format-filter, #sort_by").change(function() {
+                $("#vendor-filter-form").submit();
+            });
+        </script>
+        ';
+
+        // Filter vendors based on location and format
+        $vendors = array_filter($vendors, function($vendor) use ($location_filters, $format_filters) {
+            return in_array($vendor['location'], $location_filters) && in_array($vendor['format'], $format_filters);
+        });
+
+        // Sort vendors based on price
+        usort($vendors, function($a, $b) use ($sort_by) {
+            if ($sort_by == 'price_desc') {
+                return $b['price'] - $a['price'];
+            } else {
+                return $a['price'] - $b['price'];
+            }
+        });
+
+        // Loop through each vendor
+        // Loop through vendors for the current page
+        for ($i = $offset; $i < min($offset + $limit, $total_vendors); $i++) {
+            $vendor = $vendors[$i];
+    
+            // Fetch the warehouse fee for the vendor's location
+            $warehouse_fee = isset($warehouse_fees[$vendor['location']]) ? $warehouse_fees[$vendor['location']] : 0;
+    
+            // Display the vendor data
+            echo '<div>';
+            echo '<h3>Vendor Data</h3>';
+            echo '<p>Vendor Name: ' . $vendor['name'] . '</p>';
+            echo '<p>Offer Price: ' . $vendor['price'] . '</p>';
+            echo '<p>Vintage: ' . $vendor['vintage'] . '</p>';
+            echo '<p>Quantity: ' . $vendor['quantity'] . '</p>';
+            echo '<p>Format: ' . $vendor['format'] . '</p>';
+            echo '<p>Location: ' . $vendor['location'] . '</p>';
+            echo '<p>Purchase Price: ' . $vendor['purchase'] . '</p>';
+            
+            // Show the warehouse fee
+            echo '<p>Warehouse Fee: ' . $warehouse_fee . '</p>';
+            
+            echo '</div>';
+        }
+        // Pagination links
+        if ($total_pages > 1) {
+            echo '<div class="pagination">';
+            for ($page = 1; $page <= $total_pages; $page++) {
+                $active_class = ($page == $current_page) ? 'active' : '';
+                echo '<a href="?page=' . $page . '" class="' . $active_class . '">' . $page . '</a>';
+            }
+            echo '</div>';
+        }
+    }
+}
+
+
