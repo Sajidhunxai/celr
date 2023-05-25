@@ -958,6 +958,7 @@ function display_vendor_data($product_id) {
             $warehouse_fee = isset($warehouse_fees[$vendor['location']]) ? $warehouse_fees[$vendor['location']] : 0;
     
             // Display the vendor data
+            if($vendor){
             echo '<div>';
             echo '<h3>Vendor Data</h3>';
             echo '<p>Vendor Name: ' . $vendor['name'] . '</p>';
@@ -967,9 +968,10 @@ function display_vendor_data($product_id) {
             echo '<p>Format: ' . $vendor['format'] . '</p>';
             echo '<p>Location: ' . $vendor['location'] . '</p>';
             echo '<p>Purchase Price: ' . $vendor['purchase'] . '</p>';
-            
-            // Show the warehouse fee
             echo '<p>Warehouse Fee: ' . $warehouse_fee . '</p>';
+    
+        }
+            // Show the warehouse fee
             
             echo '</div>';
         }
