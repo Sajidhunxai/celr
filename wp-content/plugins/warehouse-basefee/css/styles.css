@@ -1,0 +1,10 @@
+.buyer-account-details{
+    padding: 20px;
+    border: 1.5px solid #6F6F6F;
+    border-radius: 5px;
+}
+.buyer-account-form{
+    gap: 20px;
+    display: grid;
+    padding-top: 20px;
+}

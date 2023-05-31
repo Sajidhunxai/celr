@@ -232,7 +232,7 @@ input[required]::before {
 	}
 }
 .market-price-box{
-		    width: 101%;
+		    width: 85% !important;
 
 }
 .price-box {
@@ -308,4 +308,144 @@ input[required]::before {
 }
 .form-product-description{
     padding: 10px;
+}
+.single-product-main{
+  display: flex;
+  gap: 40px;
+}
+.vendor-filter-form{
+  gap: 10px;
+  display: grid;
+}
+.vendor-filter{
+  padding: 22px;
+  font-size: 18px;
+  border: 2px solid;
+  border: 1px solid #1C4130;
+  border-radius: 20px;
+  color: black;
+}
+
+.vendor-offer-main{
+  flex-basis: 75%;
+  gap: 10px;
+  display: grid;
+}
+.vendor-filters-container{
+  flex-basis: 25%;
+}
+.warehouse-location-filter input[type="checkbox"] {
+  font-size: 14px;
+  padding: 10px;
+ 
+}
+
+.offer-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.offer-header .number-offers{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  margin-left: 10px;
+  color: #000000;
+}
+.vendor-price-sort{
+  display: flex;
+  width: 30%;
+}
+.vendor-price-sort label{
+  width: 77px;
+  align-self: center;
+}
+.offer-container{
+  border: 1px solid #1C4130;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+
+}
+.offer-left{
+  flex-basis: 50%;
+  color: #000;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 47% 1fr;
+}
+.offer-right{
+  margin-left: auto;
+
+}
+.offer-left p{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 20px;
+  grid-column: 1;
+
+}
+.offer-left span{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 20px;
+  grid-column: 2;
+
+}
+.offer-right .add-to-cart{
+  background: #1C4130 ;
+  border: 1px solid #1C4130 ;
+  border-radius: 10px  ;
+  font-family: 'Inter';
+  font-style: normal ;
+  font-weight: 500 ;
+  font-size: 14px ;
+  color: #FFFFFF;
+  padding: 5px 14px;
+  margin-bottom: 16px;
+  margin-left: 12px;
+
+}
+.offer-right select{
+  border: 1px solid #1C4130 !important;
+  border-radius: 10px;
+  width: 36%;
+  padding: 5px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+.offer-right .total-price{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  color: #000000;
+
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.single-product-pagination{
+    display: flex;
+    margin-left: auto;
+    font-size: 24px;
+    justify-content: space-between;
+    width: 13%;
+    margin-top: 16px;
+    margin-right: 20px;
+}
+.attributes-add-form{
+  padding: 0px;
+}
+.attribute-add-form-item{
+  font-size: 18px;
+  list-style: none;
 }

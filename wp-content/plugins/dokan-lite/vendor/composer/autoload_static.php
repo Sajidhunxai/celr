@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit5e5d806186b20c4decefa1c39decd0bf
+class ComposerStaticInit70acfbb142524a271b36ceb94b251f77
 {
     public static $files = array (
         'b45b351e6b6f7487d819961fef2fda77' => __DIR__ . '/..' . '/jakeasmith/http_build_url/src/http_build_url.php',
@@ -165,6 +165,7 @@ class ComposerStaticInit5e5d806186b20c4decefa1c39decd0bf
         'WeDevs\\Dokan\\ReverseWithdrawal\\ReverseWithdrawal' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/ReverseWithdrawal.php',
         'WeDevs\\Dokan\\ReverseWithdrawal\\SettingsHelper' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/SettingsHelper.php',
         'WeDevs\\Dokan\\Rewrites' => __DIR__ . '/../..' . '/includes/Rewrites.php',
+        'WeDevs\\Dokan\\Shipping\\Hooks' => __DIR__ . '/../..' . '/includes/Shipping/Hooks.php',
         'WeDevs\\Dokan\\Shortcodes\\BestSellingProduct' => __DIR__ . '/../..' . '/includes/Shortcodes/BestSellingProduct.php',
         'WeDevs\\Dokan\\Shortcodes\\Dashboard' => __DIR__ . '/../..' . '/includes/Shortcodes/Dashboard.php',
         'WeDevs\\Dokan\\Shortcodes\\MyOrders' => __DIR__ . '/../..' . '/includes/Shortcodes/MyOrders.php',
@@ -200,6 +201,7 @@ class ComposerStaticInit5e5d806186b20c4decefa1c39decd0bf
         'WeDevs\\Dokan\\Upgrade\\Upgrades\\BackgroundProcesses\\V_3_1_1_RefundTableUpdate' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_1_1_RefundTableUpdate.php',
         'WeDevs\\Dokan\\Upgrade\\Upgrades\\BackgroundProcesses\\V_3_3_8_VendorStoreTimes' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_3_8_VendorStoreTimes.php',
         'WeDevs\\Dokan\\Upgrade\\Upgrades\\BackgroundProcesses\\V_3_6_2_UpdateProductCategories' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_6_2_UpdateProductCategories.php',
+        'WeDevs\\Dokan\\Upgrade\\Upgrades\\BackgroundProcesses\\V_3_7_19_UpdateOrderMeta' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_7_19_UpdateOrderMeta.php',
         'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_1_2' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_1_2.php',
         'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_1' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_1.php',
         'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_3' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_3.php',
@@ -230,6 +232,7 @@ class ComposerStaticInit5e5d806186b20c4decefa1c39decd0bf
         'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_6_4' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_6_4.php',
         'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_6_5' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_6_5.php',
         'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_7_10' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_7_10.php',
+        'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_7_19' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_7_19.php',
         'WeDevs\\Dokan\\Vendor\\ChangeProductStatus' => __DIR__ . '/../..' . '/includes/Vendor/ChangeProductStatus.php',
         'WeDevs\\Dokan\\Vendor\\Hooks' => __DIR__ . '/../..' . '/includes/Vendor/Hooks.php',
         'WeDevs\\Dokan\\Vendor\\Manager' => __DIR__ . '/../..' . '/includes/Vendor/Manager.php',
@@ -271,9 +274,9 @@ class ComposerStaticInit5e5d806186b20c4decefa1c39decd0bf
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit5e5d806186b20c4decefa1c39decd0bf::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit5e5d806186b20c4decefa1c39decd0bf::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit5e5d806186b20c4decefa1c39decd0bf::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit70acfbb142524a271b36ceb94b251f77::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit70acfbb142524a271b36ceb94b251f77::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit70acfbb142524a271b36ceb94b251f77::$classMap;
 
         }, null, ClassLoader::class);
     }

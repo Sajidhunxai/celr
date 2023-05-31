@@ -1,0 +1,67 @@
+2023-05-31T09:50:09+00:00 CRITICAL Uncaught Error: Object of class WP_User could not be converted to string in C:\wamp64\www\celr\wp-content\plugins\warehouse-basefee\buyer-account.php:137
+Stack trace:
+#0 C:\wamp64\www\celr\wp-content\plugins\warehouse-basefee\buyer-account.php(167): custom_auth_profile_edit_page()
+#1 C:\wamp64\www\celr\wp-includes\shortcodes.php(355): custom_auth_profile_edit_shortcode('', '', 'custom_auth_pro...')
+#2 [internal function]: do_shortcode_tag(Array)
+#3 C:\wamp64\www\celr\wp-includes\shortcodes.php(227): preg_replace_callback('/\\[(\\[?)(custom...', 'do_shortcode_ta...', '[custom_auth_pr...')
+#4 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): do_shortcode('[custom_auth_pr...')
+#5 C:\wamp64\www\celr\wp-includes\plugin.php(205): WP_Hook->apply_filters('[custom_auth_pr...', Array)
+#6 C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\inc\template-tags\template-tags.php(507): apply_filters('the_content', '[custom_auth_pr...')
+#7 C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\page.php(26): woodmart_get_the_content()
+#8 C:\wamp64\www\celr\wp-includes\template-loader.php(106): include('C:\\wamp64\\www\\c...')
+#9 C:\wamp64\www\celr\wp-blog-header.php(19): require_once('C:\\wamp64\\www\\c...')
+#10 C:\wamp64\www\celr\index.php(17): require('C:\\wamp64\\www\\c...')
+#11 {main}
+  thrown in C:\wamp64\www\celr\wp-content\plugins\warehouse-basefee\buyer-account.php on line 137
+
+2023-05-31T09:50:19+00:00 CRITICAL Uncaught Error: Object of class WP_User could not be converted to string in C:\wamp64\www\celr\wp-content\plugins\warehouse-basefee\buyer-account.php:137
+Stack trace:
+#0 C:\wamp64\www\celr\wp-content\plugins\warehouse-basefee\buyer-account.php(167): custom_auth_profile_edit_page()
+#1 C:\wamp64\www\celr\wp-includes\shortcodes.php(355): custom_auth_profile_edit_shortcode('', '', 'custom_auth_pro...')
+#2 [internal function]: do_shortcode_tag(Array)
+#3 C:\wamp64\www\celr\wp-includes\shortcodes.php(227): preg_replace_callback('/\\[(\\[?)(custom...', 'do_shortcode_ta...', '[custom_auth_pr...')
+#4 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): do_shortcode('[custom_auth_pr...')
+#5 C:\wamp64\www\celr\wp-includes\plugin.php(205): WP_Hook->apply_filters('[custom_auth_pr...', Array)
+#6 C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\inc\template-tags\template-tags.php(507): apply_filters('the_content', '[custom_auth_pr...')
+#7 C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\page.php(26): woodmart_get_the_content()
+#8 C:\wamp64\www\celr\wp-includes\template-loader.php(106): include('C:\\wamp64\\www\\c...')
+#9 C:\wamp64\www\celr\wp-blog-header.php(19): require_once('C:\\wamp64\\www\\c...')
+#10 C:\wamp64\www\celr\index.php(17): require('C:\\wamp64\\www\\c...')
+#11 {main}
+  thrown in C:\wamp64\www\celr\wp-content\plugins\warehouse-basefee\buyer-account.php on line 137
+
+2023-05-31T14:54:51+00:00 CRITICAL Uncaught Error: Object of class WP_User could not be converted to string in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php:1036
+Stack trace:
+#0 C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php(1233): display_vendor_data(15961)
+#1 C:\wamp64\www\celr\wp-includes\shortcodes.php(355): shortcode_vendor_data('', '', 'vendor_data')
+#2 [internal function]: do_shortcode_tag(Array)
+#3 C:\wamp64\www\celr\wp-includes\shortcodes.php(227): preg_replace_callback('/\\[(\\[?)(vendor...', 'do_shortcode_ta...', '[vendor_data]')
+#4 C:\wamp64\www\celr\wp-content\plugins\elementor\includes\widgets\shortcode.php(130): do_shortcode('[vendor_data]')
+#5 C:\wamp64\www\celr\wp-content\plugins\elementor\includes\base\controls-stack.php(2268): Elementor\Widget_Shortcode->render()
+#6 C:\wamp64\www\celr\wp-content\plugins\elementor\includes\base\widget-base.php(609): Elementor\Controls_Stack->render_by_mode()
+#7 C:\wamp64\www\celr\wp-content\plugins\elementor\includes\base\widget-base.php(750): Elementor\Widget_Base->render_content()
+#8 C:\wamp64\www\celr\wp-content\plugins\elementor\includes\base\element-base.php(449): Elementor\Widget_Base->print_content()
+#9 C:\wamp64\www\celr\wp-content\plugins\elementor\includes\base\element-base.php(1354): Elementor\Element_Base->print_element()
+#10 C:\wamp64\www\celr\wp-content\plugins\elementor\includes\base\element-base.php(449): Elementor\Element_Base->print_content()
+#11 C:\wamp64\www\celr\wp-content\plugins\elementor\includes\base\element-base.php(1354): Elementor\Element_Base->print_element()
+#12 C:\wamp64\www\celr\wp-content\plugins\elementor\includes\base\element-base.php(449): Elementor\Element_Base->print_content()
+#13 C:\wamp64\www\celr\wp-content\plugins\elementor\core\base\document.php(1711): Elementor\Element_Base->print_element()
+#14 C:\wamp64\www\celr\wp-content\plugins\elementor-pro\modules\theme-builder\documents\theme-document.php(418): Elementor\Core\Base\Document->print_elements(Array)
+#15 C:\wamp64\www\celr\wp-content\plugins\elementor\includes\frontend.php(1179): ElementorPro\Modules\ThemeBuilder\Documents\Theme_Document->print_elements_with_wrapper(Array)
+#16 C:\wamp64\www\celr\wp-content\plugins\elementor\core\base\document.php(1155): Elementor\Frontend->get_builder_content(16270, false)
+#17 C:\wamp64\www\celr\wp-content\plugins\elementor\modules\library\documents\library-document.php(76): Elementor\Core\Base\Document->get_content(false)
+#18 C:\wamp64\www\celr\wp-content\plugins\elementor-pro\modules\theme-builder\documents\theme-document.php(158): Elementor\Modules\Library\Documents\Library_Document->get_content(false)
+#19 C:\wamp64\www\celr\wp-content\plugins\elementor-pro\modules\theme-builder\documents\theme-document.php(173): ElementorPro\Modules\ThemeBuilder\Documents\Theme_Document->get_content()
+#20 C:\wamp64\www\celr\wp-content\plugins\elementor-pro\modules\theme-builder\documents\single-base.php(93): ElementorPro\Modules\ThemeBuilder\Documents\Theme_Document->print_content()
+#21 C:\wamp64\www\celr\wp-content\plugins\elementor-pro\modules\woocommerce\documents\product.php(133): ElementorPro\Modules\ThemeBuilder\Documents\Single_Base->print_content()
+#22 C:\wamp64\www\celr\wp-content\plugins\elementor-pro\modules\theme-builder\classes\locations-manager.php(315): ElementorPro\Modules\Woocommerce\Documents\Product->print_content()
+#23 C:\wamp64\www\celr\wp-content\plugins\elementor-pro\modules\theme-builder\classes\locations-manager.php(191): ElementorPro\Modules\ThemeBuilder\Classes\Locations_Manager->do_location('single')
+#24 [internal function]: ElementorPro\Modules\ThemeBuilder\Classes\Locations_Manager->ElementorPro\Modules\ThemeBuilder\Classes\{closure}()
+#25 C:\wamp64\www\celr\wp-content\plugins\elementor\modules\page-templates\module.php(207): call_user_func(Object(Closure))
+#26 C:\wamp64\www\celr\wp-content\plugins\elementor\modules\page-templates\templates\header-footer.php(19): Elementor\Modules\PageTemplates\Module->print_content()
+#27 C:\wamp64\www\celr\wp-includes\template-loader.php(106): include('C:\\wamp64\\www\\c...')
+#28 C:\wamp64\www\celr\wp-blog-header.php(19): require_once('C:\\wamp64\\www\\c...')
+#29 C:\wamp64\www\celr\index.php(17): require('C:\\wamp64\\www\\c...')
+#30 {main}
+  thrown in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 1036
+
