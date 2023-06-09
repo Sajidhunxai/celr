@@ -1,4 +1,4 @@
-/*! elementor - v3.13.2 - 11-05-2023 */
+/*! elementor - v3.13.3 - 28-05-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -1867,10 +1867,13 @@ function useAjax() {
             response: response === null || response === void 0 ? void 0 : response.data
           });
         });
-      }).catch(function () {
+      }).catch(function (error) {
+        var _error$responseJSON;
+        var response = 408 === error.status ? 'timeout' : (_error$responseJSON = error.responseJSON) === null || _error$responseJSON === void 0 ? void 0 : _error$responseJSON.data;
         setAjaxState(function (prevState) {
           return _objectSpread(_objectSpread({}, prevState), {}, {
-            status: 'error'
+            status: 'error',
+            response: response
           });
         });
       }).finally(function () {

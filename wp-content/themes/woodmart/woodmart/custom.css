@@ -414,6 +414,20 @@ input[required]::before {
   margin-left: 12px;
 
 }
+.offer-right .make-offer{
+  background: #1C4130 ;
+  border: 1px solid #1C4130 ;
+  border-radius: 10px  ;
+  font-family: 'Inter';
+  font-style: normal ;
+  font-weight: 500 ;
+  font-size: 14px ;
+  color: #FFFFFF;
+  padding: 5px 14px;
+  margin-bottom: 16px;
+  margin-left: 12px;
+
+}
 .offer-right select{
   border: 1px solid #1C4130 !important;
   border-radius: 10px;

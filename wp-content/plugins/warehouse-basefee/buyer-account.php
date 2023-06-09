@@ -363,8 +363,7 @@ function customer_warehouse_location_shortcode() {
         $location_name = $warehouse_options[$warehouse_location];
         return '<div class="change-my-location"><h4> My warehouse: <strong>' . $location_name .'</strong></h4> <a href="'. home_url('/buyer-account') . '">  Change this</a><div>';
     } else {
-
-        return '<div class="change-my-location"><h4> Create an Account to Calculate Transfer Fee <strong> <a href=" '. home_url() . '">Click Here</a></h4> <div>';
+        return '<div class="change-my-location"><h4> Add Location to your Profile to Calculate Transfer Fee <strong> <a href=" '. home_url('/buyer-account') . '">Click Here</a></h4> <div>';
 
     }
 }

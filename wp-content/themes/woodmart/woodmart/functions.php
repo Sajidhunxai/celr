@@ -1232,7 +1232,7 @@ function display_vendor_data($product_id)
             if ($vendor) {
                 echo '<div class="offer-container">';
                 // echo '<h3>Vendor Data</h3>';
-                echo '<p>Vendor Name: ' . $vendor['name'] . '</p>';
+                // echo '<p>Vendor Name: ' . $vendor['name'] . '</p>';
                 echo '<div class="offer-left">';
                 echo '<p>Offer Price: </p> <span class="offer-price:"> £' . ($vendor['price']) . '</span>';
                 // echo '<p>Vintage: ' . $vendor['vintage'] . '</p>';
@@ -1262,7 +1262,7 @@ function display_vendor_data($product_id)
                 //Add to Cart button
                 echo '<div class="offer-right">';
                 // echo '<button class="make-offer" data-product-id="' . $product_id . '" data-vendor-id="' . $vendor['id'] . '">Make an Offer</button>';
-                echo '<button class="make-offer" data-product-id="' . $product_id  . '" data-vendor-name="' . $vendor['name'] . '" onclick="openPopup(' . $product_id . ', \'' . $vendor['name'] . '\')">Add to Cart</button>';
+                echo '<button class="make-offer" data-product-id="' . $product_id  . '" data-vendor-name="' . $vendor['name'] . '" onclick="openPopup(' . $product_id . ', \'' . $vendor['name'] . '\')">Make Offer</button>';
 
                 echo '<script>
                     jQuery(document).ready(function($) {

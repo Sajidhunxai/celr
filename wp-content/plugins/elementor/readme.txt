@@ -1,10 +1,10 @@
-=== Elementor Website Builder ===
+=== Elementor Website Builder - More than Just a Page Builder ===
 Contributors: elemntor
 Tags: page builder, editor, landing page, drag-and-drop, elementor, visual editor, wysiwyg, design, maintenance mode, coming soon, under construction, website builder, landing page builder, front-end builder
 Requires at least: 5.9
 Tested up to: 6.2
 Requires PHP: 7.0
-Stable tag: 3.13.2
+Stable tag: 3.13.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -237,6 +237,15 @@ You can also add a new language via [translate.wordpress.org](https://go.element
 6. **Responsive Design** Fully edit your websites and customize the behavior on desktop, tablet & mobile to maximize the experience by switching between devices and breaking points.
 
 == Changelog ==
+
+= 3.13.4 - 2023-05-28 =
+
+* Fix: Unable to save a new Global Widget ([#22544](https://github.com/elementor/elementor/issues/22544))
+
+= 3.13.3 - 2023-05-22 =
+
+* Security Fix: Addressed security weaknesses in template creation mechanism
+* Tweak: Improved error messages when a kit is not downloaded successfully in Kit Library
 
 See Elementor Developer Edition versions changelog [here](https://go.elementor.com/dev-changelog/)
 
