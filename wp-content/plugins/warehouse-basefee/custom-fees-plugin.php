@@ -172,6 +172,8 @@ function get_custom_fees() {
 }
 
 require_once('buyer-account.php');
+require_once('buyer-offer.php');
+
 function add_theme_scripts() {
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
 

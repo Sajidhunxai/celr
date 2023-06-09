@@ -391,310 +391,359 @@ function display_vendors()
     }
 }
 
+function user_has_submitted_vendor_data($user_id){
+    $vendor_data = get_user_meta($user_id, 'vendor', true);
+    return !empty($vendor_data);
+}
+
 
 // Form shortcode
 function vendor_form_shortcode($atts)
 {
     if (is_user_logged_in()) {
-        // User is logged in, show the form
-        // Extract the product ID from the shortcode attributes
-        $atts = shortcode_atts(
-            array(
-                'product_id' => 0,
-            ),
-            $atts
-        );
+        $current_user = wp_get_current_user();
+        $user_roles = $current_user->roles;
 
-        // Get the product ID
-        $product_id = intval($atts['product_id']);
-        $product_tag_names = array();
+        // Check if the user has the 'vendor' or 'administrator' role
+        if (in_array('author', $user_roles) || in_array('administrator', $user_roles)) {
 
-        // Get the product tags
-        $product_tags = get_the_terms($product_id, 'product_tag');
-        if ($product_tags && !is_wp_error($product_tags)) {
-            foreach ($product_tags as $tag) {
-                $product_tag_names[] = $tag->name;
+            // User is logged in, show the form
+
+            $atts = shortcode_atts(
+                array(
+                    'product_id' => 0,
+                ),
+                $atts
+            );
+
+            // Get the product ID
+            $product_id = intval($atts['product_id']);
+
+            // Get the product tags
+            $product_tags = get_the_terms($product_id, 'product_tag');
+            if ($product_tags && !is_wp_error($product_tags)) {
+                foreach ($product_tags as $tag) {
+                    $product_tag_names[] = $tag->name;
+                }
             }
-        }
 
-        // Get the post data
-        $post = get_post($product_id);
-        $post_title = $post->post_title;
-        $post_content = $post->post_content;
-        $post_image = get_the_post_thumbnail_url($product_id, 'full');
+            // Get the post data
+            $post = get_post($product_id);
+            $post_title = $post->post_title;
+            $post_content = $post->post_content;
+            $post_image = get_the_post_thumbnail_url($product_id, 'full');
 
-        //get price and attributes
-        $product_attributes = get_post_meta($product_id, 'product_attributes', true);
+            //get price and attributes
+            $product_attributes = get_post_meta($product_id, 'product_attributes', true);
 
-        $product_price = wc_get_product($product_id);
-        $regular_price = $product_price->get_regular_price();
-        //lowest price
-
-        $vendors = get_post_meta($product_id, 'vendors', true); // Get existing vendors
+            $product_price = wc_get_product($product_id);
+            $regular_price = $product_price->get_regular_price();
+            //lowest price
 
 
-        ob_start();
+            ob_start();
+
     ?>
-        <div class="column-container">
-            <div class="column large">
-                <?php if ($post_image) : ?>
-                    <img src="<?php echo esc_url($post_image); ?>" alt="<?php echo esc_html($post_title); ?>" width="400" />
-                <?php else : ?>
-                    <img src="<?php echo get_site_url() . '/wp-content/uploads/2023/05/image-44.png'; ?> " alt="Default Image" width="400" />
-                <?php endif; ?>
+            <div>
+                <div class="column-container">
+                    <div class="column large">
+                        <?php if ($post_image) : ?>
+                            <img src="<?php echo esc_url($post_image); ?>" alt="<?php echo esc_html($post_title); ?>" width="400" />
+                        <?php else : ?>
+                            <img src="<?php echo get_site_url() . '/wp-content/uploads/2023/05/image-44.png'; ?> " alt="Default Image" width="400" />
+                        <?php endif; ?>
 
-            </div>
+                    </div>
 
-            <div class="column large">
-                <h2>
-                    <?php echo esc_html(strtoupper($post_title)); ?>
-                </h2>
-                <div id="vendor-repeater">
-                    <form method="post">
-                        <?php wp_nonce_field(basename(__FILE__), 'vendor_meta_nonce'); ?>
-                        <input type="hidden" name="product_id" value="<?php echo esc_attr($product_id); ?>" />
+                    <div class="column large">
+                        <h2>
+                            <?php echo esc_html(strtoupper($post_title)); ?>
+                        </h2>
+                        <div id="vendor-repeater">
+                        <?php 
+                       $current_user = wp_get_current_user();
+                       $user_name = $current_user->user_login;
+                       
+                       $existing_vendors = get_post_meta($product_id, 'vendors', true);
+                       
+                       $has_submitted_data = false;
+                       if (!empty($existing_vendors)) {
+                           foreach ($existing_vendors as $existing_vendor) {
+                               if ($existing_vendor['name'] === $user_name) {
+                                   $has_submitted_data = true;
+                                   break;
+                               }
+                           }
+                       }
+                       
+                       if($has_submitted_data) {
+                           echo ' You have already submitted your price for this product. You cannot submit again.</div></div>';
+                           echo '<div class="column">';
+                           echo display_market_lowerest_price($product_id);
+                           echo '</div>';
+                           ?>
+                           
+                             
+                        <?php
+                       } else {
+                        ?>  
+                        <form method="post">
+                                <?php wp_nonce_field(basename(__FILE__), 'vendor_meta_nonce'); ?>
+                                <input type="hidden" name="product_id" value="<?php echo esc_attr($product_id); ?>" />
 
-                        <div class="vendor-row">
-                            <?php
-                            $current_user = wp_get_current_user();
-                            $user_name = $current_user->display_name;
-                            ?>
-                            <input type="hidden" name="vendor_name[]" placeholder="Vendor Name" value="<?php echo esc_attr($user_name); ?>" readonly />
-                            <div class="form-control">
-                                <label for="price" required style="display: inline-block;">My offer price<span class="required">*</span></label>
-                                <div style="position: relative;">
-                                    <input type="number" name="vendor_price[]" placeholder="" max="1000" min="1" required />
-                                    <span style="position: absolute; top: 45%; transform: translateY(-50%); left: 20px;">£</span>
-                                </div>
-                            </div>
-                            <div class="form-control">
-                                <label for="vintage" required style="display: inline-block;">Vintage<span class="required">*</span></label>
-                                <div class="custom-select-wrapper"> <!-- Add a custom select wrapper -->
-                                    <select name="vendor_vintage[]" class="custom-select">
-                                        <!-- Assign a class for custom select styling -->
-                                        <?php
-                                        $attribute_vintage = 'pa_vintage'; // Replace with your actual attribute slug
-                                        $terms_vintages = get_terms(
-                                            array(
-                                                'taxonomy' => $attribute_vintage,
-                                                'hide_empty' => false,
-                                            )
-                                        );
-                                        foreach ($terms_vintages as $term_vintage) {
-                                            echo '
+                                <div class="vendor-row">
+                                    <?php
+                                    $current_user = wp_get_current_user();
+                                    $user_name = $current_user->user_login;
+                                    
+                                    ?>
+
+                                    <input type="hidden" name="vendor_name[]" placeholder="Vendor Name" value="<?php echo esc_attr($user_name); ?>" readonly />
+
+                                    <div class="form-control">
+                                        <label for="price" required style="display: inline-block;">My offer price<span class="required">*</span></label>
+                                        <div style="position: relative;">
+                                            <input type="number" name="vendor_price[]" placeholder="" max="1000" min="1" required />
+                                            <span style="position: absolute; top: 45%; transform: translateY(-50%); left: 20px;">£</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-control">
+                                        <label for="vintage" required style="display: inline-block;">Vintage<span class="required">*</span></label>
+                                        <div class="custom-select-wrapper"> <!-- Add a custom select wrapper -->
+                                            <select name="vendor_vintage[]" class="custom-select">
+                                                <!-- Assign a class for custom select styling -->
+                                                <?php
+                                                $attribute_vintage = 'pa_vintage'; // Replace with your actual attribute slug
+                                                $terms_vintages = get_terms(
+                                                    array(
+                                                        'taxonomy' => $attribute_vintage,
+                                                        'hide_empty' => false,
+                                                    )
+                                                );
+                                                foreach ($terms_vintages as $term_vintage) {
+                                                    echo '
                                                     <option value="' . esc_attr($term_vintage->name) . '">
                                                     ' . esc_html($term_vintage->name) . '
                                                     </option>
                                                     ';
-                                        }
-                                        ?>
-                                    </select>
+                                                }
+                                                ?>
+                                            </select>
 
-                                </div>
-                            </div>
-                            <div class="form-control">
-                                <label for="fname" required style="display: inline-block;">Quantity<span class="required">*</span></label>
-                                <div class="custom-select-wrapper"> <!-- Add a custom select wrapper -->
-                                    <select name="vendor_quantity[]" class="custom-select">
-                                        <!-- Assign a class for custom select styling -->
-                                        <?php
-                                        $attribute_quantity = 'pa_quantity'; // Replace with your actual attribute slug
-                                        $terms_quantity = get_terms(
-                                            array(
-                                                'taxonomy' => $attribute_quantity,
-                                                'hide_empty' => false,
-                                            )
-                                        );
-                                        foreach ($terms_quantity as $term_quantity) {
-                                            echo '
+                                        </div>
+                                    </div>
+                                    <div class="form-control">
+                                        <label for="fname" required style="display: inline-block;">Quantity<span class="required">*</span></label>
+                                        <div class="custom-select-wrapper"> <!-- Add a custom select wrapper -->
+                                            <select name="vendor_quantity[]" class="custom-select">
+                                                <!-- Assign a class for custom select styling -->
+                                                <?php
+                                                $attribute_quantity = 'pa_quantity'; // Replace with your actual attribute slug
+                                                $terms_quantity = get_terms(
+                                                    array(
+                                                        'taxonomy' => $attribute_quantity,
+                                                        'hide_empty' => false,
+                                                    )
+                                                );
+                                                foreach ($terms_quantity as $term_quantity) {
+                                                    echo '
                                                     <option value="' . esc_attr($term_quantity->name) . '">
                                                     ' . esc_html($term_quantity->name) . '
                                                     </option>
                                                     ';
-                                        }
-                                        ?>
-                                    </select>
+                                                }
+                                                ?>
+                                            </select>
 
-                                </div>
-                            </div>
-                            <div class="form-control">
-                                <label for="fname" required style="display: inline-block;">Format<span class="required">*</span></label>
-                                <div class="custom-select-wrapper"> <!-- Add a custom select wrapper -->
-                                    <select name="vendor_format[]" class="custom-select">
-                                        <!-- Assign a class for custom select styling -->
-                                        <?php
-                                        $attribute_format = 'pa_format'; // Replace with your actual attribute slug
-                                        $terms_formats = get_terms(
-                                            array(
-                                                'taxonomy' => $attribute_format,
-                                                'hide_empty' => false,
-                                            )
-                                        );
-                                        foreach ($terms_formats as $term_format) {
-                                            echo '
+                                        </div>
+                                    </div>
+                                    <div class="form-control">
+                                        <label for="fname" required style="display: inline-block;">Format<span class="required">*</span></label>
+                                        <div class="custom-select-wrapper"> <!-- Add a custom select wrapper -->
+                                            <select name="vendor_format[]" class="custom-select">
+                                                <!-- Assign a class for custom select styling -->
+                                                <?php
+                                                $attribute_format = 'pa_format'; // Replace with your actual attribute slug
+                                                $terms_formats = get_terms(
+                                                    array(
+                                                        'taxonomy' => $attribute_format,
+                                                        'hide_empty' => false,
+                                                    )
+                                                );
+                                                foreach ($terms_formats as $term_format) {
+                                                    echo '
                                                     <option value="' . esc_attr($term_format->name) . '">
                                                     ' . esc_html($term_format->name) . '
                                                     </option>
                                                     ';
-                                        }
-                                        ?>
-                                    </select>
+                                                }
+                                                ?>
+                                            </select>
 
-                                </div>
-                            </div>
-                            <div class="form-control">
-                                <label for="fname" required style="display: inline-block;">Warehouse<span class="required">*</span></label>
-                                <div class="custom-select-wrapper"> <!-- Add a custom select wrapper -->
-                                    <select name="vendor_location[]" class="custom-select">
-                                        <!-- Assign a class for custom select styling -->
-                                        <?php
-                                        $attribute_name = 'pa_location'; // Replace with your actual attribute slug
-                                        $terms = get_terms(
-                                            array(
-                                                'taxonomy' => $attribute_name,
-                                                'hide_empty' => false,
-                                            )
-                                        );
-                                        foreach ($terms as $term) {
-                                            echo '
+                                        </div>
+                                    </div>
+                                    <div class="form-control">
+                                        <label for="fname" required style="display: inline-block;">Warehouse<span class="required">*</span></label>
+                                        <div class="custom-select-wrapper"> <!-- Add a custom select wrapper -->
+                                            <select name="vendor_location[]" class="custom-select">
+                                                <!-- Assign a class for custom select styling -->
+                                                <?php
+                                                $attribute_name = 'pa_location'; // Replace with your actual attribute slug
+                                                $terms = get_terms(
+                                                    array(
+                                                        'taxonomy' => $attribute_name,
+                                                        'hide_empty' => false,
+                                                    )
+                                                );
+                                                foreach ($terms as $term) {
+                                                    echo '
                                                     <option value="' . esc_attr($term->name) . '">
                                                     ' . esc_html($term->name) . '
                                                     </option>
                                                     ';
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-control">
-                                <label for="purchase" required style="display: inline-block;">Purchase price</label>
-                                <div style="position: relative;">
-                                    <input type="number" name="vendor_purchase[]" placeholder="" max="1000" min="1" />
-                                    <div class="tooltip-icon">i
-                                        <div class="tooltip-box">
-                                            <span class="tooltip-text">Please provide the price at which you made the purchase or the total amount paid.</span>
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
+
+                                    <div class="form-control">
+                                        <label for="purchase" required style="display: inline-block;">Purchase price</label>
+                                        <div style="position: relative;">
+                                            <input type="number" name="vendor_purchase[]" placeholder="" max="1000" min="1" />
+                                            <div class="tooltip-icon">i
+                                                <div class="tooltip-box">
+                                                    <span class="tooltip-text">Please provide the price at which you made the purchase or the total amount paid.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
                                 </div>
 
-                            </div>
+                        </div>
+                    </div>
 
+                    <div class="column">
+                        <div class="market-price-box" style="display:flex; gap:10px;padding-top:40px;">
+
+                            <table class="market price-box">
+                                <th>Market Price</th>
+                                <tr>
+                                    <td><?php echo wc_price($regular_price); ?></td>
+                                </tr>
+                            </table>
+                            <table class="lowest price-box">
+
+                                <th>Lowest Price</th>
+
+                                <tbody>
+                                    <tr>
+                                        <td> <?php
+                                                if (!empty($vendors)) {
+                                                    $lowest_price = null;
+
+                                                    foreach ($vendors as $vendor) {
+                                                        $price = $vendor['price'];
+
+                                                        if ($lowest_price === null || $price < $lowest_price) {
+                                                            $lowest_price = $price;
+                                                        }
+                                                    }
+
+                                                    if ($lowest_price !== null) {
+                                                        // Display the lowest price in your desired format or HTML structure
+                                                        echo '$ ' . $lowest_price;
+                                                    } else {
+                                                        echo wc_price($regular_price);
+                                                    }
+                                                } else {
+                                                    echo wc_price($regular_price);
+                                                }
+
+                                                ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
 
-                </div>
-            </div>
+                        <table>
 
-            <div class="column">
-                <div class="market-price-box" style="display:flex; gap:10px;padding-top:40px;">
-
-                    <table class="market price-box">
-                        <th>Market Price</th>
-                        <tr>
-                            <td><?php echo wc_price($regular_price); ?></td>
-                        </tr>
-                    </table>
-                    <table class="lowest price-box">
-
-                        <th>Lowest Price</th>
-
-                        <tbody>
                             <tr>
-                                <td> <?php
-                                        if (!empty($vendors)) {
-                                            $lowest_price = null;
-
-                                            foreach ($vendors as $vendor) {
-                                                $price = $vendor['price'];
-
-                                                if ($lowest_price === null || $price < $lowest_price) {
-                                                    $lowest_price = $price;
-                                                }
-                                            }
-
-                                            if ($lowest_price !== null) {
-                                                // Display the lowest price in your desired format or HTML structure
-                                                echo '$ ' . $lowest_price;
-                                            } else {
-                                                echo wc_price($regular_price);
-                                            }
-                                        } else {
-                                            echo wc_price($regular_price);
-                                        }
-
-                                        ?></td>
+                                <th>Robert Parker:</th>
+                                <td>98/100</td>
                             </tr>
-                        </tbody>
-                    </table>
+                            <tr>
+                                <th>Neil Martin:</th>
+                                <td>96/100</td>
+                            </tr>
+                            <tr>
+                                <th>Lisa Perotti:</th>
+                                <td>97/100</td>
+                            </tr>
+                        </table>
+                        <div class="vendor-submit-button">
+                            <input type="submit" name="submit_vendor_form" value="LIST WINE" />
+
+                        </div>
+                        </form>
+                  
+                    <?php
+                    }
+                    
+                    ?>
+  </div>
                 </div>
+                </div>
+                <div class="form-product-description">
+                    <h3> Description </h3>
+                    <?php echo $post_content; ?>
+                    <?php
 
-                <table>
+                    // Check if the product object is valid
+                    if ($product_price) {
+                        // Get the product attributes
+                        $attributes = $product_price->get_attributes();
 
-                    <tr>
-                        <th>Robert Parker:</th>
-                        <td>98/100</td>
-                    </tr>
-                    <tr>
-                        <th>Neil Martin:</th>
-                        <td>96/100</td>
-                    </tr>
-                    <tr>
-                        <th>Lisa Perotti:</th>
-                        <td>97/100</td>
-                    </tr>
-                </table>
-                <div class="vendor-submit-button">
-                    <input type="submit" name="submit_vendor_form" value="LIST WINE" />
+                        // Check if there are attributes
+                        if (!empty($attributes)) {
+                            // Output the attributes as a list
+                            echo '<ul class="attributes-add-form">';
+                            foreach ($attributes as $attribute) {
+                                echo '<li class="attribute-add-form-item"> <b>' . str_replace('pa_', '', $attribute->get_name()) .
+                                    ': </b>' . esc_html(implode(', ', $attribute->get_options())) .
+
+                                    '</li>';
+                            }
+                            echo '</ul>';
+                        }
+                    }
+                    ?>
 
                 </div>
-                </form>
             </div>
 
-        </div>
-        <div class="form-product-description">
-            <h3> Description </h3>
-            <?php echo $post_content; ?>
-            <?php
-
-            // Check if the product object is valid
-            if ($product_price) {
-                // Get the product attributes
-                $attributes = $product_price->get_attributes();
-
-                // Check if there are attributes
-                if (!empty($attributes)) {
-                    // Output the attributes as a list
-                    echo '<ul class="attributes-add-form">';
-                    foreach ($attributes as $attribute) {
-                        echo '<li class="attribute-add-form-item"> <b>' . str_replace('pa_', '', $attribute->get_name()) .
-                            ': </b>' . esc_html(implode(', ', $attribute->get_options())) .
-
-                            '</li>';
+            <script>
+                function toggleTooltip() {
+                    var tooltipBox = document.querySelector('.tooltip-box');
+                    if (tooltipBox.style.display === 'none') {
+                        tooltipBox.style.display = 'block';
+                    } else {
+                        tooltipBox.style.display = 'none';
                     }
-                    echo '</ul>';
                 }
-            }
-            ?>
-
-        </div>
-
-
-        <script>
-            function toggleTooltip() {
-                var tooltipBox = document.querySelector('.tooltip-box');
-                if (tooltipBox.style.display === 'none') {
-                    tooltipBox.style.display = 'block';
-                } else {
-                    tooltipBox.style.display = 'none';
-                }
-            }
-        </script>
-    <?php
-        return ob_get_clean();
+            </script>
+        <?php
+            return ob_get_clean();
+        }
+        // Example error message:
+        $error_message = 'You do not have permission to access this page.';
+        return '<p>' . esc_html($error_message) . '</p>';
     } else {
         // User is not logged in, show a popup with a login form
         ob_start();
-    ?>
+        ?>
 
         <div id="vendor-form-container">
             <div id="vendor-form-blur">
@@ -739,6 +788,25 @@ function save_vendor_data_frontend()
 
         $existing_vendors = get_post_meta($product_id, 'vendors', true); // Get existing vendors
 
+        // Check if the current user is a vendor
+        $current_user = wp_get_current_user();
+        $is_vendor = in_array('vendor', $current_user->roles);
+
+        if ($is_vendor) {
+            // Check if the current vendor already has content for this product
+            $current_vendor_username = $current_user->user_login;
+            if (!empty($existing_vendors)) {
+                foreach ($existing_vendors as $existing_vendor) {
+                    if ($existing_vendor['name'] === $current_vendor_username) {
+                        // Vendor already has content for this product
+                        // You can display a message or prevent them from adding another content
+                        echo '<script>alert("You have already added content for this product!"); window.history.back();</script>';
+                        exit();
+                    }
+                }
+            }
+        }
+
         $vendors = $existing_vendors ? $existing_vendors : array();
         $names = !empty($_POST['vendor_name']) ? array_map('sanitize_text_field', $_POST['vendor_name']) : array();
         $prices = !empty($_POST['vendor_price']) ? array_map('sanitize_text_field', $_POST['vendor_price']) : array();
@@ -749,14 +817,12 @@ function save_vendor_data_frontend()
         $purchase = !empty($_POST['vendor_purchase']) ? array_map('sanitize_text_field', $_POST['vendor_purchase']) : array();
         $tags = !empty($_POST['vendor_tags']) ? array_map('sanitize_text_field', $_POST['vendor_tags']) : array();
 
-        $current_user = wp_get_current_user();
-        $user_name = $current_user->display_name;
 
         for ($i = 0; $i < count($names); $i++) {
             if (!empty($names[$i]) && !empty($prices[$i]) && !empty($locations[$i]) && !empty($quantity[$i]) && !empty($vintage[$i])) {
                 $vendor_tags = isset($tags[$i]) ? $tags[$i] : array(); // Retrieve the selected tags
                 $vendors[] = array(
-                    'name' => ($names[$i] === $user_name) ? $user_name : $names[$i],
+                    'name' =>  $current_user->user_login,
                     'price' => $prices[$i],
                     'location' => $locations[$i],
                     'quantity' => $quantity[$i],
@@ -782,6 +848,8 @@ function save_vendor_data_frontend()
         }
     }
 }
+
+
 
 add_shortcode('vendor_form', 'vendor_form_shortcode');
 add_action('init', 'save_vendor_data_frontend');
@@ -853,7 +921,7 @@ function product_search_ajax_handler()
                 <a href="<?php echo esc_url(add_query_arg('product_id', $product_id, get_permalink(get_page_by_path('add-vendor-price')))); ?>">
                     <?php echo get_the_title(); ?>
                 </a>
-<?php
+    <?php
             endwhile;
         } else {
             echo 'No products found.';
@@ -870,67 +938,89 @@ function product_search_ajax_handler()
 
 add_action('wp_ajax_product_search_ajax', 'product_search_ajax_handler');
 add_action('wp_ajax_nopriv_product_search_ajax', 'product_search_ajax_handler');
-function add_vendor_info_to_cart_item_data( $cart_item_data, $product_id, $variation_id ) {
-    if( isset( $_GET['vendor_name'] ) ){
-        $vendor_name = sanitize_text_field( $_GET['vendor_name'] );
+function add_vendor_info_to_cart_item_data($cart_item_data, $product_id, $variation_id)
+{
+    if (isset($_GET['vendor_name'])) {
+        $vendor_name = sanitize_text_field($_GET['vendor_name']);
         $cart_item_data['vendor_name'] = $vendor_name;
     }
-    
-    if( isset( $_GET['price'] ) ){
-        $price = sanitize_text_field( $_GET['price'] );
+
+    if (isset($_GET['price'])) {
+        $price = sanitize_text_field($_GET['price']);
         $cart_item_data['vendor_price'] = $price;
     }
 
     return $cart_item_data;
 }
-add_filter( 'woocommerce_add_cart_item_data', 'add_vendor_info_to_cart_item_data', 10, 3 );
+add_filter('woocommerce_add_cart_item_data', 'add_vendor_info_to_cart_item_data', 10, 3);
 
 
 // Display vendor information in the cart
-function display_vendor_info_in_cart( $item_data, $cart_item ) {
-    if( isset( $cart_item['vendor_name'] ) ){
+function display_vendor_info_in_cart($item_data, $cart_item)
+{
+    if (isset($cart_item['vendor_name'])) {
         $item_data[] = array(
             'key'     => 'Vendor Name',
-            'value'   => wc_clean( $cart_item['vendor_name'] ),
+            'value'   => wc_clean($cart_item['vendor_name']),
             'display' => '',
         );
     }
-    if( isset( $cart_item['vendor_price'] ) ){
+    if (isset($cart_item['vendor_price'])) {
         $item_data[] = array(
             'key'     => 'Vendor Price',
-            'value'   => wc_price( wc_clean( $cart_item['vendor_price'] ) ), // wc_price() to format the price
+            'value'   => wc_price(wc_clean($cart_item['vendor_price'])), // wc_price() to format the price
+            'display' => '',
+        );
+    }
+    if (isset($cart_item['warehouse_fee'])) {
+        $item_data[] = array(
+            'key'     => 'Warehouse Fee',
+            'value'   => wc_price(wc_clean($cart_item['warehouse_fee'])), // wc_price() to format the fee
             'display' => '',
         );
     }
     return $item_data;
 }
-add_filter( 'woocommerce_get_item_data', 'display_vendor_info_in_cart', 10, 2 );
+add_filter('woocommerce_get_item_data', 'display_vendor_info_in_cart', 10, 2);
+function display_warehouse_fee_at_checkout($item_quantity, $cart_item, $cart_item_key)
+{
+    if (isset($cart_item['warehouse_fee'])) {
+        $item_quantity .= sprintf('<div class="warehouse-fee">Warehouse Fee: %s</div>', wc_price(wc_clean($cart_item['warehouse_fee'])));
+    }
+
+    return $item_quantity;
+}
+
+add_filter('woocommerce_checkout_cart_item_quantity', 'display_warehouse_fee_at_checkout', 10, 3);
+
 
 // Adjust the product price
 
-function set_vendor_in_session() {
-    if ( isset( $_GET['vendor_name'] ) ) {
-        $vendor_name = sanitize_text_field( $_GET['vendor_name'] );
-        WC()->session->set( 'selected_vendor', $vendor_name );
+function set_vendor_in_session()
+{
+    if (isset($_GET['vendor_name'])) {
+        $vendor_name = sanitize_text_field($_GET['vendor_name']);
+        WC()->session->set('selected_vendor', $vendor_name);
     }
 }
-add_action( 'init', 'set_vendor_in_session' );
-function adjust_cart_item_price( $cart_item_data, $product_id ) {
-    $vendor_name = WC()->session->get( 'selected_vendor' );
+add_action('init', 'set_vendor_in_session');
+function adjust_cart_item_price($cart_item_data, $product_id)
+{
+    $vendor_name = WC()->session->get('selected_vendor');
     $current_user = wp_get_current_user();
-    $warehouse_location = get_user_meta( $current_user->ID, 'warehouse_location', true );
+    $warehouse_location = get_user_meta($current_user->ID, 'warehouse_location', true);
     $warehouse_options = get_warehouse_options();
 
-    if ( $vendor_name ) {
-        $vendors = get_post_meta( $product_id, 'vendors', true );
-        $warehouse_fees = get_option( 'custom_warehouses', array() );
+    if ($vendor_name) {
+        $vendors = get_post_meta($product_id, 'vendors', true);
+        $warehouse_fees = get_option('custom_warehouses', array());
 
-        foreach ( $vendors as $vendor ) {
-            if ( $vendor['name'] == $vendor_name && isset( $warehouse_fees[ $vendor['location'] ] ) ) {
+        foreach ($vendors as $vendor) {
+            if ($vendor['name'] == $vendor_name && isset($warehouse_fees[$vendor['location']])) {
                 $vendor_price = $vendor['price'];
-                $warehouse_fee = $warehouse_fees[ $vendor['location'] ];
+                $warehouse_fee = $warehouse_fees[$vendor['location']];
 
-                if ( $warehouse_options[ $warehouse_location ] === $vendor['location'] ) {
+                if ($warehouse_options[$warehouse_location] === $vendor['location']) {
                     $new_price = $vendor_price;
                 } else {
                     $new_price = $vendor_price + $warehouse_fee;
@@ -943,80 +1033,30 @@ function adjust_cart_item_price( $cart_item_data, $product_id ) {
     }
     return $cart_item_data;
 }
-add_filter( 'woocommerce_add_cart_item_data', 'adjust_cart_item_price', 10, 2 );
+add_filter('woocommerce_add_cart_item_data', 'adjust_cart_item_price', 10, 2);
 
 
 
-function set_new_price( $cart_object ) {
-    if( is_admin() && ! defined( 'DOING_AJAX' ) )
+function set_new_price($cart_object)
+{
+    if (is_admin() && !defined('DOING_AJAX'))
         return;
 
-    if ( did_action( 'woocommerce_before_calculate_totals' ) >= 2 )
+    if (did_action('woocommerce_before_calculate_totals') >= 2)
         return;
 
     // Iterate over each item in the cart
-    foreach ( $cart_object->get_cart() as $cart_item ) {
-        if( isset( $cart_item['new_price'] ) ) {
-            $cart_item['data']->set_price( $cart_item['new_price'] );
+    foreach ($cart_object->get_cart() as $cart_item) {
+        if (isset($cart_item['new_price'])) {
+            $cart_item['data']->set_price($cart_item['new_price']);
         }
     }
 }
-add_action( 'woocommerce_before_calculate_totals', 'set_new_price', 10, 1 );
-
-// function adjust_product_price( $price, $product ) {
-//     if ( isset( $_GET['vendor_name'] ) ) {
-//         $vendor_name = sanitize_text_field( $_GET['vendor_name'] );
-//         $vendors = get_post_meta( $product->get_id(), 'vendors', true );
-
-//         foreach ( $vendors as $vendor  ) {
-//             if ( $vendor['name'] == $vendor_name ) {
-//                 $vendor_price = $vendor['price'];
-//                 return $vendor_price;
-//             }
-//         }
-//     }
-
-//     return $price;
-// }
-
-// add_filter( 'woocommerce_product_get_price', 'adjust_product_price', 10, 2 );
-// add_filter( 'woocommerce_product_variation_get_price', 'adjust_product_price', 10, 2 ); // If you're using variations
+add_action('woocommerce_before_calculate_totals', 'set_new_price', 10, 1);
 
 
-// function adjust_cart_item_price( $cart ) {
-//     if ( is_admin() && ! defined( 'DOING_AJAX' ) )
-//         return;
-
-//     if ( did_action( 'woocommerce_before_calculate_totals' ) >= 2 )
-//         return;
-
-//     // Iterate over each item in the cart
-//     foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
-//         $product = $cart_item['data'];
-
-//         // Check if vendor name is set
-//         if ( isset( $_GET['vendor_name'] ) ) {
-//             $vendor_name = sanitize_text_field( $_GET['vendor_name'] );
-//             $vendors = get_post_meta( $product->get_id(), 'vendors', true );
-//             $warehouse_fees = get_option('custom_warehouses', array());
-
-//             foreach ( $vendors as $vendor  ) {
-//                 if ( $vendor['name'] == $vendor_name && isset( $warehouse_fees[ $vendor['location'] ] )) {
-//                     $vendor_price = $vendor['price'];
-//                     $product->set_price($vendor_price);
-//                     break;
-//                 }
-//             }
-//         }
-//     }
-// }
-// add_action( 'woocommerce_before_calculate_totals', 'adjust_cart_item_price', 10, 1 );
-
-
-
-
-
-function get_current_user_warehouse_name() {
+function get_current_user_warehouse_name()
+{
     $current_user = wp_get_current_user();
     $user_id = $current_user->ID;
 
@@ -1035,15 +1075,57 @@ function get_current_user_warehouse_name() {
     return $warehouse_location;
 }
 
+function vintage_filter_shortcode($atts)
+{
+    $product_id = get_the_ID();
 
-function display_vendor_data($product_id) {
+    $vendors = get_post_meta($product_id, 'vendors', true);
+    $vintages = array_unique(array_column($vendors, 'vintage'));
+
+    // Check for vintage filter
+    $vintage_filters = isset($_GET['vintage_filter']) ? $_GET['vintage_filter'] : [];
+
+    // Output the filter form
+    ob_start();
+    echo '<form action="" method="get" id="vintage-filter-form" class="vintage-filter-form">';
+
+    // Generate button for each unique vintage
+    echo '<button type="submit" class="vintage-filter-button" name="vintage_filter[]" value="all">All</button>';
+
+    foreach ($vintages as $vintage) {
+        $active = (in_array($vintage, $vintage_filters)) ? ' active' : '';
+        echo '<button type="submit" class="vintage-filter-button' . $active . '" name="vintage_filter[]" value="' . $vintage . '">' . $vintage . '</button>';
+    }
+
+    // Button to select all vintages
+
+    echo '</form>';
+
+    // Add JavaScript to add active class to button on click
+    echo '<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>';
+    echo '<script>
+        $(".vintage-filter").click(function() {
+            $(this).toggleClass("active");
+        });
+    </script>';
+
+    return ob_get_clean();
+}
+add_shortcode('vintage_filter', 'vintage_filter_shortcode');
+
+
+function display_vendor_data($product_id)
+{
     // Retrieve the vendor data for the product
     $vendors = get_post_meta($product_id, 'vendors', true);
     $warehouse_fees = get_option('custom_warehouses', array());
 
-    
+    // Check if the plugin file is loaded
 
-    echo '<div class="single-product-main">';
+
+
+
+    echo '<div class="single-product-main" id="single-product-main">';
     if ($vendors) {
         // Get unique location and format values from vendors
         $locations = array_unique(array_column($vendors, 'location'));
@@ -1052,7 +1134,12 @@ function display_vendor_data($product_id) {
         // Check for location and format filter checkboxes
         $location_filters = isset($_GET['location_filter']) ? $_GET['location_filter'] : $locations;
         $format_filters = isset($_GET['format_filter']) ? $_GET['format_filter'] : $formats;
+        $vintages = array_unique(array_column($vendors, 'vintage'));
+        $vintage_filters = isset($_GET['vintage_filter']) ? $_GET['vintage_filter'] : $vintages;
 
+        if (in_array('all', $vintage_filters)) {
+            $vintage_filters = $vintages;
+        }
         // Check for sort option
         $sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'price_asc';
 
@@ -1062,7 +1149,6 @@ function display_vendor_data($product_id) {
         $total_pages = ceil($total_vendors / $limit);
         $current_page = get_query_var('paged') ? get_query_var('paged') : 1;
         $offset = ($current_page - 1) * $limit;
-
         echo '<div class="vendor-filters-container">';
 
         // Display the filter form
@@ -1087,9 +1173,9 @@ function display_vendor_data($product_id) {
         }
         echo '</div>';
 
-      
 
-        // Add the JavaScript that will automatically submit the form when a checkbox is changed or sort option is modified
+
+        // Add the JavaScript that will automatically submit the form when a checkbox is    d or sort option is modified
         echo '
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
@@ -1099,13 +1185,15 @@ function display_vendor_data($product_id) {
         </script>
         ';
 
-        // Filter vendors based on location and format
-        $vendors = array_filter($vendors, function($vendor) use ($location_filters, $format_filters) {
-            return in_array($vendor['location'], $location_filters) && in_array($vendor['format'], $format_filters);
+        $vendors = array_filter($vendors, function ($vendor) use ($location_filters, $format_filters, $vintage_filters) {
+            return in_array($vendor['location'], $location_filters)
+                && in_array($vendor['format'], $format_filters)
+                && in_array($vendor['vintage'], $vintage_filters);
         });
 
+
         // Sort vendors based on price
-        usort($vendors, function($a, $b) use ($sort_by) {
+        usort($vendors, function ($a, $b) use ($sort_by) {
             if ($sort_by == 'price_desc') {
                 return $b['price'] - $a['price'];
             } else {
@@ -1115,72 +1203,102 @@ function display_vendor_data($product_id) {
         echo '</div>';
 
         echo '<div class="vendor-offer-main">';
-        echo '<div class="offer-header"> <div class="number-offers">'. count($vendors). ' Offers </div>';
+        echo '<div class="offer-header"> <div class="number-offers">' . count($vendors) . ' Offers </div>';
 
-            echo '<div class="vendor-price-sort"> ';
-                
-                echo '<label for="sort_by">Sort by:</label>';
-                echo '<select id="sort_by" name="sort_by">
+        echo '<div class="vendor-price-sort"> ';
+
+        echo '<label for="sort_by">Sort by:</label>';
+        echo '<select id="sort_by" name="sort_by">
                         <option value="price_asc" ' . ($sort_by == 'price_asc' ? 'selected' : '') . '>Price: Low to High</option>
                         <option value="price_desc" ' . ($sort_by == 'price_desc' ? 'selected' : '') . '>Price: High to Low</option>
                     </select><br/>';
-                echo '</div></div>';
-            
+        echo '</div></div>';
+
         echo '</form>';
         // Loop through each vendor
         // Loop through vendors for the current page
         for ($i = $offset; $i < min($offset + $limit, $total_vendors); $i++) {
             $vendor = $vendors[$i];
-    
+
             // Fetch the warehouse fee for the vendor's location
             $warehouse_fee = isset($warehouse_fees[$vendor['location']]) ? $warehouse_fees[$vendor['location']] : 0;
-    
+
             // Display the vendor data
             $current_user = wp_get_current_user();
             $warehouse_location = get_user_meta($current_user->ID, 'warehouse_location', true);
             $warehouse_options = get_warehouse_options();
 
-           
-                if($vendor){
+
+            if ($vendor) {
                 echo '<div class="offer-container">';
                 // echo '<h3>Vendor Data</h3>';
-                // echo '<p>Vendor Name: ' . $vendor['name'] . '</p>';
+                echo '<p>Vendor Name: ' . $vendor['name'] . '</p>';
                 echo '<div class="offer-left">';
-                    echo '<p>Offer Price: </p> <span class="offer-price:"> £' . ($vendor['price'] ) . '</span>';
-                    // echo '<p>Vintage: ' . $vendor['vintage'] . '</p>';
-                    echo '<p>Availability: </p> <span> ' . $vendor['quantity'] . ' case(s)</span> ';
-                
-                    echo '<p>Location:  </p> <span>' . $vendor['location'] . '</span>';
-                    // echo '<p>Purchase Price: ' . $vendor['purchase'] . '</p>';
-                    echo '<p>Warehouse Fee :  </p>  <span> £ '; 
-                     if($warehouse_options[$warehouse_location]  ===  $vendor['location']){
-                        echo "0 (per case) </span>';";
-                     }else{
-                        echo  $warehouse_fee. ' (per case) </span>';
-                     }
-                     
-                     
-                echo '</div>';
+                echo '<p>Offer Price: </p> <span class="offer-price:"> £' . ($vendor['price']) . '</span>';
+                // echo '<p>Vintage: ' . $vendor['vintage'] . '</p>';
+                echo '<p>Availability: </p> <span> ' . $vendor['quantity'] . ' case(s)</span> ';
 
+                echo '<p>Location:  </p> <span>' . $vendor['location'] . '</span>';
+                // echo '<p>Purchase Price: ' . $vendor['purchase'] . '</p>';
+                echo '<p>Transfer Fee :  </p>  <span> £ ';
+                if ($warehouse_options[$warehouse_location]  ===  $vendor['location']) {
+                    echo "0 (per case) </span>';";
+                } else {
+                    echo  $warehouse_fee . ' (per case) </span>';
+                }
+
+
+                echo '</div>';
+                if (function_exists('custom_popup_render_popup_content')) {
+                    // Call the function and pass the vendor name
+                    $vendor_name = $vendor['name']; // Replace with the actual vendor name
+                    $vendor_price = $vendor['price']; // Replace with the actual vendor name
+
+                    $content = custom_popup_render_popup_content($vendor_name, $vendor_price);
+
+                    // Output the content
+                    echo $content;
+                }
                 //Add to Cart button
                 echo '<div class="offer-right">';
-                echo '<button class="add-to-cart" data-product-id="'.$product_id.'" data-quantity="1" data-price="'.($vendor['price'] + $warehouse_fee).'" data-vendor-name="'.$vendor['name'].'">Make offer</button>';
-                echo '<button class="add-to-cart" data-product-id="'.$product_id.'" data-quantity="1" data-price="'.($vendor['price'] + $warehouse_fee).'" data-vendor-name="'.$vendor['name'].'">Add to Cart</button>';
-                echo '<select class="quantity">';
+                // echo '<button class="make-offer" data-product-id="' . $product_id . '" data-vendor-id="' . $vendor['id'] . '">Make an Offer</button>';
+                echo '<button class="make-offer" data-product-id="' . $product_id  . '" data-vendor-name="' . $vendor['name'] . '" onclick="openPopup(' . $product_id . ', \'' . $vendor['name'] . '\')">Add to Cart</button>';
+
+                echo '<script>
+                    jQuery(document).ready(function($) {
+                        $(".make-offer").on("click", function() {
+                            var productId = $(this).data("product-id");
+                            var vendorName = $(this).data("vendor-name");
+
+                            openPopup(productId, vendorName);
+                        });
+                    });
+                </script>';
+
+
+
+
+
+
+
+
+                // echo '<button class="add-to-cart" data-product-id="' . $product_id . '" data-quantity="1" data-price="' . ($vendor['price'] + $warehouse_fee) . '" data-vendor-name="' . $vendor['name'] . '">Make offer</button>';
+                echo '<button class="add-to-cart" data-product-id="' . $product_id . '" data-quantity="1" data-price="' . ($vendor['price'] + $warehouse_fee) . '" data-vendor-name="' . $vendor['name'] . '">Add to Cart</button>';
+                echo '<select id="quantity" class="quantity">';
                 for ($j = 1; $j <= $vendor['quantity']; $j++) {
                     echo '<option value="' . $j . '">' . $j . ' case</option>';
                 }
                 echo '</select>';
                 echo '<p class="total-price">Total Price: £<span>';
-                if($warehouse_options[$warehouse_location]  ===  $vendor['location']){
-                    echo  ($vendor['price'] * $vendor['quantity']) . '</span></p>';
-                 }else{
-                    echo  ($vendor['price'] + $warehouse_fee * $vendor['quantity']) . '</span></p>';
-                 }
-                
+                if ($warehouse_options[$warehouse_location]  ===  $vendor['location']) {
+                    echo $vendor['price'] . '</span></p>';
+                } else {
+                    echo ($vendor['price'] + $warehouse_fee) . '</span></p>';
+                }
+                // echo $warehouse_fee;
                 echo '</div>';
 
-            echo '</div>';
+                echo '</div>';
             }
             // Show the warehouse fee
 
@@ -1188,60 +1306,85 @@ function display_vendor_data($product_id) {
         echo '</div>';
 
         echo '</div>';
-
-        echo '
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+        echo '<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>';
+        echo '<script>
         $(document).ready(function() {
+            var warehouseFee = 20;
+        
             $(".quantity").change(function() {
-                var quantity = $(this).val();
-                var price = $(this).parent().siblings().find(".offer-price").text();
-                var totalPrice = quantity * price;
-
+                var quantity = parseInt($(this).val());
+                var price = parseFloat($(this).parent().siblings().find(".offer-price").text());
+                var totalPrice;
+            
+                if (' . json_encode($warehouse_options[$warehouse_location] === $vendor['location']) . ') {
+                    totalPrice = price * quantity;
+                } else {
+                    // addPrice = price + warehouseFee;
+                    totalPrice =  20;
+                }
+            
                 $(this).parent().siblings().find(".offer-price").text(totalPrice.toFixed(2));
                 $(this).parent().siblings().find(".add-to-cart").attr("data-quantity", quantity);
             });
-
+        
             $(".add-to-cart").click(function() {
                 var productId = $(this).data("product-id");
-                var quantity = $(this).data("quantity");
-                var price = $(this).data("price");
+                var quantity = parseInt($(".quantity").val());
+                var price = parseFloat($(this).data("price"));
                 var vendorName = $(this).data("vendor-name");
-
-                var cartUrl = "?add-to-cart=" + productId + "&quantity=" + quantity + "&price=" + price + "&vendor_name=" + vendorName;
-
+                
+                var totalPrice;
+                if (' . json_encode($warehouse_options[$warehouse_location] === $vendor['location']) . ') {
+                    totalPrice = ' . $vendor['price'] . ' * quantity;
+                } else {
+                    totalPrice = (' . $vendor['price'] . ' + ' . $warehouse_fee . ') * quantity;
+                }
+            
+                var cartUrl = "?add-to-cart=" + productId + "&quantity=" + quantity + "&price=" + totalPrice + "&vendor_name=" + vendorName;
+            
                 window.location.href = cartUrl;
             });
-
+        
             $(".location-filter, .format-filter, #sort_by").change(function() {
                 $("#vendor-filter-form").submit();
             });
+        
+            $(".quantity").change(function() {
+                var quantity = parseInt($(this).val());
+                var pricePerCase = ' . ($vendor['price'] + $warehouse_fee) . ';
+                var totalPrice;
+        
+                if (' . json_encode($warehouse_options[$warehouse_location] === $vendor['location']) . ') {
+                    totalPrice = ' . $vendor['price'] . ' * quantity;
+                } else {
+                    totalPrice = (' . $vendor['price'] . ' + ' . $warehouse_fee . ') * quantity;
+                }
+        
+                $(".total-price span").text(totalPrice.toString());
+            });
         });
-    </script>
-    ';
-     
+        </script>';
+
+
+
         // Pagination links
-       // Pagination links
- // Pagination links
- if ($total_pages > 1) {
-    echo '<div class="single-product-pagination">';
-    
-    $big = 999999999; // need an unlikely integer
-    echo paginate_links(array(
-        'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-        'format' => '?paged=%#%',
-        'current' => max(1, $current_page),
-        'total' => $total_pages,
-        'prev_text' => __('« Prev'),
-        'next_text' => __('Next »'),
-    ));
+        if ($total_pages > 1) {
+            echo '<div class="single-product-pagination">';
 
-    echo '</div>';
-}
+            if ($current_page > 1) {
+                echo '<a href="' . esc_url(get_pagenum_link($current_page - 1)) . '">' . __('« Prev') . '</a>';
+            }
 
+            if ($current_page < $total_pages) {
+                echo '<a href="' . esc_url(get_pagenum_link($current_page + 1)) . '">' . __('Next »') . '</a>';
+            }
+
+            echo '</div>';
+        }
     }
 }
-function shortcode_vendor_data() {
+function shortcode_vendor_data()
+{
     // Extract attributes from the shortcode
     global $product;
     $id = $product->get_id();
@@ -1255,7 +1398,8 @@ function shortcode_vendor_data() {
 add_shortcode('vendor_data', 'shortcode_vendor_data');
 
 
-function display_market_lowerest_price($atts) {
+function display_market_lowerest_price($atts)
+{
     $atts = shortcode_atts(
         array(
             'product_id' => get_the_ID(),
@@ -1270,14 +1414,14 @@ function display_market_lowerest_price($atts) {
     if ($product === false) {
         return; // No product found
     }
-    
+
     $regular_price = $product->get_regular_price();
 
     // Assuming $vendors data is retrieved from your DB or a specific function.
     $vendors = get_post_meta($product_id, 'vendors', true); // Get existing vendors
 
 
-    
+
     ob_start();
     ?>
     <div class="market-price-box" style="display:flex; gap:10px;padding-top:1f0px;">
@@ -1323,7 +1467,7 @@ function display_market_lowerest_price($atts) {
             </tbody>
         </table>
     </div>
-    <?php
+<?php
     return ob_get_clean();
 }
 
@@ -1331,12 +1475,13 @@ add_shortcode('display_market_lowerest_price', 'display_market_lowerest_price');
 
 
 
-function add_vendor_price_button_shortcode($atts) {
+function add_vendor_price_button_shortcode($atts)
+{
     $product_id = get_the_ID();
 
     $atts = shortcode_atts(
         array(
-            'product_id' => $product_id , // Default product ID if not specified in the shortcode
+            'product_id' => $product_id, // Default product ID if not specified in the shortcode
         ),
         $atts
     );
@@ -1349,7 +1494,8 @@ function add_vendor_price_button_shortcode($atts) {
 add_shortcode('add_vendor_price_button', 'add_vendor_price_button_shortcode');
 
 // Custom function to display product attributes
-function display_product_attributes($atts) {
+function display_product_attributes($atts)
+{
     // Extract the product ID from the shortcode attributes
     $atts = shortcode_atts(
         array(
@@ -1371,19 +1517,19 @@ function display_product_attributes($atts) {
         if (!empty($attributes)) {
             // Filter and display specific attributes
             $filtered_attributes = array_intersect_key($attributes, array_flip(['pa_color', 'pa_region', 'pa_drinking_windows']));
-            
+
             // Output the attributes as a list
             echo '<ul class="attributes-add-form">';
             foreach ($filtered_attributes as $attribute) {
                 // Get attribute terms using ids returned by get_options()
-                $terms = array_map(function($term_id) {
+                $terms = array_map(function ($term_id) {
                     $term = get_term($term_id);
                     return $term ? $term->name : '';  // if the term exists, return its name
                 }, $attribute->get_options());
                 $attribute_name = str_replace('pa_', '', $attribute->get_name());
                 $attribute_name = ucwords(strtolower($attribute_name)); // Convert to sentence case
-                
-                echo '<li class="attribute-add-form-item"><b>' . $attribute_name . ':</b> '.
+
+                echo '<li class="attribute-add-form-item"><b>' . $attribute_name . ':</b> ' .
                     '<b>' . esc_html(implode(', ', $terms)) .
                     '</b></li>';
             }
@@ -1392,4 +1538,3 @@ function display_product_attributes($atts) {
     }
 }
 add_shortcode('product_attributes', 'display_product_attributes');
-

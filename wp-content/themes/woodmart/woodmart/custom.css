@@ -230,6 +230,9 @@ input[required]::before {
 	.column-container{
 		display: inline-block;
 	}
+  .single-product-main{
+    display: block;
+  }
 }
 .market-price-box{
 		    width: 85% !important;
@@ -448,4 +451,37 @@ input[required]::before {
 .attribute-add-form-item{
   font-size: 18px;
   list-style: none;
+}
+.vintage-filter-form {
+  display: flex;
+  gap: 50px;
+}
+.vintage-filter-form button{
+  background: #FFFFFF;
+  border: 1px solid #1C4130;
+  border-radius: 20px;
+}
+.vintage-filter-form button:hover{
+  background: #1C4130;
+  color: #FFFFFF
+}
+.vintage-filter-form .active{
+  background: #1C4130;
+  color: #FFFFFF
+}
+
+.blur {
+  /* Add your background blur styles here */
+}
+.popup {
+  /* Add your pop-up styles here */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 200px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  z-index: 9999;
 }

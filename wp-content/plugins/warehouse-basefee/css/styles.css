@@ -8,3 +8,23 @@
     display: grid;
     padding-top: 20px;
 }
+@media (max-width: 567px) {
+
+  .single-product-main{
+    display: block !important;
+  }
+  .offer-left p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px !important;
+    
+    }
+    .offer-left span {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px !important
+     
+    }
+}

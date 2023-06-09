@@ -360,12 +360,17 @@ function customer_warehouse_location_shortcode() {
     $warehouse_options = get_warehouse_options();
 
     if (!empty($warehouse_location) && isset($warehouse_options[$warehouse_location])) {
-        return $warehouse_options[$warehouse_location];
+        $location_name = $warehouse_options[$warehouse_location];
+        return '<div class="change-my-location"><h4> My warehouse: <strong>' . $location_name .'</strong></h4> <a href="'. home_url('/buyer-account') . '">  Change this</a><div>';
     } else {
-        return null;
+
+        return '<div class="change-my-location"><h4> Create an Account to Calculate Transfer Fee <strong> <a href=" '. home_url() . '">Click Here</a></h4> <div>';
+
     }
 }
+
 add_shortcode('customer_warehouse_location', 'customer_warehouse_location_shortcode');
+
 
 
 ?>
