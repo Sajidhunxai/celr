@@ -28,3 +28,62 @@
      
     }
 }
+
+.popup {
+  /* Add your pop-up styles here */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  z-index: 9999;
+}
+
+.offer-product-info{
+  display: flex;
+}
+.offer-product-title{
+  padding: 20px;
+}
+.offer-form{
+  display: flex;
+}
+.popup-content :is(.btn,.button,button,[type="submit"],[type="button"]){
+  background: #FE5757;
+  border-radius: 20px;
+  color: #ffffff;
+}
+
+.popup-content form{
+   display: flex;
+    gap: 23px;
+}
+.offer-form-right{
+  display: grid;
+  gap: 5px;
+}
+.popup h2{
+  text-align: center;
+  font-size: 26px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  line-height: 61px;
+}
+.popup h3{
+  font-size: 26px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1;
+}
+.popup h4{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+  color: #1C4130;
+}

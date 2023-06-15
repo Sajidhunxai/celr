@@ -1,35 +1,42 @@
 function openPopup(productId, vendorName) {
-  console.log("open");
-  var popupContainer = document.getElementById('popup-container');
-  var body = document.getElementById('single-product-main');
-  
+  const popupContainer = document.getElementById('popup-container');
+  const overlay = document.getElementById('overlay-offer');
+  const body = document.querySelector('.main-page-wrapper');
+
   popupContainer.classList.add('popup');
-  // body.classList.add('blur');
-    
+  body.classList.add('blur');
+
   popupContainer.style.display = 'block';
-  
-  var offerForm = document.getElementById('offer-form');
-  offerForm.addEventListener('submit', function(event) {
+  overlay.style.display = 'block';
+
+  const offerForm = document.getElementById('offer-form');
+  offerForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    var formData = new FormData(offerForm);
   
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'YOUR_EMAIL_HANDLING_SCRIPT_URL', true);
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          console.log('Form submitted successfully');
-        } else {
-          console.error('Form submission failed');
-        }
-        closePopup();
+    const formData = new FormData(offerForm);
+    formData.append('action', 'process_offer_form');
+    
+    try {
+      const response = await fetch(ajax_object.ajax_url, {
+        method: 'POST',
+        body: formData
+      });
+      
+      if (response.ok) {
+        alert('Form submitted successfully, Your Offer is Send to Site admin and Vendor');
+      } else {
+        alert('You have to Sign In to Send an Offer');
       }
-    };
-    xhr.send(formData);
+    } catch (error) {
+      alert('An error occurred while submitting the form:', error);
+    }
+  
+    closePopup();
   });
+  
 
   // Close the popup when the user clicks outside of it
-  window.addEventListener('mousedown', function(event) {
+  window.addEventListener('mousedown', (event) => {
     if (!popupContainer.contains(event.target)) {
       closePopup();
     }
@@ -37,13 +44,12 @@ function openPopup(productId, vendorName) {
 }
 
 function closePopup() {
-  console.log("close");
+  const popupContainer = document.getElementById('popup-container');
+  const body = document.getElementById('single-product-main');
+  const overlay = document.getElementById('overlay-offer');
 
-  var popupContainer = document.getElementById('popup-container');
-  var body = document.getElementById('single-product-main');
-  
   popupContainer.style.display = 'none';
-  
+  overlay.style.display = 'none';
   popupContainer.classList.remove('popup');
   body.classList.remove('blur');
 }

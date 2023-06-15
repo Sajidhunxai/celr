@@ -484,18 +484,4 @@ input[required]::before {
   color: #FFFFFF
 }
 
-.blur {
-  /* Add your background blur styles here */
-}
-.popup {
-  /* Add your pop-up styles here */
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  height: 200px;
-  background-color: #ffffff;
-  border: 1px solid #000000;
-  z-index: 9999;
-}
+
