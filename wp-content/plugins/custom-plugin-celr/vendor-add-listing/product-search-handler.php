@@ -122,39 +122,7 @@ function render_vendor_meta_box($post)
             <?php endforeach; ?>
         <?php else : ?>
             <div class="vendor-row">
-                <input type="text" name="vendor_name[]" value="<?php echo esc_attr($user_name); ?>" placeholder="Vendor Name" />
-                <input type="text" name="vendor_price[]" placeholder="Vendor Price" />
-                <select name="vendor_location[]">
-                    <option value="">Select Location</option>
-                    <?php foreach ($location_options as $option) : ?>
-                        <option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <select name="vendor_quantity[]">
-                    <option value="">Select Quantity</option>
-                    <?php foreach ($quantity_options as $option) : ?>
-                        <option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <select name="vendor_vintage[]">
-                    <option value="">Select Vintage</option>
-                    <?php foreach ($vintages_options as $option) : ?>
-                        <option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <select name="vendor_format[]">
-                    <option value="">Select Formats</option>
-                    <?php foreach ($formats_options as $option) : ?>
-                        <option value="<?php echo esc_attr($option); ?>"><?php echo esc_html($option); ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <input type="number" name="vendor_purchase[]" placeholder="Vendor Purchase Price" />
-                <select name="vendor_tags[]">
-                    <option value="">Select Tag</option>
-                    <?php foreach ($product_tag_names as $tag) : ?>
-                        <option value="<?php echo esc_attr($tag); ?>"><?php echo esc_html($tag); ?></option>
-                    <?php endforeach; ?>
-                </select>
+                
                 <button class="remove-vendor">Remove</button>
             </div>
         <?php endif; ?>
@@ -346,7 +314,7 @@ function vendor_form_shortcode($atts)
         $user_roles = $current_user->roles;
 
         // Check if the user has the 'vendor' or 'administrator' role
-        if (in_array('author', $user_roles) || in_array('administrator', $user_roles)) {
+        if (in_array('author', $user_roles) || in_array('administrator', $user_roles)|| in_array('seller', $user_roles)) {
 
             // User is logged in, show the form
 
@@ -397,7 +365,7 @@ function vendor_form_shortcode($atts)
                     </div>
 
                     <div class="column large">
-                        <h2>
+                        <h2 id="add-product-title">
                             <?php echo esc_html(strtoupper($post_title)); ?>
                         </h2>
                         <div id="vendor-repeater">
@@ -420,7 +388,6 @@ function vendor_form_shortcode($atts)
                        if($has_submitted_data) {
                            echo ' You have already submitted your price for this product. You cannot submit again.</div></div>';
                            echo '<div class="column">';
-                           echo display_market_lowerest_price($product_id);
                            echo '</div>';
                            ?>
                            
@@ -454,20 +421,25 @@ function vendor_form_shortcode($atts)
                                             <select name="vendor_vintage[]" class="custom-select">
                                                 <!-- Assign a class for custom select styling -->
                                                 <?php
+                                            
+                                            
                                                 $attribute_vintage = 'pa_vintage'; // Replace with your actual attribute slug
-                                                $terms_vintages = get_terms(
-                                                    array(
-                                                        'taxonomy' => $attribute_vintage,
-                                                        'hide_empty' => false,
-                                                    )
-                                                );
-                                                foreach ($terms_vintages as $term_vintage) {
-                                                    echo '
-                                                    <option value="' . esc_attr($term_vintage->name) . '">
-                                                    ' . esc_html($term_vintage->name) . '
-                                                    </option>
-                                                    ';
+                                            
+                                                $terms_vintages = $product_price->get_attribute($attribute_vintage);
+                                            
+                                                if (!empty($terms_vintages)) {
+                                                    $terms = explode(', ', $terms_vintages);
+                                            
+                                                    foreach ($terms as $term) {
+                                                        echo '
+                                                            <option value="' . esc_attr($term) . '">
+                                                                ' . esc_html($term) . '
+                                                            </option>
+                                                        ';
+                                                    }
                                                 }
+                                            
+                                            
                                                 ?>
                                             </select>
 
@@ -493,6 +465,7 @@ function vendor_form_shortcode($atts)
                                                     </option>
                                                     ';
                                                 }
+                                                
                                                 ?>
                                             </select>
 
@@ -505,19 +478,21 @@ function vendor_form_shortcode($atts)
                                                 <!-- Assign a class for custom select styling -->
                                                 <?php
                                                 $attribute_format = 'pa_format'; // Replace with your actual attribute slug
-                                                $terms_formats = get_terms(
-                                                    array(
-                                                        'taxonomy' => $attribute_format,
-                                                        'hide_empty' => false,
-                                                    )
-                                                );
-                                                foreach ($terms_formats as $term_format) {
-                                                    echo '
-                                                    <option value="' . esc_attr($term_format->name) . '">
-                                                    ' . esc_html($term_format->name) . '
-                                                    </option>
-                                                    ';
+                                              
+                                                $terms_format = $product_price->get_attribute($attribute_format);
+                                            
+                                                if (!empty($terms_format)) {
+                                                    $terms = explode(', ', $terms_format);
+                                            
+                                                    foreach ($terms as $term) {
+                                                        echo '
+                                                            <option value="' . esc_attr($term) . '">
+                                                                ' . esc_html($term) . '
+                                                            </option>
+                                                        ';
+                                                    }
                                                 }
+                                            
                                                 ?>
                                             </select>
 
@@ -567,48 +542,33 @@ function vendor_form_shortcode($atts)
                     </div>
 
                     <div class="column">
-                        <div class="market-price-box" style="display:flex; gap:10px;padding-top:40px;">
+                       
+                        <div id="price-variations" style="width: 89%;"></div>
 
-                            <table class="market price-box">
-                                <th>Market Price</th>
-                                <tr>
-                                    <td><?php echo wc_price($regular_price); ?></td>
-                                </tr>
-                            </table>
-                            <table class="lowest price-box">
+                        <script>
+                            (function($) {
+                                $(document).ready(function() {
 
-                                <th>Lowest Price</th>
-
-                                <tbody>
-                                    <tr>
-                                        <td> <?php
-                                                if (!empty($vendors)) {
-                                                    $lowest_price = null;
-
-                                                    foreach ($vendors as $vendor) {
-                                                        $price = $vendor['price'];
-
-                                                        if ($lowest_price === null || $price < $lowest_price) {
-                                                            $lowest_price = $price;
-                                                        }
-                                                    }
-
-                                                    if ($lowest_price !== null) {
-                                                        // Display the lowest price in your desired format or HTML structure
-                                                        echo '$ ' . $lowest_price;
-                                                    } else {
-                                                        echo wc_price($regular_price);
-                                                    }
-                                                } else {
-                                                    echo wc_price($regular_price);
-                                                }
-
-                                                ?></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
+                                    $.ajax({
+                                        url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                                        method: 'POST',
+                                        data: {
+                                            action: 'get_market_lowest_price_shortcode', // Custom AJAX action
+                                            product_id: <?php echo $product_price->get_id(); ?>, // Pass any necessary data
+                                        },
+                                        success: function(response) {
+                                            const  defaultHtml = response ; // Add the shortcode output to the HTML
+                                            $('#price-variations').html(defaultHtml); // Update the element with the modified HTML
+                                        },
+                                        error: function() {
+                                            // Handle any error that occurs during the AJAX request
+                                            console.log('Error occurred during AJAX request');
+                                        }
+                                    });
+                                
+                                });
+                            })(jQuery);
+                        </script>
                         <table>
 
                             <tr>
@@ -642,24 +602,100 @@ function vendor_form_shortcode($atts)
                     <?php echo $post_content; ?>
                     <?php
 
-                    // Check if the product object is valid
-                    if ($product_price) {
-                        // Get the product attributes
-                        $attributes = $product_price->get_attributes();
+if ($product_price) {
+    // Get the product variations
+    $variations = $product_price->get_available_variations();
+    
+    // Check if there are variations
+    if (!empty($variations)) {
+        // Extract the unique "pa_vintage" values
+        $vintages = array();
+        
+        foreach ($variations as $variation) {
+            $attributes = $variation['attributes'];
+            if (isset($attributes['attribute_pa_vintage'])) {
+                $vintages[] = $attributes['attribute_pa_vintage'];
+            }
+        }
+        
+        $vintages = array_unique($vintages);
+        
+        $buttonCount = count($vintages);
 
-                        // Check if there are attributes
-                        if (!empty($attributes)) {
-                            // Output the attributes as a list
-                            echo '<ul class="attributes-add-form">';
-                            foreach ($attributes as $attribute) {
-                                echo '<li class="attribute-add-form-item"> <b>' . str_replace('pa_', '', $attribute->get_name()) .
-                                    ': </b>' . esc_html(implode(', ', $attribute->get_options())) .
-
-                                    '</li>';
-                            }
-                            echo '</ul>';
-                        }
+        // Output the vintage buttons
+        echo '    <div class="vintage-filter-container">        <div id="vintage-buttons" class="' . ($buttonCount > 5 ? 'main-filter-form vintage-filter-form' : 'vintage-filter-form') . '">';
+        echo '<button class="vintage-button" onclick="updateAttributes(\'\')">All</button>';
+        
+        foreach ($vintages as $vintage) {
+            echo '<button class="vintage-button" onclick="updateAttributes(\'' . esc_attr($vintage) . '\')">' . esc_html($vintage) . '</button>';
+        }
+        
+        echo '</div></div>';
+        
+        // Output the default attributes and title
+        echo '<ul id="attributes-container" class="attributes-add-form">';
+        $defaultVariation = $variations[0];
+        $defaultAttributes = $defaultVariation['attributes'];
+        
+        foreach ($defaultAttributes as $attribute_name => $attribute_value) {
+            if (strpos($attribute_name, 'attribute_') === 0) {
+                echo '<li class="attribute-add-form-item"><b>' . str_replace('attribute_', '', $attribute_name) . ': </b>' . esc_html($attribute_value) . '</li>';
+            }
+        }
+        
+        echo '</ul>';
+        
+        // Output the JavaScript function to update attributes
+        echo '<script>
+            var originalTitle = document.getElementById("add-product-title").innerHTML;
+            var vintageNode = null;
+            
+            function updateAttributes(selectedVintage) {
+                var attributesContainer = document.getElementById("attributes-container");
+                var title = document.getElementById("add-product-title");
+        
+                // Clear previous attributes
+                attributesContainer.innerHTML = "";
+        
+                // Remove the previously added vintage text node if it exists
+                if (vintageNode) {
+                    title.removeChild(vintageNode);
+                    vintageNode = null;
+                }
+        
+                // Filter variations by selected vintage
+                var filteredVariations = ' . json_encode($variations) . '.filter(function(variation) {
+                    return variation.attributes.attribute_pa_vintage === selectedVintage;
+                });
+        
+                // Output the attributes for the selected vintage or all variations
+                if (filteredVariations.length > 0) {
+                    var variationAttributes = filteredVariations[0].attributes;
+        
+                    for (var attributeName in variationAttributes) {
+                        var attributeValue = variationAttributes[attributeName];
+                        var attributeNameWithoutPrefix = attributeName.replace("attribute_", "");
+        
+                        var listItem = document.createElement("li");
+                        listItem.className = "attribute-add-form-item";
+                        listItem.innerHTML = "<b>" + attributeNameWithoutPrefix + ": </b>" + attributeValue;
+        
+                        attributesContainer.appendChild(listItem);
                     }
+        
+                    // Update the title by appending the selected vintage to the original title
+                    if (selectedVintage) {
+                        vintageNode = document.createTextNode(" - " + selectedVintage);
+                        title.appendChild(vintageNode);
+                    }
+                }
+            }
+        </script>';
+    }
+}
+
+                    
+                    
                     ?>
 
                 </div>

@@ -53,3 +53,47 @@ function closePopup() {
   popupContainer.classList.remove('popup');
   body.classList.remove('blur');
 }
+
+jQuery(document).ready(function($) {
+  $('.vintage-link').on('click', function(e) {
+      e.preventDefault();
+
+      var vintage = $(this).data('vintage');
+      var product_id = $(this).data('product-id');
+
+      // AJAX request to filter variations based on vintage
+      $.ajax({
+          url: ajax_object.ajax_url,
+          type: 'POST',
+          data: {
+              action: 'filter_variations',
+              pa_vintage: vintage,
+              product_id: product_id,
+          },
+          success: function(response) {
+              // Handle the response
+              if (response.error) {
+                  console.log(response.error);
+              } else {
+                  // Loop through the variations and display the data
+                  $.each(response, function(index, variation) {
+                      var variationVintage = variation.vintage;
+                      var variationTitle = variation.title;
+                      var variationPrice = variation.price;
+                      var variationImage = variation.image;
+
+                      // Display the variation data
+                      console.log('Vintage: ' + variationVintage);
+                      console.log('Title: ' + variationTitle);
+                      console.log('Price: ' + variationPrice);
+                      console.log('Image: ' + variationImage);
+                  });
+              }
+          },
+          error: function(xhr, status, error) {
+              // Handle the error
+              console.log(error);
+          }
+      });
+  });
+});

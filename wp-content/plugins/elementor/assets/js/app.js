@@ -1,4 +1,4 @@
-/*! elementor - v3.13.3 - 28-05-2023 */
+/*! elementor - v3.14.0 - 18-06-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -442,7 +442,7 @@ var isPropValid = /* #__PURE__ */(0,_emotion_memoize__WEBPACK_IMPORTED_MODULE_0_
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ memoize)
 /* harmony export */ });
 function memoize(fn) {
   var cache = Object.create(null);
@@ -452,7 +452,7 @@ function memoize(fn) {
   };
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (memoize);
+
 
 
 /***/ }),
@@ -3794,6 +3794,9 @@ function Tooltip(props) {
 
         // Cleanup of existing tipsy element in case of re-render.
         var nodes = document.querySelectorAll('.tipsy');
+        if (!nodes.length) {
+          return;
+        }
         nodes[nodes.length - 1].remove();
       }
     };
@@ -7618,7 +7621,9 @@ function usePlugins() {
         method: method,
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
-          'X-WP-Nonce': wpApiSettings.nonce
+          'X-WP-Nonce': wpApiSettings.nonce,
+          // TODO 18/04/2023 : This needs to be removed after https://elementor.atlassian.net/browse/HTS-434 is done.
+          'X-Elementor-Action': 'import-plugins'
         }
       };
       if (body) {
@@ -16126,8 +16131,8 @@ try {
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
 /******/ 			if (chunkId === "vendors-node_modules_react-query_devtools_index_js") return "62aed6374b1561fb5fd8.bundle.js";
-/******/ 			if (chunkId === "kit-library") return "" + chunkId + ".18b65108d23ab1dafb8a.bundle.js";
-/******/ 			if (chunkId === "onboarding") return "" + chunkId + ".11552dda33809c4e4b47.bundle.js";
+/******/ 			if (chunkId === "kit-library") return "" + chunkId + ".3dff2fd14c0324c37675.bundle.js";
+/******/ 			if (chunkId === "onboarding") return "" + chunkId + ".2da315965610a6ac2448.bundle.js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

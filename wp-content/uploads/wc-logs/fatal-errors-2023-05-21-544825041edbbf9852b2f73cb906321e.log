@@ -1,4 +1,0 @@
-2023-05-21T12:32:47+00:00 CRITICAL Cannot redeclare vendor_form_shortcode() (previously declared in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php:239) in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 431
-
-2023-05-21T12:32:49+00:00 CRITICAL Cannot redeclare vendor_form_shortcode() (previously declared in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php:239) in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 431
-

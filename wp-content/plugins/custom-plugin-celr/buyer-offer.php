@@ -1,7 +1,7 @@
 <?php
 
 // Render the popup content
-function custom_popup_render_popup_content($vendor_info, $vendor_transfer_fee,)
+function custom_popup_render_popup_content($vendor_info, $vendor_transfer_fee)
 {
     // Access the values from the $vendor_info array
     $vendor_name = $vendor_info['vendor_name'];

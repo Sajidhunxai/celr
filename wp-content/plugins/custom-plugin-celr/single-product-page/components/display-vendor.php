@@ -1,4 +1,11 @@
 <?php
+function calculatePrice($warehouse_options, $warehouse_location, $vendor, $warehouse_fee) {
+    if ($warehouse_options[$warehouse_location] === $vendor['location']) {
+        return 0;
+    } else {
+       return $warehouse_fee;
+    }
+}
 function display_vendor_data($product_id)
 {
     // Retrieve the vendor data for the product
@@ -6,8 +13,6 @@ function display_vendor_data($product_id)
     $warehouse_fees = get_option('custom_warehouses', array());
 
     // Check if the plugin file is loaded
-
-
 
 
     echo '<div class="single-product-main" id="single-product-main">';
@@ -115,7 +120,8 @@ function display_vendor_data($product_id)
 
 
             if ($vendor) {
-                echo '<div class="offer-container">';
+                
+                echo '<div class="offer-container" id="filtereds">';
                 // echo '<h3>Vendor Data</h3>';
                 // echo '<p>Vendor Name: ' . $vendor['name'] . '</p>';
                 echo '<div class="offer-left">';
@@ -171,7 +177,9 @@ function display_vendor_data($product_id)
                     });
                 </script>';
                 // echo '<button class="add-to-cart" data-product-id="' . $product_id . '" data-quantity="1" data-price="' . ($vendor['price'] + $warehouse_fee) . '" data-vendor-name="' . $vendor['name'] . '">Make offer</button>';
-                echo '<button class="add-to-cart"  data-product-id="' . $product_id . '" data-quantity="1" data-price="' . ($vendor['price'] + $warehouse_fee) . '" data-vendor-name="' . $vendor['name'] . '">Add to Cart</button>';
+                // echo '<button class="add-to-cart"  data-product-id="' . $product_id . '" data-quantity="1" data-price="' . ($vendor['price'] + $warehouse_fee) . '" data-vendor-name="' . $vendor['name']. '">Add to Cart</button>';
+                echo '<button class="add-to-cart" data-product-id="' . $product_id . '" data-variation-id="' . $vendor['variation_id'] . '" data-quantity="1" data-price="' . ($vendor['price'] + calculatePrice($warehouse_options, $warehouse_location, $vendor, $warehouse_fee)) . '" data-vendor-price="' . $vendor['price'] . '" data-warehouse-fee="' . calculatePrice($warehouse_options, $warehouse_location, $vendor, $warehouse_fee) . '"  data-product-format=" '. $vendor['format'].' " data-warehouse-location=" '. $vendor['location'].' " data-vendor-name="' . $vendor['name'] . '">Add to Cart</button>';
+
                 echo '<select id="quantity" class="quantity">';
                 for ($j = 1; $j <= $vendor['quantity']; $j++) {
                     echo '<option value="' . $j . '">' . $j . ' case</option>';
@@ -197,8 +205,57 @@ function display_vendor_data($product_id)
         echo '<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>';
         echo '<script>
         $(document).ready(function() {
-            var warehouseFee = 20;
-        
+            var loadingHtml = \'<div class="loading-indicator" style=" background-color: transparent;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; display: block;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><g>\';
+            loadingHtml += \'<image xlink:href="'. plugin_dir_url(__FILE__) .'../../assets/images/loading.svg" ></image>\';
+            loadingHtml += \'</g>/svg></div>\';
+
+            // function addToCart(data) {
+            //     var totalPrice = data.price * data.quantity;
+            //     var transferFee = ' . json_encode($warehouse_options[$warehouse_location] === $vendor['location']) . ' ? 0 : data.warehouseFee;
+            
+            //     var cartUrl = "?add-to-cart=" + data.productId + "&quantity=" + data.quantity + "&price=" + totalPrice + "&vendor_name=" + data.vendorName + "&warehouse_fee=" + transferFee;
+            
+            //     window.location.href = cartUrl;
+            // }
+            
+            // Usage:
+           
+            $(".add-to-cart").click(function(e) {
+                e.preventDefault();
+
+                $(\'#filtereds\').html(loadingHtml);
+
+                var productId = $(this).data("product-id");
+                var variationId = $(this).data("variation-id");
+                var quantity = $(this).data("quantity");
+                var price = $(this).data("price");
+                var vendor_name = $(this).data("vendor-name");
+                var warehouse_fee = $(this).data("warehouse-fee");
+                var vendor_price = $(this).data("vendor-price");
+                var product_format = $(this).data("product-format");
+                var warehouse_location = $(this).data("warehouse-location");
+
+                var data = {
+                    action: "add_to_cart",
+                    product_id: productId,
+                    variation_id: variationId,
+                    quantity: quantity,
+                    price: price,
+                    vendor_name: vendor_name,
+                    warehouse_fee: warehouse_fee,
+                    vendor_price: vendor_price,
+                    product_format: product_format,
+                    warehouse_location: warehouse_location
+                };
+
+                // console.log(data.warehouse_location);
+                
+                // console.log(data.price)
+                $.post("' . admin_url('admin-ajax.php') . '", data, function(response) {
+                    window.location.href = "' . wc_get_cart_url() . '";
+                });
+            });
+                    
             $(".quantity").change(function() {
                 var quantity = parseInt($(this).val());
                 var price = parseFloat($(this).parent().siblings().find(".offer-price").text());
@@ -218,25 +275,7 @@ function display_vendor_data($product_id)
             });
            
 
-            $(".add-to-cart").click(function() {
-                var productId = $(this).data("product-id");
-                var quantity = parseInt($(this).data("quantity")); // Get the updated quantity
-                var price = parseFloat($(this).data("price"));
-                var vendorName = $(this).data("vendor-name");
-            
-                var totalPrice;
-                if (' . json_encode($warehouse_options[$warehouse_location] === $vendor['location']) . ') {
-                    totalPrice = ' . $vendor['price'] . ' * quantity;
-                } else {
-                    totalPrice = (' . $vendor['price'] . ' + ' . $warehouse_fee . ') * quantity;
-                }
-            
-                var cartUrl = "?add-to-cart=" + productId + "&quantity=" + quantity + "&price=" + totalPrice + "&vendor_name=" + vendorName;
-            
-                window.location.href = cartUrl;
-            });
-            
-            
+          
         
             $(".location-filter, .format-filter, #sort_by").change(function() {
                 $("#vendor-filter-form").submit();
@@ -278,4 +317,32 @@ function shortcode_vendor_data()
 }
 add_shortcode('vendor_data', 'shortcode_vendor_data');
 
+add_action('wp_ajax_add_to_cart', 'ajax_add_to_cart');
+add_action('wp_ajax_nopriv_add_to_cart', 'ajax_add_to_cart');
+function ajax_add_to_cart() {
+    if (isset($_POST['product_id']) && isset($_POST['variation_id']) && isset($_POST['quantity']) && isset($_POST['price']) && isset($_POST['vendor_price']) &&  isset($_POST['product_format'])) {
+        $product_id = sanitize_text_field($_POST['product_id']);
+        $variation_id = intval($_POST['variation_id']);
+        $quantity = intval($_POST['quantity']);
+        $price = floatval($_POST['price']);
+        $vendor_name = sanitize_text_field($_POST['vendor_name']);
+        $warehouse_fee = sanitize_text_field($_POST['warehouse_fee']);
+        $vendor_price = sanitize_text_field($_POST['vendor_price']);
+        $product_format = sanitize_text_field($_POST['product_format']);
+        $warehouse_location = sanitize_text_field($_POST['warehouse_location']);
+
+        $cart_item_data = array(
+            'price' => $price,
+            'vendor_name' => $vendor_name,
+            'warehouse_fee' => $warehouse_fee,
+            'vendor_price' => $vendor_price,
+            'product_format'=> $product_format,
+            'warehouse_location'=> $warehouse_location
+        );
+
+        WC()->cart->add_to_cart($product_id, $quantity, $variation_id, array(), $cart_item_data);
+
+        die();
+    }
+}
 ?>

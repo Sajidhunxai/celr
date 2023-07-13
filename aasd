@@ -1,0 +1,126 @@
+[33mcommit 97a465eca64cc2b95c56dc8998a9b32533d853ec[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Mon Jun 19 22:21:42 2023 +0500
+
+    major updates
+
+[33mcommit 19dcf493472404232fa1bcea0c568fa2050833fa[m[33m ([m[1;31morigin/main[m[33m)[m
+Merge: 5aa4c652 7b7d60f0
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Thu Jun 15 20:31:12 2023 +0500
+
+    Merge branch 'main' of https://github.com/Sajidhunxai/celr
+
+[33mcommit 5aa4c652a5bb37825bb3cd3eff09fd005688c9ce[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Thu Jun 15 20:30:44 2023 +0500
+
+    fixed make order and add it to admin page
+
+[33mcommit 7b7d60f0c2830b034abeb25211a55e2b27175a04[m
+Author: sajid hunxai <89635016+Sajidhunxai@users.noreply.github.com>
+Date:   Fri Jun 9 21:18:49 2023 +0500
+
+    Delete wp-config.php
+
+[33mcommit cbe071714738c17918f85fe92e144a16d2b2f89c[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Fri Jun 9 21:17:09 2023 +0500
+
+    git igonore
+
+[33mcommit 3afb032ab4efd94c8dba53a252b98df69670de2e[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Fri Jun 9 21:09:03 2023 +0500
+
+    small update
+
+[33mcommit 1950d2457a2ba466eb7b083f8702de029f1356f5[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Fri Jun 9 20:27:15 2023 +0500
+
+    update
+
+[33mcommit 73203c70e889936a46bf22785af50259e882d67d[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Wed May 31 22:38:43 2023 +0500
+
+    update single page and add buyer account page
+
+[33mcommit 725ee2ff43685e2a1ede4d5eb627e34b6bd743ec[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Thu May 25 15:56:40 2023 +0500
+
+    updated db
+
+[33mcommit 710c0f6b8705b57343cec8f8285a0d483eb692ef[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Thu May 25 15:55:18 2023 +0500
+
+    update
+
+[33mcommit fefb50ebad6d5ed6f53df8cf201e729e35c71d68[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Thu May 25 14:10:43 2023 +0500
+
+    single product
+
+[33mcommit edcd20eed66284ad0b8b11b526a21ad3944a7426[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Wed May 24 18:35:45 2023 +0500
+
+    updates
+
+[33mcommit 8e8122f2be1851de52cadb37a9bd200d959d084f[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Wed May 24 17:08:32 2023 +0500
+
+    tip
+
+[33mcommit 933b22172e626b6f2e99ddc3ad6f715fec79901f[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Wed May 24 02:39:23 2023 +0500
+
+    form updated
+
+[33mcommit c3ed335d681189e6e98427b0be58d95bfe02ded5[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Tue May 23 14:13:13 2023 +0500
+
+    db
+
+[33mcommit c79631e60eb8d3a63f01d464ff4630aefcd45910[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Mon May 22 22:05:36 2023 +0500
+
+    update form
+
+[33mcommit 9a6b2fcf173e87133d3b8c9c048b99cf47570bfd[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Sat May 20 15:18:41 2023 +0500
+
+    form update
+
+[33mcommit 38bdcf7d9d20df1541659a5ac562ad79cdce239c[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Fri May 19 13:06:56 2023 +0500
+
+    updates db
+
+[33mcommit 48e8eaec781eb3442999dba4cdac13410571c301[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Fri May 19 13:04:32 2023 +0500
+
+    updates
+
+[33mcommit ca97666ab0356f5e65600933de6c969d923cf894[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Thu May 18 22:12:07 2023 +0500
+
+    basic db
+
+[33mcommit 1a46471b5d625d52129edc75b9dce2eb772a4780[m
+Author: sajid wali <sajidhunxaimaze@gmail.com>
+Date:   Thu May 18 21:52:12 2023 +0500
+
+    project created

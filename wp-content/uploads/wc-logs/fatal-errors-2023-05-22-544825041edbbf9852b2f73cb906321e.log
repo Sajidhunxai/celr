@@ -1,8 +1,0 @@
-2023-05-22T10:31:19+00:00 CRITICAL syntax error, unexpected token "/" in C:\wamp64\www\celr\wp-content\themes\woodmart\woodmart\functions.php on line 356
-
-2023-05-22T19:11:23+00:00 CRITICAL Maximum execution time of 120 seconds exceeded in C:\wamp64\www\celr\wp-admin\includes\misc.php on line 1644
-
-2023-05-22T19:12:43+00:00 CRITICAL Maximum execution time of 120 seconds exceeded in C:\wamp64\www\celr\wp-content\plugins\elementor\includes\controls\url.php on line 6
-
-2023-05-22T19:12:48+00:00 CRITICAL Maximum execution time of 120 seconds exceeded in C:\wamp64\www\celr\wp-content\plugins\elementor\includes\widgets\image-carousel.php on line 4
-

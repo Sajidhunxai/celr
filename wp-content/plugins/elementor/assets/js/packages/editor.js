@@ -1,7 +1,112 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
-/******/ 	var __webpack_require__ = {};
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ (function(module) {
+
+module.exports = window["React"];
+
+/***/ }),
+
+/***/ "react-dom":
+/*!***************************!*\
+  !*** external "ReactDOM" ***!
+  \***************************/
+/***/ (function(module) {
+
+module.exports = window["ReactDOM"];
+
+/***/ }),
+
+/***/ "@elementor/editor-documents":
+/*!********************************************************************!*\
+  !*** external ["__UNSTABLE__elementorPackages","editorDocuments"] ***!
+  \********************************************************************/
+/***/ (function(module) {
+
+module.exports = window["__UNSTABLE__elementorPackages"]["editorDocuments"];
+
+/***/ }),
+
+/***/ "@elementor/editor-v1-adapters":
+/*!*********************************************************************!*\
+  !*** external ["__UNSTABLE__elementorPackages","editorV1Adapters"] ***!
+  \*********************************************************************/
+/***/ (function(module) {
+
+module.exports = window["__UNSTABLE__elementorPackages"]["editorV1Adapters"];
+
+/***/ }),
+
+/***/ "@elementor/locations":
+/*!**************************************************************!*\
+  !*** external ["__UNSTABLE__elementorPackages","locations"] ***!
+  \**************************************************************/
+/***/ (function(module) {
+
+module.exports = window["__UNSTABLE__elementorPackages"]["locations"];
+
+/***/ }),
+
+/***/ "@elementor/store":
+/*!**********************************************************!*\
+  !*** external ["__UNSTABLE__elementorPackages","store"] ***!
+  \**********************************************************/
+/***/ (function(module) {
+
+module.exports = window["__UNSTABLE__elementorPackages"]["store"];
+
+/***/ }),
+
+/***/ "@elementor/ui":
+/*!*******************************************************!*\
+  !*** external ["__UNSTABLE__elementorPackages","ui"] ***!
+  \*******************************************************/
+/***/ (function(module) {
+
+module.exports = window["__UNSTABLE__elementorPackages"]["ui"];
+
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["i18n"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
@@ -34,122 +139,132 @@
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+!function() {
+/*!*******************************************************!*\
+  !*** ./node_modules/@elementor/editor/dist/index.mjs ***!
+  \*******************************************************/
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "init": function() { return /* binding */ init; },
+/* harmony export */   "injectIntoTop": function() { return /* binding */ injectIntoTop; }
+/* harmony export */ });
+/* harmony import */ var _elementor_locations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @elementor/locations */ "@elementor/locations");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "react-dom");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _elementor_editor_documents__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @elementor/editor-documents */ "@elementor/editor-documents");
+/* harmony import */ var _elementor_ui__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+/* harmony import */ var _elementor_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @elementor/store */ "@elementor/store");
+/* harmony import */ var _elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @elementor/editor-v1-adapters */ "@elementor/editor-v1-adapters");
+// src/locations.ts
 
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "init": function() { return /* reexport */ init; },
-  "injectIntoTop": function() { return /* reexport */ injectIntoTop; },
-  "useSettings": function() { return /* reexport */ useSettings; }
-});
+var {
+  Slot: TopSlot,
+  inject: injectIntoTop
+} = (0,_elementor_locations__WEBPACK_IMPORTED_MODULE_0__.createLocation)();
 
-;// CONCATENATED MODULE: external "__UNSTABLE__elementorPackages.locations"
-var external_UNSTABLE_elementorPackages_locations_namespaceObject = __UNSTABLE__elementorPackages.locations;
-;// CONCATENATED MODULE: ./packages/editor/src/locations.ts
-
-const LOCATION_TOP = 'editor/top';
-const injectIntoTop = (0,external_UNSTABLE_elementorPackages_locations_namespaceObject.createInjectorFor)(LOCATION_TOP);
-;// CONCATENATED MODULE: external "ReactDOM"
-var external_ReactDOM_namespaceObject = ReactDOM;
-;// CONCATENATED MODULE: external "wp.i18n"
-var external_wp_i18n_namespaceObject = wp.i18n;
-;// CONCATENATED MODULE: external "React"
-var external_React_namespaceObject = React;
-;// CONCATENATED MODULE: ./packages/editor/src/components/shell.tsx
-
+// src/init.tsx
 
 
-function Shell() {
-  return /*#__PURE__*/external_React_namespaceObject.createElement(external_UNSTABLE_elementorPackages_locations_namespaceObject.Slot, {
-    location: LOCATION_TOP
-  });
-}
-;// CONCATENATED MODULE: external "__UNSTABLE__elementorPackages.ui"
-var external_UNSTABLE_elementorPackages_ui_namespaceObject = __UNSTABLE__elementorPackages.ui;
-;// CONCATENATED MODULE: external "__UNSTABLE__elementorPackages.store"
-var external_UNSTABLE_elementorPackages_store_namespaceObject = __UNSTABLE__elementorPackages.store;
-;// CONCATENATED MODULE: external "__UNSTABLE__elementorPackages.v1Adapters"
-var external_UNSTABLE_elementorPackages_v1Adapters_namespaceObject = __UNSTABLE__elementorPackages.v1Adapters;
-;// CONCATENATED MODULE: ./packages/editor/src/contexts/settings-context.tsx
 
-const SettingsContext = /*#__PURE__*/(0,external_React_namespaceObject.createContext)(null);
-function SettingsProvider({
-  children,
-  settings
-}) {
-  return /*#__PURE__*/React.createElement(SettingsContext.Provider, {
-    value: {
-      ...settings
+
+// src/components/shell.tsx
+
+
+// src/hooks/use-sync-document-title.ts
+
+
+
+function useSyncDocumentTitle() {
+  const activeDocument = (0,_elementor_editor_documents__WEBPACK_IMPORTED_MODULE_4__.useActiveDocument)();
+  const hostDocument = (0,_elementor_editor_documents__WEBPACK_IMPORTED_MODULE_4__.useHostDocument)();
+  const document = activeDocument && activeDocument.type.value !== "kit" ? activeDocument : hostDocument;
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    if (document?.title === void 0) {
+      return;
     }
-  }, children);
+    const title = (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Edit "%s" with Elementor', "elementor").replace("%s", document.title);
+    window.document.title = title;
+  }, [document?.title]);
 }
-function useSettings() {
-  const context = (0,external_React_namespaceObject.useContext)(SettingsContext);
-  if (!context) {
-    throw new Error('The `useSettings()` hook must be used within an `<SettingsProvider />`');
-  }
-  return context;
+
+// src/hooks/use-sync-document-query-params.ts
+
+
+function useSyncDocumentQueryParams() {
+  const hostDocument = (0,_elementor_editor_documents__WEBPACK_IMPORTED_MODULE_4__.useHostDocument)();
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    if (!hostDocument?.id) {
+      return;
+    }
+    const url = new URL(window.location.href);
+    url.searchParams.set("post", hostDocument.id.toString());
+    url.searchParams.delete("active-document");
+    history.replaceState({}, "", url);
+  }, [hostDocument?.id]);
 }
-;// CONCATENATED MODULE: ./packages/editor/src/sync/use-color-scheme.ts
+
+// src/components/shell.tsx
+function Shell() {
+  useSyncDocumentTitle();
+  useSyncDocumentQueryParams();
+  return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(TopSlot, null);
+}
+
+// src/init.tsx
+
+
+
+
+// src/components/theme-provider.tsx
+
+
+
+// src/sync/use-color-scheme.ts
 
 
 function useColorScheme() {
-  const [colorScheme, setColorScheme] = (0,external_React_namespaceObject.useState)(() => getV1ColorScheme());
-  (0,external_React_namespaceObject.useEffect)(() => {
-    return (0,external_UNSTABLE_elementorPackages_v1Adapters_namespaceObject.listenTo)((0,external_UNSTABLE_elementorPackages_v1Adapters_namespaceObject.v1ReadyEvent)(), () => setColorScheme(getV1ColorScheme()));
+  const [colorScheme, setColorScheme] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(() => getV1ColorScheme());
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_7__.listenTo)(
+      (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_7__.v1ReadyEvent)(),
+      () => setColorScheme(getV1ColorScheme())
+    );
   }, []);
-  (0,external_React_namespaceObject.useEffect)(() => {
-    return (0,external_UNSTABLE_elementorPackages_v1Adapters_namespaceObject.listenTo)((0,external_UNSTABLE_elementorPackages_v1Adapters_namespaceObject.commandEndEvent)('document/elements/settings'), e => {
-      const event = e;
-
-      // The User-Preferences settings object has a key named `ui_theme` that controls the color scheme.
-      const isColorScheme = event.args?.settings && 'ui_theme' in event.args.settings;
-      if (isColorScheme) {
-        setColorScheme(getV1ColorScheme());
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_7__.listenTo)(
+      (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_7__.commandEndEvent)("document/elements/settings"),
+      (e) => {
+        const event = e;
+        const isColorScheme = event.args?.settings && "ui_theme" in event.args.settings;
+        if (isColorScheme) {
+          setColorScheme(getV1ColorScheme());
+        }
       }
-    });
+    );
   }, []);
   return colorScheme;
 }
 function getV1ColorScheme() {
-  return window.elementor?.getPreferences?.('ui_theme') || 'auto';
+  return window.elementor?.getPreferences?.("ui_theme") || "auto";
 }
-;// CONCATENATED MODULE: ./packages/editor/src/components/theme-provider.tsx
 
-
-function ThemeProvider({
-  children
-}) {
+// src/components/theme-provider.tsx
+function ThemeProvider({ children }) {
   const colorScheme = useColorScheme();
-  return /*#__PURE__*/React.createElement(external_UNSTABLE_elementorPackages_ui_namespaceObject.ThemeProvider, {
-    colorScheme: colorScheme
-  }, children);
+  return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_5__.ThemeProvider, { colorScheme }, children);
 }
-;// CONCATENATED MODULE: ./packages/editor/src/init.tsx
 
-
-
-
-
-
-
-
-function init(domElement, settings) {
-  const store = (0,external_UNSTABLE_elementorPackages_store_namespaceObject.createStore)();
-  (0,external_UNSTABLE_elementorPackages_v1Adapters_namespaceObject.dispatchReadyEvent)();
-  external_ReactDOM_namespaceObject.render( /*#__PURE__*/React.createElement(SettingsProvider, {
-    settings: settings
-  }, /*#__PURE__*/React.createElement(external_UNSTABLE_elementorPackages_store_namespaceObject.StoreProvider, {
-    store: store
-  }, /*#__PURE__*/React.createElement(external_UNSTABLE_elementorPackages_ui_namespaceObject.DirectionProvider, {
-    rtl: (0,external_wp_i18n_namespaceObject.isRTL)()
-  }, /*#__PURE__*/React.createElement(ThemeProvider, null, /*#__PURE__*/React.createElement(Shell, null))))), domElement);
+// src/init.tsx
+function init(domElement) {
+  const store = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_6__.createStore)();
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_7__.dispatchReadyEvent)();
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render(/* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_store__WEBPACK_IMPORTED_MODULE_6__.StoreProvider, { store }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_5__.DirectionProvider, { rtl: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.isRTL)() }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(ThemeProvider, null, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(Shell, null)))), domElement);
 }
-;// CONCATENATED MODULE: ./packages/editor/src/index.ts
 
-
-
+//# sourceMappingURL=index.mjs.map
+}();
 (window.__UNSTABLE__elementorPackages = window.__UNSTABLE__elementorPackages || {}).editor = __webpack_exports__;
 /******/ })()
 ;

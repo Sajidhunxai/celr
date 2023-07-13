@@ -1,4 +1,4 @@
-/*! elementor - v3.13.3 - 28-05-2023 */
+/*! elementor - v3.14.0 - 18-06-2023 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["preloaded-modules"],{
 
 /***/ "../assets/dev/js/frontend/handlers/accordion.js":
@@ -742,6 +742,7 @@ var _video = _interopRequireDefault(__webpack_require__(/*! ./handlers/video */ 
 var _imageCarousel = _interopRequireDefault(__webpack_require__(/*! ./handlers/image-carousel */ "../assets/dev/js/frontend/handlers/image-carousel.js"));
 var _textEditor = _interopRequireDefault(__webpack_require__(/*! ./handlers/text-editor */ "../assets/dev/js/frontend/handlers/text-editor.js"));
 var _nestedTabs = _interopRequireDefault(__webpack_require__(/*! elementor/modules/nested-tabs/assets/js/frontend/handlers/nested-tabs */ "../modules/nested-tabs/assets/js/frontend/handlers/nested-tabs.js"));
+var _nestedAccordion = _interopRequireDefault(__webpack_require__(/*! elementor/modules/nested-accordion/assets/js/frontend/handlers/nested-accordion */ "../modules/nested-accordion/assets/js/frontend/handlers/nested-accordion.js"));
 var _lightbox = _interopRequireDefault(__webpack_require__(/*! elementor-frontend/utils/lightbox/lightbox */ "../assets/dev/js/frontend/utils/lightbox/lightbox.js"));
 elementorFrontend.elements.$window.on('elementor/frontend/init', () => {
   elementorFrontend.elementsHandler.elementsHandlers = {
@@ -751,6 +752,7 @@ elementorFrontend.elements.$window.on('elementor/frontend/init', () => {
     'progress.default': _progress.default,
     'tabs.default': _tabs.default,
     'nested-tabs.default': _nestedTabs.default,
+    'nested-accordion.default': _nestedAccordion.default,
     'toggle.default': _toggle.default,
     'video.default': _video.default,
     'image-carousel.default': _imageCarousel.default,
@@ -1238,7 +1240,7 @@ module.exports = elementorModules.ViewModule.extend({
   },
   setHTMLContent(html) {
     if (window.elementorCommon) {
-      elementorDevTools.deprecation.deprecated('elementorFrontend.utils.lightbox.setHTMLContent', '3.1.4');
+      elementorDevTools.deprecation.deprecated('elementorFrontend.utils.lightbox.setHTMLContent()', '3.1.4');
     }
     this.getModal().setMessage(html);
   },

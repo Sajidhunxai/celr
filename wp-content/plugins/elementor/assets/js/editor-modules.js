@@ -1,4 +1,4 @@
-/*! elementor - v3.13.3 - 28-05-2023 */
+/*! elementor - v3.14.0 - 18-06-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -478,12 +478,22 @@ var Container = /*#__PURE__*/function (_ArgsObject) {
       }
       return result;
     }
+
+    /**
+     * @param {Function} callback - A callback function.
+     * @deprecated since 3.5.0, use `container.children.findRecursive( callback )` instead.
+     */
   }, {
     key: "findChildrenRecursive",
     value: function findChildrenRecursive(callback) {
       elementorDevTools.deprecation.deprecated('container.findChildrenRecursive( callback )', '3.5.0', 'container.children.findRecursive( callback )');
       return this.children.findRecursive(callback);
     }
+
+    /**
+     * @param {Function} callback - A callback function.
+     * @deprecated since 3.5.0, use `container.children.forEachRecursive( callback )` instead.
+     */
   }, {
     key: "forEachChildrenRecursive",
     value: function forEachChildrenRecursive(callback) {
