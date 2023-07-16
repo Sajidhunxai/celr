@@ -205,8 +205,24 @@ require_once('single-product-page/components/display-market-price.php');
 require_once('single-product-page/components/display-vendor.php');
 require_once('single-product-page/components/vintage-filter.php');
 require_once('single-product-page/required-functions.php');
-require_once('vendor-add-listing/product-search-handler.php');
+// adding search vendor list item
+require_once('vendor-add-listing/vendor-meta-box.php');
+require_once('vendor-add-listing/backend-display-vendor-data.php');
+require_once('vendor-add-listing/backend-remove-vendor-data.php');
+require_once('vendor-add-listing/backend-save-vendor-data.php');
+require_once('vendor-add-listing/frontend-vendor-listing-form.php');
+require_once('vendor-add-listing/frontend-product-search.php');
+require_once('vendor-add-listing/frontend-vendor-save-data.php');
+
+// dashboard files
 require_once('dashboard/current-user-listing.php');
+require_once('dashboard/current-user-sales.php');
+require_once('dashboard/current-user-total-sales.php');
+require_once('dashboard/current-user-listing-quantity.php');
+require_once('dashboard/current-user-listing-returns.php');
+require_once('dashboard/current-user-listing-sold-quantity.php');
+require_once('dashboard/current-user-statistics.php');
+
 
 function enqueue_product_search_scripts() {
     wp_enqueue_script(

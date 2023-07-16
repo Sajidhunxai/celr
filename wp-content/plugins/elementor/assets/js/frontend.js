@@ -1,4 +1,4 @@
-/*! elementor - v3.14.0 - 18-06-2023 */
+/*! elementor - v3.14.0 - 26-06-2023 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend"],{
 
 /***/ "../assets/dev/js/frontend/documents-manager.js":
@@ -991,7 +991,7 @@ class BackgroundVideo extends elementorModules.frontend.handlers.Base {
         });
       }
     }
-    elementorFrontend.elements.$window.on('resize', this.changeVideoSize);
+    elementorFrontend.elements.$window.on('resize elementor/bg-video/recalc', this.changeVideoSize);
   }
   deactivate() {
     if ('youtube' === this.videoType && this.player.getIframe() || 'vimeo' === this.videoType) {

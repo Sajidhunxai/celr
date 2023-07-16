@@ -205,14 +205,14 @@ $('#filtered-variations').html(loadingHtml);
                                         $('#filtered-variations').html(defaultHtml);
                                     } else {
                                         // Loop through the variations and display them
-                                        $.each(response, function(index, variation) {
+                                        $.each(response.slice(0, 1), function(index, variation) {
                                             var variationHtml = '<div class="product-container">  <div class="product-image">';
                                             variationHtml += '<img src="' + variation.image + '" alt="' + variation.title + '" /> </div>';
                                             variationHtml += '<div class="product-title">';
                                             variationHtml += '<h1>' + variation.title + '</h1>';
                                             variationHtml += variation.prices;
 
-                                            variationHtml += '<ul class="attributes-add-form"><li class="attribute-add-form-item"><b>Color:</b> <b>' + variation.color + '</b></li><li class="attribute-add-form-item"><b>Region:</b> <b>' + variation.region + '</b></li><li class="attribute-add-form-item"><b>Drinking_windows:</b> <b>' + variation.drinking + '</b></li></ul>';
+                                            variationHtml += '<ul class="attributes-add-form"><li class="attribute-add-form-item"><b>Color:</b> <b>' + variation.color + '</b></li><li class="attribute-add-form-item"><b>Region:</b> <b>' + variation.region + '</b></li><li class="attribute-add-form-item"><b>Drinking windows:</b> <b>' + variation.drinking + '</b></li></ul>';
 
                                             variationHtml += '<div class="elementor-element elementor-element-84aa3b3 elementor-widget__width-initial elementor-widget elementor-widget-wd_button" data-id="84aa3b3" data-element_type="widget" data-widget_type="wd_button.default"><div class="elementor-widget-container"><div class="wd-button-wrapper text-left"><a class="btn btn-style-default btn-style-semi-round btn-size-default btn-color-primary btn-full-width btn-icon-pos-right" href="<?php echo  do_shortcode('[add_vendor_price_button]'); ?>"><span class="wd-btn-text" data-elementor-setting-key="text">SELL THIS WINE</span></a></div></div></div></div></div>';
 

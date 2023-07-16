@@ -97,3 +97,33 @@ jQuery(document).ready(function($) {
       });
   });
 });
+// dashboard
+document.addEventListener("DOMContentLoaded", function() {
+  var buttons = document.getElementsByClassName("show-details-button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function() {
+      var overlayId = this.getAttribute("data-overlay-id");
+      var overlay = document.getElementById(overlayId);
+      if (overlay) {
+        overlay.style.display = "block";
+      }
+    });
+  }
+
+  var overlays = document.getElementsByClassName("close-button");
+
+  for (var j = 0; j < overlays.length; j++) {
+    overlays[j].addEventListener("click", function() {
+      var overlay = this.closest(".remaining-details-overlay");
+      if (overlay) {
+        overlay.style.display = "none";
+      }
+    });
+  }
+});
+var elements = document.getElementsByClassName("wc-item-meta");
+for (var i = 0; i < elements.length; i++) {
+    elements[i].style.display = "none";
+}
+

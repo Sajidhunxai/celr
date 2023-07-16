@@ -1,0 +1,35 @@
+2023-07-13T20:44:15+00:00 CRITICAL Uncaught Error: Call to a member function set_price() on null in C:\wamp64\www\celr\wp-content\plugins\custom-plugin-celr\single-product-page\required-functions.php:162
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(310): adjust_cart_item_price(Array, 16783)
+#1 C:\wamp64\www\celr\wp-includes\plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1143): apply_filters('woocommerce_add...', Array, 16783, 0, 1)
+#3 C:\wamp64\www\celr\wp-content\plugins\custom-plugin-celr\single-product-page\components\display-vendor.php(343): WC_Cart->add_to_cart(16783, 1, 0, Array, Array)
+#4 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): ajax_add_to_cart('')
+#5 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#6 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#7 C:\wamp64\www\celr\wp-admin\admin-ajax.php(188): do_action('wp_ajax_add_to_...')
+#8 {main}
+  thrown in C:\wamp64\www\celr\wp-content\plugins\custom-plugin-celr\single-product-page\required-functions.php on line 162
+
+2023-07-13T20:45:12+00:00 CRITICAL Uncaught Error: Call to a member function set_price() on null in C:\wamp64\www\celr\wp-content\plugins\custom-plugin-celr\single-product-page\required-functions.php:162
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(310): adjust_cart_item_price(Array, 16783)
+#1 C:\wamp64\www\celr\wp-includes\plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 C:\wamp64\www\celr\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1143): apply_filters('woocommerce_add...', Array, 16783, 0, 1)
+#3 C:\wamp64\www\celr\wp-content\plugins\custom-plugin-celr\single-product-page\components\display-vendor.php(343): WC_Cart->add_to_cart(16783, 1, 0, Array, Array)
+#4 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): ajax_add_to_cart('')
+#5 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#6 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#7 C:\wamp64\www\celr\wp-admin\admin-ajax.php(188): do_action('wp_ajax_add_to_...')
+#8 {main}
+  thrown in C:\wamp64\www\celr\wp-content\plugins\custom-plugin-celr\single-product-page\required-functions.php on line 162
+
+2023-07-13T21:36:38+00:00 CRITICAL Uncaught Error: Object of type WooCommerce is not callable in C:\wamp64\www\celr\wp-content\plugins\custom-plugin-celr\single-product-page\components\display-vendor.php:344
+Stack trace:
+#0 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(308): ajax_add_to_cart('')
+#1 C:\wamp64\www\celr\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 C:\wamp64\www\celr\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\wamp64\www\celr\wp-admin\admin-ajax.php(188): do_action('wp_ajax_add_to_...')
+#4 {main}
+  thrown in C:\wamp64\www\celr\wp-content\plugins\custom-plugin-celr\single-product-page\components\display-vendor.php on line 344
+

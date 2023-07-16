@@ -4,6 +4,140 @@
  */
 $changelog = [
     [
+        'version'  => 'Version 3.7.22',
+        'released' => '2023-07-12',
+        'changes'  => [
+            'Improvement' => [
+                [
+                    'title'       => 'Updated vendor store API to support profile picture and banner delete feature. To delete one of these fields, one needs to set a 0 (zero) value while making the API request.',
+                    'description' => 'endpoint: {{SERVER_URL}}/wp-json/dokan/{{version}}/stores/{store_Id}',
+                ],
+                [
+                    'title'       => 'Added various html tag support for rich text editors on various places of vendor dashboard.',
+                    'description' => 'Previously, the product editor on the vendor\'s side was a lot more limited than the one available on the admin side. With this update, we’ve included various tags, like heading elements, paragraphs, etc support for rich text editors.',
+                ],
+                [
+                    'title'       => 'Added random ordering for store REST API endpoint.',
+                    'description' => 'Previously, random ordering for stores wasn’t available for store API. With this update, we’ve added this feature. <br>endpoint: {{SERVER_URL}}/wp-json/dokan/v1/stores/',
+                ],
+                [
+                    'title'       => 'Added phone number validation for vendor dashboard store settings page and vendor registration form.',
+                    'description' => 'Previously, for phone numbers only numeric values were accepted, now a valid phone number including spaces, -, _, (, ), etc also supports phone number fields.',
+                ],
+                [
+                    'title'       => '[Withdraw] Fixed an issue where withdraw payment method wasn\'t enabled but can be used for both manual withdrawal and auto withdraw disbursement schedules from the vendor dashboard payment settings page.',
+                    'description' => '',
+                ],
+            ],
+            'Fix'         => [
+                [
+                    'title'       => 'Fixed an issue where multiple withdrawal requests can be placed via API.',
+                    'description' => 'If a withdrawal request was placed by a vendor until that request was approved or rejected by Admin, making another withdrawal request wasn’t possible via frontend. However, the admin was able to make a withdrawal request via REST API. With this fix, this problem now has been resolved.',
+                ],
+                [
+                    'title'       => 'Fixed a PHP notice for importing dummy data without providing any data via REST API',
+                    'description' => 'endpoint: {{SERVER_URL}}/wp-json/dokan/v1/dummy-data/import',
+                ],
+                [
+                    'title'       => 'While updating the withdrawal request via REST API, the minimum withdrawal amount limit wasn’t considered. For example, if the minimum withdrawal limit was set to 50, for an existing withdrawal request, the admin can set the withdrawal value to less than 50. This issue has been fixed now.',
+                    'description' => 'endpoint: {{SERVER_URL}}/wp-json/dokan/v1/withdraw/{withdraw_id}',
+                ],
+                [
+                    'title'       => 'Fixed an issue where store products API was returning all products instead of published products.',
+                    'description' => 'endpoint: {{SERVER_URL}}/wp-json/dokan/v1/stores/{store_id}/products',
+                ],
+                [
+                    'title'       => 'Fixed some CSS issues on the vendor store settings page for the store banner image.',
+                    'description' => '',
+                ],
+                [
+                    'title'       => '[Withdraw] Fixed an issue where PayPal withdraw method status was displaying default but the corresponding vendor didn’t set up the payment method yet. With this fix, we marked the payment method as needing setup instead of the default payment method.',
+                    'description' => '',
+                ],
+                [
+                    'title'       => '[Withdraw] After connecting to a payment method, the button text changes from `Setup` to `Make default` or `default` if selected. But after disconnecting that method button text doesn\'t change back to `Setup`. Now this issue has been fixed.',
+                    'description' => '',
+                ],
+            ],
+        ],
+    ],
+    [
+        'version'  => 'Version 3.7.21',
+        'released' => '2023-06-23',
+        'changes'  => [
+            'Improvement' => [
+                [
+                    'title'       => 'Added `Become A Vendor` feature to Dokan Lite.',
+                    'description' => 'Previously, this option was only available in Dokan Pro. This enhancement ensures that even customers of the Lite version can easily become vendors and start selling their products through the platform.',
+                ],
+                [
+                    'title'       => '[SellerSetupWizard] Added store location map on the seller setup wizard',
+                    'description' => 'Introducing a new enhancement in the seller setup wizard: seamless integration of a store location map. This enhancement allows sellers to effortlessly navigate and locate their store\'s position within the wizard interface.',
+                ],
+            ],
+            'Fix'         => [
+                [
+                    'title'       => 'Fixed an issue where gateway fees from WooCommerce PayPal Payments were not being deducted from vendors’ earnings.',
+                    'description' => 'Previously, Dokan deducted PayPal Checkout fees from vendors’ earnings but did not deduct PayPal Payments fees. This was due to the fact that PayPal Payments did not set transaction fee metadata at the time. With this fix, Dokan now correctly deducts PayPal Payments fees from vendors’ earnings.',
+                ],
+                [
+                    'title'       => '[VendorDashboard] Fixed some CSS issues under the vendor dashboard.',
+                    'description' => 'Previously, the positioning of the mobile navigation icon on the vendor dashboard was problematic on mobile screens. Additionally, there were inconsistencies in some table columns, including the order ID column, causing visual issues. These issues have now been fixed.',
+                ],
+                [
+                    'title'       => '[DokanVendorRegistration] Registration page\'s user selection modal is not working properly when any theme tries to use the modal for the vendor registration form.',
+                    'description' => 'In earlier versions, there was a lack of synchronization between the user registration form on the "My Account" page and the user registration forms inside the modal implemented within the theme. This inconsistency created confusion and hindered the seamless registration process. However, with the latest update, significant improvements have been made to address this issue.',
+                ],
+            ],
+        ],
+    ],
+    [
+        'version'  => 'Version 3.7.20',
+        'released' => '2023-06-08',
+        'changes'  => [
+            'New' => [
+                [
+                    'title'       => 'Added two new filter hooks named `dokan_get_vendor_orders_args` and `dokan_get_vendor_orders` to filter vendor’s order data.',
+                    'description' => 'You can now filter orders returned by the `dokan()->order->all()` method using the dokan_get_vendor_orders hook.',
+                ],
+                [
+                    'title'       => 'Added a new filter named `dokan_get_new_post_status` for the function dokan_get_new_post_status()',
+                    'description' => 'Now you’ll be able to use your desired status for new products created by vendors using this filter.',
+                ],
+            ],
+            'Fix' => [
+                [
+                    'title'       => 'Fixed a security issue related to insecure deserialization in the Dummy Data importer API endpoint.',
+                    'description' => '',
+                ],
+                [
+                    'title'       => 'Resolved an issue where the dokan_is_seller_dashboard() method was returning false when called from a WP Post Query Loop.',
+                    'description' => '',
+                ],
+                [
+                    'title'       => 'Ensured that the correct order status is displayed for vendors after updating an order.',
+                    'description' => 'Previously, in some cases, plugin or theme authors would hook into actions like woocommerce_order_status_changed and change the order status after it had been updated by the vendor. This update ensures that the correct order status is displayed to vendors after they update an order. Thanks to https://github.com/rmilesson for your contribution to fixing this issue.',
+                ],
+                [
+                    'title'       => 'Resolved an issue where store categories filtering was not showing proper results due to nonce validation fails.',
+                    'description' => 'Previously, when using store categories as a direct link to filter vendors with no valid nonce key attached to it, the filtering was not working correctly and vendors were not being displayed under their assigned store category. This issue has been addressed and store categories filtering now shows the correct results.',
+                ],
+                [
+                    'title'       => 'Resolved inconsistent behavior of pagination on the Single Store Page.',
+                    'description' => 'Previously, there were several issues with the pagination on the Single Store Page, including the “Previous” text displaying like the “Next” icon, the Last Page Menu icon not showing when all menus were visible, and the Active Page Menu background color not changing from the 4th page. These issues have been addressed and the pagination behavior is now consistent.',
+                ],
+                [
+                    'title'       => 'Resolved an issue where the discounted price field was not displayed correctly according to the theme used.',
+                    'description' => 'Previously, when viewing the “Add/Edit a product” page on the Vendor Dashboard, the discounted price field was not displayed in the same way as the price field box when using certain themes. This issue has been addressed and the discounted price field now displays correctly according to the theme used.',
+                ],
+                [
+                    'title'       => '[AdminSetupWizard] The custom withdrawal method is now conditionally displayed in the admin setup wizard.',
+                    'description' => 'Previously, the custom withdrawal method could not be enabled in the wizard because it required the method name and type to be populated. Now, if the admin has previously saved these values, the custom withdrawal method will be displayed and can be activated in the wizard.',
+                ],
+            ],
+        ],
+    ],
+    [
         'version'  => 'Version 3.7.19',
         'released' => '2023-05-24',
         'changes'  => [

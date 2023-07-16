@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit70acfbb142524a271b36ceb94b251f77
+class ComposerStaticInitc94b5e0ffed229d67559186a90fd964f
 {
     public static $files = array (
         'b45b351e6b6f7487d819961fef2fda77' => __DIR__ . '/..' . '/jakeasmith/http_build_url/src/http_build_url.php',
@@ -106,6 +106,8 @@ class ComposerStaticInit70acfbb142524a271b36ceb94b251f77
         'WeDevs\\Dokan\\Emails\\WithdrawApproved' => __DIR__ . '/../..' . '/includes/Emails/WithdrawApproved.php',
         'WeDevs\\Dokan\\Emails\\WithdrawCancelled' => __DIR__ . '/../..' . '/includes/Emails/WithdrawCancelled.php',
         'WeDevs\\Dokan\\Exceptions\\DokanException' => __DIR__ . '/../..' . '/includes/Exceptions/DokanException.php',
+        'WeDevs\\Dokan\\Frontend\\Frontend' => __DIR__ . '/../..' . '/includes/Frontend/Frontend.php',
+        'WeDevs\\Dokan\\Frontend\\MyAccount\\BecomeAVendor' => __DIR__ . '/../..' . '/includes/Frontend/MyAccount/BecomeAVendor.php',
         'WeDevs\\Dokan\\Install\\Installer' => __DIR__ . '/../..' . '/includes/Install/Installer.php',
         'WeDevs\\Dokan\\Order\\Hooks' => __DIR__ . '/../..' . '/includes/Order/Hooks.php',
         'WeDevs\\Dokan\\Order\\Manager' => __DIR__ . '/../..' . '/includes/Order/Manager.php',
@@ -274,9 +276,9 @@ class ComposerStaticInit70acfbb142524a271b36ceb94b251f77
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit70acfbb142524a271b36ceb94b251f77::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit70acfbb142524a271b36ceb94b251f77::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit70acfbb142524a271b36ceb94b251f77::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitc94b5e0ffed229d67559186a90fd964f::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitc94b5e0ffed229d67559186a90fd964f::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitc94b5e0ffed229d67559186a90fd964f::$classMap;
 
         }, null, ClassLoader::class);
     }

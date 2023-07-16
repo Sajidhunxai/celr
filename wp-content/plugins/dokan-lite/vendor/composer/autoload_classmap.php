@@ -79,6 +79,8 @@ return array(
     'WeDevs\\Dokan\\Emails\\WithdrawApproved' => $baseDir . '/includes/Emails/WithdrawApproved.php',
     'WeDevs\\Dokan\\Emails\\WithdrawCancelled' => $baseDir . '/includes/Emails/WithdrawCancelled.php',
     'WeDevs\\Dokan\\Exceptions\\DokanException' => $baseDir . '/includes/Exceptions/DokanException.php',
+    'WeDevs\\Dokan\\Frontend\\Frontend' => $baseDir . '/includes/Frontend/Frontend.php',
+    'WeDevs\\Dokan\\Frontend\\MyAccount\\BecomeAVendor' => $baseDir . '/includes/Frontend/MyAccount/BecomeAVendor.php',
     'WeDevs\\Dokan\\Install\\Installer' => $baseDir . '/includes/Install/Installer.php',
     'WeDevs\\Dokan\\Order\\Hooks' => $baseDir . '/includes/Order/Hooks.php',
     'WeDevs\\Dokan\\Order\\Manager' => $baseDir . '/includes/Order/Manager.php',

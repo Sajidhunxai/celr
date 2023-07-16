@@ -684,6 +684,17 @@ input[required]::before {
   padding: 0px;
   margin: 0px;
  }
+
+.no-sales{
+  padding: 20px;
+}
+ .no-sales h2,
+ .no-sales p {
+  text-align: center;
+}
+.wc-item-meta{
+  display: none !important;
+}
 /* end sales page */
 /* Listing Page */
 .vendor-listing .vendor-listing-main{
@@ -731,6 +742,31 @@ input[required]::before {
   backdrop-filter: blur(8px);
     display: none;
 }
+.no-listing{
+  padding: 20px;
+}
+ .no-listing h2, .no-listing p {
+  text-align: center;
+}
+.edit-form{
+
+}
+.edit-form .order-button{
+  width: 100%;
+  margin-top: 20px;
+}
+.edit-form .edit-form-field{
+  color: #000;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 35% 1fr;
+}
+.edit-form .edit-form-field h4{
+  padding: 0px;
+  align-self: center;
+  margin: 0px;
+}
+
 /* end listing page */
 /* dashboard */
 .box-price-dashboard{
@@ -740,12 +776,9 @@ input[required]::before {
 .box-price-dashboard .box-dashboard{
   height: 150px;
 }
-.edit-form{
-  color: #000;
-  display: grid;
-  gap: 5px;
-  grid-template-columns: 35% 1fr;
-}
+
+
+
 
 /* media quiries  */
 @media screen and (max-width: 600px) {
@@ -805,6 +838,13 @@ input[required]::before {
   /* vendor dashboard */
   .box-price-dashboard{
     display: block;
+  }
+  /* vendor listing */
+  .vendor-listing .vendor-listing-main{
+    display: block;
+  }
+  .vendor-listing .edit-popup{
+    width: 80%;
   }
 }
 

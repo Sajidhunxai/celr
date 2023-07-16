@@ -4,7 +4,7 @@ Tags: page builder, editor, landing page, drag-and-drop, elementor, visual edito
 Requires at least: 5.9
 Tested up to: 6.2
 Requires PHP: 7.0
-Stable tag: 3.14.0
+Stable tag: 3.14.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -239,6 +239,11 @@ You can also add a new language via [translate.wordpress.org](https://go.element
 == Changelog ==
 
 See Elementor Developer Edition versions changelog [here](https://go.elementor.com/dev-changelog/)
+
+= 3.14.1 - 2023-06-26 =
+
+* Fix: Video background added on the parent tab container only works on the first tab in Tabs widget
+* Fix: AI Image screen is not loading when there is no image in the control
 
 = 3.14.0 - 2023-06-19 =
 

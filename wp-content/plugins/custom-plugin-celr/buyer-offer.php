@@ -10,6 +10,7 @@ function custom_popup_render_popup_content($vendor_info, $vendor_transfer_fee)
     $vendor_quantity = $vendor_info['vendor_quantity'];
     $vendor_location = $vendor_info['vendor_location'];
     $vendor_uname = $vendor_info['vendor_name'];
+    // $vendor_email  = $vendor_info['vendor_email'];
 
     // Create the content using the retrieved values
 

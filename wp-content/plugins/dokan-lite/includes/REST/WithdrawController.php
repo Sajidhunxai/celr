@@ -307,7 +307,7 @@ class WithdrawController extends WP_REST_Controller {
         $data = [];
 
         $data['current_balance']    = dokan_get_seller_balance( dokan_get_current_user_id(), false );
-        $data['withdraw_limit']     = dokan_get_option( 'withdraw_limit', 'dokan_withdraw', - 1 );
+        $data['withdraw_limit']     = dokan_get_option( 'withdraw_limit', 'dokan_withdraw', 0 );
         $data['withdraw_threshold'] = dokan_get_withdraw_threshold( dokan_get_current_user_id() );
         $data['withdraw_methods']   = array_filter( dokan_get_seller_active_withdraw_methods( dokan_get_current_user_id() ) );
         $data['last_withdraw']      = dokan()->withdraw->get_withdraw_requests(
@@ -454,6 +454,12 @@ class WithdrawController extends WP_REST_Controller {
                 if ( isset( $request['note'] ) ) {
                     $withdraw->set_note( $request['note'] );
                 }
+            }
+
+            $validate_request = dokan()->withdraw->is_valid_approval_request( $withdraw->get_withdraw() );
+
+            if ( is_wp_error( $validate_request ) ) {
+                throw new DokanException( 'dokan_rest_withdraw_error', $validate_request->get_error_message(), 400 );
             }
 
             $withdraw = $withdraw->save();

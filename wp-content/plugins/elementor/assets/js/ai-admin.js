@@ -1,4 +1,4 @@
-/*! elementor - v3.14.0 - 18-06-2023 */
+/*! elementor - v3.14.0 - 26-06-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -707,14 +707,21 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
         href: "https://elementor.com/help/disconnecting-reconnecting-your-elementor-account/",
         target: "_blank",
         rel: "noreferrer"
-      }, __('Show me how', 'elementor')))
+      }, __('Show me how', 'elementor'))),
+      buttonText: __('Reconnect', 'elementor'),
+      buttonAction: function buttonAction() {
+        return window.open(window.ElementorAiConfig.connect_url);
+      }
     },
     not_connected: {
       text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, __('You aren\'t connected to Elementor AI.', 'elementor')),
-      description: __('Elementor AI is just a few clicks away. Connect your account to instantly create texts and custom code.', 'elementor')
+      description: __('Elementor AI is just a few clicks away. Connect your account to instantly create texts and custom code.', 'elementor'),
+      buttonText: __('Connect', 'elementor'),
+      buttonAction: function buttonAction() {
+        return window.open(window.ElementorAiConfig.connect_url);
+      }
     },
     quota_reached_trail: {
-      severity: 'info',
       text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, __('It\'s time to upgrade.', 'elementor')),
       description: __('Enjoy the free trial? Upgrade now for unlimited access to built-in image, text and custom code generators.', 'elementor'),
       buttonText: __('Upgrade', 'elementor'),
@@ -723,7 +730,6 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
       }
     },
     quota_reached_subscription: {
-      severity: 'info',
       text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, __('It\'s time to upgrade.', 'elementor')),
       description: __('Love Elementor AI? Upgrade to continue creating with built-in image, text and custom code generators.', 'elementor'),
       buttonText: __('Upgrade', 'elementor'),
@@ -734,6 +740,10 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
     rate_limit_network: {
       text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, __('Whoa! Slow down there.', 'elementor')),
       description: __('We can’t process that many requests so fast. Try again in 15 minutes.', 'elementor')
+    },
+    invalid_prompts: {
+      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, __('We were unable to generate that prompt.', 'elementor')),
+      description: __('Seems like the prompt contains words that could generate harmful content. Write a different prompt to continue.', 'elementor')
     }
   };
   var message = messages[error] || messages.default;
@@ -3387,7 +3397,6 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var FormMedia = function FormMedia(_ref) {
-  var _additionalOptions$de;
   var onClose = _ref.onClose,
     getControlValue = _ref.getControlValue,
     additionalOptions = _ref.additionalOptions,
@@ -3446,9 +3455,8 @@ var FormMedia = function FormMedia(_ref) {
     uploadError = _useImageUpload.uploadError,
     upload = _useImageUpload.upload,
     resetUpload = _useImageUpload.resetUpload;
-  var initialImageUrl = (editImage === null || editImage === void 0 ? void 0 : editImage.url) || (additionalOptions === null || additionalOptions === void 0 ? void 0 : (_additionalOptions$de = additionalOptions.defaultValue) === null || _additionalOptions$de === void 0 ? void 0 : _additionalOptions$de.url);
   var _useState11 = (0, _react.useState)(function () {
-      return !!initialImageUrl;
+      return !!(editImage !== null && editImage !== void 0 && editImage.url);
     }),
     _useState12 = (0, _slicedToArray2.default)(_useState11, 2),
     shouldWaitForInitialImage = _useState12[0],
@@ -3495,7 +3503,7 @@ var FormMedia = function FormMedia(_ref) {
     }
     setShouldWaitForInitialImage(true);
     var img = new Image();
-    img.src = initialImageUrl;
+    img.src = editImage.url;
     img.onload = function () {
       var _getAspectRatioSizes = (0, _utils.getAspectRatioSizes)(img.width, img.height),
         ratio = _getAspectRatioSizes.ratio;

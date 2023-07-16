@@ -7,7 +7,7 @@ Template Name: Vendor Template
 get_header();
 
 ?>
-<div class="site-content <?php echo esc_attr($content_class); ?>" role="main">
+<div class="site-content " role="main">
 
     <?php /* The loop */
     while (have_posts()) : the_post(); ?>

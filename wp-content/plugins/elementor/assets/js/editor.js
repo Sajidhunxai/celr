@@ -1,4 +1,4 @@
-/*! elementor - v3.14.0 - 18-06-2023 */
+/*! elementor - v3.14.0 - 26-06-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -10526,7 +10526,10 @@ module.exports = Marionette.ItemView.extend({
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 var _filesUploadHandler = _interopRequireDefault(__webpack_require__(/*! ../../../../utils/files-upload-handler */ "../assets/dev/js/editor/utils/files-upload-handler.js"));
+var _jsonUploadWarningMessage = __webpack_require__(/*! elementor-utils/json-upload-warning-message */ "../assets/dev/js/utils/json-upload-warning-message.js");
 var TemplateLibraryImportView;
 TemplateLibraryImportView = Marionette.ItemView.extend({
   template: '#tmpl-elementor-template-library-import',
@@ -10557,32 +10560,49 @@ TemplateLibraryImportView = Marionette.ItemView.extend({
   },
   importTemplate: function importTemplate(fileName, fileData) {
     var _this2 = this;
-    var layout = elementor.templates.layout;
-    this.options = {
-      data: {
-        fileName: fileName,
-        fileData: fileData
-      },
-      success: function success(successData) {
-        elementor.templates.getTemplatesCollection().add(successData);
-        $e.route('library/templates/my-templates');
-      },
-      error: function error(errorData) {
-        elementor.templates.showErrorDialog(errorData);
-        layout.showImportView();
-      },
-      complete: function complete() {
-        layout.hideLoadingView();
-      }
-    };
-    if (!elementorCommon.config.filesUpload.unfilteredFiles) {
-      var enableUnfilteredFilesModal = _filesUploadHandler.default.getUnfilteredFilesNotEnabledImportTemplateDialog(function () {
-        return _this2.sendImportRequest();
-      });
-      enableUnfilteredFilesModal.show();
-    } else {
-      this.sendImportRequest();
-    }
+    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var layout, enableUnfilteredFilesModal;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            layout = elementor.templates.layout;
+            _this2.options = {
+              data: {
+                fileName: fileName,
+                fileData: fileData
+              },
+              success: function success(successData) {
+                elementor.templates.getTemplatesCollection().add(successData);
+                $e.route('library/templates/my-templates');
+              },
+              error: function error(errorData) {
+                elementor.templates.showErrorDialog(errorData);
+                layout.showImportView();
+              },
+              complete: function complete() {
+                layout.hideLoadingView();
+              }
+            };
+            _context.next = 4;
+            return (0, _jsonUploadWarningMessage.showJsonUploadWarningMessageIfNeeded)({
+              introductionMap: window.elementor.config.user.introduction,
+              IntroductionClass: window.elementorModules.editor.utils.Introduction
+            });
+          case 4:
+            if (!elementorCommon.config.filesUpload.unfilteredFiles) {
+              enableUnfilteredFilesModal = _filesUploadHandler.default.getUnfilteredFilesNotEnabledImportTemplateDialog(function () {
+                return _this2.sendImportRequest();
+              });
+              enableUnfilteredFilesModal.show();
+            } else {
+              _this2.sendImportRequest();
+            }
+          case 5:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }))();
   },
   sendImportRequest: function sendImportRequest() {
     elementorCommon.ajax.addRequest('import_template', this.options);
@@ -14242,8 +14262,11 @@ module.exports = ControlImageDimensionsItemView;
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 var _filesUploadHandler = _interopRequireDefault(__webpack_require__(/*! ../utils/files-upload-handler */ "../assets/dev/js/editor/utils/files-upload-handler.js"));
+var _jsonUploadWarningMessage = __webpack_require__(/*! elementor-utils/json-upload-warning-message */ "../assets/dev/js/utils/json-upload-warning-message.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var ControlMultipleBaseItemView = __webpack_require__(/*! elementor-controls/base-multiple */ "../assets/dev/js/editor/controls/base-multiple.js"),
@@ -14311,35 +14334,65 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
     this.ui.controlMedia.toggleClass('e-media-empty', !value).toggleClass('e-media-empty-placeholder', !value && !isPlaceholder);
   },
   openFrame: function openFrame(e) {
-    var _e$target,
-      _e$target$dataset,
+    var _arguments = arguments,
       _this = this;
-    var mediaType = (e === null || e === void 0 ? void 0 : (_e$target = e.target) === null || _e$target === void 0 ? void 0 : (_e$target$dataset = _e$target.dataset) === null || _e$target$dataset === void 0 ? void 0 : _e$target$dataset.mediaType) || this.getMediaType();
-    this.mediaType = mediaType;
-    if (!mediaType) {
-      return;
-    }
-    if (!_filesUploadHandler.default.isUploadEnabled(mediaType)) {
-      _filesUploadHandler.default.getUnfilteredFilesNotEnabledDialog(function () {
-        return _this.openFrame(e);
-      }).show();
-      return false;
-    }
+    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var _e$target, _e$target$dataset;
+      var source, mediaType, selectedId;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            source = _arguments.length > 1 && _arguments[1] !== undefined ? _arguments[1] : null;
+            mediaType = (e === null || e === void 0 ? void 0 : (_e$target = e.target) === null || _e$target === void 0 ? void 0 : (_e$target$dataset = _e$target.dataset) === null || _e$target$dataset === void 0 ? void 0 : _e$target$dataset.mediaType) || _this.getMediaType();
+            _this.mediaType = mediaType;
+            if (mediaType) {
+              _context.next = 5;
+              break;
+            }
+            return _context.abrupt("return");
+          case 5:
+            if (_filesUploadHandler.default.isUploadEnabled(mediaType)) {
+              _context.next = 8;
+              break;
+            }
+            _filesUploadHandler.default.getUnfilteredFilesNotEnabledDialog(function () {
+              return _this.openFrame(e, 'filter-popup');
+            }).show();
+            return _context.abrupt("return", false);
+          case 8:
+            if (!(source !== 'filter-popup' && ['application/json', 'json'].includes(mediaType))) {
+              _context.next = 11;
+              break;
+            }
+            _context.next = 11;
+            return (0, _jsonUploadWarningMessage.showJsonUploadWarningMessageIfNeeded)({
+              introductionMap: window.elementor.config.user.introduction,
+              IntroductionClass: window.elementorModules.editor.utils.Introduction
+            });
+          case 11:
+            // If there is no frame, or the current initialized frame contains a different library than
+            // the `data-media-type` of the clicked button, (re)initialize the frame.
+            if (!_this.frame || _this.getLibraryType(mediaType) !== _this.currentLibraryType) {
+              _this.initFrame();
+            }
+            _this.frame.open();
 
-    // If there is no frame, or the current initialized frame contains a different library than
-    // the `data-media-type` of the clicked button, (re)initialize the frame.
-    if (!this.frame || this.getLibraryType(mediaType) !== this.currentLibraryType) {
-      this.initFrame();
-    }
-    this.frame.open();
-
-    // Set params to trigger sanitizer
-    _filesUploadHandler.default.setUploadTypeCaller(this.frame);
-    var selectedId = this.getControlValue('id');
-    if (!selectedId) {
-      return;
-    }
-    this.frame.state().get('selection').add(wp.media.attachment(selectedId));
+            // Set params to trigger sanitizer
+            _filesUploadHandler.default.setUploadTypeCaller(_this.frame);
+            selectedId = _this.getControlValue('id');
+            if (selectedId) {
+              _context.next = 17;
+              break;
+            }
+            return _context.abrupt("return");
+          case 17:
+            _this.frame.state().get('selection').add(wp.media.attachment(selectedId));
+          case 18:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }))();
   },
   deleteImage: function deleteImage(event) {
     event.stopPropagation();
@@ -43100,6 +43153,141 @@ var EventManager = function EventManager() {
   return MethodsAvailable;
 };
 module.exports = EventManager;
+
+/***/ }),
+
+/***/ "../assets/dev/js/utils/json-upload-warning-message.js":
+/*!*************************************************************!*\
+  !*** ../assets/dev/js/utils/json-upload-warning-message.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.showJsonUploadWarningMessageIfNeeded = showJsonUploadWarningMessageIfNeeded;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
+var genericMessageIntroductionKey = 'upload_json_warning_generic_message';
+/**
+ * @type {import('../utils/introduction').default | null}
+ */
+var genericWarningModal = null;
+function showJsonUploadWarningMessageIfNeeded(_ref) {
+  var introductionMap = _ref.introductionMap,
+    IntroductionClass = _ref.IntroductionClass,
+    _ref$waitForSetViewed = _ref.waitForSetViewed,
+    waitForSetViewed = _ref$waitForSetViewed === void 0 ? false : _ref$waitForSetViewed;
+  if (!genericWarningModal) {
+    genericWarningModal = createGenericWarningModal(IntroductionClass);
+  }
+  genericWarningModal.setIntroductionMap(introductionMap);
+  if (genericWarningModal.introductionViewed) {
+    return Promise.resolve();
+  }
+  var dialog = genericWarningModal.getDialog();
+  return new Promise(function (resolve, reject) {
+    dialog.onHide = function () {
+      // When closing the dialog (esc, click on background, etc.) we need to reject the promise.
+      reject();
+    };
+    dialog.onConfirm = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            if (!dialog.getElements('checkbox-dont-show-again').prop('checked')) {
+              _context.next = 7;
+              break;
+            }
+            if (!waitForSetViewed) {
+              _context.next = 6;
+              break;
+            }
+            _context.next = 4;
+            return genericWarningModal.setViewed();
+          case 4:
+            _context.next = 7;
+            break;
+          case 6:
+            genericWarningModal.setViewed();
+          case 7:
+            // Hack: we need to resolve the promise and then hide it manually, to avoid rejecting the promise.
+            // this because when closing the dialog (esc, click on background, etc.) it does not trigger `onCancel` method.
+            resolve();
+            dialog.hide();
+          case 9:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+    dialog.onCancel = function () {
+      dialog.hide();
+    };
+    genericWarningModal.show();
+  });
+}
+
+/**
+ * @param {import('../utils/introduction').default.prototype.constructor} IntroductionClass
+ *
+ * @return {import('../utils/introduction').default}
+ */
+function createGenericWarningModal(IntroductionClass) {
+  var _introduction$getDial, _introduction$getDial2;
+  var dialogId = 'e-generic-warning-modal-for-json-upload';
+  var introduction = new IntroductionClass({
+    introductionKey: genericMessageIntroductionKey,
+    dialogType: 'confirm',
+    dialogOptions: {
+      id: dialogId,
+      headerMessage: __('Warning: JSON files may be unsafe', 'elementor'),
+      message: __('Uploading JSON files from unknown sources can be harmful and put your site at risk. For maximum safety, only install JSON files from trusted sources.', 'elementor'),
+      effects: {
+        show: 'fadeIn',
+        hide: 'fadeOut'
+      },
+      hide: {
+        onBackgroundClick: true,
+        onButtonClick: false
+      },
+      strings: {
+        confirm: __('Continue', 'elementor'),
+        cancel: __('Cancel', 'elementor')
+      }
+    }
+  });
+  var _createCheckboxAndLab = createCheckboxAndLabel(dialogId),
+    checkbox = _createCheckboxAndLab.checkbox,
+    label = _createCheckboxAndLab.label;
+  introduction.getDialog().addElement('checkbox-dont-show-again', checkbox);
+  (_introduction$getDial = introduction.getDialog().getElements('message')) === null || _introduction$getDial === void 0 ? void 0 : (_introduction$getDial2 = _introduction$getDial.append) === null || _introduction$getDial2 === void 0 ? void 0 : _introduction$getDial2.call(_introduction$getDial, label); // `getElements` return JQuery object.
+
+  return introduction;
+}
+function createCheckboxAndLabel(dialogId) {
+  var checkboxId = "".concat(dialogId, "-dont-show-again");
+  var checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.name = checkboxId;
+  checkbox.id = checkboxId;
+  var label = document.createElement('label');
+  label.htmlFor = checkboxId;
+  label.textContent = __('Do not show this message again', 'elementor');
+  label.style.display = 'block';
+  label.style.marginTop = '20px';
+  label.style.marginBottom = '20px';
+  label.prepend(checkbox);
+  return {
+    checkbox: checkbox,
+    label: label
+  };
+}
 
 /***/ }),
 

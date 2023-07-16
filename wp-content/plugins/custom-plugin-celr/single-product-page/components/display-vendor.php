@@ -75,6 +75,7 @@ function display_vendor_data($product_id)
         </script>
         ';
 
+
         $vendors = array_filter($vendors, function ($vendor) use ($location_filters, $format_filters, $vintage_filters) {
             return in_array($vendor['location'], $location_filters)
                 && in_array($vendor['format'], $format_filters)
@@ -92,7 +93,7 @@ function display_vendor_data($product_id)
         });
         echo '</div>';
 
-        echo '<div class="vendor-offer-main">';
+        echo '<div class="vendor-offer-main"  id="filtereds">';
         echo '<div class="offer-header"> <div class="number-offers">' . count($vendors) . ' Offers </div>';
 
         echo '<div class="vendor-price-sort"> ';
@@ -121,7 +122,7 @@ function display_vendor_data($product_id)
 
             if ($vendor) {
                 
-                echo '<div class="offer-container" id="filtereds">';
+                echo '<div class="offer-container">';
                 // echo '<h3>Vendor Data</h3>';
                 // echo '<p>Vendor Name: ' . $vendor['name'] . '</p>';
                 echo '<div class="offer-left">';
@@ -130,7 +131,7 @@ function display_vendor_data($product_id)
                 echo '<p>Availability: </p> <span> ' . $vendor['quantity'] . ' case(s)</span> ';
 
                 echo '<p>Location:  </p> <span>' . $vendor['location'] . '</span>';
-                // echo '<p>Purchase Price: ' . $vendor['purchase'] . '</p>';
+                // echo '<p>Purchase Price: ' . $vendor['vendor_email'] . '</p>';
                 echo '<p>Transfer Fee :  </p>  <span> £ ';
                 if ($warehouse_options[$warehouse_location]  ===  $vendor['location']) {
                     echo "0 (per case) </span>';";
@@ -151,7 +152,7 @@ function display_vendor_data($product_id)
                         'vendor_vintage' => $vendor['vintage'],
                         'vendor_quantity' => $vendor['quantity'],
                         'vendor_location' => $vendor['location'],
-                        'vendor_email' => $vendor['email'],
+                        // 'vendor_email' => $vendor['email'],
 
                         'vendor_transfer_fee' => $warehouse_fee,
 
@@ -176,9 +177,11 @@ function display_vendor_data($product_id)
                         });
                     });
                 </script>';
-                // echo '<button class="add-to-cart" data-product-id="' . $product_id . '" data-quantity="1" data-price="' . ($vendor['price'] + $warehouse_fee) . '" data-vendor-name="' . $vendor['name'] . '">Make offer</button>';
-                // echo '<button class="add-to-cart"  data-product-id="' . $product_id . '" data-quantity="1" data-price="' . ($vendor['price'] + $warehouse_fee) . '" data-vendor-name="' . $vendor['name']. '">Add to Cart</button>';
-                echo '<button class="add-to-cart" data-product-id="' . $product_id . '" data-variation-id="' . $vendor['variation_id'] . '" data-quantity="1" data-price="' . ($vendor['price'] + calculatePrice($warehouse_options, $warehouse_location, $vendor, $warehouse_fee)) . '" data-vendor-price="' . $vendor['price'] . '" data-warehouse-fee="' . calculatePrice($warehouse_options, $warehouse_location, $vendor, $warehouse_fee) . '"  data-product-format=" '. $vendor['format'].' " data-warehouse-location=" '. $vendor['location'].' " data-vendor-name="' . $vendor['name'] . '">Add to Cart</button>';
+              
+
+
+                echo '<button class="add-to-cart" data-product-id="' . $product_id . '" data-variation-id="' . $vendor['variation_id'] . '" data-vendor-purchase="' . $vendor['purchase'] . '" data-quantity="1" data-price="' . ($vendor['price'] + calculatePrice($warehouse_options, $warehouse_location, $vendor, $warehouse_fee)) . '" data-vendor-price="' . $vendor['price'] . '" data-warehouse-fee="' . calculatePrice($warehouse_options, $warehouse_location, $vendor, $warehouse_fee) . '"  data-product-format=" '. $vendor['format'].' " data-warehouse-location=" '. $vendor['location'].' " data-vendor-name="' . $vendor['name'] . '">Add to Cart</button>';
+
 
                 echo '<select id="quantity" class="quantity">';
                 for ($j = 1; $j <= $vendor['quantity']; $j++) {
@@ -219,7 +222,7 @@ function display_vendor_data($product_id)
             // }
             
             // Usage:
-           
+
             $(".add-to-cart").click(function(e) {
                 e.preventDefault();
 
@@ -234,8 +237,9 @@ function display_vendor_data($product_id)
                 var vendor_price = $(this).data("vendor-price");
                 var product_format = $(this).data("product-format");
                 var warehouse_location = $(this).data("warehouse-location");
+                const vendor_purchase = $(this).data("vendor-purchase");
 
-                var data = {
+                const data = {
                     action: "add_to_cart",
                     product_id: productId,
                     variation_id: variationId,
@@ -245,12 +249,11 @@ function display_vendor_data($product_id)
                     warehouse_fee: warehouse_fee,
                     vendor_price: vendor_price,
                     product_format: product_format,
-                    warehouse_location: warehouse_location
+                    warehouse_location: warehouse_location,
+                    vendor_purchase : vendor_purchase
                 };
 
-                // console.log(data.warehouse_location);
                 
-                // console.log(data.price)
                 $.post("' . admin_url('admin-ajax.php') . '", data, function(response) {
                     window.location.href = "' . wc_get_cart_url() . '";
                 });
@@ -330,6 +333,7 @@ function ajax_add_to_cart() {
         $vendor_price = sanitize_text_field($_POST['vendor_price']);
         $product_format = sanitize_text_field($_POST['product_format']);
         $warehouse_location = sanitize_text_field($_POST['warehouse_location']);
+        $vendor_purchase = floatval($_POST['vendor_purchase']);
 
         $cart_item_data = array(
             'price' => $price,
@@ -337,8 +341,10 @@ function ajax_add_to_cart() {
             'warehouse_fee' => $warehouse_fee,
             'vendor_price' => $vendor_price,
             'product_format'=> $product_format,
-            'warehouse_location'=> $warehouse_location
+            'warehouse_location'=> $warehouse_location,
+            'vendor_purchase' => $vendor_purchase
         );
+       
 
         WC()->cart->add_to_cart($product_id, $quantity, $variation_id, array(), $cart_item_data);
 

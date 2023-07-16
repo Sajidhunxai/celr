@@ -1,4 +1,4 @@
-/*! elementor - v3.14.0 - 18-06-2023 */
+/*! elementor - v3.14.0 - 26-06-2023 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend-modules"],{
 
 /***/ "../assets/dev/js/editor/utils/is-instanceof.js":
@@ -1751,6 +1751,7 @@ class NestedTabs extends _base.default {
   onShowTabContent($requestedContent) {
     elementorFrontend.elements.$window.trigger('elementor-pro/motion-fx/recalc');
     elementorFrontend.elements.$window.trigger('elementor/nested-tabs/activate', $requestedContent);
+    elementorFrontend.elements.$window.trigger('elementor/bg-video/recalc');
   }
   isActiveTab(tabIndex) {
     return this.elements.$tabTitles.filter('[data-tab="' + tabIndex + '"]').hasClass(this.getSettings('classes.active'));
