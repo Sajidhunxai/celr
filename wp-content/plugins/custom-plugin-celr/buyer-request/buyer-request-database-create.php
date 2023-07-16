@@ -24,13 +24,5 @@ function create_offer_table() {
 // Run the function when the plugin is activated
 register_activation_hook(__FILE__, 'create_offer_table');
 
-function delete_offer_table() {
-    global $wpdb;
-
-    $table_name = $wpdb->prefix . 'offer_data';
-
-    $wpdb->query("DROP TABLE IF EXISTS $table_name");
-}
-register_deactivation_hook(__FILE__, 'delete_offer_table');
 
 ?>

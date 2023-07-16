@@ -1,10 +1,8 @@
-
 <?php
-function calculate_vendor_profit_percentage($atts)
+function calculate_vendor_profit_percentage_shortcode($atts)
 {
     $current_user = wp_get_current_user();
     $vendor_name = $current_user->user_login;
-        // $current_user_username = $current_user->user_login;
    
     $args = array(
         'post_type'      => 'shop_order',
@@ -36,25 +34,22 @@ function calculate_vendor_profit_percentage($atts)
             $vendor_purchase = $item->get_meta('Vendor Purchase');
             $quantity = $item->get_quantity();
 
-            // echo $quantity;
-                if ($vendor_names === $vendor_name) {
+            if ($vendor_names === $vendor_name) {
 
                 $total_sales += $vendor_price * $quantity;
                 $total_vendor_purchase +=  $vendor_purchase * $quantity;
-                // var_dump($total_vendor_purchase);
+
                 if ($total_vendor_purchase !== 0 && $total_vendor_purchase !== '') {
                     $profit_percentage = (($total_sales - $total_vendor_purchase) / $total_vendor_purchase) * 100;
-                        $result = round($profit_percentage, 2);
+                    $result = round($profit_percentage, 2);
 
-                } else{
-                     $result = 0;
+                } else {
+                    $result = 0;
                 }                    
-               
             }
         }
     }
-   
-    
+
     return '<table class="market price-box box-dashboard">
         <tbody>
             <tr>
@@ -68,5 +63,6 @@ function calculate_vendor_profit_percentage($atts)
         </tbody>
     </table>';
 }
-add_shortcode('vendor_profit_percentage', 'calculate_vendor_profit_percentage');
+
+add_shortcode('vendor_profit_percentage', 'calculate_vendor_profit_percentage_shortcode');
 ?>
