@@ -2,15 +2,17 @@
 function add_warehouse_page() {
     add_menu_page(
         'Warehouse Settings',
-        'Custom Plugin',
+        'Celr Manage',
         'manage_options',
-        'custom_plugin_dashboard',
-        'custom_plugin_dashboard_page'
+        'custom_plugin_dashboard_celr',
+        'custom_plugin_dashboard_page',
+        'dashicons-store', // Icon for the menu item
+        7 // Menu position
     );
     
     // Add sub-menu items
     add_submenu_page(
-        'custom_plugin_dashboard',
+        'custom_plugin_dashboard_celr',
         'View Offers',
         'View Offers',
         'manage_options',
@@ -18,9 +20,9 @@ function add_warehouse_page() {
         'display_offer_page'
     );
     add_submenu_page(
-        'custom_plugin_dashboard',
-        'warehouse ',
-        'warehouse',
+        'custom_plugin_dashboard_celr',
+        'Warehouse',
+        'Warehouse',
         'manage_options',
         'warehouse-settings',
         'render_warehouse_page'
