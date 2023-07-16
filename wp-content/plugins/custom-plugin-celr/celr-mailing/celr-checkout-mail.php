@@ -52,14 +52,7 @@ function send_custom_email($order_id)
         "The format of the product is $vendor_format, and the quantity requested is $quantity case(s) with the LWIN $lwin.<br><br>" .
         "Best regards,<br>" .
         "Celr.co.uk";
-        $message .= "Custom Name: $custom_name";
-        $message .= "Address: $address";
-        $message .= "Vendor Information:";
-        $message .= "Vendor Name: $vendor_names";
-        $message .= "Vendor Price: $vendor_price";
-        $message .= "Transfer Fee: $transfer_fee";
-        $message .= "Product Format: $vendor_format";
-        $message .= "Warehouse Location: $warehouse_location";
+       
 
         $headers = 'From: Your Name <' . $admin_email . '>' . "\r\n";
         $subject = 'Congratulation you received an Order From '. $custom_name;
