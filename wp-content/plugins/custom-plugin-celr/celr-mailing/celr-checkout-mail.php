@@ -45,8 +45,8 @@ function send_custom_email($order_id)
         $admin_email = get_option('admin_email'); // Get the default admin email from WordPress settings
 
 
-        $message =  $message = "Dear $custom_name,<br><br>" .
-        "You have received your order for the producer: $product_name listed on our website (celr.co.uk).<br>" .
+        $message = "Dear $custom_name,<br><br>" .
+        "You have received your order for the producer: $product_name listed on our website (celr.co.uk)." .
         "We kindly request that you deliver the product to the client $warehouse_location Warehouse Location for delivery.<br>" .
         "The price of the product is $vendor_price, as indicated during the listing process.<br>" .
         "The format of the product is $vendor_format, and the quantity requested is $quantity case(s) with the LWIN $lwin.<br><br>" .
@@ -54,7 +54,10 @@ function send_custom_email($order_id)
         "Celr.co.uk";
        
 
-        $headers = 'From: Your Name <' . $admin_email . '>' . "\r\n";
+        $headers = 'From: ' . get_bloginfo('name') . ' <' . $admin_email . '>' . "\r\n";
+        $headers .= 'Reply-To: ' . $admin_email . "\r\n";
+        $headers .= 'Content-Type: text/html; charset=UTF-8';
+
         $subject = 'Congratulation you received an Order From '. $custom_name;
         // Send the email
         wp_mail($user_email, $subject, $message, $headers);
