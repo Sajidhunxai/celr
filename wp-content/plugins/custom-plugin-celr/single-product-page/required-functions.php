@@ -233,26 +233,26 @@ function get_current_user_warehouse_name()
 
 
 
-// Display vendor information in the order
-function display_vendor_info_in_order($item_id, $item, $order)
-{
-    $vendor_name = $item->get_meta('vendor_name');
-    $vendor_price = $item->get_meta('vendor_price');
-    $warehouse_fee = $item->get_meta('warehouse_fee');
-    $warehouse_location = get_current_user_warehouse_name();
+// // Display vendor information in the order
+// function display_vendor_info_in_order($item_id, $item, $order)
+// {
+//     $vendor_name = $item->get_meta('vendor_name');
+//     $vendor_price = $item->get_meta('vendor_price');
+//     $warehouse_fee = $item->get_meta('warehouse_fee');
+//     $warehouse_location = get_current_user_warehouse_name();
 
-    if ($vendor_name) {
-        printf('<p><strong>Vendor Name:</strong> %s</p>', $vendor_name);
-    }
-    if ($vendor_price) {
-        printf('<p><strong>Vendor Price:</strong> %s</p>', wc_price($vendor_price));
-    }
-    if ($warehouse_fee) {
-        printf('<p><strong>Warehouse Fee:</strong> %s</p>', wc_price($warehouse_fee));
-    }
-    if ($warehouse_location) {
-        printf('<p><strong>Warehouse Location:</strong> %s</p>', $warehouse_location);
-    }
-}
-add_action('woocommerce_order_item_meta_end', 'display_vendor_info_in_order', 10, 3);
+//     if ($vendor_name) {
+//         printf('<p><strong>Vendor Name:</strong> %s</p>', $vendor_name);
+//     }
+//     if ($vendor_price) {
+//         printf('<p><strong>Vendor Price:</strong> %s</p>', wc_price($vendor_price));
+//     }
+//     if ($warehouse_fee) {
+//         printf('<p><strong>Warehouse Fee:</strong> %s</p>', wc_price($warehouse_fee));
+//     }
+//     if ($warehouse_location) {
+//         printf('<p><strong>Warehouse Location:</strong> %s</p>', $warehouse_location);
+//     }
+// }
+// add_action('woocommerce_order_item_meta_end', 'display_vendor_info_in_order', 10, 3);
 

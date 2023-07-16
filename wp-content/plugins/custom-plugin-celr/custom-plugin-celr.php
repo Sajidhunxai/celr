@@ -43,12 +43,15 @@ require_once('celr-backend/celr-product-location.php');
 require_once('celr-backend/warehouse-page-backend.php');
 require_once('celr-backend/celr-backend-dashboard-page.php');
 
+//mailing
+require_once('celr-mailing/celr-checkout-mail.php');
+
 
 
 function enqueue_product_search_scripts() {
     wp_enqueue_script(
         'product-search',
-        plugin_dir_url(__FILE__) . 'js/addListingProductSearch.js',
+        plugin_dir_url(__FILE__) . 'assets/js/addListingProductSearch.js',
         array('jquery'),
         '1.0',
         true
