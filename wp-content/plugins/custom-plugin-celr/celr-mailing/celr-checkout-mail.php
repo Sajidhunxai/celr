@@ -45,13 +45,13 @@ function send_custom_email($order_id)
         $admin_email = get_option('admin_email'); // Get the default admin email from WordPress settings
 
 
-        $message = "Dear $custom_name,<br><br>" .
-        "You have received your order with No: $order_number for the producer: $product_name listed on our website (celr.co.uk)." .
-        "We kindly request that you send the product to the client $warehouse_location Warehouse Location for delivery." .
-        "The price of the product is $vendor_price, as indicated during the listing process." .
-        "and format of the product is $vendor_format, and the quantity requested is $quantity case(s) with the LWIN $lwin.<br><br>" .
+        $message = "Dear <strong>$custom_name</strong>,<br><br>" .
+        "You have received your order with No: <strong>$order_number</strong> for the producer: <strong>$product_name</strong> listed on our website (celr.co.uk)." .
+        "We kindly request that you send the product to the client <strong>$warehouse_location</strong> Warehouse Location for delivery" .
+        "The price of the product is <strong>$vendor_price</strong>, as indicated during the listing process" .
+        " and format of the product is <strong>$vendor_format</strong>, and the quantity requested is <strong>$quantity</strong> case(s) with the LWIN <strong>$lwin</strong>.<br><br>" .
         "Best regards,<br>" .
-        "Celr.co.uk";
+        "<strong>Celr.co.uk</strong>";
        
 
         $headers = 'From: ' . get_bloginfo('name') . ' <' . $admin_email . '>' . "\r\n";
@@ -63,7 +63,7 @@ function send_custom_email($order_id)
         wp_mail($user_email, $subject, $message, $headers);
 
         // Display the alert with the recipient email and additional information
-        echo "<script>alert('Email will be sent to: $user_email gello $message');</script>";
+        echo "<script>alert('Thanks you !! You will be notified once the Process is start');</script>";
     }
 }
 
