@@ -48,8 +48,10 @@ function send_custom_email($order_id)
         $message = "Dear <strong>$custom_name</strong>,<br><br>" .
         "You have received your order with No: <strong>$order_number</strong> for the producer: <strong>$product_name</strong> listed on our website (celr.co.uk)." .
         "We kindly request that you send the product to the client <strong>$warehouse_location</strong> Warehouse Location for delivery" .
-        "The price of the product is <strong>$vendor_price</strong>, as indicated during the listing process" .
-        " and format of the product is <strong>$vendor_format</strong>, and the quantity requested is <strong>$quantity</strong> case(s) with the LWIN <strong>$lwin</strong>.<br><br>" .
+        " and price of the product is <strong>£ $vendor_price</strong>, as indicated during the listing process" .
+        " and format is <strong>$vendor_format</strong>, and the quantity requested by Client is <strong>$quantity</strong> case(s) with the LWIN <strong>$lwin</strong>. <br><br>
+        Please kindly visit your dashboard to view further details and proceed accordingly. Thank you. <br><br>" .
+        
         "Best regards,<br>" .
         "<strong>Celr.co.uk</strong>";
        
@@ -63,7 +65,7 @@ function send_custom_email($order_id)
         wp_mail($user_email, $subject, $message, $headers);
 
         // Display the alert with the recipient email and additional information
-        echo "<script>alert('Thanks you !! You will be notified once the Process is start');</script>";
+        echo "<script>alert('Thank you. Your order has been received.');</script>";
     }
 }
 
