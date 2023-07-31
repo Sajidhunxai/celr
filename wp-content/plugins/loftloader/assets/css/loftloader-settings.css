@@ -1,0 +1,436 @@
+/**
+ * LoftLoader Lite Setting Panel Style
+ *
+ * Plugin Name: LoftLoader
+ * Plugin URI: https://www.loftocean.com/loftloader
+ * Author: The Loft.Ocean Team
+ * Author URI: https://www.loftocean.com
+ * Description: LoftLoader (Lite Version) is a plugin for adding beautiful and smooth preload animation to your WordPress website. With setting options, you can choose from preset animations, add custom logo image, choose colours to match your branding, and amuse and impress your visitors while loading site content.
+ * Version: 2.4.0
+*/
+@import url(https://fonts.googleapis.com/css?family=Lato:400,600);
+#customize-theme-controls.loftloader-controls-wrapper {
+  font-family: Lato; }
+  #customize-theme-controls.loftloader-controls-wrapper .customize-section-title h3 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: #111; }
+    #customize-theme-controls.loftloader-controls-wrapper .customize-section-title h3 span {
+      letter-spacing: 0; }
+  #customize-theme-controls.loftloader-controls-wrapper .customize-control-title {
+    margin-top: 0;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    text-transform: none;
+    color: #111; }
+    #customize-theme-controls.loftloader-controls-wrapper .customize-control-title + span.description {
+      margin-top: -6px; }
+  #customize-theme-controls.loftloader-controls-wrapper span.description {
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-style: normal;
+    color: #888; }
+    #customize-theme-controls.loftloader-controls-wrapper span.description strong {
+      color: #111;
+      font-weight: bold; }
+  #customize-theme-controls.loftloader-controls-wrapper select,
+  #customize-theme-controls.loftloader-controls-wrapper input[type="text"],
+  #customize-theme-controls.loftloader-controls-wrapper input[type="number"],
+  #customize-theme-controls.loftloader-controls-wrapper button.button.remove-button,
+  #customize-theme-controls.loftloader-controls-wrapper button.button.upload-button {
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    color: #111;
+    border-color: #41C7D3;
+    box-shadow: none; }
+  #customize-theme-controls.loftloader-controls-wrapper input[type="text"],
+  #customize-theme-controls.loftloader-controls-wrapper input[type="number"],
+  #customize-theme-controls.loftloader-controls-wrapper button.button.remove-button,
+  #customize-theme-controls.loftloader-controls-wrapper button.button.upload-button {
+    background: #FFF;
+    text-align: center;
+    border-radius: 4px; }
+  #customize-theme-controls.loftloader-controls-wrapper input[type="text"],
+  #customize-theme-controls.loftloader-controls-wrapper input[type="number"],
+  #customize-theme-controls.loftloader-controls-wrapper button.button.remove-button {
+    width: 80px; }
+  #customize-theme-controls.loftloader-controls-wrapper #customize-control-loftloader_show_close_tip input[type="text"] {
+    width: 100%;
+    text-align: left; }
+    .rtl #customize-theme-controls.loftloader-controls-wrapper #customize-control-loftloader_show_close_tip input[type="text"] {
+      text-align: right; }
+  #customize-theme-controls.loftloader-controls-wrapper button.button.remove-button:hover {
+    opacity: 0.75; }
+  #customize-theme-controls.loftloader-controls-wrapper input[type="checkbox"] {
+    position: relative;
+    float: right;
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    background: none;
+    border: 2px solid #41C7D3;
+    box-shadow: none;
+    font-size: 0; }
+    .rtl #customize-theme-controls.loftloader-controls-wrapper input[type="checkbox"] {
+      float: left; }
+    #customize-theme-controls.loftloader-controls-wrapper input[type="checkbox"]:checked:before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      margin: 0 0 0 -1px;
+      width: 21px;
+      height: 21px;
+      color: #41C7D3;
+      font: 21px dashicons; }
+    #customize-theme-controls.loftloader-controls-wrapper input[type="checkbox"]:hover {
+      opacity: 0.75; }
+  #customize-theme-controls.loftloader-controls-wrapper .loftloader-radiobtn {
+    display: none;
+    width: inherit;
+    height: inherit;
+    opacity: 0;
+    margin: 0; }
+    #customize-theme-controls.loftloader-controls-wrapper .loftloader-radiobtn + span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: inherit;
+      height: inherit;
+      border: 2px solid #DDD;
+      box-sizing: border-box; }
+    #customize-theme-controls.loftloader-controls-wrapper .loftloader-radiobtn:checked + span {
+      border-color: #41C7D3; }
+  #customize-theme-controls.loftloader-controls-wrapper .customize-control-btn label {
+    position: relative;
+    display: inline-block;
+    margin-left: 0;
+    padding: 0; }
+  #customize-theme-controls.loftloader-controls-wrapper .customize-control-btn span.customize-control-title {
+    display: inline; }
+    #customize-theme-controls.loftloader-controls-wrapper .customize-control-btn span.customize-control-title + div {
+      float: right; }
+      .rtl #customize-theme-controls.loftloader-controls-wrapper .customize-control-btn span.customize-control-title + div {
+        float: left; }
+  #customize-theme-controls.loftloader-controls-wrapper .accordion-section-content {
+    padding: 0;
+    background: #FFF; }
+    #customize-theme-controls.loftloader-controls-wrapper .accordion-section-content:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: #FFF;
+      content: ""; }
+    #customize-theme-controls.loftloader-controls-wrapper .accordion-section-content li {
+      padding: 15px 12px;
+      margin-bottom: 0;
+      border-bottom: 1px solid #EEE;
+      box-sizing: border-box; }
+      #customize-theme-controls.loftloader-controls-wrapper .accordion-section-content li.customize-section-description-container {
+        padding: 12px 12px 0;
+        border-bottom: none; }
+      #customize-theme-controls.loftloader-controls-wrapper .accordion-section-content li:last-of-type {
+        border-bottom: none; }
+  #customize-theme-controls.loftloader-controls-wrapper .wp-picker-container {
+    overflow: visible;
+    width: auto; }
+    #customize-theme-controls.loftloader-controls-wrapper .wp-picker-container .wp-color-result {
+      width: 24px;
+      height: 24px;
+      max-height: 24px;
+      min-height: 24px;
+      padding: 0;
+      margin-top: 2px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      box-shadow: none !important;
+      line-height: 28px; }
+      #customize-theme-controls.loftloader-controls-wrapper .wp-picker-container .wp-color-result:after {
+        right: auto;
+        left: 24px;
+        width: 80px;
+        padding: 0 6px;
+        background: transparent;
+        border: none;
+        color: #555;
+        font-size: 11px;
+        text-align: left;
+        line-height: 24px; }
+      #customize-theme-controls.loftloader-controls-wrapper .wp-picker-container .wp-color-result .wp-color-result-text {
+        margin-left: 24px;
+        background: none;
+        border: none;
+        color: inherit;
+        line-height: 24px; }
+        body.rtl #customize-theme-controls.loftloader-controls-wrapper .wp-picker-container .wp-color-result .wp-color-result-text {
+          margin-right: 24px;
+          margin-left: 0; }
+    #customize-theme-controls.loftloader-controls-wrapper .wp-picker-container .wp-picker-open + .wp-picker-input-wrap {
+      float: right;
+      margin-top: -2px;
+      width: auto; }
+      .rtl #customize-theme-controls.loftloader-controls-wrapper .wp-picker-container .wp-picker-open + .wp-picker-input-wrap {
+        margin-left: 15px; }
+    #customize-theme-controls.loftloader-controls-wrapper .wp-picker-container input[type="text"].wp-color-picker {
+      display: inline-block;
+      padding: 0 5px;
+      margin-top: 0;
+      width: 80px !important;
+      border: 1px solid #41C7D3;
+      vertical-align: top;
+      font-family: Lato;
+      line-height: 26px; }
+    #customize-theme-controls.loftloader-controls-wrapper .wp-picker-container .button.wp-picker-default {
+      display: none; }
+  #customize-theme-controls.loftloader-controls-wrapper .attachment-media-view,
+  #customize-theme-controls.loftloader-controls-wrapper .media-widget-preview.media_audio,
+  #customize-theme-controls.loftloader-controls-wrapper .media-widget-preview.media_image {
+    background: none; }
+  #customize-theme-controls.loftloader-controls-wrapper .loader-ui-slider {
+    height: 16px;
+    margin-top: 12px;
+    background: none;
+    border-radius: 0;
+    border: none; }
+    #customize-theme-controls.loftloader-controls-wrapper .loader-ui-slider:before {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      width: 100%;
+      height: 2px;
+      background: #DDD;
+      content: ""; }
+    #customize-theme-controls.loftloader-controls-wrapper .loader-ui-slider .ui-slider-range {
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      height: 2px;
+      background: #41C7D3; }
+    #customize-theme-controls.loftloader-controls-wrapper .loader-ui-slider .ui-slider-handle {
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background: #41C7D3;
+      border: none;
+      border-radius: 50%; }
+  #customize-theme-controls.loftloader-controls-wrapper.loftloader-settings-disabled li#accordion-section-loftloader_switch ~ li {
+    pointer-events: none;
+    opacity: 0.5; }
+  #customize-theme-controls.loftloader-controls-wrapper li.customize-control.customize-control-image .thumbnail.thumbnail-image {
+    background-color: #EEE; }
+  #customize-theme-controls.loftloader-controls-wrapper li#accordion-section-loftloader_switch {
+    margin-bottom: 10px; }
+    #customize-theme-controls.loftloader-controls-wrapper li#accordion-section-loftloader_switch .accordion-section-title {
+      padding: 20px 10px 22px 14px; }
+      #customize-theme-controls.loftloader-controls-wrapper li#accordion-section-loftloader_switch .accordion-section-title:after {
+        display: none; }
+  #customize-theme-controls.loftloader-controls-wrapper li.customize-control.customize-control-slider span.customize-control-title {
+    display: inline; }
+    #customize-theme-controls.loftloader-controls-wrapper li.customize-control.customize-control-slider span.customize-control-title + span {
+      float: right;
+      padding-right: 5px;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      font-weight: bold;
+      color: #111; }
+      .rtl #customize-theme-controls.loftloader-controls-wrapper li.customize-control.customize-control-slider span.customize-control-title + span {
+        float: left;
+        padding-right: 0;
+        padding-left: 5px; }
+      #customize-theme-controls.loftloader-controls-wrapper li.customize-control.customize-control-slider span.customize-control-title + span input {
+        width: 60px;
+        padding-right: 0;
+        background: none;
+        border: none;
+        box-shadow: none;
+        font-size: 12px;
+        letter-spacing: 0.05em;
+        font-weight: bold;
+        color: #111;
+        text-align: right; }
+        .rtl #customize-theme-controls.loftloader-controls-wrapper li.customize-control.customize-control-slider span.customize-control-title + span input {
+          text-align: left; }
+  #customize-theme-controls.loftloader-controls-wrapper li.customize-control.customize-control-check span.customize-control-title {
+    display: inline; }
+  #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type .customize-more-toggle {
+    position: relative;
+    float: right;
+    -webkit-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    transform: rotate(135deg);
+    z-index: 9;
+    width: 20px;
+    height: 20px;
+    margin-top: -20px;
+    cursor: pointer;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    background: #41C7D3;
+    border-radius: 50%;
+    border: none; }
+    .rtl #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type .customize-more-toggle {
+      float: left; }
+    #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type .customize-more-toggle:before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-70%, -30%);
+      -ms-transform: translate(-70%, -30%);
+      transform: translate(-70%, -30%);
+      display: block;
+      width: 6px;
+      height: 6px;
+      border: 1px solid #FFF;
+      border-left: none;
+      border-bottom: none;
+      transform-origin: 50% 50%;
+      content: ""; }
+    #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type .customize-more-toggle:focus {
+      outline: none;
+      opacity: 0.5; }
+    #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type .customize-more-toggle.expanded {
+      -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg); }
+    #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type .customize-more-toggle + span.description {
+      margin: 12px 0 0; }
+  #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation {
+    margin-top: 12px; }
+    #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation label {
+      position: relative;
+      float: left;
+      width: 45px;
+      height: 45px;
+      margin: 0 -2px -2px 0;
+      padding: 0; }
+      #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation label:nth-child(1) .loftloader-radiobtn + span:after {
+        background-position: 0px -47px; }
+      #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation label:nth-child(2) .loftloader-radiobtn + span:after {
+        background-position: -45px -47px; }
+      #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation label:nth-child(3) .loftloader-radiobtn + span:after {
+        background-position: -90px -47px; }
+      #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation label:nth-child(4) .loftloader-radiobtn + span:after {
+        background-position: -135px -47px; }
+      #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation label:nth-child(5) .loftloader-radiobtn + span:after {
+        background-position: -180px -47px; }
+      #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation label:nth-child(6) .loftloader-radiobtn + span:after {
+        background-position: -225px -47px; }
+      #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation label:nth-child(7) .loftloader-radiobtn + span:after {
+        background-position: -270px -47px; }
+      #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation label:nth-child(8) .loftloader-radiobtn + span:after {
+        background-position: -315px -47px; }
+      .rtl #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation label {
+        float: right; }
+      #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation label .loftloader-radiobtn + span {
+        overflow: hidden; }
+        #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation label .loftloader-radiobtn + span:after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          width: inherit;
+          height: inherit;
+          background-image: url(../img/animation-options.png);
+          background-size: 315px;
+          opacity: 0.25;
+          content: ""; }
+      #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation label .loftloader-radiobtn:checked + span {
+        z-index: 8; }
+        #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation label .loftloader-radiobtn:checked + span:after {
+          opacity: 1; }
+    #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_loader_type #loftloader_option_animation:after {
+      position: relative;
+      display: block;
+      clear: both;
+      content: ""; }
+  #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_customimg button.upload-button {
+    position: relative;
+    float: right;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    background: none;
+    border: 2px solid #41C7D3;
+    box-shadow: none;
+    font-size: 0; }
+    .rtl #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_customimg button.upload-button {
+      float: left; }
+    #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_customimg button.upload-button:before, #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_customimg button.upload-button:after {
+      position: absolute;
+      content: "";
+      display: block; }
+    #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_customimg button.upload-button:before {
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-22%, -76%);
+      -ms-transform: translate(-22%, -76%);
+      transform: translate(-22%, -76%);
+      width: 6px;
+      height: 6px;
+      border: 2px solid #41C7D3;
+      border-left: none;
+      border-bottom: none;
+      transform-origin: 50% 50%; }
+    #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_customimg button.upload-button:after {
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%) rotate(45deg);
+      -ms-transform: translate(-50%, -50%) rotate(45deg);
+      transform: translate(-50%, -50%) rotate(45deg);
+      width: 2px;
+      height: 16px;
+      background: #41C7D3; }
+    #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_customimg button.upload-button:hover {
+      opacity: 0.75; }
+  #customize-theme-controls.loftloader-controls-wrapper li#customize-control-loftloader_customimg .current {
+    margin-top: 15px; }
+  #customize-theme-controls.loftloader-controls-wrapper li.customize-control-number label {
+    position: relative;
+    display: block; }
+    #customize-theme-controls.loftloader-controls-wrapper li.customize-control-number label > span:last-child {
+      float: right;
+      z-index: 9;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      color: #111; }
+      .rtl #customize-theme-controls.loftloader-controls-wrapper li.customize-control-number label > span:last-child {
+        float: left; }
+      #customize-theme-controls.loftloader-controls-wrapper li.customize-control-number label > span:last-child input[type="number"] {
+        margin-right: 5px; }
+        .rtl #customize-theme-controls.loftloader-controls-wrapper li.customize-control-number label > span:last-child input[type="number"] {
+          margin-right: 0;
+          margin-left: 5px; }
+  #customize-theme-controls.loftloader-controls-wrapper li.customize-control-number span.customize-control-title {
+    display: inline; }
+
+.wp-full-overlay > .customize-controls-close, .wp-full-overlay > .et-core-modal-overlay {
+  display: none;
+  visibility: hidden; }
+
+.customize-partial-edit-shortcut,
+.widget .customize-partial-edit-shortcut {
+  display: none !important; }
+
+/*# sourceMappingURL=loftloader-settings.css.map */

@@ -84,3 +84,44 @@ add_action( 'wp_enqueue_scripts', 'add_theme_scripts' );
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
 
+// Custom function to add "Hello" after the product title on the product archive page
+// function add_hello_to_product_title( $title, $id = null ) {
+//     if ( is_post_type_archive( 'product' ) && ! is_admin() ) {
+//         $title .= ' Hello';
+//     }
+//     return $title;
+// }
+// add_filter( 'the_title', 'add_hello_to_product_title', 10, 2 );
+
+// Add this code to your theme's functions.php file or a custom plugin
+
+
+
+/**
+ * Custom function to add a title prefix to product titles on archive product page.
+ */
+function custom_add_product_title_prefix( $title ) {
+    if ( is_post_type_archive( 'product' ) && in_the_loop() ) {
+        // Customize the title prefix as per your needs
+        			$vintage_shortcode_result = do_shortcode('[show_vintage]');
+
+        $title =   $title .' '. $vintage_shortcode_result ;
+    }
+    return $title;
+}
+add_filter( 'the_title', 'custom_add_product_title_prefix' );
+
+
+/**
+ * Custom function to add something after the product price on archive product page.
+ */
+function custom_add_something_after_price() {
+    if ( is_post_type_archive( 'product' ) && in_the_loop() ) {
+        // Output the extra content after the product price.
+        $price_diff = do_shortcode('[price_difference]');
+
+        echo '<div class="custom-extra-content">'.$price_diff.'​</div>';
+    }
+}
+add_action( 'woocommerce_after_shop_loop_item', 'custom_add_something_after_price' );
+

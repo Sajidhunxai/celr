@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Title: WooCommerce Product list with full product description

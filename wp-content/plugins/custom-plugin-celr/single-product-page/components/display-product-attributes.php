@@ -25,7 +25,7 @@ function display_product_attributes($atts)
                 $term = get_term($term_id);
                 return $term ? $term->name : '';  // if the term exists, return its name
             }, $attribute->get_options());
-            $attribute_name = str_replace('pa_', '', $attribute->get_name());
+            $attribute_name = str_replace(['pa_', '_'], ['', ' '], $attribute->get_name());
             $attribute_name = ucwords(strtolower($attribute_name)); // Convert to sentence case
 
             $output .= '<li class="attribute-add-form-item"><b>' . $attribute_name . ':</b> ' .

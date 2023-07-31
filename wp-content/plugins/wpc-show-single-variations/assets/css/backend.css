@@ -1,0 +1,81 @@
+.wpc-table th {
+    display: inline-block;
+    min-width: 250px;
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.wpc-table td {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.wpc-table p {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.wpc-table span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.wpclever_settings_page_content .select2 {
+    width: 100% !important;
+}
+
+.wpclever_settings_page_content .select2 li {
+    margin-bottom: 0 !important;
+}
+
+.wpclever_settings_page_content .select2 .select2-search {
+    margin-bottom: 0 !important;
+}
+
+.wpclever_settings_page_content .select2 .select2-search__field {
+    height: 20px !important;
+    line-height: 20px !important;
+    min-height: 20px !important;
+}
+
+/* Variation */
+
+.woosv-variation-settings {
+    margin: 1em 0;
+}
+
+.woosv-variation-settings label {
+    display: block;
+}
+
+.woosv-variation-wrap {
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #fafafa;
+    border: 1px solid #8c8f94;
+    border-radius: 4px;
+    position: relative;
+}
+
+.woosv-variation-wrap:before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: #fafafa;
+    border-width: 1px 0 0 1px;
+    border-style: solid;
+    border-color: #8c8f94;
+    transform: rotate(45deg);
+    position: absolute;
+    top: -6px;
+    left: 15px;
+}
+
+.woosv-variation-wrap ul li {
+    display: inline-block !important;
+    padding: 0 !important;
+    margin-right: 15px;
+    margin-bottom: 0;
+}

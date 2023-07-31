@@ -1,0 +1,70 @@
+// LoftLoader - Mixins
+
+@mixin transform($transform) {
+    -webkit-transform: $transform;
+    -ms-transform: $transform;
+    transform: $transform;
+}
+
+@mixin verticalend {
+    @include transform(translate(-100%, 0));
+}
+
+@mixin endLoader {
+    opacity: 0;
+    transition: all 0.3s ease-out;
+}
+
+@mixin animation($animation) {
+    -webkit-animation: $animation;
+    animation: $animation;
+}
+
+@mixin endTransition {
+    transition: transform 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+
+@mixin endBgSplitLeft {
+    @include endTransition;
+    @include transform(translateX(-50vw));
+}
+
+@mixin endBgSplitRight {
+    @include endTransition;
+    @include transform(translateX(50vw));
+}
+
+@mixin endBgSplitUp {
+    @include endTransition;
+    @include transform(translateY(-50vh));
+}
+
+@mixin endBgSplitDown {
+    @include endTransition;
+    @include transform(translateY(50vh));
+}
+
+@mixin endBgFade {
+    opacity: 0 !important;
+    transition: opacity 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+
+@mixin endBgUp {
+    @include transform(translateY(-100vh));
+    @include endTransition;
+}
+
+@mixin customImg {
+    width: auto;
+    height: auto;
+    max-width: 90vw;
+    
+    img {
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+}

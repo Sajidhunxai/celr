@@ -1,0 +1,814 @@
+# Copyright (C) 2023 Devnet
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Product Price History 2.1.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/product-price-history\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-06-16T09:52:11+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.7.1\n"
+"X-Domain: product-price-history\n"
+
+#. Plugin Name of the plugin
+#: admin/admin.php:134
+#: admin/edit-product.php:24
+#: DIST/plugin/admin/admin.php:134
+#: DIST/plugin/admin/edit-product.php:24
+msgid "Product Price History"
+msgstr ""
+
+#. Description of the plugin
+msgid "Price history tracker for WooCommerce products."
+msgstr ""
+
+#. Author of the plugin
+msgid "Devnet"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://devnet.hr"
+msgstr ""
+
+#: admin/admin.php:100
+#: DIST/plugin/admin/admin.php:100
+msgid "30 days"
+msgstr ""
+
+#: admin/admin.php:101
+#: DIST/plugin/admin/admin.php:101
+msgid "3 months"
+msgstr ""
+
+#: admin/admin.php:102
+#: DIST/plugin/admin/admin.php:102
+msgid "6 months"
+msgstr ""
+
+#: admin/admin.php:103
+#: DIST/plugin/admin/admin.php:103
+msgid "12 months"
+msgstr ""
+
+#: admin/admin.php:104
+#: DIST/plugin/admin/admin.php:104
+msgid "Are you sure you want to proceed? This action will irreversibly delete old data."
+msgstr ""
+
+#: admin/admin.php:105
+#: DIST/plugin/admin/admin.php:105
+msgid "%s old entries has been successfully deleted."
+msgstr ""
+
+#: admin/admin.php:106
+#: DIST/plugin/admin/admin.php:106
+msgid "No old data was found or deleted."
+msgstr ""
+
+#: admin/admin.php:135
+#: DIST/plugin/admin/admin.php:135
+#: DIST/plugin/modules/chart/public.php:94
+#: modules/chart/public.php:94
+msgid "Price History"
+msgstr ""
+
+#: admin/admin.php:145
+#: admin/admin.php:146
+#: admin/admin.php:163
+#: DIST/plugin/admin/admin.php:145
+#: DIST/plugin/admin/admin.php:146
+#: DIST/plugin/admin/admin.php:163
+msgid "Settings"
+msgstr ""
+
+#: admin/edit-product.php:81
+#: DIST/plugin/admin/edit-product.php:81
+msgid "To ensure optimal performance, only a limited number of results are shown in the table."
+msgstr ""
+
+#: admin/edit-product.php:82
+#: DIST/plugin/admin/edit-product.php:82
+msgid "Displaying %d out of %d results."
+msgstr ""
+
+#: admin/edit-product.php:87
+#: DIST/plugin/admin/edit-product.php:87
+#: DIST/plugin/modules/chart/public.php:92
+#: modules/chart/public.php:92
+msgid "Price"
+msgstr ""
+
+#: admin/edit-product.php:88
+#: DIST/plugin/admin/edit-product.php:88
+msgid "Currency"
+msgstr ""
+
+#: admin/edit-product.php:89
+#: DIST/plugin/admin/edit-product.php:89
+#: DIST/plugin/modules/chart/public.php:93
+#: modules/chart/public.php:93
+msgid "Date"
+msgstr ""
+
+#: admin/edit-product.php:90
+#: DIST/plugin/admin/edit-product.php:90
+msgid "Hide"
+msgstr ""
+
+#: admin/edit-product.php:108
+#: DIST/plugin/admin/edit-product.php:108
+msgid "No pricing data recorded since plugin activation - This message indicates that no pricing data has been saved in the database since the activation of the plugin. This can occur if the plugin was recently installed or if the product price has not changed since the activation of the plugin."
+msgstr ""
+
+#: admin/settings-api.php:531
+#: DIST/plugin/admin/settings-api.php:531
+msgid "Choose File"
+msgstr ""
+
+#: admin/settings.php:40
+#: DIST/plugin/admin/settings.php:40
+msgid "General"
+msgstr ""
+
+#: admin/settings.php:58
+#: DIST/plugin/admin/settings.php:58
+msgid "Multilingual"
+msgstr ""
+
+#: admin/settings.php:59
+#: DIST/plugin/admin/settings.php:59
+msgid "Use your own translated strings."
+msgstr ""
+
+#: admin/settings.php:65
+#: DIST/plugin/admin/settings.php:65
+msgid "Record price changes"
+msgstr ""
+
+#: admin/settings.php:67
+#: DIST/plugin/admin/settings.php:67
+msgid "All price changes"
+msgstr ""
+
+#: admin/settings.php:68
+#: admin/settings.php:108
+#: DIST/plugin/admin/settings.php:68
+#: DIST/plugin/admin/settings.php:108
+msgid "One price per hour"
+msgstr ""
+
+#: admin/settings.php:69
+#: admin/settings.php:109
+#: DIST/plugin/admin/settings.php:69
+#: DIST/plugin/admin/settings.php:109
+msgid "One price in 3 hours"
+msgstr ""
+
+#: admin/settings.php:70
+#: admin/settings.php:110
+#: DIST/plugin/admin/settings.php:70
+#: DIST/plugin/admin/settings.php:110
+msgid "One price in 6 hours"
+msgstr ""
+
+#: admin/settings.php:71
+#: admin/settings.php:111
+#: DIST/plugin/admin/settings.php:71
+#: DIST/plugin/admin/settings.php:111
+msgid "One price in 12 hours"
+msgstr ""
+
+#: admin/settings.php:72
+#: admin/settings.php:112
+#: DIST/plugin/admin/settings.php:72
+#: DIST/plugin/admin/settings.php:112
+msgid "One price in 24 hours"
+msgstr ""
+
+#: admin/settings.php:75
+#: DIST/plugin/admin/settings.php:75
+msgid "Choose the frequency at which price changes are recorded and updated in the database. Each selected option will ensure that only one price change is captured within the specified time interval."
+msgstr ""
+
+#: admin/settings.php:80
+#: DIST/plugin/admin/settings.php:80
+msgid "Delete price history older than"
+msgstr ""
+
+#: admin/settings.php:82
+#: DIST/plugin/admin/settings.php:82
+msgid "-- Select --"
+msgstr ""
+
+#: admin/settings.php:89
+#: DIST/plugin/admin/settings.php:89
+msgid "Delete all plugin data on uninstall"
+msgstr ""
+
+#: admin/settings.php:90
+#: DIST/plugin/admin/settings.php:90
+msgid "Enabling this option will ensure that all data associated with the plugin, including settings, subscribers and all price histories, will be completely removed from the database upon uninstallation of the plugin."
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:33
+#: DIST/plugin/modules/chart/admin.php:121
+#: DIST/plugin/modules/chart/public.php:163
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:20
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:32
+#: modules/chart/admin.php:33
+#: modules/chart/admin.php:121
+#: modules/chart/public.php:163
+#: modules/price-alerts/partials/price-alerts-page.php:20
+#: modules/price-alerts/partials/price-alerts-page.php:32
+msgid "All"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:34
+#: DIST/plugin/modules/chart/admin.php:122
+#: DIST/plugin/modules/chart/public.php:164
+#: modules/chart/admin.php:34
+#: modules/chart/admin.php:122
+#: modules/chart/public.php:164
+msgid "Last 7 days"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:35
+#: DIST/plugin/modules/chart/admin.php:123
+#: DIST/plugin/modules/chart/public.php:165
+#: modules/chart/admin.php:35
+#: modules/chart/admin.php:123
+#: modules/chart/public.php:165
+msgid "Last 30 days"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:36
+#: DIST/plugin/modules/chart/admin.php:124
+#: DIST/plugin/modules/chart/public.php:166
+#: modules/chart/admin.php:36
+#: modules/chart/admin.php:124
+#: modules/chart/public.php:166
+msgid "Last 3 months"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:37
+#: DIST/plugin/modules/chart/admin.php:125
+#: DIST/plugin/modules/chart/public.php:167
+#: modules/chart/admin.php:37
+#: modules/chart/admin.php:125
+#: modules/chart/public.php:167
+msgid "Last 6 months"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:38
+#: DIST/plugin/modules/chart/admin.php:126
+#: DIST/plugin/modules/chart/public.php:168
+#: modules/chart/admin.php:38
+#: modules/chart/admin.php:126
+#: modules/chart/public.php:168
+msgid "Last 12 months"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:87
+#: modules/chart/admin.php:87
+msgid "Chart"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:102
+#: DIST/plugin/modules/lowest-price/admin.php:61
+#: DIST/plugin/modules/price-alerts/admin.php:264
+#: modules/chart/admin.php:102
+#: modules/lowest-price/admin.php:61
+#: modules/price-alerts/admin.php:264
+msgid "Enable"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:108
+#: modules/chart/admin.php:108
+msgid "Position"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:110
+#: DIST/plugin/modules/price-alerts/admin.php:284
+#: modules/chart/admin.php:110
+#: modules/price-alerts/admin.php:284
+msgid "After product meta"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:111
+#: DIST/plugin/modules/price-alerts/admin.php:285
+#: modules/chart/admin.php:111
+#: modules/price-alerts/admin.php:285
+msgid "After product summary"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:112
+#: DIST/plugin/modules/chart/admin.php:225
+#: DIST/plugin/modules/price-alerts/admin.php:286
+#: modules/chart/admin.php:112
+#: modules/chart/admin.php:225
+#: modules/price-alerts/admin.php:286
+msgid "Custom - I'll insert a shortcode"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:119
+#: modules/chart/admin.php:119
+msgid "Date range"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:133
+#: modules/chart/admin.php:133
+msgid "Range selector"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:140
+#: modules/chart/admin.php:140
+msgid "Minimum prices to display"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:148
+#: modules/chart/admin.php:148
+msgid "Daily average price"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:149
+#: modules/chart/admin.php:149
+msgid "Helpful when there are frequent price fluctuations within a single day"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:155
+#: modules/chart/admin.php:155
+msgid "Show chart on variable products only when variation is selected"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:161
+#: modules/chart/admin.php:161
+msgid "Chart type"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:163
+#: modules/chart/admin.php:163
+msgid "Bar"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:164
+#: DIST/plugin/modules/chart/admin.php:232
+#: modules/chart/admin.php:164
+#: modules/chart/admin.php:232
+msgid "Stepped"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:165
+#: DIST/plugin/modules/chart/admin.php:233
+#: modules/chart/admin.php:165
+#: modules/chart/admin.php:233
+msgid "Line"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:172
+#: modules/chart/admin.php:172
+msgid "Title"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:179
+#: modules/chart/admin.php:179
+msgid "Graph border color"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:185
+#: modules/chart/admin.php:185
+msgid "Chart maximal width"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:195
+#: modules/chart/admin.php:195
+msgid "Chart text color"
+msgstr ""
+
+#: DIST/plugin/modules/chart/admin.php:201
+#: modules/chart/admin.php:201
+msgid "Chart background color"
+msgstr ""
+
+#: DIST/plugin/modules/chart/edit-product.php:27
+#: modules/chart/edit-product.php:27
+msgid "Hide chart"
+msgstr ""
+
+#: DIST/plugin/modules/lowest-price/admin.php:29
+#: modules/lowest-price/admin.php:29
+msgid "Lowest Price"
+msgstr ""
+
+#: DIST/plugin/modules/lowest-price/admin.php:46
+#: modules/lowest-price/admin.php:46
+msgid "Lowest Price in the last 30 days: {lowest_price}"
+msgstr ""
+
+#: DIST/plugin/modules/lowest-price/admin.php:67
+#: modules/lowest-price/admin.php:67
+msgid "Only on product page"
+msgstr ""
+
+#: DIST/plugin/modules/lowest-price/admin.php:73
+#: modules/lowest-price/admin.php:73
+msgid "Only when product on-sale"
+msgstr ""
+
+#: DIST/plugin/modules/lowest-price/admin.php:79
+#: modules/lowest-price/admin.php:79
+msgid "Inherit from regular price"
+msgstr ""
+
+#: DIST/plugin/modules/lowest-price/admin.php:80
+#: modules/lowest-price/admin.php:80
+msgid "When insufficient price history information is available, the regular price will be displayed as the lowest price."
+msgstr ""
+
+#: DIST/plugin/modules/lowest-price/admin.php:86
+#: modules/lowest-price/admin.php:86
+msgid "Variable product price"
+msgstr ""
+
+#: DIST/plugin/modules/lowest-price/admin.php:88
+#: modules/lowest-price/admin.php:88
+msgid "Range (min - max)"
+msgstr ""
+
+#: DIST/plugin/modules/lowest-price/admin.php:89
+#: modules/lowest-price/admin.php:89
+msgid "Min"
+msgstr ""
+
+#: DIST/plugin/modules/lowest-price/admin.php:90
+#: modules/lowest-price/admin.php:90
+msgid "Max"
+msgstr ""
+
+#: DIST/plugin/modules/lowest-price/admin.php:91
+#: modules/lowest-price/admin.php:91
+msgid "Don't display"
+msgstr ""
+
+#: DIST/plugin/modules/lowest-price/admin.php:98
+#: modules/lowest-price/admin.php:98
+msgid "Text"
+msgstr ""
+
+#: DIST/plugin/modules/lowest-price/admin.php:99
+#: modules/lowest-price/admin.php:99
+msgid "Placeholder for lowest price {lowest_price}"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:60
+#: modules/price-alerts/admin.php:60
+msgid "The notification has already been sent to certain users who were selected. Are you certain that you wish to send the notification again?"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:61
+#: modules/price-alerts/admin.php:61
+msgid "Successfully notified %s user(s)."
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:62
+#: modules/price-alerts/admin.php:62
+msgid "%s selected user(s) were not notified."
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:90
+#: DIST/plugin/modules/price-alerts/admin.php:91
+#: DIST/plugin/modules/price-alerts/admin.php:92
+#: DIST/plugin/modules/price-alerts/admin.php:219
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:3
+#: modules/price-alerts/admin.php:90
+#: modules/price-alerts/admin.php:91
+#: modules/price-alerts/admin.php:92
+#: modules/price-alerts/admin.php:219
+#: modules/price-alerts/partials/price-alerts-page.php:3
+msgid "Price Alerts"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:140
+#: modules/price-alerts/admin.php:140
+msgid "OMG you can not view private data."
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:235
+#: modules/price-alerts/admin.php:235
+msgid "Notify me on price drop"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:237
+#: modules/price-alerts/admin.php:237
+msgid "We would like to keep you updated on our latest products and services. To do this, we need your permission to send you marketing communications."
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:239
+#: modules/price-alerts/admin.php:239
+msgid "I consent to the collection and processing of my personal data in accordance with the General Data Protection Regulation (GDPR) for the purpose of notifying me when the product price drops below my target price. I understand that I have the right to withdraw my consent at any time."
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:241
+#: DIST/plugin/modules/price-alerts/admin.php:360
+#: modules/price-alerts/admin.php:241
+#: modules/price-alerts/admin.php:360
+msgid "Subject"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:242
+#: modules/price-alerts/admin.php:242
+msgid "Heading"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:243
+#: DIST/plugin/modules/price-alerts/admin.php:374
+#: modules/price-alerts/admin.php:243
+#: modules/price-alerts/admin.php:374
+msgid ""
+"Hi there,\n"
+"good news! We are excited to inform you that the product(s) you were interested in is now available at a lower price than your target price. Here is a list of the product(s) you showed interest in, along with their current prices:"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:244
+#: modules/price-alerts/admin.php:244
+msgid ""
+"It is a great opportunity to make your purchase and take advantage of these deals. If you have any questions or need help, please feel free to reach out. We are always here to help you out!\n"
+"Thank you for choosing our company for your shopping needs.\n"
+"Best regards"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:246
+#: modules/price-alerts/admin.php:246
+msgid "%s - Powered by Product Price History"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:270
+#: modules/price-alerts/admin.php:270
+msgid "Trigger button"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:276
+#: modules/price-alerts/admin.php:276
+msgid "Show only for logged in users"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:282
+#: modules/price-alerts/admin.php:282
+msgid "Button position"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:293
+#: modules/price-alerts/admin.php:293
+msgid "Button text"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:299
+#: modules/price-alerts/admin.php:299
+msgid "Subscription form"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:305
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:30
+#: modules/price-alerts/admin.php:305
+#: modules/price-alerts/partials/price-alerts-page.php:30
+msgid "Marketing"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:311
+#: modules/price-alerts/admin.php:311
+msgid "Marketing text"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:318
+#: modules/price-alerts/admin.php:318
+msgid "GDPR"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:324
+#: modules/price-alerts/admin.php:324
+msgid "GDPR text"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:331
+#: modules/price-alerts/admin.php:331
+msgid "Notifier"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:337
+#: modules/price-alerts/admin.php:337
+msgid "Notifier interval"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:339
+#: modules/price-alerts/admin.php:339
+msgid "Manual - I'll do it myself"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:340
+#: DIST/plugin/modules/price-alerts/notifier.php:41
+#: modules/price-alerts/admin.php:340
+#: modules/price-alerts/notifier.php:41
+msgid "Every 5 minutes"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:341
+#: DIST/plugin/modules/price-alerts/notifier.php:36
+#: modules/price-alerts/admin.php:341
+#: modules/price-alerts/notifier.php:36
+msgid "Every 15 minutes"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:342
+#: DIST/plugin/modules/price-alerts/notifier.php:31
+#: modules/price-alerts/admin.php:342
+#: modules/price-alerts/notifier.php:31
+msgid "Every 30 minutes"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:343
+#: modules/price-alerts/admin.php:343
+msgid "Every hour"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:344
+#: modules/price-alerts/admin.php:344
+msgid "Twice a day"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:345
+#: modules/price-alerts/admin.php:345
+msgid "Once a day"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:346
+#: modules/price-alerts/admin.php:346
+msgid "Once a week"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:348
+#: modules/price-alerts/admin.php:348
+msgid "What is the frequency at which the notifier should verify for any price drops and send notifications to subscribed users"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:354
+#: modules/price-alerts/admin.php:354
+msgid "Email settings"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:366
+#: modules/price-alerts/admin.php:366
+msgid "Email heading text"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:373
+#: modules/price-alerts/admin.php:373
+msgid "Email content - top"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:382
+#: modules/price-alerts/admin.php:382
+msgid "Email content - bottom"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:390
+#: modules/price-alerts/admin.php:390
+msgid "Email footer text"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:397
+#: modules/price-alerts/admin.php:397
+msgid "Design"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:400
+#: modules/price-alerts/admin.php:400
+msgid "Colors and header image are inherited from the"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:401
+#: modules/price-alerts/admin.php:401
+msgid "WooCommerce emails."
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:407
+#: modules/price-alerts/admin.php:407
+msgid "Email Template"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/admin.php:411
+#: modules/price-alerts/admin.php:411
+msgid "Click here to preview your email template."
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/notifier.php:236
+#: modules/price-alerts/notifier.php:236
+msgid "is now"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/notifier.php:238
+#: modules/price-alerts/notifier.php:238
+msgid "Price you were waiting for: "
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/notifier.php:240
+#: modules/price-alerts/notifier.php:240
+msgid "since: "
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-form.php:11
+#: modules/price-alerts/partials/price-alerts-form.php:11
+msgid "Before submitting your request, please ensure that you have selected the specific variation you are interested in. Otherwise, you will receive a notification if any of the variations' prices drop below your desired target price."
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-form.php:26
+#: modules/price-alerts/partials/price-alerts-form.php:26
+msgid "close"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-form.php:34
+#: modules/price-alerts/partials/price-alerts-form.php:34
+msgid "Your target price"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-form.php:40
+#: modules/price-alerts/partials/price-alerts-form.php:40
+msgid "Your email address"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-form.php:66
+#: modules/price-alerts/partials/price-alerts-form.php:66
+msgid "Notify me"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:6
+#: modules/price-alerts/partials/price-alerts-page.php:6
+msgid "Choose specific rows within a table and inform users of price drops. If a user has subscribed to more than one product, they will receive a single email containing a list of products that are currently priced below their desired target."
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:8
+#: modules/price-alerts/partials/price-alerts-page.php:8
+msgid "pending"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:8
+#: modules/price-alerts/partials/price-alerts-page.php:8
+msgid "status indicates a price drop."
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:15
+#: modules/price-alerts/partials/price-alerts-page.php:15
+msgid "Filter:"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:18
+#: modules/price-alerts/partials/price-alerts-page.php:18
+msgid "Status"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:21
+#: modules/price-alerts/partials/price-alerts-page.php:21
+msgid "Assigned"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:22
+#: modules/price-alerts/partials/price-alerts-page.php:22
+msgid "Pending"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:23
+#: modules/price-alerts/partials/price-alerts-page.php:23
+msgid "Notified"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:24
+#: modules/price-alerts/partials/price-alerts-page.php:24
+msgid "Failed"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:25
+#: modules/price-alerts/partials/price-alerts-page.php:25
+msgid "Blocked"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:33
+#: modules/price-alerts/partials/price-alerts-page.php:33
+msgid "Allowed"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:34
+#: modules/price-alerts/partials/price-alerts-page.php:34
+msgid "Not Allowed"
+msgstr ""
+
+#: DIST/plugin/modules/price-alerts/partials/price-alerts-page.php:41
+#: modules/price-alerts/partials/price-alerts-page.php:41
+msgid "Notify"
+msgstr ""
+
+#: DIST/plugin/product-price-history.php:187
+#: product-price-history.php:187
+msgid "The “Product Price History” plugin cannot run without WooCommerce. Please install and activate WooCommerce plugin."
+msgstr ""

@@ -1,0 +1,341 @@
+// LoftLoader Frontend Style - Animations
+
+@-webkit-keyframes spinReturn {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    25% {
+        -webkit-transform: rotate(225deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+    }
+    75% {
+        -webkit-transform: rotate(405deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spinReturn {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(225deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(405deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes lightUp {
+    0% {
+        opacity: 0.2;
+    }
+    40% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+
+@keyframes lightUp {
+    0% {
+        opacity: 0.2;
+    }
+    40% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+
+@-webkit-keyframes wave {
+    0% {
+        -webkit-transform: scaleY(1);
+    }
+    40% {
+        -webkit-transform: scaleY(0.1);
+    }
+    80% {
+        -webkit-transform: scaleY(1);
+    }
+    100% {
+        -webkit-transform: scaleY(1);
+    }
+}
+
+@keyframes wave {
+    0% {
+        transform: scaleY(1);
+    }
+    40% {
+        transform: scaleY(0.1);
+    }
+    80% {
+        transform: scaleY(1);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+@-webkit-keyframes drawframeTop {
+    0% {
+        -webkit-transform: scaleX(1);
+        transform-origin: 100% 0%;
+    }
+    12.5% {
+        -webkit-transform: scaleX(0);
+        transform-origin: 100% 0%;
+    }
+    50% {
+        -webkit-transform: scaleX(0);
+        transform-origin: 0% 0%;
+    }
+    62.5% {
+        -webkit-transform: scaleX(1);
+        transform-origin: 0% 0%;
+    }
+    100% {
+        -webkit-transform: scaleX(1);
+        transform-origin: 100% 0%;
+    }
+}
+
+@keyframes drawframeTop {
+    0% {
+        transform: scaleX(1);
+        transform-origin: 100% 0%;
+    }
+    12.5% {
+        transform: scaleX(0);
+        transform-origin: 100% 0%;
+    }
+    50% {
+        transform: scaleX(0);
+        transform-origin: 0% 0%;
+    }
+    62.5% {
+        transform: scaleX(1);
+        transform-origin: 0% 0%;
+    }
+    100% {
+        transform: scaleX(1);
+        transform-origin: 100% 0%;
+    }
+}
+
+@-webkit-keyframes drawframeBottom {
+    0% {
+        -webkit-transform: scaleX(1);
+        transform-origin: 0% 0%;
+    }
+    12.5% {
+        -webkit-transform: scaleX(0);
+        transform-origin: 0% 0%;
+    }
+    50% {
+        -webkit-transform: scaleX(0);
+        transform-origin: 100% 0%;
+    }
+    62.5% {
+        -webkit-transform: scaleX(1);
+        transform-origin: 100% 0%;
+    }
+    100% {
+        -webkit-transform: scaleX(1);
+        transform-origin: 0% 0%;
+    }
+}
+
+@keyframes drawframeBottom {
+    0% {
+        transform: scaleX(1);
+        transform-origin: 0% 0%;
+    }
+    12.5% {
+        transform: scaleX(0);
+        transform-origin: 0% 0%;
+    }
+    50% {
+        transform: scaleX(0);
+        transform-origin: 100% 0%;
+    }
+    62.5% {
+        transform: scaleX(1);
+        transform-origin: 100% 0%;
+    }
+    100% {
+        transform: scaleX(1);
+        transform-origin: 0% 0%;
+    }
+}
+
+@-webkit-keyframes drawframeRight {
+    0% {
+        -webkit-transform: scaleY(1);
+        transform-origin: 0% 100%;
+    }
+    12.5% {
+        -webkit-transform: scaleY(0);
+        transform-origin: 0% 100%;
+    }
+    50% {
+        -webkit-transform: scaleY(0);
+        transform-origin: 0% 0%;
+    }
+    62.5% {
+        -webkit-transform: scaleY(1);
+        transform-origin: 0% 0%;
+    }
+    100% {
+        -webkit-transform: scaleY(1);
+        transform-origin: 0% 100%;
+    }
+}
+
+@keyframes drawframeRight {
+    0% {
+        transform: scaleY(1);
+        transform-origin: 0% 100%;
+    }
+    12.5% {
+        transform: scaleY(0);
+        transform-origin: 0% 100%;
+    }
+    50% {
+        transform: scaleY(0);
+        transform-origin: 0% 0%;
+    }
+    62.5% {
+        transform: scaleY(1);
+        transform-origin: 0% 0%;
+    }
+    100% {
+        transform: scaleY(1);
+        transform-origin: 0% 100%;
+    }
+}
+
+@-webkit-keyframes drawframeLeft {
+    0% {
+        -webkit-transform: scaleY(1);
+        transform-origin: 0% 0%;
+    }
+    12.5% {
+        -webkit-transform: scaleY(0);
+        transform-origin: 0% 0%;
+    }
+    50% {
+        -webkit-transform: scaleY(0);
+        transform-origin: 0% 100%;
+    }
+    62.5% {
+        -webkit-transform: scaleY(1);
+        transform-origin: 0% 100%;
+    }
+    100% {
+        -webkit-transform: scaleY(1);
+        transform-origin: 0% 0%;
+    }
+}
+
+@keyframes drawframeLeft {
+    0% {
+        transform: scaleY(1);
+        transform-origin: 0% 0%;
+    }
+    12.5% {
+        transform: scaleY(0);
+        transform-origin: 0% 0%;
+    }
+    50% {
+        transform: scaleY(0);
+        transform-origin: 0% 100%;
+    }
+    62.5% {
+        transform: scaleY(1);
+        transform-origin: 0% 100%;
+    }
+    100% {
+        transform: scaleY(1);
+        transform-origin: 0% 0%;
+    }
+}
+
+@-webkit-keyframes imgLoading {
+    0% {
+        height: 0%;
+        opacity: 1;
+    }
+    95% {
+        height: 100%;
+        opacity: 1;
+    }
+    100% {
+        height: 100%;
+        opacity: 0;
+    }
+}
+
+@keyframes imgLoading {
+    0% {
+        height: 0%;
+        opacity: 1;
+    }
+    95% {
+        height: 100%;
+        opacity: 1;
+    }
+    100% {
+        height: 100%;
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes beat {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes beat {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}

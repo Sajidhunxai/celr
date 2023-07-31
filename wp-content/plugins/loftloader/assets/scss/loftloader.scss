@@ -1,0 +1,546 @@
+/**
+ * LoftLoader Lite Frontend Style
+ *
+ * Plugin Name: LoftLoader
+ * Plugin URI: https://www.loftocean.com/loftloader
+ * Author: The Loft.Ocean Team
+ * Author URI: https://www.loftocean.com
+ * Description: LoftLoader (Lite Version) is a plugin for adding beautiful and smooth preload animation to your WordPress website. With setting options, you can choose from preset animations, add custom logo image, choose colours to match your branding, and amuse and impress your visitors while loading site content.
+ * Version: 2.4.0
+*/
+
+$primary-color: #248acc;
+
+@import 'loftloader-animation';
+@import 'loftloader-mixins';
+
+html,
+body {
+    opacity: 1 !important; //Prevent site content from being hidden by other plugins before their code get fully loaded.
+}
+
+#loftloader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    @include transform(translateX(0));
+    z-index: 999999;
+    width: 100%;
+    height: 100%;
+    background: transparent !important;
+
+    // After the page content has been loaded:
+    .loaded & {
+        @include transform(translateX(-200vw));
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.0001s 1s, transform 0.0001s 2s;
+
+        &.slide-vertical {
+            @include verticalend;
+        }
+
+        // Hide the preloader elements
+        #loader,
+        .loader-close-button {
+            @include endLoader;
+        }
+    }
+
+    .loader-inner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include transform(translate(-50%, -50%));
+        z-index: 1001;
+        text-align: center;
+        transition: all 0s;
+        font-size: 0;
+
+        #loader {
+            position: relative;
+            z-index: 1002;
+            top: auto;
+            left: auto;
+            display: inline-block;
+            margin: 0 auto;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            background: none !important;
+            color: $primary-color;
+        }
+    }
+
+    // LoftLoader Background
+    .loader-section {
+        position: fixed;
+        z-index: 999;
+        width: 50%;
+        height: 100%;
+        background: #000;
+        opacity: 0.95;
+        transition: all 0s;
+        will-change: transform;
+
+        //Fade
+        &.section-fade {
+            top: 0;
+            left: 0;
+            width: 100%;
+            will-change: opacity;
+
+            .loaded & {
+                @include endBgFade;
+            }
+        }
+        
+        // No Animation
+        &.end-no-animation {
+            top: 0;
+            left: 0;
+            width: 100%;
+            will-change: opacity;
+            
+            .loaded &,
+            .loaded & ~ * {
+                opacity: 0;
+                transition: all 0s 0s;
+            }
+        }
+
+        //Slide Up
+        &.section-slide-up {
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            .loaded & {
+                @include endBgUp;
+            }
+        }
+
+        //Split Horizontally
+        &.section-left,
+        &.section-right {
+            top: 0;
+        }
+
+        &.section-left {
+            left: 0;
+
+            .loaded & {
+                @include endBgSplitLeft;
+            }
+        }
+
+        &.section-right {
+            right: 0;
+
+            .loaded & {
+                @include endBgSplitRight;
+            }
+        }
+
+        //Split Vertically
+        &.section-up,
+        &.section-down {
+            left: 0;
+            width: 100%;
+            height: 50%;
+        }
+
+        &.section-up {
+            top: 0;
+
+            .loaded & {
+                @include endBgSplitUp;
+            }
+        }
+
+        &.section-down {
+            bottom: 0;
+
+            .loaded & {
+                @include endBgSplitDown;
+            }
+        }
+    }
+}
+
+
+/* ==========================================================================
+   Loading - Spinning Sun
+   ========================================================================== */
+
+#loftloader-wrapper.pl-sun {
+    #loader {
+        width: 50px;
+        height: 50px;
+
+        span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 50px;
+            height: 50px;
+            background: currentColor;
+            opacity: 0.9;
+            transform-origin: 50% 50%;
+            @include animation(spinReturn 4s ease infinite);
+
+            &:before {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: block;
+                width: 100%;
+                height: 100%;
+                background: inherit;
+                opacity: 0.9;
+                content: "";
+                transform-origin: 50% 50%;
+                @include transform(rotate(45deg));
+            }
+        }
+    }
+}
+
+
+/* ==========================================================================
+   Loading - Luminous Circles
+   ========================================================================== */
+
+#loftloader-wrapper.pl-circles {
+    #loader {
+        width: 100px;
+        height: 60px;
+
+        span,
+        &:before,
+        &:after {
+            position: absolute;
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            opacity: 0.2;
+            background: currentColor;
+        }
+
+        span {
+            top: 50%;
+            left: 50%;
+            @include transform(translate(-50%, -50%));
+            @include animation(lightUp 1.5s linear infinite 0.5s);
+        }
+
+        &:before,
+        &:after {
+            content: "";
+            top: 50%;
+            @include transform(translate(0, -50%));
+        }
+
+        &:before {
+            left: 0;
+            @include animation(lightUp 1.5s linear infinite);
+        }
+
+        &:after {
+            right: 0;
+            @include animation(lightUp 1.5s linear infinite 1s);
+        }
+    }
+}
+
+
+/* ==========================================================================
+   Loading - Wave
+   ========================================================================== */
+
+#loftloader-wrapper.pl-wave {
+    #loader {
+        width: 60px;
+        height: 30px;
+
+        span,
+        &:before,
+        &:after {
+            position: relative;
+            display: inline-block;
+            width: 6px;
+            height: 100%;
+            background: currentColor;
+        }
+
+        span {
+            margin: 0 16px;
+            @include animation(wave 0.9s linear infinite 0.3s);
+        }
+
+        &:before,
+        &:after {
+            content: "";
+        }
+
+        &:before {
+            @include animation(wave 0.9s linear infinite);
+        }
+
+        &:after {
+            @include animation(wave 0.9s linear infinite 0.6s);
+        }
+    }
+}
+
+
+/* ==========================================================================
+   Loading - Spinning Square
+   ========================================================================== */
+
+#loftloader-wrapper.pl-square {
+    #loader {
+        width: 50px;
+        height: 50px;
+        transform-origin: 50% 50%;
+        @include animation(spinReturn 4s ease infinite);
+
+        span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 4px solid currentColor;
+            box-sizing: border-box;
+            transform-origin: 50% 50%;
+            @include transform(rotate(45deg));
+        }
+    }
+}
+
+
+/* ==========================================================================
+   Loading - Drawing Frame
+   ========================================================================== */
+
+#loftloader-wrapper.pl-frame {
+    #loader {
+        width: 80px;
+        height: 80px;
+        max-width: 90vw;
+
+        &:before,
+        &:after {
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: currentColor;
+            content: "";
+        }
+
+        &:before {
+            top: 0;
+            right: 0;
+            left: auto;
+            @include animation(drawframeTop 4s linear infinite);
+        }
+
+        &:after {
+            right: auto;
+            bottom: 0;
+            left: 0;
+            @include animation(drawframeBottom 4s linear infinite 1s);
+        }
+
+        span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+
+            &:before,
+            &:after {
+                position: absolute;
+                width: 4px;
+                height: 100%;
+                background: currentColor;
+                content: "";
+            }
+
+            &:before {
+                top: auto;
+                right: 0;
+                bottom: 0;
+                @include animation(drawframeRight 4s linear infinite 0.5s);
+            }
+
+            &:after {
+                top: 0;
+                bottom: auto;
+                left: 0;
+                @include animation(drawframeLeft 4s linear infinite 1.5s);
+            }
+        }
+
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            @include transform(translate(-50%, -50%));
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+        }
+    }
+}
+
+
+/* ==========================================================================
+   Loading - Loading Custom Image
+   ========================================================================== */
+
+#loftloader-wrapper.pl-imgloading {
+    #loader {
+        @include customImg;
+
+        img {
+            opacity: 0.3;
+        }
+
+        .imgloading-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 3;
+            display: block;
+            width: 100%;
+            height: 0%;
+            transition: 0s;
+            overflow: hidden;
+            @include animation(imgLoading 6s linear infinite);
+            will-change: height, opacity;
+            transform-origin: 0 100%;
+        }
+
+        span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 3;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center bottom;
+            transition: 0s;
+        }
+    }
+}
+
+
+/* ==========================================================================
+   Loading - Beating
+   ========================================================================== */
+
+#loftloader-wrapper.pl-beating {
+    #loader {
+        width: 60px;
+        height: 60px;
+
+        span,
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: currentColor;
+            box-shadow: 0 0 50px;
+            opacity: 0;
+        }
+
+        span {
+            @include animation(beat 1.5s linear infinite);
+        }
+
+        &:before {
+            content: "";
+            @include animation(beat 1.5s linear infinite 1s);
+        }
+    }
+}
+
+
+/* ==========================================================================
+   Close Button
+   ========================================================================== */
+
+.loader-close-button {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 99999;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 35px;
+    height: 35px;
+    padding: 5px 30px 5px 5px;
+    border-radius: 999px;
+    background: rgba(#000, 0.3);
+    color: #FFF;
+    font-size: 12px;
+    line-height: 25px;
+    cursor: pointer;
+
+    &:hover {
+        background: rgba(#000,0.7);
+    }
+
+    &:before,
+    &:after {
+        position: absolute;
+        top: 16px;
+        right: 9px;
+        display: block;
+        width: 18px;
+        height: 2px;
+        transform-origin: 50% 50%;
+        content: "";
+        background: #FFF;
+    }
+
+    &:before {
+        @include transform(rotate(45deg));
+    }
+
+    &:after {
+        @include transform(rotate(135deg));
+    }
+
+    .screen-reader-text {
+        position: absolute !important;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        border: 0;
+        clip: rect(1px, 1px, 1px, 1px);
+        clip-path: inset(50%);
+        overflow: hidden;
+        word-wrap: normal !important;
+    }
+
+    .close-des {
+        padding: 0 5px;
+        font-size: 12px;
+    }
+}

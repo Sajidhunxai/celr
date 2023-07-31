@@ -167,7 +167,7 @@ function calculate_price_difference($product_id)
     // Get the vendors' prices
     $vendors = get_post_meta($product_id, 'vendors', true);
     if (empty($vendors)) {
-        return 'No vendor prices available';
+        return '0% same';
     }
 
     // Find the lowest vendor price
@@ -191,7 +191,7 @@ function calculate_price_difference($product_id)
             $percentage = round(($difference / $selected_variation_price) * 100, 2);
             return $percentage . '% above';
         } else {
-            return 'Same as vendor price';
+            return '0% same';
         }
     }
 
@@ -238,5 +238,74 @@ function display_price_difference($atts)
 }
 
 add_shortcode('price_difference', 'display_price_difference');
+
+
+function show_vintage_only($atts)
+{
+    $atts = shortcode_atts(
+        array(
+            'product_id' => get_the_ID(),
+        ),
+        $atts
+    );
+
+    $product_id = intval($atts['product_id']);
+    $product = wc_get_product($product_id);
+
+    if ($product === false) {
+        return 'No product found';
+    }
+
+    // Check if the filter_vintage parameter is set in the URL
+    $filter_vintage = isset($_GET['filter_vintage']) ? intval($_GET['filter_vintage']) : null;
+
+    // Check if the product is variable type
+    if ($product->is_type('variable')) {
+        $variations = $product->get_available_variations();
+        $vintage_values = array();
+
+        foreach ($variations as $variation) {
+            $variation_attributes = $variation['attributes'];
+            $variation_vintage = $variation_attributes['attribute_pa_vintage'];
+
+            if (!empty($variation_vintage) && is_numeric($variation_vintage)) {
+                $vintage_values[] = intval($variation_vintage);
+            }
+        }
+
+        // If filter_vintage parameter is set and exists in the variations, use its value
+        if ($filter_vintage !== null && in_array($filter_vintage, $vintage_values)) {
+            return $filter_vintage;
+        }
+
+        // Pick a random vintage year if there are values within the variations
+        if (!empty($vintage_values)) {
+            $allowed_years = array_unique($vintage_values);
+            $random_vintage = $allowed_years[array_rand($allowed_years)];
+            return $random_vintage;
+        } else {
+            return 'No vintage attribute available';
+        }
+    } else {
+        // If the product is not variable type, check the single product's vintage attribute
+        $vintage = $product->get_attribute('pa_vintage');
+
+        if (!empty($vintage) && is_numeric($vintage)) {
+            // If filter_vintage parameter is set and matches the product's vintage, use its value
+            if ($filter_vintage !== null && intval($vintage) === $filter_vintage) {
+                return $filter_vintage;
+            }
+
+            return $vintage;
+        } else {
+            return 'No vintage attribute available';
+        }
+    }
+}
+
+add_shortcode('show_vintage', 'show_vintage_only');
+
+
+
 
 ?>

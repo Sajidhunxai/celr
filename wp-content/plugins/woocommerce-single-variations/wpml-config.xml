@@ -1,0 +1,44 @@
+<wpml-config>
+	<admin-texts>
+		<key name="woocommerce_single_variations_options">
+			<key name="enable" />
+			<key name="removeDefaultVariations" />
+			<key name="variationsTableTitle" />
+			<key name="variationsTablePosition" />
+			<key name="variationsTablePriority" />
+			<key name="variationsTableData" />
+			<key name="variationsTableShowQuantity" />
+			<key name="datatablesEnable" />
+			<key name="datatablesLanguage" />
+			<key name="datatablesPaging" />
+			<key name="datatablesOrdering" />
+			<key name="datatablesInfo" />
+			<key name="datatablesFiltering" />
+			<key name="datatablesFilteringColumns" />
+			<key name="datatablesStateSave" />
+			<key name="datatablesSearching" />
+			<key name="datatablesScrollY" />
+			<key name="datatablesScrollCollapse" />
+			<key name="datatablesResponsive" />
+			<key name="datatablesSDom" />
+			<key name="datatablesPrint" />
+			<key name="datatablesCopyHtml5" />
+			<key name="datatablesExcelHtml5" />
+			<key name="datatablesCsvHtml5" />
+			<key name="datatablesPdfHtml5" />
+			<key name="excludeProductCategories" />
+			<key name="excludeProductCategoriesRevert" />
+			<key name="excludeProducts" />
+			<key name="excludeProductsRevert" />
+			<key name="excludeCountries" />
+			<key name="countriesToExclude" />
+			<key name="countriesToExcludeRevert" />
+			<key name="applyForUserGroup" />
+			<key name="applyForExcludeUserRoles" />
+			<key name="customCSS" />
+			<key name="customJS" />
+			<key name="debug" />
+			<key name="hardRemove" />
+		</key> 
+	</admin-texts>
+</wpml-config>

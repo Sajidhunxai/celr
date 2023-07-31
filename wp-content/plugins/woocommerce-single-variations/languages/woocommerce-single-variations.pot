@@ -1,0 +1,390 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-18 13:20+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: admin/options-init.php:463
+msgid "Add product_variation post type to your SEO sitemap."
+msgstr ""
+
+#: admin/options-init.php:137
+msgid ""
+"Add support for gallery images to show in listings. You will need our <a "
+"href=\"https://www.welaunch.io/en/product/woocommerce-gallery-images/\" "
+"target=\"_blank\">Gallery Images plugin</a> and your theme must support 2nd "
+"image in listings (e.g. Flatsome)."
+msgstr ""
+
+#: admin/options-init.php:208
+msgid ""
+"admin.php?page=woocommerce_single_variations_options_options&reset-variation-"
+"transients=true\" class=\"button button-success\">Reset Transients (Cache)"
+"</a>\n"
+"                        </div>"
+msgstr ""
+
+#: admin/options-init.php:440
+msgid "Always show these Variation Products"
+msgstr ""
+
+#: admin/options-init.php:375
+msgid "Cache Categories Separately"
+msgstr ""
+
+#: admin/options-init.php:368
+msgid "Cache Excluded Products"
+msgstr ""
+
+#: admin/options-init.php:391
+msgid "Caching Expiration"
+msgstr ""
+
+#: admin/options-init.php:200
+msgid "Change Counts"
+msgstr ""
+
+#: admin/options-init.php:476
+msgid "Change Meta Description"
+msgstr ""
+
+#: admin/options-init.php:469
+msgid "Change Meta Title"
+msgstr ""
+
+#: admin/options-init.php:201
+msgid ""
+"Change the layered nav and category counts. Only activate when you also show "
+"them. Changing counts costs 3 queries and that decreases performance."
+msgstr ""
+
+#: admin/options-init.php:256
+msgid "Change the variation title when anohter variation is selected."
+msgstr ""
+
+#: admin/options-init.php:255
+msgid "Change Variation Title when Selected"
+msgstr ""
+
+#: admin/options-init.php:477
+msgid ""
+"Changes the meta title according to your variation description if set. "
+"Otherwise it still returns parent variable meta description."
+msgstr ""
+
+#: admin/options-init.php:470
+msgid "Changes the meta title according to your variation title."
+msgstr ""
+
+#: admin/options-init.php:247
+msgid "Custom Variation Title on Product Pages"
+msgstr ""
+
+#: admin/options-init.php:421
+msgid "Do not Exclude on Filter"
+msgstr ""
+
+#: admin/options-init.php:193
+msgid "Do not show single variations on all shop pages except when filtered."
+msgstr ""
+
+#: admin/options-init.php:185
+msgid ""
+"Do not show single variations on general shop page. Page must be set in "
+"WooCommerce > Settings > Products > Shop page"
+msgstr ""
+
+#: admin/options-init.php:456
+msgid "Each variation product gets an own canonical."
+msgstr ""
+
+#: admin/options-init.php:113
+msgid "Enable"
+msgstr ""
+
+#: admin/options-init.php:240
+msgid "Enable Custom Variation Title"
+msgstr ""
+
+#: admin/options-init.php:248
+msgid "Enable the variation title to also change on single product pages."
+msgstr ""
+
+#: admin/options-init.php:121
+msgid ""
+"Enable this to inherit the menu order of single variations from the main "
+"variable product. This ensures the listing in product categories works as "
+"normal variable products. Deactivate when you want to sort single variations "
+"when you edit a product (be aware this will break category listing order!)."
+msgstr ""
+
+#: admin/options-init.php:376
+msgid ""
+"Enable this when you have many products in your shop as this will get "
+"excluded attribute products per category (faster initial query). Disalbe "
+"when you see categories where exlusions does not work."
+msgstr ""
+
+#: admin/options-init.php:114
+msgid "Enable variations table to use the options below"
+msgstr ""
+
+#: admin/options-init.php:351
+msgid "Exclude Attribute Taxonomies"
+msgstr ""
+
+#: admin/options-init.php:361
+msgid "Exclude Attribute Taxonomies Query Relation"
+msgstr ""
+
+#: admin/options-init.php:302
+msgid "Exclude Attributes from Title"
+msgstr ""
+
+#: admin/options-init.php:321
+msgid "Exclude Product Categories"
+msgstr ""
+
+#: admin/options-init.php:332
+msgid "Exclude Variable Products"
+msgstr ""
+
+#: admin/options-init.php:343
+msgid "Exclude Variation Products"
+msgstr ""
+
+#: admin/options-init.php:310
+msgid "Exclusion"
+msgstr ""
+
+#: admin/options-init.php:407
+msgid ""
+"For example when you have color + size products, but also you have a product "
+"with just size. Then size will still show."
+msgstr ""
+
+#: admin/options-init.php:105
+msgid "General"
+msgstr ""
+
+#: admin/options-init.php:168
+msgid "Hide Parent Products"
+msgstr ""
+
+#: admin/options-init.php:192
+msgid "Hide Variations on Shop & Show only when filtered"
+msgstr ""
+
+#: admin/options-init.php:184
+msgid "Hide Variations on Shop Page"
+msgstr ""
+
+#: admin/options-init.php:176
+msgid "Hide Variations when Filters are active"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://welaunch.io"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://welaunch.io/plugins/woocommerce-single-variations/"
+msgstr ""
+
+#: admin/options-init.php:430
+msgid ""
+"Instead of linking to first \"size\" product for example it will just link "
+"to color."
+msgstr ""
+
+#: admin/options-init.php:400
+msgid "It will keep the first variation of each attribute term."
+msgstr ""
+
+#: admin/options-init.php:414
+msgid ""
+"It will keep the first variation only when it is also on stock. For hiding "
+"out of stock products at all go to WooCommerce Settings > Products > "
+"Inventory."
+msgstr ""
+
+#: admin/options-init.php:406
+msgid "Keep All One Attribute Products"
+msgstr ""
+
+#: admin/options-init.php:399
+msgid "Keep First Variation"
+msgstr ""
+
+#: admin/options-init.php:161
+msgid ""
+"Modify the ratings for variations based on variable rating to show in shop "
+"loop."
+msgstr ""
+
+#: admin/options-init.php:100
+msgid "Need support? Please use the comment function on codecanyon."
+msgstr ""
+
+#: public/class-woocommerce-single-variations-public.php:1353
+msgid "No products found"
+msgstr ""
+
+#: admin/options-init.php:413
+msgid "Only Keep in Stock Products"
+msgstr ""
+
+#: admin/options-init.php:129
+msgid ""
+"Only show variations in shortcode and hide all normal products. Only makes "
+"sense when you have only variable products."
+msgstr ""
+
+#: admin/options-init.php:362
+msgid ""
+"OR is more precise, but AND better for performance. Use AND if you only have "
+"1-2 variation attributes."
+msgstr ""
+
+#: admin/options-init.php:429
+msgid "Remove Term from Permalink"
+msgstr ""
+
+#: admin/options-init.php:169
+msgid "Removes the main product and only shows variations in your shop."
+msgstr ""
+
+#: admin/options-init.php:153
+msgid ""
+"Removes the main product and shows variations in related products section."
+msgstr ""
+
+#: admin/options-init.php:145
+msgid "Removes the main product and shows variations in your search."
+msgstr ""
+
+#: admin/options-init.php:177
+msgid ""
+"Removes variations and just show variable products when customers filter."
+msgstr ""
+
+#: admin/options-init.php:447
+msgid "SEO"
+msgstr ""
+
+#: admin/options-init.php:448
+msgid "SEO options."
+msgstr ""
+
+#: admin/options-init.php:128
+msgid "Shortcode only show variations"
+msgstr ""
+
+#: admin/options-init.php:136
+msgid "Show 2nd Variation Gallery images in Categories"
+msgstr ""
+
+#. Description of the plugin
+msgid "Show variation products directly in your shop loop."
+msgstr ""
+
+#: admin/options-init.php:160
+msgid "Show variation Rating"
+msgstr ""
+
+#: admin/options-init.php:152
+msgid "Show Variations in Related"
+msgstr ""
+
+#: admin/options-init.php:144
+msgid "Show Variations in Search"
+msgstr ""
+
+#: admin/options-init.php:98
+msgid "Single Variations"
+msgstr ""
+
+#: admin/options-init.php:241
+msgid "The custom title can be overwritten in product variation settings."
+msgstr ""
+
+#: admin/options-init.php:369
+msgid ""
+"This will cache excluded attribute products. Disable to debug in frontend."
+msgstr ""
+
+#: admin/options-init.php:455
+msgid "Variation Canonicals"
+msgstr ""
+
+#: admin/options-init.php:120
+msgid "Variation Menu Order"
+msgstr ""
+
+#: admin/options-init.php:462
+msgid "Variation Sitemap"
+msgstr ""
+
+#: admin/options-init.php:232
+#: admin/class-woocommerce-single-variations-admin.php:133
+msgid "Variation Title"
+msgstr ""
+
+#. Author of the plugin
+msgid "weLaunch"
+msgstr ""
+
+#: admin/options-init.php:422
+msgid ""
+"When products are filtered, do not exclude attributes. For example on size "
+"filter still all colors show."
+msgstr ""
+
+#: admin/options-init.php:352
+msgid ""
+"Which attributes should be excluded. That means variations assigned to this "
+"category will not appear in the catalog."
+msgstr ""
+
+#: admin/options-init.php:303
+msgid "Which attributes should not show in the title. "
+msgstr ""
+
+#: admin/options-init.php:322
+msgid "Which product categories should be excluded."
+msgstr ""
+
+#: admin/options-init.php:333
+msgid "Which Variable should be excluded."
+msgstr ""
+
+#: admin/options-init.php:344 admin/options-init.php:441
+msgid "Which Variation should be excluded."
+msgstr ""
+
+#: admin/options-init.php:311
+msgid ""
+"With the below settings you can exclude products / categories from showing "
+"single variations."
+msgstr ""
+
+#. Name of the plugin
+msgid "WooCommerce Single Variations"
+msgstr ""
+
+#: woocommerce-single-variations.php:88
+msgid ""
+"WooCommerce Single Variations requires the WooCommerce & weLaunch Framework "
+"plugin. Please install or activate them before: https://www.welaunch."
+"io/updates/welaunch-framework.zip"
+msgstr ""

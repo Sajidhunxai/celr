@@ -1,0 +1,254 @@
+# Copyright (C) 2022 Loft.Ocean
+# This file is distributed under the GPLv2.
+msgid ""
+msgstr ""
+"Project-Id-Version: LoftLoader 2.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/loftloader\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-11-27T07:30:12+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.7.1\n"
+"X-Domain: loftloader\n"
+
+#. Plugin Name of the plugin
+msgid "LoftLoader"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "http://www.loftocean.com/"
+msgstr ""
+
+#. Description of the plugin
+msgid "An easy to use plugin to add an animated preloader to your website with fully customisations."
+msgstr ""
+
+#. Author of the plugin
+msgid "Loft.Ocean"
+msgstr ""
+
+#: inc/any-page/class-loftloader-any-page.php:24
+msgid "LoftLoader Any Page Shortcode"
+msgstr ""
+
+#: inc/class-loftloader-customize.php:54
+#: loftloader.php:87
+msgid "LoftLoader Lite"
+msgstr ""
+
+#: inc/class-loftloader-customize.php:97
+#: inc/class-loftloader-customize.php:124
+msgid "Setting"
+msgstr ""
+
+#: inc/class-loftloader-customize.php:114
+msgid "Press return or enter to open this section"
+msgstr ""
+
+#: inc/class-loftloader-customize.php:121
+msgid "Back"
+msgstr ""
+
+#: inc/class-loftloader-customize.php:180
+#: inc/configs/customize-advanced.php:24
+msgid "Generate"
+msgstr ""
+
+#: inc/class-loftloader-customize.php:271
+msgid "More info"
+msgstr ""
+
+#: inc/class-loftloader-front.php:221
+msgid "Close"
+msgstr ""
+
+#: inc/class-loftloader-front.php:363
+msgid "loader image"
+msgstr ""
+
+#: inc/configs/customize-advanced.php:31
+msgid "Advanced"
+msgstr ""
+
+#: inc/configs/customize-advanced.php:38
+msgid "How to Load LoftLoader's JavaScript"
+msgstr ""
+
+#: inc/configs/customize-advanced.php:41
+msgid "External JavaScript"
+msgstr ""
+
+#: inc/configs/customize-advanced.php:42
+msgid "Inline JavaScript"
+msgstr ""
+
+#: inc/configs/customize-advanced.php:49
+msgid "Check to enable Any Page Extension"
+msgstr ""
+
+#: inc/configs/customize-advanced.php:57
+msgid "Generate LoftLoader Shortcode"
+msgstr ""
+
+#: inc/configs/customize-background.php:31
+msgid "Background"
+msgstr ""
+
+#: inc/configs/customize-background.php:37
+#: inc/configs/customize-loader.php:60
+msgid "Pick Color"
+msgstr ""
+
+#: inc/configs/customize-background.php:43
+msgid "Opacity"
+msgstr ""
+
+#: inc/configs/customize-background.php:56
+msgid "Ending Animation"
+msgstr ""
+
+#: inc/configs/customize-background.php:57
+msgid "Hover on preview area to see the result."
+msgstr ""
+
+#: inc/configs/customize-background.php:59
+msgid "Fade"
+msgstr ""
+
+#: inc/configs/customize-background.php:60
+msgid "Slide Left & Right"
+msgstr ""
+
+#: inc/configs/customize-background.php:61
+msgid "Slide Up"
+msgstr ""
+
+#: inc/configs/customize-background.php:62
+msgid "Slide Up & Down"
+msgstr ""
+
+#: inc/configs/customize-background.php:63
+msgid "No Animation"
+msgstr ""
+
+#: inc/configs/customize-loader.php:37
+msgid "Loader"
+msgstr ""
+
+#: inc/configs/customize-loader.php:45
+msgid "Loader Animation"
+msgstr ""
+
+#: inc/configs/customize-loader.php:46
+msgid "Some support custom image."
+msgstr ""
+
+#: inc/configs/customize-loader.php:48
+msgid "Spinning Sun"
+msgstr ""
+
+#: inc/configs/customize-loader.php:49
+msgid "Luminous Circles"
+msgstr ""
+
+#: inc/configs/customize-loader.php:50
+msgid "Wave"
+msgstr ""
+
+#: inc/configs/customize-loader.php:51
+msgid "Spinning Square"
+msgstr ""
+
+#: inc/configs/customize-loader.php:52
+msgid "Drawing Frame"
+msgstr ""
+
+#: inc/configs/customize-loader.php:53
+msgid "Custom Image Loading"
+msgstr ""
+
+#: inc/configs/customize-loader.php:54
+msgid "Beating"
+msgstr ""
+
+#: inc/configs/customize-loader.php:69
+msgid "Upload Image"
+msgstr ""
+
+#: inc/configs/customize-loader.php:79
+msgid "Image Width"
+msgstr ""
+
+#: inc/configs/customize-main.php:19
+#: inc/configs/customize-main.php:26
+msgid "Enable LoftLoader"
+msgstr ""
+
+#: inc/configs/customize-more.php:12
+msgid "More"
+msgstr ""
+
+#: inc/configs/customize-more.php:17
+#: inc/configs/customize-more.php:57
+msgid "Maximum Load Time"
+msgstr ""
+
+#: inc/configs/customize-more.php:21
+msgid "Close Button"
+msgstr ""
+
+#: inc/configs/customize-more.php:25
+msgid "Plugin Data"
+msgstr ""
+
+#: inc/configs/customize-more.php:58
+msgid "Please enter any number greater than 0 to enable this feature."
+msgstr ""
+
+#: inc/configs/customize-more.php:61
+msgid " second(s)"
+msgstr ""
+
+#: inc/configs/customize-more.php:66
+msgid "Show Close Button after"
+msgstr ""
+
+#: inc/configs/customize-more.php:80
+msgid "Description for Close Button"
+msgstr ""
+
+#: inc/configs/customize-more.php:87
+msgid "Remove Plugin Data after Deactivating Plugin"
+msgstr ""
+
+#: inc/configs/customize-promo.php:17
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: inc/configs/customize-range.php:19
+msgid "Display on"
+msgstr ""
+
+#: inc/configs/customize-range.php:28
+msgid "Sitewide"
+msgstr ""
+
+#: inc/configs/customize-range.php:29
+msgid "Homepage only"
+msgstr ""
+
+#: loftloader.php:27
+msgid "Access not allowed!"
+msgstr ""
+
+#: loftloader.php:76
+msgid "View LoftLoader Settings"
+msgstr ""
+
+#: loftloader.php:76
+msgid "Settings"
+msgstr ""
