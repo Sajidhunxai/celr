@@ -23,7 +23,7 @@ class Admin {
 	const LICENSE_DATA_FALLBACK_OPTION_NAME = self::LICENSE_DATA_OPTION_NAME . '_fallback';
 
 	/**
-	 * @deprecated 3.6.0 Use Plugin::instance()->updater instead
+	 * @deprecated 3.6.0 Use `Plugin::instance()->updater` instead.
 	 */
 	public static $updater = null;
 
@@ -32,7 +32,7 @@ class Admin {
 
 		return [
 			API::STATUS_EXPIRED => [
-				'title' => esc_html__( 'Oh no! Your Elementor Pro license has expired.', 'elementor-pro' ),
+				'title' => esc_html__( 'Your Elementor Pro license has expired.', 'elementor-pro' ),
 				'description' => esc_html__( 'Want to keep creating secure and high-performing websites? Renew your subscription to regain access to all of the Elementor Pro widgets, templates, updates & more', 'elementor-pro' ),
 				'button_text' => esc_html__( 'Renew Now', 'elementor-pro' ),
 				'button_url' => API::RENEW_URL,
@@ -85,7 +85,7 @@ class Admin {
 	}
 
 	/**
-	 * @deprecated 3.6.0 Use Plugin::instance()->updater instead
+	 * @deprecated 3.6.0 Use `Plugin::instance()->updater` instead.
 	 *
 	 * @return \ElementorPro\License\Updater
 	 */
@@ -149,7 +149,6 @@ class Admin {
 	}
 
 	public function register_page() {
-		return;
 		$menu_text = esc_html__( 'License', 'elementor-pro' );
 
 		add_submenu_page(
@@ -324,7 +323,7 @@ class Admin {
 			<p class="e-row-divider-bottom elementor-admin-alert elementor-alert-danger">
 				<?php printf(
 				/* translators: 1: Bold text opening tag, 2: Bold text closing tag, 3: Link opening tag, 4: Link closing tag. */
-					esc_html__( '%1$sOh no! Your Elementor Pro license has expired.%2$s Want to keep creating secure and high-performing websites? Renew your subscription to regain access to all of the Elementor Pro widgets, templates, updates & more. %3$sRenew now%4$s', 'elementor-pro' ),
+					esc_html__( '%1$sYour Elementor Pro license has expired.%2$s Want to keep creating secure and high-performing websites? Renew your subscription to regain access to all of the Elementor Pro widgets, templates, updates & more. %3$sRenew now%4$s', 'elementor-pro' ),
 					'<strong>',
 					'</strong>',
 					'<a href="https://go.elementor.com/renew/" target="_blank"><strong>',
@@ -544,11 +543,6 @@ class Admin {
 
 		add_filter( 'elementor/admin/dashboard_overview_widget/footer_actions', function( $additions_actions ) {
 			unset( $additions_actions['go-pro'] );
-
-			// Keep Visible to administrator role or for the Pro license owner, remove for non-owner lower-level user types.
-			if ( ! current_user_can( 'manage_options' ) && isset( $additions_actions['find_an_expert'] ) ) {
-				unset( $additions_actions['find_an_expert'] );
-			}
 
 			if ( current_user_can( 'manage_options' ) && API::is_license_expired() ) {
 				// Using 'go-pro' key to style the 'renew' button as the 'go-pro' button

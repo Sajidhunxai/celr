@@ -38,8 +38,24 @@ class Base extends Posts {
 		$config = parent::get_initial_config();
 
 		$config['is_loop'] = true;
+		$config['add_parent_render_header'] = true;
+		$config['add_parent_render_footer'] = true;
 
 		return $config;
+	}
+
+	public function query_posts() {
+		$skin = $this->get_current_skin();
+		$query = false;
+		if ( $skin ) {
+			$query = $skin->query_posts( $this );
+		}
+
+		if ( $query ) {
+			$this->query = $query;
+		} else {
+			parent::query_posts();
+		}
 	}
 
 	/**
@@ -52,7 +68,7 @@ class Base extends Posts {
 	 *
 	 * @return mixed
 	 */
-	protected function get_posts_per_page_value() {
+	public function get_posts_per_page_value() {
 		return $this->get_settings_for_display( 'posts_per_page' );
 	}
 
@@ -71,6 +87,8 @@ class Base extends Posts {
 		$this->register_pagination_section_controls();
 
 		$this->register_design_layout_controls();
+		$this->register_design_navigation_controls();
+		$this->register_design_pagination_controls();
 
 		// The `_skins` control determines the Loop's query source, so it is renamed for this to be clearer to the user.
 		$this->update_control( '_skin', [
@@ -219,7 +237,23 @@ class Base extends Posts {
 
 	protected function register_design_layout_controls() {}
 
+	protected function register_design_navigation_controls() {}
+
+	protected function register_design_pagination_controls() {}
+
 	public function register_settings_section_controls() {}
 
 	public function register_navigation_section_controls() {}
+
+	public function get_loop_header_widget_classes(): array {
+		return [];
+	}
+
+	public function render_loop_header() {}
+
+	public function render_loop_footer() {}
+
+	public function before_skin_render() {}
+
+	public function after_skin_render() {}
 }

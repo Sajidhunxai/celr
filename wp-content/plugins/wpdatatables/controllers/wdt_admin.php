@@ -315,6 +315,9 @@ function wdtEditEnqueue() {
         case "raspberry-cream":
             $renderSkin = WDT_ASSETS_PATH . 'css/wdt-skins/raspberry-cream.css';
             break;
+        case "dark-mojito":
+            $renderSkin = WDT_ASSETS_PATH . 'css/wdt-skins/darkmojito.css';
+            break;
         default:
             $renderSkin = WDT_ASSETS_PATH . 'css/wdt-skins/material.css';
             break;
@@ -542,6 +545,7 @@ function wdtAddOnsEnqueue() {
     wp_enqueue_script('wdt-common');
     wp_enqueue_script('wdt-doc-js');
 
+    wp_enqueue_style('wdt-bundles-css', WDT_CSS_PATH . 'admin/bundles.css');
 }
 
 /**

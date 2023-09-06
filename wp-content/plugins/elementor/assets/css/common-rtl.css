@@ -1,4 +1,4 @@
-/*! elementor - v3.14.0 - 26-06-2023 */
+/*! elementor - v3.15.0 - 09-08-2023 */
 :root {
   --e-a-color-white:	#ffffff;
   --e-a-color-black:	#000000;
@@ -112,6 +112,10 @@
           user-select: none;
 }
 
+.elementor-editor-active .elementor-popup-modal {
+  background-color: initial;
+}
+
 .dialog-type-confirm .dialog-widget-content,
 .dialog-type-alert .dialog-widget-content {
   margin: auto;
@@ -127,11 +131,16 @@
 .dialog-type-alert .dialog-header:after {
   content: "";
   display: block;
-  border-bottom: var(--e-a-border);
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  margin-right: -20px;
-  margin-left: -20px;
+  -webkit-border-after: var(--e-a-border);
+          border-block-end: var(--e-a-border);
+  -webkit-padding-after: 10px;
+          padding-block-end: 10px;
+  -webkit-margin-after: 10px;
+          margin-block-end: 10px;
+  -webkit-margin-start: -20px;
+          margin-inline-start: -20px;
+  -webkit-margin-end: -20px;
+          margin-inline-end: -20px;
 }
 .dialog-type-confirm .dialog-message,
 .dialog-type-alert .dialog-message {
@@ -139,7 +148,8 @@
 }
 .dialog-type-confirm .dialog-buttons-wrapper,
 .dialog-type-alert .dialog-buttons-wrapper {
-  padding-top: 10px;
+  -webkit-padding-before: 10px;
+          padding-block-start: 10px;
   display: flex;
   justify-content: flex-end;
   gap: 15px;
@@ -149,7 +159,6 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 1.2;
-  text-transform: uppercase;
   padding: 8px 16px;
   outline: none;
   border: none;
@@ -374,7 +383,8 @@
   cursor: pointer;
 }
 #elementor-change-exit-preference-dialog .dialog-message > div {
-  margin-bottom: 10px;
+  -webkit-margin-after: 10px;
+          margin-block-end: 10px;
 }
 
 #e-experiments-messages-dialog .dialog-confirm-header {
@@ -386,7 +396,8 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-top: 20px;
+  -webkit-margin-before: 20px;
+          margin-block-start: 20px;
 }
 
 @media (min-width: 1024px) {
@@ -416,12 +427,14 @@
   }
 }
 .elementor-templates-modal .dialog-header {
-  border-bottom: var(--e-a-border);
+  -webkit-border-after: var(--e-a-border);
+          border-block-end: var(--e-a-border);
   padding: 0;
   z-index: 1;
 }
 .elementor-templates-modal .dialog-buttons-wrapper {
-  border-top: var(--e-a-border);
+  -webkit-border-before: var(--e-a-border);
+          border-block-start: var(--e-a-border);
   padding: 10px;
   display: flex;
   justify-content: flex-end;
@@ -453,20 +466,23 @@
   cursor: pointer;
 }
 .elementor-templates-modal__header__logo-area {
-  text-align: right;
-  padding-right: 15px;
+  text-align: start;
+  -webkit-padding-start: 15px;
+          padding-inline-start: 15px;
 }
 .elementor-templates-modal__header__logo-area > * {
   display: flex;
   align-items: center;
 }
 .elementor-templates-modal__header__logo__icon-wrapper {
-  margin-left: 10px;
+  -webkit-margin-end: 10px;
+          margin-inline-end: 10px;
   font-size: 12px;
 }
 .elementor-templates-modal__header__logo__title {
   color: var(--e-a-color-txt-active);
-  padding-top: 2px;
+  -webkit-padding-before: 2px;
+          padding-block-start: 2px;
 }
 .elementor-templates-modal__header__items-area {
   display: flex;
@@ -489,27 +505,32 @@
 }
 .elementor-templates-modal__header__close--normal {
   width: 47px;
-  border-right: var(--e-a-border);
+  -webkit-border-start: var(--e-a-border);
+          border-inline-start: var(--e-a-border);
 }
 .elementor-templates-modal__header__close--normal i {
   font-size: 18px;
 }
 .elementor-templates-modal__header__close--skip {
   padding: 10px;
-  padding-right: 20px;
-  margin-left: 10px;
+  -webkit-padding-start: 20px;
+          padding-inline-start: 20px;
+  -webkit-margin-end: 10px;
+          margin-inline-end: 10px;
   font-size: 11px;
   font-weight: normal;
   line-height: 1;
-  text-transform: uppercase;
-  border-radius: 2px;
+  border-radius: var(--e-a-border-radius);
   cursor: pointer;
 }
 .elementor-templates-modal__header__close--skip > i {
   font-size: inherit;
-  padding-right: 10px;
-  margin-right: 15px;
-  border-right: 1px solid;
+  -webkit-padding-start: 10px;
+          padding-inline-start: 10px;
+  -webkit-margin-start: 15px;
+          margin-inline-start: 15px;
+  -webkit-border-start: 1px solid;
+          border-inline-start: 1px solid;
 }
 .elementor-templates-modal__header__close--skip > i:not(:hover) {
   color: var(--e-a-color-white);
@@ -550,7 +571,6 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 1.2;
-  text-transform: uppercase;
   padding: 8px 16px;
   margin-left: 10px;
   color: var(--e-a-dark-color-txt);
@@ -568,8 +588,10 @@
 
 /* Will select next element after last '.elementor-general-section' */
 #wpadminbar #wp-admin-bar-elementor_edit_page .elementor-general-section + .elementor-second-section {
-  border-top: 1px solid #464b50;
-  margin-top: 6px;
+  -webkit-border-before: 1px solid #464b50;
+          border-block-start: 1px solid #464b50;
+  -webkit-margin-before: 6px;
+          margin-block-start: 6px;
 }
 
 .e-logo-wrapper {
@@ -609,7 +631,8 @@
 }
 #elementor-finder__search i {
   font-size: 16px;
-  margin-left: 15px;
+  -webkit-margin-end: 15px;
+          margin-inline-end: 15px;
 }
 #elementor-finder__search__input {
   border: none;
@@ -691,7 +714,8 @@
   font-size: 13px;
 }
 .elementor-finder__results__item__description {
-  margin-right: 5px;
+  -webkit-margin-start: 5px;
+          margin-inline-start: 5px;
   font-style: italic;
 }
 .elementor-finder__results__item__badge {

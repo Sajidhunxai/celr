@@ -33,6 +33,13 @@ class Editor extends App {
 		add_action( 'elementor/editor/before_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] );
 
 		add_filter( 'elementor/editor/localize_settings', [ $this, 'localize_settings' ] );
+
+		// Loading elementor packages.
+		$loader = ELEMENTOR_PRO_ASSETS_PATH . 'js/packages/loader.php';
+
+		if ( file_exists( $loader ) ) {
+			require_once $loader;
+		}
 	}
 
 	public function get_init_settings() {

@@ -1,10 +1,7 @@
 <?php
 namespace ElementorPro\Modules\LoopBuilder\Skins;
 
-use Elementor\Core\Files\CSS\Post;
-use Elementor\Core\Files\CSS\Post as Post_CSS;
-use Elementor\Core\Files\CSS\Post_Preview;
-use Elementor\Icons_Manager;
+use ElementorPro\Modules\LoopBuilder\Documents\Loop;
 use ElementorPro\Modules\LoopBuilder\Documents\Loop as LoopDocument;
 use ElementorPro\Modules\LoopBuilder\Module;
 use ElementorPro\Modules\LoopBuilder\Widgets\Base as Loop_Widget_Base;
@@ -12,6 +9,7 @@ use ElementorPro\Modules\Posts\Skins\Skin_Base;
 use ElementorPro\Modules\QueryControl\Controls\Group_Control_Related;
 use ElementorPro\Plugin;
 use ElementorPro\Modules\LoopBuilder\Files\Css\Loop_Dynamic_CSS;
+use ElementorPro\Modules\LoopBuilder\Traits\Alternate_Templates_Trait;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -25,6 +23,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.8.0
  */
 class Skin_Loop_Base extends Skin_Base {
+
+	use Alternate_Templates_Trait;
 
 	public function get_id() {
 		return MODULE::LOOP_BASE_SKIN_ID;
@@ -56,25 +56,59 @@ class Skin_Loop_Base extends Skin_Base {
 		);
 	}
 
-	public function render() {
+	private function maybe_add_load_more_wrapper_class() {
 		$settings = $this->parent->get_settings_for_display();
-		$is_edit_mode = Plugin::elementor()->editor->is_edit_mode();
+		/** @var Loop_Widget_Base $widget */
+		$widget = $this->parent;
 
-		if ( ! empty( $settings['template_id'] ) ) {
-			if ( 'load_more_on_click' === $settings['pagination_type'] ) {
-				// If Pagination is enabled with the Load More On Click option, a class is needed for targeting.
-				// The 'wrapper' element tag is used by the Button Widget Trait.
-				$this->parent->add_render_attribute( 'wrapper', 'class', 'e-loop__load-more' );
-			}
+		if ( isset( $settings['pagination_type'] ) && 'load_more_on_click' === $settings['pagination_type'] ) {
+			// If Pagination is enabled with the Load More On Click option, a class is needed for targeting.
+			// The 'wrapper' element tag is used by the Button Widget Trait.
+			$widget->add_render_attribute( 'wrapper', 'class', 'e-loop__load-more' );
+		}
+	}
+
+	public function query_posts() {
+		return $this->query_posts_for_alternate_templates();
+	}
+
+	public function render() {
+		$template_id = $this->parent->get_settings_for_display( 'template_id' );
+		$is_edit_mode = Plugin::elementor()->editor->is_edit_mode();
+		/** @var Loop_Widget_Base $widget */
+		$widget = $this->parent;
+		$current_document = Plugin::elementor()->documents->get_current();
+
+		if ( $template_id ) {
+			$this->alternate_template_before_skin_render();
+
+			$this->maybe_add_load_more_wrapper_class();
+
+			$widget->before_skin_render();
 
 			parent::render();
-		} else if ( $is_edit_mode ) {
+
+			$widget->after_skin_render();
+
+			$this->alternate_template_after_skin_render();
+		} elseif ( $is_edit_mode ) {
 			$this->render_empty_view();
+		}
+
+		if ( $current_document ) {
+			Plugin::elementor()->documents->switch_to_document( $current_document );
 		}
 	}
 
 	protected function get_loop_header_widget_classes() {
-		return [ 'elementor-loop-container' ];
+		/** @var Loop_Widget_Base $widget */
+		$widget = $this->parent;
+
+		$classes = $widget->get_loop_header_widget_classes();
+
+		$classes[] = 'elementor-loop-container';
+
+		return $classes;
 	}
 
 	protected function _register_controls_actions() {
@@ -89,21 +123,36 @@ class Skin_Loop_Base extends Skin_Base {
 	 * @since 3.8.0
 	 */
 	protected function render_post() {
-		$settings = $this->parent->get_settings_for_display();
-		$loop_item_id = get_the_ID();
+		if ( $this->has_alternate_templates() ) {
+			$this->render_post_if_widget_has_alternate_templates();
+		} else {
+			$this->render_post_content( $this->parent->get_settings_for_display( 'template_id' ) );
+		}
+	}
+
+	private function render_post_content( $template_id ) {
+		$post_id = get_the_ID();
 
 		/** @var LoopDocument $document */
-		$document = Plugin::elementor()->documents->get( $settings['template_id'] );
+		$document = Plugin::elementor()->documents->get( $template_id );
 
 		if ( ! $document ) {
 			return;
 		}
 
-		$this->print_dynamic_css( $loop_item_id, $settings['template_id'] );
+		$this->print_dynamic_css( $post_id, $template_id );
 		$document->print_content();
 	}
 
 	protected function print_dynamic_css( $post_id, $post_id_for_data ) {
+		$document = Plugin::elementor()->documents->get_doc_for_frontend( $post_id_for_data );
+
+		if ( ! $document ) {
+			return;
+		}
+
+		Plugin::elementor()->documents->switch_to_document( $document );
+
 		$css_file = Loop_Dynamic_CSS::create( $post_id, $post_id_for_data );
 		$post_css = $css_file->get_content();
 
@@ -116,6 +165,32 @@ class Skin_Loop_Base extends Skin_Base {
 		$css = sprintf( '<style id="%s">%s</style>', 'loop-dynamic-' . $post_id_for_data, $css );
 
 		echo $css; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+		Plugin::elementor()->documents->restore_document();
+	}
+
+	protected function render_loop_header() {
+		/** @var Loop_Widget_Base $widget */
+		$widget = $this->parent;
+		$config = $widget->get_config();
+
+		if ( $config['add_parent_render_header'] ) {
+			parent::render_loop_header();
+		}
+
+		$widget->render_loop_header();
+	}
+
+	protected function render_loop_footer() {
+		/** @var Loop_Widget_Base $widget */
+		$widget = $this->parent;
+		$config = $widget->get_config();
+
+		if ( $config['add_parent_render_footer'] ) {
+			parent::render_loop_footer();
+		}
+
+		$widget->render_loop_footer();
 	}
 
 	/**

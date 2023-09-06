@@ -1,0 +1,321 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-28 17:09+0100\n"
+"PO-Revision-Date: 2021-09-28 17:10+0\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Eazy Po 0.9.5.3\n"
+
+#: wp-notification-bell.php:112
+msgid "Notification Bell"
+msgstr ""
+
+#: wp-notification-bell.php:113
+msgid "Notification"
+msgstr ""
+
+#: wp-notification-bell.php:114
+msgid "Add New"
+msgstr ""
+
+#: wp-notification-bell.php:115
+msgid "Add New Notification"
+msgstr ""
+
+#: wp-notification-bell.php:116
+msgid "Edit"
+msgstr ""
+
+#: wp-notification-bell.php:117
+msgid "Edit Notification"
+msgstr ""
+
+#: wp-notification-bell.php:118
+msgid "New Notification"
+msgstr ""
+
+#: wp-notification-bell.php:119
+msgid "All Notifications"
+msgstr ""
+
+#: wp-notification-bell.php:120
+msgid "View"
+msgstr ""
+
+#: wp-notification-bell.php:121
+msgid "View Notification"
+msgstr ""
+
+#: wp-notification-bell.php:122
+msgid "Search Notifications"
+msgstr ""
+
+#: wp-notification-bell.php:123
+msgid "No Notifications found"
+msgstr ""
+
+#: wp-notification-bell.php:125
+msgid "No Notifications found in Trash"
+msgstr ""
+
+#: admin/admin.php:293 admin/admin.php:545 admin/admin.php:624
+#: admin/admin_page.php:643
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: admin/admin.php:304
+msgid "Url"
+msgstr ""
+
+#: admin/admin.php:312 admin/admin.php:638
+msgid "Recipient role"
+msgstr ""
+
+#: admin/admin.php:343
+msgid "Recipient username"
+msgstr ""
+
+#: admin/admin.php:559 admin/admin_cpt.php:214 admin/admin_cpt.php:227
+msgid "Notification Details"
+msgstr ""
+
+#: admin/admin.php:583 admin/admin_page.php:407
+msgid "Enable new post notification"
+msgstr ""
+
+#: admin/admin_page.php:14
+msgid "WP Notification Bell"
+msgstr ""
+
+#: admin/admin_page.php:36
+msgid "Server call interval"
+msgstr ""
+
+#: admin/admin_page.php:44
+msgid "Display Options"
+msgstr ""
+
+#: admin/admin_page.php:47
+msgid "1. Add to a menu"
+msgstr ""
+
+#: admin/admin_page.php:50
+msgid "Add bell icon to menu for logged-in users"
+msgstr ""
+
+#: admin/admin_page.php:61
+msgid "Add bell icon to menu for visitors"
+msgstr ""
+
+#: admin/admin_page.php:74
+msgid "2. Add a floating icon"
+msgstr ""
+
+#: admin/admin_page.php:77
+msgid "Add floating bell icon for logged-in users"
+msgstr ""
+
+#: admin/admin_page.php:88
+msgid "Add floating bell icon for visitors"
+msgstr ""
+
+#: admin/admin_page.php:101
+msgid "3. Add a shortcode"
+msgstr ""
+
+#: admin/admin_page.php:107
+msgid "More Options"
+msgstr ""
+
+#: admin/admin_page.php:110 admin/admin_page.php:188
+msgid "Drop-down box position"
+msgstr ""
+
+#: admin/admin_page.php:123
+msgid "Add to menu location"
+msgstr ""
+
+#: admin/admin_page.php:152
+msgid "Bell icon or text"
+msgstr ""
+
+#: admin/admin_page.php:161
+msgid "Box header"
+msgstr ""
+
+#: admin/admin_page.php:170
+msgid "Empty notification box text"
+msgstr ""
+
+#: admin/admin_page.php:180
+msgid "Menu position"
+msgstr ""
+
+#: admin/admin_page.php:206
+msgid "User roles allowed"
+msgstr ""
+
+#: admin/admin_page.php:219
+msgid "Notification page url"
+msgstr ""
+
+#: admin/admin_page.php:229
+msgid "ACF placeholders"
+msgstr ""
+
+#: admin/admin_page.php:243
+msgid "Polylang integration"
+msgstr ""
+
+#: admin/admin_page.php:254
+msgid "Notification sound"
+msgstr ""
+
+#: admin/admin_page.php:283 admin/admin_page.php:301 admin/admin_page.php:319
+#: admin/admin_page.php:337 admin/admin_page.php:647
+msgid "Id attribute"
+msgstr ""
+
+#: admin/admin_page.php:290 admin/admin_page.php:308 admin/admin_page.php:326
+#: admin/admin_page.php:344 admin/admin_page.php:654
+msgid "Class attribute"
+msgstr ""
+
+#: admin/admin_page.php:370
+msgid "Width"
+msgstr ""
+
+#: admin/admin_page.php:378
+msgid "Height"
+msgstr ""
+
+#: admin/admin_page.php:386
+msgid "Position"
+msgstr ""
+
+#: admin/admin_page.php:421
+msgid "Enable new custom post type post notification"
+msgstr ""
+
+#: admin/admin_page.php:432
+msgid "Custom post type"
+msgstr ""
+
+#: admin/admin_page.php:463
+msgid "Additional custom post types"
+msgstr ""
+
+#: admin/admin_page.php:479
+msgid "Meta box position"
+msgstr ""
+
+#: admin/admin_page.php:501
+msgid "Enable new comment reply notification (logged-in users)"
+msgstr ""
+
+#: admin/admin_page.php:515
+msgid "Enable bbpress new reply notification (logged-in users)"
+msgstr ""
+
+#: admin/admin_page.php:528
+msgid ""
+"Enable bbpress new reply notification for any topic where user replied "
+"(logged-in users)"
+msgstr ""
+
+#: admin/admin_page.php:541
+msgid "Enable new WooCommerce order update notification (logged-in users)"
+msgstr ""
+
+#: admin/admin_page.php:561
+msgid "General"
+msgstr ""
+
+#: admin/admin_page.php:561
+msgid "Notification item"
+msgstr ""
+
+#: admin/admin_page.php:561
+msgid "Featured image"
+msgstr ""
+
+#: admin/admin_page.php:561
+msgid "Posts and custom post types"
+msgstr ""
+
+#: admin/admin_page.php:561
+msgid "User notifications"
+msgstr ""
+
+#: admin/admin_page.php:574
+msgid "Custom/posts/cpts"
+msgstr ""
+
+#: admin/admin_page.php:574
+msgid "WooCommerce order updates"
+msgstr ""
+
+#: admin/admin_page.php:634
+msgid "Name"
+msgstr ""
+
+#: admin/admin_page.php:641
+msgid "Default value"
+msgstr ""
+
+#: admin/admin_page.php:667
+msgid "Remove"
+msgstr ""
+
+#: admin/admin_page.php:670
+msgid "Add"
+msgstr ""
+
+#: includes/helpers.php:115
+#, php-format
+msgctxt "%2$s = human-readable time difference"
+msgid "%1$s ago"
+msgstr ""
+
+#: includes/outputs.php:675 includes/outputs.php:785
+#, php-format
+msgid "%s commented on your post."
+msgstr ""
+
+#: includes/outputs.php:677 includes/outputs.php:787 includes/outputs.php:890
+#, php-format
+msgid "%s replied to your comment."
+msgstr ""
+
+#: includes/outputs.php:680 includes/outputs.php:790
+#, php-format
+msgid "You have %s replies on your comment."
+msgstr ""
+
+#: includes/outputs.php:691 includes/outputs.php:801
+#, php-format
+msgctxt ""
+"%1$s = Name of user who create comment\n"
+"    %2$s = Topic title in which user leave a comment"
+msgid "%1$s wrote a new comment in \"%2$s\"."
+msgstr ""
+
+#: includes/outputs.php:704 includes/outputs.php:814
+#, php-format
+msgctxt "%1$s = Order status"
+msgid "Your order is %1$s."
+msgstr ""

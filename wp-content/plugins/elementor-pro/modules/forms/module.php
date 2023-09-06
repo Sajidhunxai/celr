@@ -2,6 +2,7 @@
 namespace ElementorPro\Modules\Forms;
 
 use Elementor\Controls_Manager;
+use ElementorPro\Core\Utils;
 use ElementorPro\Modules\Forms\Data\Controller;
 use Elementor\Core\Experiments\Manager;
 use Elementor\Core\Common\Modules\Ajax\Module as Ajax;
@@ -80,6 +81,8 @@ class Module extends Module_Base {
 	 * @throws \Exception
 	 */
 	public function forms_panel_action_data( array $data ) {
+		$document = Utils::_unstable_get_document_for_edit( $data['editor_post_id'] );
+
 		if ( empty( $data['service'] ) ) {
 			throw new \Exception( 'Service required.' );
 		}
@@ -95,7 +98,7 @@ class Module extends Module_Base {
 	}
 
 	/**
-	 * @deprecated 3.5.0 - Use `fields_registrar->register()`.
+	 * @deprecated 3.5.0 Use `fields_registrar->register()` instead.
 	 */
 	public function add_form_field_type( $type, $instance ) {
 		Plugin::elementor()->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_function(
@@ -108,7 +111,7 @@ class Module extends Module_Base {
 	}
 
 	/**
-	 * @deprecated 3.5.0 - Use `actions_registrar->register()`.
+	 * @deprecated 3.5.0 Use `actions_registrar->register()` instead.
 	 */
 	public function add_form_action( $id, $instance ) {
 		Plugin::elementor()->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_function(
@@ -121,7 +124,7 @@ class Module extends Module_Base {
 	}
 
 	/**
-	 * @deprecated 3.5.0 - Use `actions_registrar->get()`.
+	 * @deprecated 3.5.0 Use `actions_registrar->get()` instead.
 	 */
 	public function get_form_actions( $id = null ) {
 		Plugin::elementor()->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_function(

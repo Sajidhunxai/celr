@@ -2,7 +2,11 @@
 
 function get_orders_by_vendor_name($atts)
 {
+		
+	
     $current_user = wp_get_current_user();
+	if ($current_user) {
+
     $vendor_name = $current_user->user_login;
     $user_name = $current_user->user_login;
 
@@ -220,6 +224,14 @@ function get_orders_by_vendor_name($atts)
     }
 
     return $output;
+	}else{
+		$redirect_script = '
+            <script>
+                window.location.href = "' . esc_url(home_url('/login')) . '";
+            </script>
+        ';
+     return $redirect_script; 
+	}
 }
 add_shortcode('vendor_sales', 'get_orders_by_vendor_name');
 ?>

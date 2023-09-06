@@ -248,7 +248,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td data-title="Features"><?php esc_html_e('Export table data', 'wpdatatables'); ?> <span style="font-size: 8px;"><?php esc_html_e('(Export to Excel, CSV, PDF, Copy and Print options))', 'wpdatatables'); ?></span>
+                                <td data-title="Features"><?php esc_html_e('Export table data', 'wpdatatables'); ?> <span style="font-size: 8px;"><?php esc_html_e('(Export to Excel, CSV, PDF, Copy and Print options)', 'wpdatatables'); ?></span>
                                     <hr>
                                 </td>
                                 <td data-title="Lite" class="text-center bg-grey"><i class="wpdt-icon-check-full"></i>

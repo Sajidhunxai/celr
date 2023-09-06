@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.10.3 - 29-01-2023 */
+/*! elementor-pro - v3.15.0 - 09-08-2023 */
 .e-loop-empty-view__container {
   display: flex;
   flex-direction: row;
@@ -11,12 +11,12 @@
   display: flex;
 }
 .e-loop-empty-view__box-inner {
-  border: 1px dashed #d5dadf;
+  border: 1px dashed #D5D8DC;
   margin: 10px;
   width: 100%;
   padding: 10px;
   font-size: 12px;
-  color: #a4afb7;
+  color: #9DA5AE;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -38,7 +38,7 @@
 }
 .e-loop-empty-view__box-cta {
   color: #ffffff;
-  background-color: #a4afb7;
+  background-color: #9DA5AE;
   padding: 6px 8px;
   border-radius: 3px;
   text-decoration: none;
@@ -46,11 +46,11 @@
   transition-duration: 0.3s;
 }
 .e-loop-empty-view__box-cta:hover {
-  background-color: #6d7882;
+  background-color: #3f444b;
   color: #ffffff;
 }
 .e-loop-empty-view__box--active {
-  border: 2px solid #fcb92c;
+  border: 2px solid #5EEAD4;
 }
 
 .elementor-widget-loop-grid .elementor-grid.e-loop-empty-view__container {
@@ -61,6 +61,11 @@
   width: 95%;
   margin: 0 auto;
   padding: 30px 0;
+}
+.e-loop-empty-view__container .e-loop-empty-view__box,
+.e-loop-empty-view__container .elementor-swiper-button,
+.e-loop-empty-view__container .swiper-pagination {
+  opacity: 1;
 }
 
 .elementor-swiper-button {
@@ -74,10 +79,10 @@
   transform: translateY(-50%);
 }
 .elementor-swiper-button-prev {
-  left: 0px;
+  left: 0;
 }
 .elementor-swiper-button-next {
-  right: 0px;
+  right: 0;
 }
 .elementor-swiper-button svg {
   fill: rgba(224, 219, 219, 0.9);
@@ -101,12 +106,14 @@
   border: 0;
 }
 
-.swiper-container-horizontal > .swiper-pagination-bullets {
+.swiper-container-horizontal > .swiper-pagination-bullets,
+.swiper-horizontal > .swiper-pagination-bullets {
   bottom: 5px;
   left: 0;
   width: 100%;
 }
-.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
   margin: 0 6px;
 }
 

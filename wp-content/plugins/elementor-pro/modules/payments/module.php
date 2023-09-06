@@ -99,6 +99,10 @@ class Module extends Module_Base {
 			$this->secret_key = Utils::_unstable_get_super_global_value( $_POST, 'secret_key' );
 		}
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( 'Permission denied' );
+		}
+
 		$stripe_handler = new Stripe_handler();
 		$response = $stripe_handler->get( $this->secret_key, self::STRIPE_TAX_ENDPOINT_URL, [ 'limit' => 0 ] );
 		$code = $response['response']['code'];
@@ -130,14 +134,17 @@ class Module extends Module_Base {
 	 * from here the tax rates array is implemented in
 	 * tax rates select control
 	 *
-	 * @since 3.7.0
-	 *
 	 * @param array $data
 	 *
 	 * @return array - returns to js ajax function.
 	 *
+	 * @throws \Exception
+	 * @since 3.7.0
+	 *
 	 */
 	public function get_stripe_tax_rates( array $data ) {
+		Utils::_unstable_check_document_permissions( $data['editor_post_id'] );
+
 		$tax_rates_lists = [];
 		$tax_rates_lists['live_api_key'] = $this->get_tax_rates( $this->get_global_stripe_live_secret_key() );
 		$tax_rates_lists['test_api_key'] = $this->get_tax_rates( $this->get_global_stripe_test_secret_key() );
@@ -432,7 +439,7 @@ class Module extends Module_Base {
 						'type' => 'raw_html',
 						'html' => sprintf(
 							/* translators: %s: <br />. */
-							esc_html__( ' Please note: The Stripe name and logos are trademarks or service marks of Stripe, Inc. or its affiliates in the U.S. and other countries. %s Other names may be trademarks of their respective owners.', 'elementor-pro' ),
+							esc_html__( 'Please note: The Stripe name and logos are trademarks or service marks of Stripe, Inc. or its affiliates in the U.S. and other countries. %s Other names may be trademarks of their respective owners.', 'elementor-pro' ),
 							'<br />'
 						),
 					],

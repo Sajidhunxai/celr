@@ -31,6 +31,14 @@ class Module extends Module_Base {
 	const OPTION_NAME_USE_MINI_CART = 'use_mini_cart_template';
 	const MENU_CART_FRAGMENTS_ACTION = 'elementor-menu-cart-fragments';
 	const LOOP_PRODUCT_SKIN_ID = 'product';
+	const WC_PERSISTENT_SITE_SETTINGS = [
+		'woocommerce_cart_page_id',
+		'woocommerce_checkout_page_id',
+		'woocommerce_myaccount_page_id',
+		'woocommerce_terms_page_id',
+		'woocommerce_purchase_summary_page_id',
+		'woocommerce_shop_page_id',
+	];
 
 	protected $docs_types = [];
 	protected $use_mini_cart_template;
@@ -42,6 +50,37 @@ class Module extends Module_Base {
 
 	public static function is_product_search() {
 		return is_search() && 'product' === get_query_var( 'post_type' );
+	}
+
+	/**
+	 * @param $settings
+	 * @param string $icon
+	 * @return void
+	 */
+	public static function render_menu_icon( $settings, string $icon ) {
+		if ( ! empty( $settings['icon'] ) && 'custom' === $settings['icon'] ) {
+			self::render_custom_menu_icon( $settings );
+		} else {
+			Icons_Manager::render_icon( [
+				'library' => 'eicons',
+				'value' => 'eicon-' . $icon,
+			] );
+		}
+	}
+
+	/**
+	 * @param $settings
+	 * @return void
+	 */
+	private static function render_custom_menu_icon( $settings ) {
+		if ( empty( $settings['menu_icon_svg'] ) ) {
+			echo '<i class="fas fa-shopping-cart"></i>'; // Default Custom icon.
+		} else {
+			Icons_Manager::render_icon( $settings['menu_icon_svg'], [
+				'class' => 'e-toggle-cart-custom-icon',
+				'aria-hidden' => 'true',
+			] );
+		}
 	}
 
 	public function get_name() {
@@ -99,6 +138,13 @@ class Module extends Module_Base {
 		'woocommerce-product-additional-information',
 	];
 
+	// 'WC page name' => 'Elementor widget name'
+	const WC_STATUS_PAGES_MAPPED_TO_WIDGETS = [
+		'Cart' => 'woocommerce-cart',
+		'Checkout' => 'woocommerce-checkout-page',
+		'My account' => 'woocommerce-my-account',
+	];
+
 	public function add_product_post_class( $classes ) {
 		$classes[] = 'product';
 
@@ -127,6 +173,7 @@ class Module extends Module_Base {
 			'Product_Terms',
 			'Product_Title',
 			'Category_Image',
+			'Woocommerce_Add_To_Cart',
 		];
 
 		/** @var \Elementor\Core\DynamicTags\Manager $module */
@@ -185,10 +232,7 @@ class Module extends Module_Base {
 				<span class="elementor-button-icon">
 					<span class="elementor-button-icon-qty" data-counter="<?php echo esc_attr( $product_count ); ?>"><?php echo $product_count; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					<?php
-					Icons_Manager::render_icon( [
-						'library' => 'eicons',
-						'value' => 'eicon-' . $icon,
-					] );
+					self::render_menu_icon( $settings, $icon );
 					?>
 					<span class="elementor-screen-only"><?php esc_html_e( 'Cart', 'elementor-pro' ); ?></span>
 				</span>
@@ -218,7 +262,7 @@ class Module extends Module_Base {
 				<div class="elementor-menu-cart__toggle_wrapper">
 					<div class="elementor-menu-cart__container elementor-lightbox" aria-hidden="true">
 						<div class="elementor-menu-cart__main" aria-hidden="true">
-							<div class="elementor-menu-cart__close-button"></div>
+							<?php self::render_menu_cart_close_button( $settings ); ?>
 							<div class="widget_shopping_cart_content">
 								<?php if ( $is_edit_mode ) {
 									woocommerce_mini_cart();
@@ -233,6 +277,26 @@ class Module extends Module_Base {
 		<?php
 	}
 
+	public static function render_menu_cart_close_button( $settings ) {
+		$has_custom_icon = ! empty( $settings['close_cart_icon_svg']['value'] ) && 'yes' === $settings['close_cart_button_show'];
+		$toggle_button_class = 'elementor-menu-cart__close-button';
+		if ( $has_custom_icon ) {
+			$toggle_button_class .= '-custom';
+		}
+		?>
+		<div class="<?php echo sanitize_html_class( $toggle_button_class ); ?>">
+			<?php
+			if ( $has_custom_icon ) {
+				Icons_Manager::render_icon( $settings['close_cart_icon_svg'], [
+					'class' => 'e-close-cart-custom-icon',
+					'aria-hidden' => 'true',
+				] );
+			}
+			?>
+		</div>
+		<?php
+	}
+
 	/**
 	 * Menu cart fragments.
 	 *
@@ -243,7 +307,7 @@ class Module extends Module_Base {
 	public function menu_cart_fragments() {
 		$all_fragments = [];
 
-		if ( ! isset( $_POST['_nonce'] ) || ! wp_verify_nonce( $_POST['_nonce'], self::MENU_CART_FRAGMENTS_ACTION ) ) {
+		if ( ! isset( $_POST['_nonce'] ) || ! wp_verify_nonce( wp_unslash( $_POST['_nonce'] ), self::MENU_CART_FRAGMENTS_ACTION ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, it's used only for nonce verification
 			wp_send_json( [] );
 		}
 
@@ -327,9 +391,10 @@ class Module extends Module_Base {
 			}
 
 			$fragment_data = $this->get_fragment_data( $element );
+			$total_fragments = count( $fragment_data ) / 2;
 
-			if ( ! empty( $fragment_data['html'] ) ) {
-				$fragments[ $fragment_data['selector'] ] = $fragment_data['html'];
+			for ( $i = 0; $i < $total_fragments; $i++ ) {
+				$fragments[ $fragment_data['selector'][ $i ] ] = $fragment_data['html'][ $i ];
 			}
 		};
 	}
@@ -487,25 +552,6 @@ class Module extends Module_Base {
 	}
 
 	/**
-	 * Add Query Arg to WC Ajax Endpoint.
-	 *
-	 * Adds the `elementor_page_id` query arg to the WooCommerce ajax endpoint, so we always know what page
-	 * an ajax call is coming from - used to load widgets before loading some WC content by ajax.
-	 * e.g. `?wc-ajax=%%endpoint%%&elementor_page_id=160`
-	 *
-	 * @since 3.6.0
-	 *
-	 * @param $url
-	 * @return string
-	 */
-	public function add_query_arg_to_wc_ajax_endpoint( $url ) {
-		$url_components = wp_parse_url( $url );
-		parse_str( $url_components['query'], $url_query );
-		$url_query['elementor_page_id'] = get_queried_object_id();
-		return add_query_arg( $url_query, $url_components['path'] );
-	}
-
-	/**
 	 * Load Widget Before WooCommerce Ajax.
 	 *
 	 * When outputting the complex WooCommerce shortcodes (which we use in our widgets) e.g. Checkout, Cart, etc. WC
@@ -513,9 +559,8 @@ class Module extends Module_Base {
 	 * be autofilled by the current user's browser e.g. the Payment section holding the "Place order" button.
 	 *
 	 * This function runs before these ajax calls. Using the `elementorPageId` and `elementorWidgetId` querystring
-	 * appended to the forms `_wp_http_referer` url field, or the `elementor_page_id` querystring added to the
-	 * wc-ajax endpoint, it loads the relevant Elementor widget. The rendered Elementor widget replaces the
-	 * default WooCommerce template used to refresh WooCommerce elements in the page.
+	 * appended to the forms `_wp_http_referer` url field, or the referer page ID, it loads the relevant Elementor widget.
+	 * The rendered Elementor widget replaces the default WooCommerce template used to refresh WooCommerce elements in the page.
 	 *
 	 * This is necessary for example in the Checkout Payment section where we modify the Terms & Conditions text
 	 * using settings from the widget or when updating shipping methods on the Cart.
@@ -571,10 +616,8 @@ class Module extends Module_Base {
 			}
 		}
 
-		// If the page ID is not found in the referrer query string, the page ID is fetched from the `elementor_page_id` query string we added to WooCommerce ajax endpoint.
-		// e.g. `?wc-ajax=update_shipping_method&elementor_page_id=160`
 		if ( ! $page_id ) {
-			$page_id = ProUtils::_unstable_get_super_global_value( $_GET, 'elementor_page_id' );
+			$page_id = url_to_postid( wp_get_referer() );
 		}
 
 		// Bail if no `$page_id`.
@@ -590,7 +633,7 @@ class Module extends Module_Base {
 			return;
 		}
 
-		// Setup `elementor_page_id` as the WP global $post, so is available to our widgets.
+		// Setup $page_id as the WP global $post, so is available to our widgets.
 		$post = get_post( $page_id, OBJECT );
 		setup_postdata( $post );
 
@@ -647,7 +690,7 @@ class Module extends Module_Base {
 		} else {
 			$info = [
 				'user_login' => trim( ProUtils::_unstable_get_super_global_value( $_POST, 'username' ) ),
-				'user_password' => $_POST['password'], // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				'user_password' => $_POST['password'] ?? '', // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.MissingUnslash, A password should not be sanitized.
 				'remember' => ProUtils::_unstable_get_super_global_value( $_POST, 'remember' ),
 			];
 
@@ -691,11 +734,16 @@ class Module extends Module_Base {
 		$ajax->register_ajax_action( 'pro_woocommerce_mock_notices', [ $this, 'woocommerce_mock_notices' ] );
 	}
 
+	/**
+	 * @throws \Exception
+	 */
 	public function woocommerce_mock_notices( $data ) {
+		$document = ProUtils::_unstable_get_document_for_edit( $data['editor_post_id'] );
+
 		if ( in_array( 'wc_error', $data['notice_elements'], true ) ) {
 			$notice_message = sprintf(
 				'%1$s <a href="#" class="wc-backward">%2$s</a>',
-				esc_html__( 'Oops, this is how an error notice would look.', 'elementor-pro' ),
+				esc_html__( 'This is how an error notice would look.', 'elementor-pro' ),
 				esc_html__( 'Here\'s a link', 'elementor-pro' )
 			);
 			wc_add_notice( $notice_message, 'error' );
@@ -733,7 +781,29 @@ class Module extends Module_Base {
 	 * @param array $data
 	 */
 	public function update_page_option( $data ) {
-		update_option( $data['option_name'], $data['editor_post_id'] );
+		$is_admin = current_user_can( 'manage_options' );
+		$is_shop_manager = current_user_can( 'manage_woocommerce' );
+		$is_allowed = $is_admin || $is_shop_manager;
+
+		if ( ! $is_allowed ) {
+			return new \WP_Error( 401 );
+		}
+
+		$allowed_options = [
+			'woocommerce_checkout_page_id',
+			'woocommerce_cart_page_id',
+			'woocommerce_myaccount_page_id',
+			'elementor_woocommerce_purchase_summary_page_id',
+		];
+
+		$option_name = $data['option_name'];
+		$post_id = absint( $data['editor_post_id'] );
+
+		if ( ! in_array( $option_name, $allowed_options, true ) ) {
+			return new \WP_Error( 400 );
+		}
+
+		update_option( $option_name, $post_id );
 	}
 
 	public function init_site_settings( \Elementor\Core\Kits\Documents\Kit $kit ) {
@@ -1210,9 +1280,9 @@ class Module extends Module_Base {
 		if ( 'woocommerce-menu-cart' === $element['widgetType'] ) {
 			ob_start();
 			self::render_menu_cart_toggle_button( $element['settings'] );
-			$fragment_data['html'] = ob_get_clean();
+			$fragment_data['html'][] = ob_get_clean();
 
-			$fragment_data['selector'] = 'div.elementor-element-' . $element['id'] . ' div.elementor-menu-cart__toggle';
+			$fragment_data['selector'][] = 'div.elementor-element-' . $element['id'] . ' div.elementor-menu-cart__toggle';
 		}
 
 		return $fragment_data;
@@ -1266,9 +1336,6 @@ class Module extends Module_Base {
 		add_filter( 'elementor/document/config', [ $this, 'add_loop_recommended_widgets' ], 11, 2 );
 
 		add_filter( 'elementor_pro/frontend/localize_settings', [ $this, 'localized_settings_frontend' ] );
-
-		// Add `elementor_page_id` query arg to WC Ajax Endpoint.
-		add_filter( 'woocommerce_ajax_get_endpoint', [ $this, 'add_query_arg_to_wc_ajax_endpoint' ] );
 
 		// Load our widget Before WooCommerce Ajax. See the variable's PHPDoc for details.
 		add_action( 'woocommerce_checkout_update_order_review', [ $this, 'load_widget_before_wc_ajax' ] );
@@ -1354,6 +1421,46 @@ class Module extends Module_Base {
 		add_filter( 'elementor/query/query_args', function( $query_args, $widget ) {
 			return $this->loop_query( $query_args, $widget );
 		}, 10, 2 );
+
+		add_filter( 'woocommerce_rest_prepare_system_status', function( $response, $system_status, $request ) {
+			return $this->add_system_status_data( $response, $system_status, $request );
+		}, 10, 3 );
+
+		add_filter( 'elementor/editor/localize_settings', function ( $config ) {
+			return $this->populate_persistent_settings( $config );
+		});
+	}
+
+	public function add_system_status_data( $response, $system_status, $request ) {
+		foreach ( $response->data['pages'] as $index => $wc_page ) {
+			$this->modify_response_if_widget_exists_in_page( $wc_page, $response, $index );
+		}
+
+		return $response;
+	}
+
+	private function modify_response_if_widget_exists_in_page( $wc_page, &$response, $index ) {
+		if ( empty( $wc_page['page_name'] ) || empty( $wc_page['page_id'] ) || ! array_key_exists( $wc_page['page_name'], static::WC_STATUS_PAGES_MAPPED_TO_WIDGETS ) ) {
+			return;
+		}
+
+		if ( isset( $wc_page['shortcode_present'] ) && false !== $wc_page['shortcode_present'] ) {
+			return;
+		}
+
+		$document = Plugin::elementor()->documents->get( $wc_page['page_id'] );
+
+		if ( ! $document || ! $document->is_built_with_elementor() ) {
+			return;
+		}
+
+		$elementor_data = get_post_meta( $wc_page['page_id'], '_elementor_data', true );
+		$widget_name = static::WC_STATUS_PAGES_MAPPED_TO_WIDGETS[ $wc_page['page_name'] ];
+		$widget_exists_in_page = false !== strpos( $elementor_data, $widget_name );
+
+		if ( $widget_exists_in_page ) {
+			$response->data['pages'][ $index ]['shortcode_present'] = true;
+		}
 	}
 
 	public function loop_query( $query_args, $widget ) {
@@ -1361,14 +1468,16 @@ class Module extends Module_Base {
 			return $query_args;
 		}
 
-		return $this->parse_loop_query_args( $widget );
+		return $this->parse_loop_query_args( $widget, $query_args );
 	}
 
 	private function is_product_query( $widget ) {
-		return ( 'loop-grid' === $widget->get_name() && 'product' === $widget->get_current_skin_id() );
+		$widget_config = $widget->get_config();
+
+		return ( ! empty( $widget_config['is_loop'] ) && 'product' === $widget->get_current_skin_id() );
 	}
 
-	private function parse_loop_query_args( $widget ) {
+	private function parse_loop_query_args( $widget, $query_args ) {
 		$settings = $this->adjust_setting_for_product_renderer( $widget );
 
 		// For Products_Renderer.
@@ -1378,10 +1487,15 @@ class Module extends Module_Base {
 
 		$shortcode = Products_Widget::get_shortcode_object( $settings );
 
-		$query_args = $shortcode->parse_query_args();
-		unset( $query_args['fields'] );
+		$parsed_query_args = $shortcode->parse_query_args();
 
-		return $query_args;
+		unset( $parsed_query_args['fields'] );
+
+		$override_various_query_args = array_filter( $query_args, function( $key ) {
+			return in_array( $key, [ 'posts_per_page', 'offset', 'paged' ], true );
+		}, ARRAY_FILTER_USE_KEY );
+
+		return wp_parse_args( $override_various_query_args, $parsed_query_args );
 	}
 
 	private function adjust_setting_for_product_renderer( $widget ) {
@@ -1401,7 +1515,10 @@ class Module extends Module_Base {
 
 		$settings = array_merge( $settings, $query_settings );
 
-		$settings['rows'] = ceil( $settings['posts_per_page'] / $settings['columns'] );
+		if ( isset( $settings['posts_per_page'] ) && isset( $settings['columns'] ) ) {
+			$settings['rows'] = ceil( $settings['posts_per_page'] / $settings['columns'] );
+		}
+
 		$settings['paginate'] = 'yes';
 		$settings['allow_order'] = 'no';
 		$settings['show_result_count'] = 'no';
@@ -1436,6 +1553,14 @@ class Module extends Module_Base {
 		$config['panel']['widgets_settings']['woocommerce-product-images'] = [
 			'show_in_panel' => false,
 		];
+		return $config;
+	}
+
+	private function populate_persistent_settings( array $config ) {
+		$config['persistent_keys'] = array_key_exists( 'persistent_keys', $config ) ?
+				array_merge( $config['persistent_keys'], self::WC_PERSISTENT_SITE_SETTINGS ) :
+				self::WC_PERSISTENT_SITE_SETTINGS;
+
 		return $config;
 	}
 }

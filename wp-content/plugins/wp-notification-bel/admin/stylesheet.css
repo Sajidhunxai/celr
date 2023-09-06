@@ -1,0 +1,125 @@
+/* .wnbell-bell-menu{
+    float:left;
+} */
+.wnbell-btn-element{
+    border: 2px solid black;
+    color: black;
+    /* font-weight: bold; */
+    cursor: pointer;
+    border-radius: 10%; 
+    outline:none;
+    /* height:30px;
+    width:30px; */
+    display: inline-block;
+}
+.wnbell-addElement{
+    border-color: #007CBA;
+    color: #007CBA; 
+    margin-right:15px;
+}
+.wnbell-addElement:hover {
+    background-color: #007CBA;
+    color: white;
+}
+
+.removeElement{
+    border-color: #ba001f;
+    color: #ba001f;
+}
+.removeElement:hover {
+    background: #ba001f;
+    color: white;
+}
+
+.wnbell_switch {
+    position: relative;
+    display: inline-block;
+    /* width: 60px;
+    height: 34px; */
+    width: 30px;
+    height: 17px;
+  }
+  
+  .wnbell_switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    /* height: 26px;
+    width: 26px; */
+        height: 13px;
+    width: 13px; 
+    /* left: 4px;
+    bottom: 4px; */
+    left: 2px;
+    bottom:2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    /* -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px); */
+    -webkit-transform: translateX(13px);
+    -ms-transform: translateX(13px);
+    transform: translateX(13px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    /* border-radius: 34px; */
+    border-radius: 17px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }  
+
+  .description{
+    margin:2px 0 5px;
+    color:#666;
+  }
+
+  .wnbell_premium{
+    background-color: #d2e7d6;
+  }
+
+  .wnbell-add-default{
+    border-color: #007CBA;
+    color: #007CBA; 
+    margin-left:10px;
+}
+  .wnbell-add-default:hover {
+    background-color: #007CBA;
+    color: white;
+}
+.wnbell_custom_wc{
+  font-style: italic;
+  color:#5a5a5a;
+}

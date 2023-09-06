@@ -1,0 +1,73 @@
+.maxgalleria-mlp-notice {
+  height: 148px;
+  color: #000;
+  display: block;
+}
+
+#mlp_logo {
+  background: url("../images/mlp_logo.png") no-repeat scroll 0 0 transparent;
+  display: block;
+  float: left;
+  margin: 10px;
+  height: 128px;
+  width: 128px;
+}
+
+#maxgalleria-mlp-notice-3 {
+  display: block;
+  height: 128px;
+  float: left;  
+  margin: 10px;
+  width: 75%;
+}
+
+#mlp-notice-title {
+  font-size: 24px !important;
+  margin: 4px 0;
+}
+
+ul#mlp-review-notice-links li {
+  float: left;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.close-mlp-notice {
+  float: right;
+  line-height: 148px;
+}
+
+ul#-mlp-review-notice-links li a,
+div#maxgalleria-mlp-notice-3 p {
+  font-size: 16px;
+}
+
+@media (max-width: 868px) {
+  #maxgalleria-mlp-notice-3 {
+    width: 55%;
+  }
+  
+  .maxgalleria-mlp-notice {
+    height: auto;
+  }
+  div.updated.notice.maxgalleria-mlp-notice {
+    height: 250px;
+  }
+}
+
+@media (max-width: 523px) {
+  #maxgalleria-mlp-notice-3 {
+    /*width: 55%;*/
+  }
+  div.updated.notice.maxgalleria-mlp-notice {
+    height: 300px;
+  }
+}
+
+@media (max-width: 430px) {
+  div.updated.notice.maxgalleria-mlp-notice {
+    height: 425px;
+  }
+}
+
+

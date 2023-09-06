@@ -124,7 +124,7 @@ function year_filter_shortcode($atts)
 
             ?>
         </div>
-        </div>
+        
         <script>
             (function($) {
                 $(document).ready(function() {

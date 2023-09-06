@@ -29,7 +29,7 @@
            data-described-by='<?php echo esc_attr($this->getId()) ?>_desc'
            data-wpdatatable_id="<?php echo esc_attr($this->getWpId()); ?>
 ">
-        <?php if (is_admin() || in_array(get_option('wdtBaseSkin'), ['mojito','raspberry-cream'])) { ?>
+        <?php if (is_admin() || in_array(get_option('wdtBaseSkin'), ['mojito','raspberry-cream', 'dark-mojito'])) { ?>
             <colgroup id="<?php echo 'colgrup-' . esc_attr($this->getId()) ?>"></colgroup>
         <?php } ?>
 

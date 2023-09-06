@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.10.3 - 29-01-2023 */
+/*! elementor-pro - v3.15.0 - 09-08-2023 */
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["frontend"],{
 
 /***/ "../assets/dev/js/frontend/frontend.js":
@@ -18,11 +18,14 @@ var _frontend3 = _interopRequireDefault(__webpack_require__(/*! ../../../../modu
 var _frontend4 = _interopRequireDefault(__webpack_require__(/*! ../../../../modules/video-playlist/assets/js/frontend/frontend */ "../modules/video-playlist/assets/js/frontend/frontend.js"));
 var _frontend5 = _interopRequireDefault(__webpack_require__(/*! ../../../../modules/payments/assets/js/frontend/frontend */ "../modules/payments/assets/js/frontend/frontend.js"));
 var _frontend6 = _interopRequireDefault(__webpack_require__(/*! ../../../../modules/progress-tracker/assets/js/frontend/frontend */ "../modules/progress-tracker/assets/js/frontend/frontend.js"));
+var _controls = _interopRequireDefault(__webpack_require__(/*! ./utils/controls */ "../assets/dev/js/frontend/utils/controls.js"));
+var _dropdownMenuHeightController = _interopRequireDefault(__webpack_require__(/*! ./utils/dropdown-menu-height-controller */ "../assets/dev/js/frontend/utils/dropdown-menu-height-controller.js"));
 class ElementorProFrontend extends elementorModules.ViewModule {
   onInit() {
     super.onInit();
     this.config = ElementorProFrontendConfig;
     this.modules = {};
+    this.initOnReadyComponents();
   }
   bindEvents() {
     jQuery(window).on('elementor/frontend/init', this.onElementorFrontendInit.bind(this));
@@ -59,8 +62,144 @@ class ElementorProFrontend extends elementorModules.ViewModule {
   onElementorFrontendInit() {
     this.initModules();
   }
+  initOnReadyComponents() {
+    this.utils = {
+      controls: new _controls.default(),
+      DropdownMenuHeightController: _dropdownMenuHeightController.default
+    };
+  }
 }
 window.elementorProFrontend = new ElementorProFrontend();
+
+/***/ }),
+
+/***/ "../assets/dev/js/frontend/utils/controls.js":
+/*!***************************************************!*\
+  !*** ../assets/dev/js/frontend/utils/controls.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+class Controls {
+  /**
+   * Get Control Value
+   *
+   * Retrieves a control value.
+   * This function has been copied from `elementor/assets/dev/js/editor/utils/conditions.js`.
+   *
+   * @since 3.11.0
+   *
+   * @param {{}}     controlSettings A settings object (e.g. element settings - keys and values)
+   * @param {string} controlKey      The control key name
+   * @param {string} controlSubKey   A specific property of the control object.
+   * @return {*} Control Value
+   */
+  getControlValue(controlSettings, controlKey, controlSubKey) {
+    let value;
+    if ('object' === typeof controlSettings[controlKey] && controlSubKey) {
+      value = controlSettings[controlKey][controlSubKey];
+    } else {
+      value = controlSettings[controlKey];
+    }
+    return value;
+  }
+
+  /**
+   * Get the value of a responsive control.
+   *
+   * Retrieves the value of a responsive control for the current device or for this first parent device which has a control value.
+   *
+   * @since 3.11.0
+   *
+   * @param {{}}     controlSettings A settings object (e.g. element settings - keys and values)
+   * @param {string} controlKey      The control key name
+   * @param {string} controlSubKey   A specific property of the control object.
+   * @return {*} Control Value
+   */
+  getResponsiveControlValue(controlSettings, controlKey) {
+    let controlSubKey = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+    const currentDeviceMode = elementorFrontend.getCurrentDeviceMode(),
+      controlValueDesktop = this.getControlValue(controlSettings, controlKey, controlSubKey);
+
+    // Set the control value for the current device mode.
+    // First check the widescreen device mode.
+    if ('widescreen' === currentDeviceMode) {
+      const controlValueWidescreen = this.getControlValue(controlSettings, `${controlKey}_widescreen`, controlSubKey);
+      return !!controlValueWidescreen || 0 === controlValueWidescreen ? controlValueWidescreen : controlValueDesktop;
+    }
+
+    // Loop through all responsive and desktop device modes.
+    const activeBreakpoints = elementorFrontend.breakpoints.getActiveBreakpointsList({
+      withDesktop: true
+    });
+    let parentDeviceMode = currentDeviceMode,
+      deviceIndex = activeBreakpoints.indexOf(currentDeviceMode),
+      controlValue = '';
+    while (deviceIndex <= activeBreakpoints.length) {
+      if ('desktop' === parentDeviceMode) {
+        controlValue = controlValueDesktop;
+        break;
+      }
+      const responsiveControlKey = `${controlKey}_${parentDeviceMode}`,
+        responsiveControlValue = this.getControlValue(controlSettings, responsiveControlKey, controlSubKey);
+      if (!!responsiveControlValue || 0 === responsiveControlValue) {
+        controlValue = responsiveControlValue;
+        break;
+      }
+
+      // If no control value has been set for the current device mode, then check the parent device mode.
+      deviceIndex++;
+      parentDeviceMode = activeBreakpoints[deviceIndex];
+    }
+    return controlValue;
+  }
+}
+exports["default"] = Controls;
+
+/***/ }),
+
+/***/ "../assets/dev/js/frontend/utils/dropdown-menu-height-controller.js":
+/*!**************************************************************************!*\
+  !*** ../assets/dev/js/frontend/utils/dropdown-menu-height-controller.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+class DropdownMenuHeightController {
+  constructor(widgetConfig) {
+    this.widgetConfig = widgetConfig;
+  }
+  calculateStickyMenuNavHeight() {
+    const menuToggleHeight = this.widgetConfig.elements.$dropdownMenuContainer.offset().top - jQuery(window).scrollTop();
+    return elementorFrontend.elements.$window.height() - menuToggleHeight;
+  }
+  isElementSticky() {
+    return this.widgetConfig.elements.$element.hasClass('elementor-sticky') || this.widgetConfig.elements.$element.parents('.elementor-sticky').length;
+  }
+  getMenuHeight() {
+    return this.isElementSticky() ? this.calculateStickyMenuNavHeight() + 'px' : this.widgetConfig.settings.dropdownMenuContainerMaxHeight;
+  }
+  setMenuHeight(menuHeight) {
+    this.widgetConfig.elements.$dropdownMenuContainer.css(this.widgetConfig.settings.menuHeightCssVarName, menuHeight);
+  }
+  reassignMobileMenuHeight() {
+    const menuHeight = this.widgetConfig.elements.$menuToggle.hasClass(this.widgetConfig.classes.menuToggleActiveClass) ? this.getMenuHeight() : 0;
+    return this.setMenuHeight(menuHeight);
+  }
+}
+exports["default"] = DropdownMenuHeightController;
 
 /***/ }),
 
@@ -967,7 +1106,7 @@ class _default extends elementorModules.Module {
   constructor() {
     super();
     elementorFrontend.elementsHandler.attachHandler('paypal-button', () => __webpack_require__.e(/*! import() | paypal-button */ "paypal-button").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/paypal-button */ "../modules/payments/assets/js/frontend/handlers/paypal-button.js")));
-    elementorFrontend.elementsHandler.attachHandler('stripe-button', () => __webpack_require__.e(/*! import() | stripe-button */ "stripe-button").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/stripe-button */ "../modules/payments/assets/js/frontend/handlers/stripe-button.js")));
+    elementorFrontend.elementsHandler.attachHandler('stripe-button', () => Promise.all(/*! import() | stripe-button */[__webpack_require__.e("vendors-node_modules_dompurify_dist_purify_js"), __webpack_require__.e("stripe-button")]).then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/stripe-button */ "../modules/payments/assets/js/frontend/handlers/stripe-button.js")));
   }
 }
 exports["default"] = _default;
@@ -1239,9 +1378,11 @@ exports["default"] = _default;
 /*!****************************************************************!*\
   !*** ../node_modules/@babel/runtime/helpers/defineProperty.js ***!
   \****************************************************************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+var toPropertyKey = __webpack_require__(/*! ./toPropertyKey.js */ "../node_modules/@babel/runtime/helpers/toPropertyKey.js");
 function _defineProperty(obj, key, value) {
+  key = toPropertyKey(key);
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -1270,6 +1411,62 @@ function _interopRequireDefault(obj) {
   };
 }
 module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/toPrimitive.js":
+/*!*************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/toPrimitive.js ***!
+  \*************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var _typeof = (__webpack_require__(/*! ./typeof.js */ "../node_modules/@babel/runtime/helpers/typeof.js")["default"]);
+function _toPrimitive(input, hint) {
+  if (_typeof(input) !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if (_typeof(res) !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+module.exports = _toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/toPropertyKey.js":
+/*!***************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/toPropertyKey.js ***!
+  \***************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var _typeof = (__webpack_require__(/*! ./typeof.js */ "../node_modules/@babel/runtime/helpers/typeof.js")["default"]);
+var toPrimitive = __webpack_require__(/*! ./toPrimitive.js */ "../node_modules/@babel/runtime/helpers/toPrimitive.js");
+function _toPropertyKey(arg) {
+  var key = toPrimitive(arg, "string");
+  return _typeof(key) === "symbol" ? key : String(key);
+}
+module.exports = _toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/typeof.js":
+/*!********************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/typeof.js ***!
+  \********************************************************/
+/***/ ((module) => {
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(obj);
+}
+module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ })
 

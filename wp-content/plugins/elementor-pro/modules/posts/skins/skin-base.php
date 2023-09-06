@@ -142,6 +142,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			[
 				'label' => esc_html__( 'Image Width', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'vw', 'custom' ],
 				'range' => [
 					'%' => [
 						'min' => 10,
@@ -164,7 +165,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 					'size' => 100,
 					'unit' => '%',
 				],
-				'size_units' => [ '%', 'px' ],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-post__thumbnail__link' => 'width: {{SIZE}}{{UNIT}};',
 				],
@@ -384,6 +384,9 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'label' => esc_html__( 'Separator Between', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => '///',
+				'ai' => [
+					'active' => false,
+				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-post__meta-data span + span:before' => 'content: "{{VALUE}}"',
 				],
@@ -414,6 +417,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			[
 				'label' => esc_html__( 'Columns Gap', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'default' => [
 					'size' => 30,
 				],
@@ -434,6 +438,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			[
 				'label' => esc_html__( 'Rows Gap', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'default' => [
 					'size' => 35,
 				],
@@ -493,7 +498,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			[
 				'label' => esc_html__( 'Border Radius', 'elementor-pro' ),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-post__thumbnail' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -508,6 +513,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			[
 				'label' => esc_html__( 'Spacing', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'range' => [
 					'px' => [
 						'max' => 100,
@@ -630,6 +636,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			[
 				'label' => esc_html__( 'Spacing', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'range' => [
 					'px' => [
 						'max' => 100,
@@ -703,6 +710,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			[
 				'label' => esc_html__( 'Spacing', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'range' => [
 					'px' => [
 						'max' => 100,
@@ -762,6 +770,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			[
 				'label' => esc_html__( 'Spacing', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'range' => [
 					'px' => [
 						'max' => 100,
@@ -825,6 +834,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			[
 				'label' => esc_html__( 'Spacing', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'range' => [
 					'px' => [
 						'max' => 100,
@@ -971,13 +981,19 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			return;
 		}
 
+		$aria_label_text = sprintf(
+			/* translators: %s: Post title. */
+			esc_attr__( 'Read more about %s', 'elementor-pro' ),
+			get_the_title()
+		);
+
 		$optional_attributes_html = $this->get_optional_link_attributes_html();
 
 		if ( $this->display_read_more_bottom() ) : ?>
 			<div class="elementor-post__read-more-wrapper">
 		<?php endif; ?>
 
-		<a class="elementor-post__read-more" href="<?php echo esc_url( $this->current_permalink ); ?>" <?php Utils::print_unescaped_internal_string( $optional_attributes_html ); ?>>
+		<a class="elementor-post__read-more" href="<?php echo esc_url( $this->current_permalink ); ?>" aria-label="<?php echo esc_attr( $aria_label_text ); ?>" <?php Utils::print_unescaped_internal_string( $optional_attributes_html ); ?>>
 			<?php echo wp_kses_post( $read_more ); ?>
 		</a>
 
@@ -1130,14 +1146,16 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'before_page_number' => '<span class="elementor-screen-only">' . esc_html__( 'Page', 'elementor-pro' ) . '</span>',
 			];
 
-			if ( is_singular() && ! is_front_page() ) {
-				global $wp_rewrite;
-				if ( $wp_rewrite->using_permalinks() ) {
-					$paginate_args['base'] = trailingslashit( get_permalink() ) . '%_%';
-					$paginate_args['format'] = user_trailingslashit( '%#%', 'single_paged' );
-				} else {
-					$paginate_args['format'] = '?page=%#%';
-				}
+			if ( is_singular() && ! is_front_page() && ! $this->parent->is_rest_request() ) {
+				$paginate_args = $this->get_paginate_args_for_singular_post( $paginate_args );
+			}
+
+			if ( is_archive() && $this->parent->current_url_contains_taxonomy_filter() ) {
+				$paginate_args = $this->get_paginate_args_for_archive_with_filters( $paginate_args );
+			}
+
+			if ( $this->parent->is_rest_request() ) {
+				$paginate_args = $this->get_paginate_args_for_rest_request( $paginate_args );
 			}
 
 			$links = paginate_links( $paginate_args );
@@ -1155,6 +1173,62 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			<?php echo implode( PHP_EOL, $links ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</nav>
 		<?php
+	}
+
+	protected function get_paginate_args_for_singular_post( $paginate_args ) {
+		global $wp_rewrite;
+
+		if ( $wp_rewrite->using_permalinks() ) {
+			$paginate_args['base'] = trailingslashit( get_permalink() ) . '%_%';
+			$paginate_args['format'] = user_trailingslashit( '%#%', 'single_paged' );
+		} else {
+			$paginate_args['format'] = '?page=%#%';
+		}
+
+		return $paginate_args;
+	}
+
+	protected function get_paginate_args_for_archive_with_filters( $paginate_args ) {
+		global $wp_rewrite;
+
+		if ( ! $wp_rewrite->using_permalinks() ) {
+			$paginate_args['format'] = '?page=%#%';
+		}
+
+		return $paginate_args;
+	}
+
+	protected function get_paginate_args_for_rest_request( $paginate_args ) {
+		global $wp_rewrite;
+
+		$link_unescaped = wp_get_referer();
+		$url_components = wp_parse_url( $link_unescaped );
+		$add_args = [];
+
+		if ( isset( $url_components['query'] ) ) {
+			wp_parse_str( $url_components['query'], $add_args );
+		}
+
+		$url_to_post_id = url_to_postid( $link_unescaped );
+		$pagination_base_url = 0 !== $url_to_post_id
+			? get_permalink( $url_to_post_id )
+			: get_query_var( 'pagination_base_url' );
+
+		if ( $wp_rewrite->using_permalinks() ) {
+			$paginate_args['base'] = trailingslashit( $pagination_base_url ) . '%_%';
+			$paginate_args['format'] = user_trailingslashit( '%#%', 'single_paged' );
+			$paginate_args['add_args'] = $add_args;
+
+			if ( 0 === $url_to_post_id ) {
+				unset( $paginate_args['format'] );
+			}
+		} else {
+			$paginate_args['base'] = trailingslashit( $pagination_base_url ) . '%_%';
+			$paginate_args['format'] = '&page=%#%';
+			$paginate_args['add_args'] = $add_args;
+		}
+
+		return $paginate_args;
 	}
 
 	protected function render_meta_data() {

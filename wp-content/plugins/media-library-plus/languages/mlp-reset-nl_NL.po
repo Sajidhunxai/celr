@@ -1,0 +1,308 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mlp-reset\n"
+"POT-Creation-Date: 2022-10-03 10:38-0300\n"
+"PO-Revision-Date: 2022-10-03 19:02+0200\n"
+"Last-Translator: Peter Smits <peter@psmits.com>\n"
+"Language-Team: \n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../includes/media-library.php:83
+msgid "Current PHP version, "
+msgstr "Huidige PHP versie, "
+
+#: ../includes/media-library.php:83
+msgid ", is outdated. Please upgrade to version 7.4."
+msgstr ", is verouderd. Voer een upgrade uit naar versie 7.4."
+
+#: ../includes/media-library.php:105
+msgid "Location:"
+msgstr "Locatie:"
+
+#: ../includes/mlf-settings.php:29
+msgid "Add an index to the postmeta table"
+msgstr "Een index toevoegen aan de postmeta tabel"
+
+#: ../includes/mlf-settings.php:29
+msgid ""
+"For sites with a large number of media files, check this option to create a "
+"new index fro the postmeta table to speed by the loading of the Media "
+"Library Folders Pro page."
+msgstr ""
+"Voor sites met een groot aantal mediabestanden, vink je deze optie aan om "
+"een nieuwe index te maken voor de postmeta tabel, om sneller te laden door "
+"de pagina Media Library Folders Pro te laden."
+
+#: ../includes/mlf-thumbnails.php:70 ../media-library-plus.php:3947
+#, php-format
+msgid ""
+"All done! %1$s image(s) were successfully resized in %2$s seconds and there "
+"were %3$s failure(s). To try regenerating the failed images again, <a href="
+"\"%4$s\">click here</a>. %5$s"
+msgstr ""
+"Helemaal klaar! %1$s afbeelding(en) zijn opnieuw geschaald in %2$s seconden "
+"en er waren %3$s mislukking(en). Om te proberen de grootte van mislukte "
+"afbeeldingen opnieuw te wijzigen, <a href=\"%4$s\">klik hier</a>. %5$s"
+
+#: ../includes/mlf-thumbnails.php:71 ../media-library-plus.php:3948
+#, php-format
+msgid ""
+"All done! %1$s image(s) were successfully resized in %2$s seconds and there "
+"were 0 failures. %3$s"
+msgstr ""
+"Helemaal klaar! %1$s afbeelding(en) zijn met succes herschaald in %2$s "
+"seconden en er waren 0 mislukkingen. %3$s"
+
+#: ../includes/mlf-thumbnails.php:85 ../media-library-plus.php:3962
+msgid "Total Images: "
+msgstr "Totaal aantal afbeeldingen:"
+
+#: ../includes/mlf-thumbnails.php:172 ../media-library-plus.php:4049
+#, php-format
+msgid ""
+"The resize request was abnormally terminated (ID %s). This is likely due to "
+"the image exceeding available memory or some other type of fatal error."
+msgstr ""
+"De herschaling werd abnormaal beëindigd (ID %s). Dit komt waarschijnlijk "
+"doordat omvang van de afbeelding het beschikbare geheugen overschrijdt of "
+"door een ander type fatale fout."
+
+#: ../media-library-plus.php:14
+msgid ""
+"You must deactivate Media Library Folders before activating Media Library "
+"Folders Pro"
+msgstr ""
+"Je moet Media Library Folders deactiveren voordat je Media Library Folders "
+"Pro activeert"
+
+#: ../media-library-plus.php:400
+msgid "Media Library Folders"
+msgstr "Media Library Folders"
+
+#: ../media-library-plus.php:401
+msgid "Folders & Files"
+msgstr "Mappen & bestanden"
+
+#: ../media-library-plus.php:402
+msgid "Thumbnails"
+msgstr "Thumbnails"
+
+#: ../media-library-plus.php:403
+msgid "Image SEO"
+msgstr "SEO voor afbeeldingen"
+
+#: ../media-library-plus.php:404
+msgid "Settings"
+msgstr "Instellingen"
+
+#: ../media-library-plus.php:405
+msgid "Support"
+msgstr "Ondersteuning"
+
+#: ../media-library-plus.php:458
+msgid "Brought to you by "
+msgstr "Gebracht aan je door"
+
+#: ../media-library-plus.php:459
+msgid "Makers of"
+msgstr "Makers van"
+
+#: ../media-library-plus.php:459
+msgid "and"
+msgstr "en"
+
+#: ../media-library-plus.php:464
+msgid "Click here to"
+msgstr "Klik hier om"
+
+#: ../media-library-plus.php:464
+msgid "Fix Common Problems"
+msgstr "Veelvoorkomende problemen oplossen"
+
+#: ../media-library-plus.php:465
+msgid "Need more help? Check out our "
+msgstr "Meer hulp nodig? Bekijk onze "
+
+#: ../media-library-plus.php:465
+msgid "Support Forums"
+msgstr "Support Forums"
+
+#: ../media-library-plus.php:466
+msgid "Or Email Us at"
+msgstr "Of stuur een e-mail naar"
+
+#: ../media-library-plus.php:576 ../media-library-plus.php:2705
+#: ../media-library-plus.php:2730 ../media-library-plus.php:2776
+#: ../media-library-plus.php:3316
+msgid "missing nonce!"
+msgstr "ontbrekende nonce!"
+
+#: ../media-library-plus.php:1214 ../media-library-plus.php:1269
+#: ../media-library-plus.php:1298 ../media-library-plus.php:1317
+#: ../media-library-plus.php:1917 ../media-library-plus.php:2345
+#: ../media-library-plus.php:2524 ../media-library-plus.php:2755
+#: ../media-library-plus.php:4177
+msgid "missing nonce! Please refresh this page."
+msgstr "ontbrekende nonce! Vernieuw deze pagina."
+
+#: ../media-library-plus.php:1960
+msgid "The folder was created."
+msgstr "De map is gemaakt."
+
+#: ../media-library-plus.php:1966
+msgid "There was a problem creating the folder."
+msgstr "Er is een probleem opgetreden bij het maken van de map."
+
+#: ../media-library-plus.php:1972
+msgid "The folder already exists."
+msgstr "De map bestaat al."
+
+#: ../media-library-plus.php:2012
+msgid "The URL to the folder or image is not correct: "
+msgstr "De URL naar de map of afbeelding is niet correct"
+
+#: ../media-library-plus.php:2104
+msgid "The uploads folder cannot be deleted."
+msgstr "De map uploads kan niet worden verwijderd."
+
+#: ../media-library-plus.php:2134
+msgid "The folder, "
+msgstr "De map, "
+
+#: ../media-library-plus.php:2134
+msgid ", is not empty. Please delete or move files from the folder"
+msgstr ", is niet leeg. Verwijder of verplaats bestanden uit de map"
+
+#: ../media-library-plus.php:2150
+msgid "The folder could not be deleted."
+msgstr "De map kan niet worden verwijderd."
+
+#: ../media-library-plus.php:2153
+msgid "The folder is not empty and could not be deleted."
+msgstr "De map is niet leeg en kan niet worden verwijderd."
+
+#: ../media-library-plus.php:2162
+msgid "The folder was deleted."
+msgstr "De map is verwijderd."
+
+#: ../media-library-plus.php:2182
+msgid "The file(s) were deleted"
+msgstr "De bestanden zijn verwijderd"
+
+#: ../media-library-plus.php:2200
+msgid "The file(s) were not deleted"
+msgstr "De bestanden zijn niet verwijderd"
+
+#: ../media-library-plus.php:2414
+msgid "Search results for: "
+msgstr "Zoekresultaten voor: "
+
+#: ../media-library-plus.php:2799
+msgid "Added"
+msgstr "Toegevoegd"
+
+#: ../media-library-plus.php:2819
+msgid "Scanning for new folders in "
+msgstr "Scannen op nieuwe mappen in "
+
+#: ../media-library-plus.php:2844 ../media-library-plus.php:2878
+#: ../media-library-plus.php:2909 ../media-library-plus.php:2958
+msgid "Adding"
+msgstr "Aan het toevoegen"
+
+#: ../media-library-plus.php:3728
+msgid ""
+"Add an index to the postmeta table. <em>Recommend for sites with a high "
+"number of media files. Uncheck to remove the index.</em>"
+msgstr ""
+"Voeg een index toe aan de postmeta tabel. <em>Aanbevolen voor sites met een "
+"groot aantal mediabestanden. Verwijder het vinkje om de index te "
+"verwijderen.</em>"
+
+#: ../media-library-plus.php:4688
+msgid "Scanning for new files and folders...please wait."
+msgstr "Zoeken naar nieuwe bestanden en mappen ... even geduld."
+
+#: ../media-library-plus.php:4693
+msgid "Syncing finished."
+msgstr "Synchronisatie voltooid."
+
+#: ../media-library-plus.php:4719
+msgid "Adding "
+msgstr "Aan het toevoegen "
+
+#: ../media-library-plus.php:4722
+msgid " is not an allowed file type. It was not added."
+msgstr " is geen toegestaan ​​bestandstype. Het is niet toegevoegd."
+
+#: ../media-library-plus.php:4846
+msgid "Finished copying files. "
+msgstr "Klaar met het kopiëren van bestanden. "
+
+#: ../media-library-plus.php:4848
+msgid "Finished moving files. "
+msgstr "Klaar met het verplaatsen van bestanden. "
+
+#: ../media-library-plus.php:5085
+msgid "Unable to move "
+msgstr "Kan niet verplaatsen "
+
+#: ../media-library-plus.php:5085
+msgid "; please check the folder and file permissions."
+msgstr "; controleer de map en bestandsrechten."
+
+#: ../media-library-plus.php:5091
+msgid "The destination is not a folder: "
+msgstr "De bestemming is geen map: "
+
+#: ../media-library-plus.php:5096
+msgid "Cannot find destination folder: "
+msgstr "Kan doelmap niet vinden: "
+
+#: ../media-library-plus.php:5106
+msgid "Cannot find the file: "
+msgstr "Kan het bestand niet vinden: "
+
+#: ../media-library-plus.php:5113
+msgid " was copied to "
+msgstr " is gekopieerd naar "
+
+#: ../media-library-plus.php:5115
+msgid " was not copied."
+msgstr " is niet gekopieerd."
+
+#: ../media-library-plus.php:5119
+msgid " was moved to "
+msgstr " is verplaatst naar "
+
+#: ../media-library-plus.php:5121
+msgid " was not moved."
+msgstr " werd niet verplaatst."
+
+#: ../mlp-reset.php:199
+msgid "Number of attachments"
+msgstr "Aantal bijlagen"
+
+msgid "Unable to Update Media Library Folders Reset"
+msgstr "Kan Media Library Folders Reset niet updaten"
+
+msgid "Media Library Folders Search Results"
+msgstr "Media Library Folders zoekresultaten"
+
+msgid "Back to Media Library Folders"
+msgstr "Terug naar Media Library Folders"
+
+msgid "Media Library Folders Settings"
+msgstr "Media Library Folders instellingen"
+
+msgid "Media Library Folders Reset"
+msgstr "Reset MLF"

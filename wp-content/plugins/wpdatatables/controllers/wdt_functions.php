@@ -251,6 +251,9 @@ function wdtActivationCreateTables() {
 	if (get_option('wdtShowPromoDiscountNotice') === false) {
 		update_option('wdtShowPromoDiscountNotice', 'yes' );
     }
+    if (get_option('wdtShowBundlesNotice') === false) {
+        update_option('wdtShowBundlesNotice', 'yes' );
+    }
     if (get_option('wdtSimpleTableAlert') === false) {
         update_option('wdtSimpleTableAlert', true );
     }
@@ -293,7 +296,12 @@ function wdtAdminRatingMessages() {
         get_option( 'wdtShowPromoDiscountNotice' ) == "yes" ) {
         include WDT_TEMPLATE_PATH . 'admin/common/promo.inc.php';
 	    wp_enqueue_style('wdt-promo-css', WDT_CSS_PATH . 'admin/promo.css');
+    }
 
+    if( is_admin() && strpos($wpdtPage,'wpdatatables') !== false && !($wpdtPage == 'wpdatatables-add-ons') &&
+        get_option( 'wdtShowBundlesNotice' ) == "yes"){
+        include WDT_TEMPLATE_PATH . 'admin/common/bundles_banner.inc.php';
+        wp_enqueue_style('wdt-bundles-css', WDT_CSS_PATH . 'admin/bundles.css');
     }
 }
 
@@ -330,6 +338,16 @@ function wdtRemovePromoNotice() {
 }
 
 add_action( 'wp_ajax_wdt_remove_promo_notice', 'wdtRemovePromoNotice' );
+/**
+ * Remove Bundles notice message
+ */
+function wdtRemoveBundlesNotice() {
+    update_option( 'wdtShowBundlesNotice', 'no' );
+    echo json_encode( array("success") );
+    exit;
+}
+
+add_action( 'wp_ajax_wdt_remove_bundles_notice', 'wdtRemoveBundlesNotice' );
 
 /**
  * Remove Simple Table alert message
@@ -409,6 +427,7 @@ function wdtUninstallDelete() {
         delete_option('wdtShowForminatorNotice');
         delete_option('wdtShowPromoNotice');
         delete_option('wdtShowPromoDiscountNotice');
+        delete_option('wdtShowBundlesNotice');
         delete_option('wdtSimpleTableAlert');
         delete_option('wdtTempFutureDate');
         delete_option('wdtVersion');

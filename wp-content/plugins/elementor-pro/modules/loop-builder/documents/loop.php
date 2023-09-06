@@ -80,9 +80,13 @@ class Loop extends Theme_Document {
 
 	public function get_container_attributes() {
 		$attributes = Document::get_container_attributes();
+		$post_id = get_the_ID();
 
-		$attributes['class'] .= ' e-loop-item-' . get_the_ID();
 		$attributes['class'] .= ' e-loop-item';
+		$attributes['class'] .= ' e-loop-item-' . $post_id;
+		$attributes['class'] .= ' ' . esc_attr( implode( ' ', get_post_class( [], $post_id ) ) );
+
+		$attributes['data-custom-edit-handle'] = true;
 
 		return $attributes;
 	}
@@ -149,16 +153,30 @@ class Loop extends Theme_Document {
 		];
 	}
 
+	protected function get_remote_library_config() {
+		$config = parent::get_remote_library_config();
+
+		$config['type'] = self::DOCUMENT_TYPE;
+		$config['default_route'] = 'templates/loop-items';
+
+		return $config;
+	}
+
 	/**
 	 * Get Edit Url
 	 *
-	 * Temporarily disable the Library modal until we officially offer the new Loop blocks category.
+	 * Disable the Library modal for non-container (section) users.
 	 *
 	 * @return string
 	 */
 	public function get_edit_url() {
 		$url = parent::get_edit_url();
-		return str_replace( '#library', '', $url );
+
+		if ( ! Plugin::elementor()->experiments->is_feature_active( 'container' ) ) {
+			$url = str_replace( '#library', '', $url );
+		}
+
+		return $url;
 	}
 
 	protected static function get_editor_panel_categories() {
@@ -184,6 +202,8 @@ class Loop extends Theme_Document {
 		$this->inject_width_control();
 
 		$this->add_query_section();
+
+		Plugin::elementor()->controls_manager->add_custom_css_controls( $this );
 
 	}
 
@@ -230,7 +250,7 @@ class Loop extends Theme_Document {
 			$css_file = Loop_CSS::create( $this->post->ID );
 		}
 
-		$css_file->print_css();
+		$css_file->print_all_css( $this->post->ID );
 	}
 
 	/**
@@ -241,7 +261,7 @@ class Loop extends Theme_Document {
 	 * @since 3.8.0
 	 */
 	public function get_content( $with_css = false ) {
-		$preview_mode = Plugin::elementor()->preview->is_preview_mode();
+		$edit_mode = Plugin::elementor()->editor->is_edit_mode();
 
 		add_filter( 'elementor/frontend/builder_content/before_print_css', [ $this, 'prevent_inline_css_printing' ] );
 
@@ -253,7 +273,7 @@ class Loop extends Theme_Document {
 
 		remove_filter( 'elementor/frontend/builder_content/before_print_css', [ $this, 'prevent_inline_css_printing' ] );
 
-		Plugin::elementor()->editor->set_edit_mode( $preview_mode );
+		Plugin::elementor()->editor->set_edit_mode( $edit_mode );
 
 		return $content;
 	}
@@ -284,8 +304,9 @@ class Loop extends Theme_Document {
 		?>
 		<div
 			data-elementor-type="<?php echo esc_attr( static::get_type() ); ?>"
+			data-elementor-post-type="<?php echo esc_attr( $this->get_post()->post_type ); ?>"
 			data-elementor-id="<?php echo esc_attr( $post_id ); ?>"
-			class="elementor elementor-<?php echo esc_attr( $post_id ); ?> elementor-edit-area elementor-edit-mode elementor-edit-area-active"
+			class="elementor elementor-<?php echo esc_attr( $post_id ); ?> elementor-edit-area elementor-edit-mode elementor-edit-area-active e-loop-first-edit"
 			data-elementor-title="<?php echo esc_attr( ucfirst( static::get_type() ) ); ?>"
 		>
 			<div class="elementor-section-wrap ui-sortable"></div>
@@ -363,13 +384,13 @@ class Loop extends Theme_Document {
 			[
 				'label' => esc_html__( 'Width', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'vw', 'custom' ],
 				'range' => [
 					'px' => [
 						'min' => 200,
 						'max' => 1140,
 					],
 				],
-				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}}' => '--preview-width: {{SIZE}}{{UNIT}};',
 				],

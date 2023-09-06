@@ -304,14 +304,13 @@ class Products extends Products_Base {
 			[
 				'label' => esc_html__( 'Spacing', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px' ],
+				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'range' => [
 					'px' => [
 						'min' => 0,
 						'max' => 100,
 					],
 				],
-				'default' => [ 'px' => 0 ],
 				'selectors' => [
 					'{{WRAPPER}}' => '--products-title-spacing: {{SIZE}}{{UNIT}};',
 				],

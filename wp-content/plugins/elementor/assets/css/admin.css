@@ -1,4 +1,4 @@
-/*! elementor - v3.14.0 - 26-06-2023 */
+/*! elementor - v3.15.0 - 09-08-2023 */
 .elementor-button,
 .e-btn,
 #elementor-deactivate-feedback-modal .dialog-skip,
@@ -6,7 +6,6 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 1.2;
-  text-transform: uppercase;
   padding: 8px 16px;
   outline: none;
   border: none;
@@ -963,8 +962,8 @@ body.post-type-attachment table.media .column-title .media-icon img[src$=".svg"]
 }
 
 :root {
-  --e-button-padding-y: 0.4375rem;
-  --e-button-padding-x: 0.75rem;
+  --e-button-padding-block: 0.4375rem;
+  --e-button-padding-inline: 0.75rem;
   --e-button-font-size: 0.8125rem;
   --e-button-font-weight: 500;
   --e-button-line-height: 0.9375rem;
@@ -987,7 +986,7 @@ body.post-type-attachment table.media .column-title .media-icon img[src$=".svg"]
   border: 0;
   text-decoration: none;
   background: var(--e-button-context-color);
-  padding: var(--e-button-padding-y) var(--e-button-padding-x);
+  padding: var(--e-button-padding-block) var(--e-button-padding-inline);
   font-size: var(--e-button-font-size);
   line-height: var(--e-button-line-height);
   border-radius: var(--e-button-border-radius);
@@ -1254,7 +1253,7 @@ fieldset:disabled a.e-button {
   position: relative;
   font-size: 12px;
   line-height: 1.5;
-  text-align: left;
+  text-align: start;
 }
 .elementor-admin-alert a {
   color: inherit;
@@ -1377,11 +1376,16 @@ fieldset:disabled a.e-button {
 .dialog-type-alert .dialog-header:after {
   content: "";
   display: block;
-  border-bottom: var(--e-a-border);
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  margin-right: -20px;
-  margin-left: -20px;
+  -webkit-border-after: var(--e-a-border);
+          border-block-end: var(--e-a-border);
+  -webkit-padding-after: 10px;
+          padding-block-end: 10px;
+  -webkit-margin-after: 10px;
+          margin-block-end: 10px;
+  -webkit-margin-start: -20px;
+          margin-inline-start: -20px;
+  -webkit-margin-end: -20px;
+          margin-inline-end: -20px;
 }
 .dialog-type-confirm .dialog-message,
 .dialog-type-alert .dialog-message {
@@ -1389,7 +1393,8 @@ fieldset:disabled a.e-button {
 }
 .dialog-type-confirm .dialog-buttons-wrapper,
 .dialog-type-alert .dialog-buttons-wrapper {
-  padding-top: 10px;
+  -webkit-padding-before: 10px;
+          padding-block-start: 10px;
   display: flex;
   justify-content: flex-end;
   gap: 15px;
@@ -1399,7 +1404,6 @@ fieldset:disabled a.e-button {
   font-size: 12px;
   font-weight: 500;
   line-height: 1.2;
-  text-transform: uppercase;
   padding: 8px 16px;
   outline: none;
   border: none;
@@ -1632,15 +1636,18 @@ fieldset:disabled a.e-button {
 #elementor-deactivate-feedback-modal .dialog-header {
   padding: 18px 15px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  text-align: left;
+  text-align: start;
 }
 #elementor-deactivate-feedback-modal .dialog-message {
-  padding: 30px 30px 0;
-  text-align: left;
+  padding: 30px;
+  -webkit-padding-after: 0;
+          padding-block-end: 0;
+  text-align: start;
 }
 #elementor-deactivate-feedback-modal .elementor-deactivate-feedback-dialog-input {
   float: left;
-  margin: 0 15px 0 0;
+  margin-block: 0;
+  margin-inline: 0 15px;
   box-shadow: none;
 }
 #elementor-deactivate-feedback-modal .elementor-deactivate-feedback-dialog-input:not(:checked) ~ .elementor-feedback-text {
@@ -1653,7 +1660,8 @@ fieldset:disabled a.e-button {
 #elementor-deactivate-feedback-modal .elementor-feedback-text {
   background-color: transparent;
   color: var(--e-a-color-txt);
-  margin: 10px 0 0 30px;
+  margin-block: 10px 0;
+  margin-inline: 30px 0;
   padding: 5px;
   box-shadow: none;
   width: 92%;
@@ -1853,7 +1861,7 @@ fieldset:disabled a.e-button {
   -webkit-border-before: 1px solid #eee;
           border-block-start: 1px solid #eee;
   margin: 0 -12px;
-  padding: 6px 12px;
+  padding: 12px 12px 0;
 }
 #dashboard-widgets .e-dashboard-widget .e-quick-actions-wrap .e-divider_top,
 #dashboard-widgets .e-dashboard-widget .e-news-feed-wrap .e-divider_top {
@@ -1902,7 +1910,7 @@ fieldset:disabled a.e-button {
   display: block;
 }
 .e-dashboard-overview .e-overview__create {
-  text-align: right;
+  text-align: end;
 }
 .e-dashboard-overview .e-overview__feed {
   font-size: 14px;
@@ -1952,7 +1960,7 @@ fieldset:disabled a.e-button {
           padding-inline-start: 0;
   border: none;
 }
-.e-dashboard-overview .e-overview__go-pro a {
+.e-dashboard-overview .e-overview__go-pro a, .e-dashboard-overview .e-overview__ai a {
   color: #524CFF;
   font-weight: 500;
 }
@@ -1977,7 +1985,7 @@ fieldset:disabled a.e-button {
   display: flex;
   align-items: center;
   height: 100%;
-  text-align: left;
+  text-align: start;
 }
 @media (max-width: 1439px) {
   #elementor-new-template-dialog-content {
@@ -2141,7 +2149,7 @@ fieldset:disabled a.e-button {
           padding-inline-end: 20px;
 }
 #elementor-role-manager .elementor-role-row .elementor-role-label span.elementor-role-toggle {
-  text-align: right;
+  text-align: end;
   flex-grow: 1;
 }
 #elementor-role-manager .elementor-role-row .elementor-role-label span.elementor-role-excluded-indicator {
@@ -2163,7 +2171,7 @@ fieldset:disabled a.e-button {
   font-style: italic;
 }
 #elementor-role-manager .elementor-role-row .elementor-role-controls .elementor-role-go-pro .elementor-role-go-pro__link {
-  text-align: right;
+  text-align: end;
   flex-grow: 1;
 }
 
@@ -2283,7 +2291,8 @@ fieldset:disabled a.e-button {
   font-style: italic;
 }
 .e-experiment__button.button {
-  margin: 18px 14px 22px 0;
+  margin-block: 18px 22px;
+  margin-inline: 0 14px;
 }
 .e-experiment__dependency {
   color: #21759b;

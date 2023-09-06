@@ -36,7 +36,3 @@ jQuery(document).ready(function($) {
         }
     });
 });
-
-
-
-// window.addEventListener('click', outsideClickHandler);

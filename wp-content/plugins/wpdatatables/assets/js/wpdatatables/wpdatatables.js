@@ -125,7 +125,7 @@ var wdtRenderDataTable = null;
             /**
              * Add outline class to selected column col for initial table load
              */
-            if ($.inArray(tableDescription.currentSkin, ['raspberry-cream', 'mojito']) !== -1) {
+            if ($.inArray(tableDescription.currentSkin, ['raspberry-cream', 'mojito', 'dark-mojito']) !== -1) {
                 dataTableOptions.fnInitComplete = function () {
                     //  Find the column that the table is initially sorted by
                     let columnPos = tableDescription.dataTableParams.order[0][0];
@@ -136,7 +136,7 @@ var wdtRenderDataTable = null;
                     let tableId = tableDescription.tableId;
                     addOutlineBorder(tableId, columnTitle);
 
-                    if (tableDescription.currentSkin === 'mojito') {
+                    if ($.inArray(tableDescription.currentSkin, ['mojito', 'dark-mojito']) !== -1) {
                         cubeLoaderMojito(tableId);
                         if (tableDescription.showRowsPerPage)
                             hideLabelShowXEntries(tableId);
@@ -214,7 +214,7 @@ var wdtRenderDataTable = null;
             wpDataTables[tableDescription.tableId].fnSettings().aoDrawCallback.push({
                 sName: 'addOutlineClass',
                 fn: function (oSettings) {
-                    if ($.inArray(tableDescription.currentSkin, ['raspberry-cream', 'mojito']) !== -1) {
+                    if ($.inArray(tableDescription.currentSkin, ['raspberry-cream', 'mojito', 'dark-mojito']) !== -1) {
                         //Find the column that the table is sorted by
                         let columnPos = oSettings.aaSorting[0][0];
                         let columnTitle = oSettings.aoColumns[columnPos].className.substring(

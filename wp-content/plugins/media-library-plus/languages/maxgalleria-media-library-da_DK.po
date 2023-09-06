@@ -1,0 +1,653 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: maxgalleria-media-library\n"
+"POT-Creation-Date: 2017-07-05 14:31+0200\n"
+"PO-Revision-Date: 2018-02-03 10:26+0000\n"
+"Language-Team: Danish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"Last-Translator: Humorguden <humorguden@humorhimlen.dk>\n"
+"Language: da-DK\n"
+"X-Poedit-SearchPath-0: ..\n"
+"Report-Msgid-Bugs-To: "
+
+#: ../maxgalleria-media-library.php:430 ../maxgalleria-media-library.php:1341
+#: ../maxgalleria-media-library.php:1396 ../maxgalleria-media-library.php:1425
+#: ../maxgalleria-media-library.php:1444 ../maxgalleria-media-library.php:2073
+#: ../maxgalleria-media-library.php:2245 ../maxgalleria-media-library.php:2358
+#: ../maxgalleria-media-library.php:2607 ../maxgalleria-media-library.php:2691
+#: ../maxgalleria-media-library.php:2862 ../maxgalleria-media-library.php:2990
+#: ../maxgalleria-media-library.php:3018 ../maxgalleria-media-library.php:3307
+#: ../maxgalleria-media-library.php:3504 ../maxgalleria-media-library.php:3729
+#: ../maxgalleria-media-library.php:3742 ../maxgalleria-media-library.php:4155
+#: ../maxgalleria-media-library.php:4404
+msgid "missing nonce!"
+msgstr "mangler nonce!"
+
+#: ../maxgalleria-media-library.php:738 ../maxgalleria-media-library.php:866
+msgid "Media Library Folders"
+msgstr "Media Library Folders"
+
+#: ../maxgalleria-media-library.php:741
+msgid "Check For New Folders"
+msgstr "Check for nye mapper"
+
+#: ../maxgalleria-media-library.php:744
+msgid "Upgrade to Pro"
+msgstr "Opgrader til Pro"
+
+#: ../maxgalleria-media-library.php:745 ../maxgalleria-media-library.php:981
+#: ../maxgalleria-media-library.php:3809
+msgid "Regenerate Thumbnails"
+msgstr "Regenerere miniaturebilleder"
+
+#: ../maxgalleria-media-library.php:746 ../maxgalleria-media-library.php:4080
+msgid "Image SEO"
+msgstr "Billede SEO"
+
+#: ../maxgalleria-media-library.php:747
+msgid "Support"
+msgstr "Support"
+
+#: ../maxgalleria-media-library.php:872 ../maxgalleria-media-library.php:3814
+#: ../maxgalleria-media-library.php:4085 ../maxgalleria-media-library.php:4293
+msgid "Makers of"
+msgstr "producenter af"
+
+#: ../maxgalleria-media-library.php:872 ../maxgalleria-media-library.php:3814
+#: ../maxgalleria-media-library.php:4085 ../maxgalleria-media-library.php:4293
+msgid "and"
+msgstr "og"
+
+#: ../maxgalleria-media-library.php:874 ../maxgalleria-media-library.php:3816
+#: ../maxgalleria-media-library.php:4087 ../maxgalleria-media-library.php:4295
+msgid "Need help? Click here for"
+msgstr "Brug for hjælp? Klik her for"
+
+#: ../maxgalleria-media-library.php:874 ../maxgalleria-media-library.php:3816
+#: ../maxgalleria-media-library.php:4087 ../maxgalleria-media-library.php:4295
+msgid "Awesome Support!"
+msgstr "Awesome Support!"
+
+#: ../maxgalleria-media-library.php:875 ../maxgalleria-media-library.php:3817
+#: ../maxgalleria-media-library.php:4088 ../maxgalleria-media-library.php:4296
+msgid "Or Email Us at"
+msgstr "Eller mail os på"
+
+#: ../maxgalleria-media-library.php:880
+msgid "Click here to learn about the Media Library Folders Pro"
+msgstr "Klik her for at lære om Media Library Folders Pro"
+
+#: ../maxgalleria-media-library.php:892
+msgid "Current PHP version, "
+msgstr "Nuværende PHP-version,"
+
+#: ../maxgalleria-media-library.php:892
+msgid ", is outdated. Please upgrade to version 5.6."
+msgstr ", er forældet. Opgrader venligst til version 5.6."
+
+#: ../maxgalleria-media-library.php:912 ../maxgalleria-media-library.php:1298
+msgid "Location:"
+msgstr "Sted:"
+
+#: ../maxgalleria-media-library.php:926
+msgid "Upload new files."
+msgstr "Upload nye filer."
+
+#: ../maxgalleria-media-library.php:926
+msgid "Add File"
+msgstr "Tilføj fil"
+
+#: ../maxgalleria-media-library.php:928
+msgid ""
+"Create a new folder. Type in a folder name (do not use spaces, single or "
+"double quote marks) and click Create Folder."
+msgstr ""
+"Opret en ny mappe. Indtast et mappenavn (brug ikke mellemrum, enkelt eller "
+"dobbelt citat) og klik på Opret mappe."
+
+#: ../maxgalleria-media-library.php:928
+msgid "Add Folder"
+msgstr "Tilføj mappe"
+
+#: ../maxgalleria-media-library.php:937
+msgid ""
+"When moving/copying to a new folder place your pointer, not the image, on "
+"the folder where you want the file(s) to go."
+msgstr ""
+"Når du flytter / kopierer til en ny mappe, skal du placere din pointer, ikke "
+"billedet, i den mappe, hvor du vil have filen / filerne."
+
+#: ../maxgalleria-media-library.php:938
+msgid ""
+"To drag multiple images, check the box under the files you want to move and "
+"then drag one of the images to the desired folder."
+msgstr ""
+"Hvis du vil trække flere billeder, skal du markere feltet under de filer, du "
+"vil flytte, og træk derefter et af billederne til den ønskede mappe."
+
+#: ../maxgalleria-media-library.php:939
+msgid ""
+"To move/copy to a folder nested under the top level folder click the "
+"triangle to the left of the folder to show the nested folder that is your "
+"target."
+msgstr ""
+"Hvis du vil flytte / kopiere til en mappe, der er nestet under øverste "
+"niveau, skal du klikke på trekanten til venstre for mappen for at vise den "
+"nestede mappe, der er dit mål."
+
+#: ../maxgalleria-media-library.php:940
+msgid ""
+"To delete a folder, right click on the folder and a popup menu will appear. "
+"Click on the option, \"Delete this folder?\" If the folder is empty, it will "
+"be deleted."
+msgstr ""
+"For at slette en mappe skal du højreklikke på mappen og en pop op-menu vises."
+" Klik på indstillingen \"Slet denne mappe?\" Hvis mappen er tom, slettes den."
+
+#: ../maxgalleria-media-library.php:941
+msgid ""
+"To hide a folder and all its sub folders and files, right click on a folder, "
+"On the popup menu that appears, click \"Hide this folder?\" and those "
+"folders and files will be removed from the Media Library, but not from the "
+"server."
+msgstr ""
+"For at skjule en mappe og alle dens undermapper og filer skal du højreklikke "
+"på en mappe. På den pop op-menu, der vises, skal du klikke på \"Skjul denne "
+"mappe?\" og disse mapper og filer fjernes fra mediebiblioteket, men ikke fra "
+"serveren."
+
+#: ../maxgalleria-media-library.php:942
+msgid ""
+"If you click on an image and end up in WordPress Media Library please "
+"backclick two times to return to MLP"
+msgstr ""
+"Hvis du klikker på et billede og ender i WordPress Media Library, skal du "
+"vende tilbage to gange for at vende tilbage til MLP"
+
+#: ../maxgalleria-media-library.php:953
+msgid ""
+"Move/Copy Toggle. Move or copy selected files to a different folder. When "
+"move is selected, images links in posts and pages will be updated. <span "
+"class='mlp-warning'>Images IDs used in Jetpack Gallery shortcodes will not "
+"be updated.</span>"
+msgstr ""
+"Flyt / Kopier Toggle. Flyt eller kopier valgte filer til en anden mappe. Når "
+"flyt er valgt, opdateres billeder i indlæg og sider. <span class = 'mlp-"
+"warning'> Billeder ID'er, der bruges i Jetpack Gallery-kortkoder, opdateres "
+"ikke. </ span>"
+
+#: ../maxgalleria-media-library.php:962
+msgid ""
+"Rename a file; select only one file. Folders cannot be renamed. Type in a "
+"new name with no spaces and without the extention and click Rename."
+msgstr ""
+"Omdøb en fil; vælg kun en fil. Mapper kan ikke omdøbes. Indtast et nyt navn "
+"uden mellemrum og uden udvidelsen, og klik på Omdøb."
+
+#: ../maxgalleria-media-library.php:962 ../maxgalleria-media-library.php:1021
+msgid "Rename"
+msgstr "Omdøb"
+
+#: ../maxgalleria-media-library.php:964
+msgid "Delete selected files."
+msgstr "Slet valgte filer."
+
+#: ../maxgalleria-media-library.php:964
+msgid "Delete"
+msgstr "Slet"
+
+#: ../maxgalleria-media-library.php:966
+msgid "Select or unselect all files in the folder."
+msgstr "Vælg eller fravælg alle filer i mappen."
+
+#: ../maxgalleria-media-library.php:966
+msgid "Select/Unselect All"
+msgstr "Vælg / Fravælg alle"
+
+#: ../maxgalleria-media-library.php:969
+msgid "Sort by Name"
+msgstr "Sorter efter navn"
+
+#: ../maxgalleria-media-library.php:970
+msgid "Sort by Date"
+msgstr "Sorter efter Dato"
+
+#: ../maxgalleria-media-library.php:977
+msgid "Sync the contents of the current folder with the server"
+msgstr "Synkroniser indholdet af den aktuelle mappe med serveren"
+
+#: ../maxgalleria-media-library.php:977
+msgid "Sync"
+msgstr "Sync"
+
+#: ../maxgalleria-media-library.php:981
+msgid "Regenerates the thumbnails of selected images"
+msgstr "Regenererer miniaturebilleder af valgte billeder"
+
+#: ../maxgalleria-media-library.php:984
+msgid ""
+"Add images to an existing MaxGalleria gallery. Folders can not be added to a "
+"gallery. Images already in the gallery will not be added. "
+msgstr ""
+"Tilføj billeder til et eksisterende MaxGalleria-galleri. Mapper kan ikke "
+"føjes til et galleri. Billeder allerede i galleriet vil ikke blive tilføjet."
+
+#: ../maxgalleria-media-library.php:984
+msgid "Add to MaxGalleria Gallery"
+msgstr "Tilføj til MaxGalleria Gallery"
+
+#: ../maxgalleria-media-library.php:1020
+msgid "File Name: "
+msgstr "Filnavn:"
+
+#: ../maxgalleria-media-library.php:1056
+msgid "Add Images"
+msgstr "Tilføj billeder"
+
+#: ../maxgalleria-media-library.php:1067
+msgid "Folder Name: "
+msgstr "Mappenavn:"
+
+#: ../maxgalleria-media-library.php:1068
+msgid "Create Folder"
+msgstr "Opret mappe"
+
+#: ../maxgalleria-media-library.php:1645
+msgid "You cannot delete the currently open folder."
+msgstr "Du kan ikke slette den aktuelt åbne mappe."
+
+#: ../maxgalleria-media-library.php:1686
+msgid "You cannot hide the currently open folder."
+msgstr "Du kan ikke skjule den aktuelt åbne mappe."
+
+#: ../maxgalleria-media-library.php:1965
+msgid "No files were found."
+msgstr "Der blev ikke fundet nogen filer."
+
+#: ../maxgalleria-media-library.php:2124
+msgid "The folder was created."
+msgstr "Mappen blev oprettet."
+
+#: ../maxgalleria-media-library.php:2130
+msgid "There was a problem creating the folder."
+msgstr "Der opstod et problem med oprettelsen af mappen."
+
+#: ../maxgalleria-media-library.php:2137
+msgid "The folder already exists."
+msgstr "Mappen eksisterer allerede."
+
+#: ../maxgalleria-media-library.php:2289
+msgid "The folder, "
+msgstr "Mappen"
+
+#: ../maxgalleria-media-library.php:2289
+msgid ", is not empty. Please delete or move files from the folder"
+msgstr ", er ikke tom. Fjern eller flyt filer fra mappen"
+
+#: ../maxgalleria-media-library.php:2305 ../maxgalleria-media-library.php:2318
+msgid "The folder was deleted."
+msgstr "Mappen blev slettet."
+
+#: ../maxgalleria-media-library.php:2307
+msgid "The folder could not be deleted."
+msgstr "Mappen kunne ikke slettes."
+
+#: ../maxgalleria-media-library.php:2328
+msgid "The file(s) were deleted"
+msgstr "Den fil (er) blev slettet"
+
+#: ../maxgalleria-media-library.php:2330
+msgid "The file(s) were not deleted"
+msgstr "Den fil (er) blev ikke slettet"
+
+#: ../maxgalleria-media-library.php:2432
+msgid "Unable to copy the file; please check the folder and file permissions."
+msgstr "Kan ikke kopiere filen Kontroller mappen og filtilladelserne."
+
+#: ../maxgalleria-media-library.php:2525
+msgid "Updating attachment links, please wait..."
+msgstr "Opdatering af vedhæftede links, vent venligst ..."
+
+#: ../maxgalleria-media-library.php:2530
+msgid ""
+"Unable to move the file(s); please check the folder and file permissions."
+msgstr "Kan ikke flytte filen / filerne Kontroller mappen og filtilladelserne."
+
+#: ../maxgalleria-media-library.php:2537
+msgid "The destination is not a folder: "
+msgstr "Destinationen er ikke en mappe:"
+
+#: ../maxgalleria-media-library.php:2543
+msgid "Cannot find destination folder: "
+msgstr "Kan ikke finde destinationsmappe:"
+
+#: ../maxgalleria-media-library.php:2549
+msgid "Coping or moving a folder is not allowed."
+msgstr "Det er ikke tilladt at kopiere eller flytte en mappe."
+
+#: ../maxgalleria-media-library.php:2555
+msgid "Cannot find the file: "
+msgstr "Kan ikke finde filen:"
+
+#: ../maxgalleria-media-library.php:2562
+msgid "The file(s) were copied to "
+msgstr "Den fil (er) blev kopieret til"
+
+#: ../maxgalleria-media-library.php:2564
+msgid "The file(s) were not copied."
+msgstr "Den fil (er) blev ikke kopieret."
+
+#: ../maxgalleria-media-library.php:2568
+msgid "The file(s) were moved to "
+msgstr "The file(s) were moved to "
+
+#: ../maxgalleria-media-library.php:2570
+msgid "The file(s) were not moved."
+msgstr "Den fil (er) blev ikke flyttet."
+
+#: ../maxgalleria-media-library.php:2680
+msgid "The images were added."
+msgstr "Billederne blev tilføjet."
+
+#: ../maxgalleria-media-library.php:2732 ../maxgalleria-media-library.php:2832
+msgid "No files were found matching that name."
+msgstr "Der blev ikke fundet nogen filer, der matchede det pågældende navn."
+
+#: ../maxgalleria-media-library.php:2979
+msgid "Updating attachment links, please wait...The file was renamed"
+msgstr "Opdatering af vedhæftede links, vent venligst ... Filen blev omdøbt"
+
+#: ../maxgalleria-media-library.php:3002
+msgid "Sorting by date."
+msgstr "Sortering efter dato."
+
+#: ../maxgalleria-media-library.php:3006
+msgid "Sorting by name."
+msgstr "Sortering efter navn."
+
+#: ../maxgalleria-media-library.php:3060
+msgid "Scaning for new folders in "
+msgstr "Scanning efter nye mapper i"
+
+#: ../maxgalleria-media-library.php:3087 ../maxgalleria-media-library.php:3115
+#: ../maxgalleria-media-library.php:3136 ../maxgalleria-media-library.php:3171
+msgid "Adding"
+msgstr "Tilføjelse af"
+
+#: ../maxgalleria-media-library.php:3149
+msgid "No new folders were found."
+msgstr "Der blev ikke fundet nye mapper."
+
+#: ../maxgalleria-media-library.php:3268
+msgid "Rate us Please!"
+msgstr "Bedøm os venligst!"
+
+#: ../maxgalleria-media-library.php:3269
+msgid ""
+"Your rating is the simplest way to support Media Library Folders. We really "
+"appreciate it!"
+msgstr ""
+"Din vurdering er den enkleste måde at støtte mediebibliotek mapper. Vi "
+"sætter pris på det!"
+
+#: ../maxgalleria-media-library.php:3272
+msgid "I've already left a review"
+msgstr "Jeg har allerede forladt en anmeldelse"
+
+#: ../maxgalleria-media-library.php:3273
+msgid "Maybe Later"
+msgstr "Måske senere"
+
+#: ../maxgalleria-media-library.php:3274
+msgid "Sure! I'd love to!"
+msgstr "Jo da! Jeg ville meget gerne!"
+
+#: ../maxgalleria-media-library.php:3775
+msgid "Error: "
+msgstr "Fejl:"
+
+#: ../maxgalleria-media-library.php:3779
+msgid "Unknown error with "
+msgstr "Ukendt fejl med"
+
+#: ../maxgalleria-media-library.php:3830
+msgid "Cheatin&#8217; uh?"
+msgstr "Cheatin&#8217; uh?"
+
+#: ../maxgalleria-media-library.php:3841
+#, php-format
+msgid "Unable to find any images. Are you sure <a href='%s'>some exist</a>?"
+msgstr ""
+"Kunne ikke finde nogen billeder. Er du sikker på, at <a href='%s'> nogle "
+"findes </a>?"
+
+#: ../maxgalleria-media-library.php:3852
+msgid ""
+"Please wait while the thumbnails are regenerated. This may take a while."
+msgstr ""
+"Vent venligst mens miniaturerne regenereres. Det kan tage et stykke tid."
+
+#: ../maxgalleria-media-library.php:3856
+#, php-format
+msgid "To go back to the previous page, <a href=\"%s\">click here</a>."
+msgstr "For at gå tilbage til forrige side, <a href=\"%s\"> klik her </a>."
+
+#: ../maxgalleria-media-library.php:3857
+#, php-format
+msgid ""
+"All done! %1$s image(s) were successfully resized in %2$s seconds and there "
+"were %3$s failure(s). To try regenerating the failed images again, <a "
+"href=\"%4$s\">click here</a>. %5$s"
+msgstr ""
+"Helt færdig! %1$s billede (er) blev ændret med succes i %2$s sekunder, og "
+"der var fejl i%3$s . For at prøve at genoprette de fejlede billeder igen, <a "
+"href=\"%4$s\"> klik her </a>. %5$s"
+
+#: ../maxgalleria-media-library.php:3858
+#, php-format
+msgid ""
+"All done! %1$s image(s) were successfully resized in %2$s seconds and there "
+"were 0 failures. %3$s"
+msgstr ""
+"Helt færdig! %1$s billede (er) blev ændret med succes i %2$s sekunder, og "
+"der var 0 fejl. %3$s"
+
+#: ../maxgalleria-media-library.php:3862 ../maxgalleria-media-library.php:4008
+msgid "You must enable Javascript in order to proceed!"
+msgstr "Du skal aktivere Javascript for at kunne fortsætte!"
+
+#: ../maxgalleria-media-library.php:3868
+msgid "Abort Resizing Images"
+msgstr "Afbryd ændring af billedstørrelser"
+
+#: ../maxgalleria-media-library.php:3870
+msgid "Debugging Information"
+msgstr "Debugging Information"
+
+#: ../maxgalleria-media-library.php:3873
+#, php-format
+msgid "Total Images: %s"
+msgstr "Total Billeder: %s"
+
+#: ../maxgalleria-media-library.php:3874
+#, php-format
+msgid "Images Resized: %s"
+msgstr "Billeder ændret: %s"
+
+#: ../maxgalleria-media-library.php:3875
+#, php-format
+msgid "Resize Failures: %s"
+msgstr "RÆndre størrelsesfejl: %s"
+
+#: ../maxgalleria-media-library.php:3906
+msgid "Stopping..."
+msgstr "Stopper ..."
+
+#: ../maxgalleria-media-library.php:3958
+#, php-format
+msgid ""
+"The resize request was abnormally terminated (ID %s). This is likely due to "
+"the image exceeding available memory or some other type of fatal error."
+msgstr ""
+"Forstørrelsesforespørgslen blev afbrudt abnormt (ID %s). Dette skyldes "
+"sandsynligvis billedet, der overskrider ledig hukommelse eller en anden form "
+"for dødelig fejl."
+
+#: ../maxgalleria-media-library.php:4001
+msgid ""
+"Click the button below to regenerate thumbnails for all images in the Media "
+"Library. This is helpful if you have added new thumbnail sizes to your site. "
+"Existing thumbnails will not be removed to prevent breaking any links."
+msgstr ""
+"Klik på knappen nedenfor for at regenerere miniaturebilleder for alle "
+"billeder i mediebiblioteket. Dette er nyttigt, hvis du har tilføjet nye "
+"miniaturebilleder til dit websted. Eksisterende miniaturebilleder fjernes "
+"ikke for at forhindre brud på nogen links."
+
+#: ../maxgalleria-media-library.php:4003
+msgid ""
+"You can regenerate thumbnails for individual images from the Media Library "
+"Folders page by checking the box below one or more images and clicking the "
+"Regenerate Thumbnails button. The regenerate operation is not reversible but "
+"you can always generate the sizes you need by adding additional thumbnail "
+"sizes to your theme."
+msgstr ""
+"Du kan regenerere miniaturebilleder til individuelle billeder fra Media "
+"Library Folders-siden ved at markere feltet under et eller flere billeder og "
+"klikke på knappen Regenerere miniaturebilleder. Regenereringsoperationen er "
+"ikke reversibel, men du kan altid generere de størrelser du har brug for ved "
+"at tilføje yderligere miniaturestørrelser til dit tema."
+
+#: ../maxgalleria-media-library.php:4006
+msgid "Regenerate All Thumbnails"
+msgstr "Regenerere alle miniaturebilleder"
+
+#: ../maxgalleria-media-library.php:4032
+#, php-format
+msgid "Failed resize: %s is an invalid image ID."
+msgstr "Mislykket størrelse: %s er et ugyldigt billed-id."
+
+#: ../maxgalleria-media-library.php:4035
+msgid "Your user account doesn't have permission to resize images"
+msgstr "Din brugerkonto har ikke tilladelse til at ændre størrelse på billeder"
+
+#: ../maxgalleria-media-library.php:4040
+#, php-format
+msgid "The originally uploaded image file cannot be found at %s"
+msgstr "Den oprindeligt uploadede billedfil kan ikke findes på %s"
+
+#: ../maxgalleria-media-library.php:4049
+msgid "Unknown failure reason."
+msgstr "Ukendt fejlårsag."
+
+#: ../maxgalleria-media-library.php:4054
+#, php-format
+msgid "&quot;%1$s&quot; (ID %2$s) was successfully resized in %3$s seconds."
+msgstr "&quot;%1$s&quot; (ID %2$s) blev ændret med succes på %3$s sekunder."
+
+#: ../maxgalleria-media-library.php:4060
+#, php-format
+msgid ""
+"&quot;%1$s&quot; (ID %2$s) failed to resize. The error message was: %3$s"
+msgstr ""
+"&quot;%1$s&quot; (ID %2$s) mislykkedes at ændre størrelse. Fejlmeddelelsen "
+"var: %3$s"
+
+#: ../maxgalleria-media-library.php:4095
+msgid ""
+"When Image SEO is enabled Media Library Folders automatically adds  ALT and "
+"Title attributes with the default settings defined below to all your images "
+"as they are uploaded."
+msgstr ""
+"Når Image SEO er aktiveret Media Library Mapper tilføjer automatisk ALT og "
+"Title attributter med de standardindstillinger, der er defineret nedenfor, "
+"til alle dine billeder, som de uploades."
+
+#: ../maxgalleria-media-library.php:4096
+msgid ""
+"You can easily override the Image SEO default settings when you  are "
+"uploading new images. When Image SEO is enabled you will see two fields  "
+"under the Upload Box when you add a file - Image Title Text and Image ALT "
+"Text.  Whatever you type into these fields overrides the default settings "
+"for the  current upload or sync operations."
+msgstr ""
+"Du kan nemt tilsidesætte standardindstillingerne for Image SEO, når du "
+"uploader nye billeder. Når Image SEO er aktiveret, vil du se to felter under "
+"Upload Box, når du tilføjer en fil - Image Title Text og Image ALT Text. "
+"Uanset hvad du skriver i disse felter, tilsidesætter standardindstillingerne "
+"for de aktuelle upload- eller synkroniseringsoperationer."
+
+#: ../maxgalleria-media-library.php:4097
+msgid ""
+"To change the settings on an individual image simply click on  the image and "
+"change the settings on the far right.  Save and then back click to return to "
+"Media  Library Plus or MLPP."
+msgstr ""
+"For at ændre indstillingerne på et enkelt billede skal du blot klikke på "
+"billedet og ændre indstillingerne helt til højre. Gem og klik derefter "
+"tilbage for at vende tilbage til Media Library Plus eller MLPP."
+
+#: ../maxgalleria-media-library.php:4098
+msgid "Image SEO supports two special tags:"
+msgstr "Billede SEO understøtter to specielle tags:"
+
+#: ../maxgalleria-media-library.php:4099
+#, php-format
+msgid "%filename - replaces image file name ( without extension )"
+msgstr "%filename - erstatter billedfilnavn (uden udvidelse)"
+
+#: ../maxgalleria-media-library.php:4100
+#, php-format
+msgid "%foldername - replaces image folder name"
+msgstr "%foldername  - erstatter navnet på billedmappen"
+
+#: ../maxgalleria-media-library.php:4116
+msgid "Settings"
+msgstr "Indstillinger"
+
+#: ../maxgalleria-media-library.php:4121
+msgid "Turn on Image SEO:"
+msgstr "Aktivér Billede SEO:"
+
+#: ../maxgalleria-media-library.php:4126
+msgid "Image ALT attribute:"
+msgstr "Billede ALT attribut:"
+
+#: ../maxgalleria-media-library.php:4128 ../maxgalleria-media-library.php:4133
+msgid "example"
+msgstr "eksempel"
+
+#: ../maxgalleria-media-library.php:4131
+msgid "Image Title attribute:"
+msgstr "Egenskab for billedtitel:"
+
+#: ../maxgalleria-media-library.php:4136
+msgid "Update Settings"
+msgstr "Opdater indstillinger"
+
+#: ../maxgalleria-media-library.php:4179
+msgid "The Image SEO setting have been updated "
+msgstr "Indstillingen Billede SEO er blevet opdateret"
+
+#: ../maxgalleria-media-library.php:4288
+msgid "Support - System Information"
+msgstr "Support - Systemoplysninger"
+
+#: ../maxgalleria-media-library.php:4302
+msgid ""
+"You may be asked to provide the information below to help troubleshoot your "
+"issue."
+msgstr ""
+"Du bliver muligvis bedt om at give nedenstående oplysninger for at hjælpe "
+"med at fejre dit problem."
+
+#: ../maxgalleria-media-library.php:4438
+msgid "The selected folder, subfolders and thier files have been hidden."
+msgstr "Den valgte mappe, undermapper og deres filer er blevet skjult."

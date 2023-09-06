@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_query_devtools__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-query/devtools */ "../../../node_modules/react-query/devtools/index.js");
 /* harmony import */ var _context_elements__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./context/elements */ "../assets/js/app/context/elements.js");
 /* harmony import */ var _radix_ui_react_toast__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @radix-ui/react-toast */ "../../../node_modules/@radix-ui/react-toast/dist/index.module.js");
-/* harmony import */ var _components_ui_toast_toast__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/ui/toast/toast */ "../assets/js/app/components/ui/toast/toast.js");
+/* harmony import */ var _components_ui_toast_toast_viewport__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/ui/toast/toast-viewport */ "../assets/js/app/components/ui/toast/toast-viewport.js");
 
 
 
@@ -46,7 +46,7 @@ function App() {
     store: store
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_context_elements__WEBPACK_IMPORTED_MODULE_8__.ElementsProvider, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_radix_ui_react_toast__WEBPACK_IMPORTED_MODULE_10__.ToastProvider, {
     duration: Infinity
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ui_toast_toast__WEBPACK_IMPORTED_MODULE_9__["default"].Viewport, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_query__WEBPACK_IMPORTED_MODULE_6__.QueryClientProvider, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ui_toast_toast_viewport__WEBPACK_IMPORTED_MODULE_9__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_query__WEBPACK_IMPORTED_MODULE_6__.QueryClientProvider, {
     client: _query_client__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_marks__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_panel__WEBPACK_IMPORTED_MODULE_2__["default"], null), isDebug && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_query_devtools__WEBPACK_IMPORTED_MODULE_7__.ReactQueryDevtools, {
     initialIsOpen: false
@@ -101,27 +101,25 @@ function MarksEditNoteForm(props) {
     var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(e, _ref) {
       var content, form;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              content = _ref.content, form = _ref.form;
-              window.top.$e.run('notes/edit', {
-                noteId: props.note.id
-              });
-              _context.next = 4;
-              return updateMutation.mutateAsync({
-                id: props.note.id,
-                values: {
-                  content: content
-                }
-              });
-            case 4:
-              form.reset();
-              props.onClose();
-            case 6:
-            case "end":
-              return _context.stop();
-          }
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            content = _ref.content, form = _ref.form;
+            window.top.$e.run('notes/edit', {
+              noteId: props.note.id
+            });
+            _context.next = 4;
+            return updateMutation.mutateAsync({
+              id: props.note.id,
+              values: {
+                content: content
+              }
+            });
+          case 4:
+            form.reset();
+            props.onClose();
+          case 6:
+          case "end":
+            return _context.stop();
         }
       }, _callee);
     }));
@@ -270,31 +268,29 @@ function MarksNewThreadForm(props) {
     var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(e, _ref) {
       var content, form, createdThread;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              content = _ref.content, form = _ref.form;
-              window.top.$e.run('notes/create');
-              _context.next = 4;
-              return createMutation.mutateAsync({
-                elementId: props.elementId,
-                parentId: 0,
-                content: content,
-                position: props.position
-              });
-            case 4:
-              createdThread = _context.sent;
-              form.reset();
-              setActive({
-                type: _hooks_use_active_thread__WEBPACK_IMPORTED_MODULE_5__.THREAD,
-                data: {
-                  noteId: createdThread.id
-                }
-              });
-            case 7:
-            case "end":
-              return _context.stop();
-          }
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            content = _ref.content, form = _ref.form;
+            window.top.$e.run('notes/create');
+            _context.next = 4;
+            return createMutation.mutateAsync({
+              elementId: props.elementId,
+              parentId: 0,
+              content: content,
+              position: props.position
+            });
+          case 4:
+            createdThread = _context.sent;
+            form.reset();
+            setActive({
+              type: _hooks_use_active_thread__WEBPACK_IMPORTED_MODULE_5__.THREAD,
+              data: {
+                noteId: createdThread.id
+              }
+            });
+          case 7:
+          case "end":
+            return _context.stop();
         }
       }, _callee);
     }));
@@ -550,32 +546,30 @@ function MarksNoteActionsResolve(props) {
     onClick: /*#__PURE__*/(0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee() {
       var isResolved;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              isResolved = !alreadyResolved;
-              if (isResolved) {
-                window.top.$e.run('notes/resolve', {
-                  noteId: props.note.id
-                });
-              } else {
-                window.top.$e.run('notes/re-open', {
-                  noteId: props.note.id
-                });
-              }
-              _context.next = 4;
-              return resolveMutation.mutateAsync({
-                id: props.note.id,
-                isResolved: isResolved
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            isResolved = !alreadyResolved;
+            if (isResolved) {
+              window.top.$e.run('notes/resolve', {
+                noteId: props.note.id
               });
-            case 4:
-              if (isResolved) {
-                clearActive(props.note.id);
-              }
-            case 5:
-            case "end":
-              return _context.stop();
-          }
+            } else {
+              window.top.$e.run('notes/re-open', {
+                noteId: props.note.id
+              });
+            }
+            _context.next = 4;
+            return resolveMutation.mutateAsync({
+              id: props.note.id,
+              isResolved: isResolved
+            });
+          case 4:
+            if (isResolved) {
+              clearActive(props.note.id);
+            }
+          case 5:
+          case "end":
+            return _context.stop();
         }
       }, _callee);
     }))
@@ -1032,25 +1026,23 @@ function MarksReplyForm(props) {
     var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(e, _ref) {
       var content, form;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              content = _ref.content, form = _ref.form;
-              window.top.$e.run('notes/reply', {
-                parentId: props.thread.id
-              });
-              _context.next = 4;
-              return createMutation.mutateAsync({
-                elementId: props.thread.elementId,
-                parentId: props.thread.id,
-                content: content
-              });
-            case 4:
-              form.reset();
-            case 5:
-            case "end":
-              return _context.stop();
-          }
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            content = _ref.content, form = _ref.form;
+            window.top.$e.run('notes/reply', {
+              parentId: props.thread.id
+            });
+            _context.next = 4;
+            return createMutation.mutateAsync({
+              elementId: props.thread.elementId,
+              parentId: props.thread.id,
+              content: content
+            });
+          case 4:
+            form.reset();
+          case 5:
+          case "end":
+            return _context.stop();
         }
       }, _callee);
     }));
@@ -1560,10 +1552,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _models_note__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../models/note */ "../assets/js/app/models/note.js");
 /* harmony import */ var _panel_empty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./panel-empty */ "../assets/js/app/components/panel-empty.js");
 /* harmony import */ var _ui_toast_toast__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ui/toast/toast */ "../assets/js/app/components/ui/toast/toast.js");
-/* harmony import */ var _hooks_use_stoppable_effect__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../hooks/use-stoppable-effect */ "../assets/js/app/hooks/use-stoppable-effect.js");
-/* harmony import */ var _hooks_use_viewable_notes__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../hooks/use-viewable-notes */ "../assets/js/app/hooks/use-viewable-notes.js");
+/* harmony import */ var _ui_toast_toast_icon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ui/toast/toast-icon */ "../assets/js/app/components/ui/toast/toast-icon.js");
+/* harmony import */ var _ui_toast_toast_title__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ui/toast/toast-title */ "../assets/js/app/components/ui/toast/toast-title.js");
+/* harmony import */ var _ui_toast_toast_description__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ui/toast/toast-description */ "../assets/js/app/components/ui/toast/toast-description.js");
+/* harmony import */ var _ui_toast_toast_close__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ui/toast/toast-close */ "../assets/js/app/components/ui/toast/toast-close.js");
+/* harmony import */ var _hooks_use_stoppable_effect__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../hooks/use-stoppable-effect */ "../assets/js/app/hooks/use-stoppable-effect.js");
+/* harmony import */ var _hooks_use_viewable_notes__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../hooks/use-viewable-notes */ "../assets/js/app/hooks/use-viewable-notes.js");
 /* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
 /* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../../../node_modules/prop-types/index.js");
+
+
+
+
 
 
 
@@ -1588,7 +1588,7 @@ function PanelBodyCurrentRoute(props) {
     _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
     isToastOpen = _useState2[0],
     setIsToastOpen = _useState2[1],
-    _useViewableNotes = (0,_hooks_use_viewable_notes__WEBPACK_IMPORTED_MODULE_10__["default"])(props.notes),
+    _useViewableNotes = (0,_hooks_use_viewable_notes__WEBPACK_IMPORTED_MODULE_14__["default"])(props.notes),
     _useViewableNotes2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useViewableNotes, 2),
     viewableNotes = _useViewableNotes2[0],
     nonViewableNotes = _useViewableNotes2[1];
@@ -1608,7 +1608,7 @@ function PanelBodyCurrentRoute(props) {
   }, [viewableNotes, activeThread]);
 
   // Show toast only once, when there are some non-viewable notes on the page.
-  (0,_hooks_use_stoppable_effect__WEBPACK_IMPORTED_MODULE_9__["default"])(function (stop) {
+  (0,_hooks_use_stoppable_effect__WEBPACK_IMPORTED_MODULE_13__["default"])(function (stop) {
     var shouldShowToast = nonViewableNotes.length > 0;
     if (shouldShowToast) {
       setIsToastOpen(true);
@@ -1635,9 +1635,9 @@ function PanelBodyCurrentRoute(props) {
     open: isToastOpen,
     onOpenChange: setIsToastOpen,
     variant: "info"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_ui_toast_toast__WEBPACK_IMPORTED_MODULE_8__["default"].Icon, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_ui_toast_toast_icon__WEBPACK_IMPORTED_MODULE_9__["default"], {
     className: "eicon-info-circle"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_ui_toast_toast__WEBPACK_IMPORTED_MODULE_8__["default"].Title, null, __('Some notes are not shown.', 'elementor-pro')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_ui_toast_toast__WEBPACK_IMPORTED_MODULE_8__["default"].Description, null, __('This page contains notes on elements that are still in draft mode.', 'elementor-pro')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_ui_toast_toast__WEBPACK_IMPORTED_MODULE_8__["default"].Close, null)));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_ui_toast_toast_title__WEBPACK_IMPORTED_MODULE_10__["default"], null, __('Some notes are not shown.', 'elementor-pro')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_ui_toast_toast_description__WEBPACK_IMPORTED_MODULE_11__["default"], null, __('This page contains notes on elements that are still in draft mode.', 'elementor-pro')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_ui_toast_toast_close__WEBPACK_IMPORTED_MODULE_12__["default"], null)));
 }
 PanelBodyCurrentRoute.propTypes = {
   notes: PropTypes.arrayOf(PropTypes.instanceOf(_models_note__WEBPACK_IMPORTED_MODULE_6__["default"])).isRequired
@@ -1808,7 +1808,7 @@ var Text = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].p(_template
 function PanelError() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Text, {
     weight: 700
-  }, __('Something went wrong.', 'elementor-pro')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Text, null, __('Please refresh the page and try again.', 'elementor-pro'))));
+  }, __('Could not load the panel.', 'elementor-pro')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Text, null, __('Please refresh the page and try again.', 'elementor-pro'))));
 }
 
 /***/ }),
@@ -2548,26 +2548,24 @@ function NoteForm(_ref) {
       var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee(e) {
         var form, content;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                e.preventDefault();
-                if (isInWritingMode(props.id)) {
-                  _context.next = 3;
-                  break;
-                }
-                return _context.abrupt("return");
-              case 3:
-                form = e.currentTarget, content = form.content.value.trim();
-                _context.next = 6;
-                return onSubmit === null || onSubmit === void 0 ? void 0 : onSubmit(e, {
-                  form: form,
-                  content: content
-                });
-              case 6:
-              case "end":
-                return _context.stop();
-            }
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              e.preventDefault();
+              if (isInWritingMode(props.id)) {
+                _context.next = 3;
+                break;
+              }
+              return _context.abrupt("return");
+            case 3:
+              form = e.currentTarget, content = form.content.value.trim();
+              _context.next = 6;
+              return onSubmit === null || onSubmit === void 0 ? void 0 : onSubmit(e, {
+                form: form,
+                content: content
+              });
+            case 6:
+            case "end":
+              return _context.stop();
           }
         }, _callee);
       }));
@@ -2645,28 +2643,26 @@ function NotePopoverContent(props) {
     onInteractOutside: /*#__PURE__*/function () {
       var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee(e) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                if (!(0 === formsInWritingMode.length)) {
-                  _context.next = 2;
-                  break;
-                }
-                return _context.abrupt("return");
-              case 2:
-                e.preventDefault();
-                if (!(0 === ref.current.getAnimations().length)) {
-                  _context.next = 7;
-                  break;
-                }
-                _context.next = 6;
-                return (0,_utils__WEBPACK_IMPORTED_MODULE_6__.scrollIntoView)(ref.current);
-              case 6:
-                ref.current.animate(bounce.keyframes, bounce.options);
-              case 7:
-              case "end":
-                return _context.stop();
-            }
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              if (!(0 === formsInWritingMode.length)) {
+                _context.next = 2;
+                break;
+              }
+              return _context.abrupt("return");
+            case 2:
+              e.preventDefault();
+              if (!(0 === ref.current.getAnimations().length)) {
+                _context.next = 7;
+                break;
+              }
+              _context.next = 6;
+              return (0,_utils__WEBPACK_IMPORTED_MODULE_6__.scrollIntoView)(ref.current);
+            case 6:
+              ref.current.animate(bounce.keyframes, bounce.options);
+            case 7:
+            case "end":
+              return _context.stop();
           }
         }, _callee);
       }));
@@ -3046,10 +3042,10 @@ var Button = (0,styled_components__WEBPACK_IMPORTED_MODULE_2__["default"])(_butt
   return sizesMap[size].fontSize;
 }, function (_ref6) {
   var disabled = _ref6.disabled;
-  return disabled && (0,styled_components__WEBPACK_IMPORTED_MODULE_2__.css)(_templateObject2 || (_templateObject2 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n\t\t\topacity: .5;\n\t\t\tpointer-events: none;\n\t\t\t--cursor: not-allowed;\n\t\t"])));
+  return disabled && (0,styled_components__WEBPACK_IMPORTED_MODULE_2__.css)(_templateObject2 || (_templateObject2 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n\t\t\topacity: .5;\n\t\t\tpointer-events: none;\n\t\t\t--cursor: not-allowed;\n\t"])));
 }, function (_ref7) {
   var variant = _ref7.variant;
-  return 'transparent' === variant && (0,styled_components__WEBPACK_IMPORTED_MODULE_2__.css)(_templateObject3 || (_templateObject3 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n\t\t\t--padding: 0;\n\t\t"])));
+  return 'transparent' === variant && (0,styled_components__WEBPACK_IMPORTED_MODULE_2__.css)(_templateObject3 || (_templateObject3 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n\t\t\t--padding: 0;\n\t"])));
 }, function (_ref8) {
   var variant = _ref8.variant;
   return colorsMap[variant].backgroundHover || colorsMap[variant].background;
@@ -3456,7 +3452,7 @@ var Marker = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].span.with
   shouldForwardProp: function shouldForwardProp(prop) {
     return 'children' === prop;
   }
-})(_templateObject2 || (_templateObject2 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  all: revert;\n\n  --color-editor-info: #58d0f5;\n  --color-ghost: #fff;\n  --color-white: #fff;\n  --color-gray: #a4afb6;\n  --color-shadow: rgba(0, 0, 0, 0.2);\n  --size: ", ";\n  --position: relative;\n\n  display: grid;\n  place-items: center;\n  position: relative;\n  height: calc(var(--size) * 1px);\n  width: calc(var(--size) * 1px);\n  line-height: 2.8;\n  font-family: Roboto, sans-serif !important;\n  font-size: calc(var(--size) * .38px);\n  font-weight: 500;\n  color: var(", ");\n  isolation: isolate;\n  animation: .3s ", " both;\n  transition: .3s all;\n\n  ", "\n  &::before {\n\t--background-color: var(", ");\n\t--border-color: var( --background-color );\n\n\tcontent: '';\n\tdisplay: block;\n\tposition: absolute;\n\tz-index: -1;\n\tinset: 0;\n\tbackground-color: var( --background-color );\n\tborder: calc(var(--size) / 20 * 1px) solid var(--border-color);\n\tborder-radius: 100% 100% 25% 100%;\n\ttransform: rotate(45deg);\n\n\t", "\n\n\t", "\n  }\n"])), function (_ref) {
+})(_templateObject2 || (_templateObject2 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  all: revert;\n\n  --color-editor-info: #58d0f5;\n  --color-ghost: #fff;\n  --color-white: #fff;\n  --color-gray: #a4afb6;\n  --color-shadow: rgba(0, 0, 0, 0.2);\n  --size: ", ";\n  --position: relative;\n\n  display: grid;\n  place-items: center;\n  position: relative;\n  height: calc(var(--size) * 1px);\n  width: calc(var(--size) * 1px);\n  line-height: 2.8;\n  font-family: Roboto, sans-serif !important;\n  font-size: calc(var(--size) * .38px);\n  font-weight: 500;\n  color: var(", ");\n  isolation: isolate;\n  animation: .3s ", " both;\n  transition: .3s all;\n\n  ", "\n\n  &::before {\n\t--background-color: var(", ");\n\t--border-color: var( --background-color );\n\n\tcontent: '';\n\tdisplay: block;\n\tposition: absolute;\n\tz-index: -1;\n\tinset: 0;\n\tbackground-color: var( --background-color );\n\tborder: calc(var(--size) / 20 * 1px) solid var(--border-color);\n\tborder-radius: 100% 100% 25% 100%;\n\ttransform: rotate(45deg);\n\n\t", "\n\n\t", "\n  }\n"])), function (_ref) {
   var size = _ref.size;
   return sizesMap[size];
 }, function (_ref2) {
@@ -3464,16 +3460,16 @@ var Marker = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].span.with
   return colorsMap[variant].text;
 }, bounce, function (_ref3) {
   var muted = _ref3.muted;
-  return muted && (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.css)(_templateObject3 || (_templateObject3 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n\t--color-shadow: transparent;\n\n\topacity: .5 !important;\n\t"])));
+  return muted && (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.css)(_templateObject3 || (_templateObject3 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n\t--color-shadow: transparent;\n\topacity: .5 !important;\n  "])));
 }, function (_ref4) {
   var variant = _ref4.variant;
   return colorsMap[variant].background;
 }, function (_ref5) {
   var variant = _ref5.variant;
-  return 'active' === variant && (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.css)(_templateObject4 || (_templateObject4 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n\t\t  mask-image: radial-gradient(transparent 30%, #000 32%);\n\t\t"])));
+  return 'active' === variant && (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.css)(_templateObject4 || (_templateObject4 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n\t\t  mask-image: radial-gradient(transparent 30%, #000 32%);\n\t"])));
 }, function (_ref6) {
   var variant = _ref6.variant;
-  return 'ghost' === variant && (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.css)(_templateObject5 || (_templateObject5 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n\t\t  --border-color: var(--color-gray);\n\t\t"])));
+  return 'ghost' === variant && (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.css)(_templateObject5 || (_templateObject5 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n\t\t  --border-color: var(--color-gray);\n\t"])));
 });
 Marker.propTypes = {
   variant: PropTypes.oneOf(['active', 'solid', 'ghost']).isRequired,
@@ -3549,9 +3545,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function PanelDraggable(props) {
   var _usePanelContext = (0,_panel__WEBPACK_IMPORTED_MODULE_4__.usePanelContext)(),
-    _usePanelContext$size = _usePanelContext.size,
-    defaultWidth = _usePanelContext$size.defaultWidth,
-    defaultHeight = _usePanelContext$size.defaultHeight,
+    defaultWidth = _usePanelContext.size.defaultWidth,
     _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
     _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
     bounds = _useState2[0],
@@ -3831,9 +3825,7 @@ var handleProps = {
 var Handle = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__["default"])(_div_base__WEBPACK_IMPORTED_MODULE_2__["default"])(_templateObject3 || (_templateObject3 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  flex: 0 0 ", "px !important;\n  display: inline-flex !important;\n  justify-content: center !important;\n  align-items: center !important;\n  background-color: #fff !important;\n  margin-top: 1px !important;\n  cursor: row-resize !important;\n"])), handleProps.height);
 function PanelResizer(props) {
   var _usePanelContext = (0,_panel__WEBPACK_IMPORTED_MODULE_3__.usePanelContext)(),
-    _usePanelContext$size = _usePanelContext.size,
-    defaultWidth = _usePanelContext$size.defaultWidth,
-    defaultHeight = _usePanelContext$size.defaultHeight;
+    defaultHeight = _usePanelContext.size.defaultHeight;
   var resizableRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
   var childrenRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
   var handleRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
@@ -4416,22 +4408,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/taggedTemplateLiteral */ "../../../node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteral.js");
-/* harmony import */ var _radix_ui_react_toast__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @radix-ui/react-toast */ "../../../node_modules/@radix-ui/react-toast/dist/index.module.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! styled-components */ "../../../node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _radix_ui_react_toast__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @radix-ui/react-toast */ "../../../node_modules/@radix-ui/react-toast/dist/index.module.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "../../../node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _toast_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./toast-action */ "../assets/js/app/components/ui/toast/toast-action.js");
-/* harmony import */ var _toast_description__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./toast-description */ "../assets/js/app/components/ui/toast/toast-description.js");
-/* harmony import */ var _toast_title__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./toast-title */ "../assets/js/app/components/ui/toast/toast-title.js");
-/* harmony import */ var _toast_icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./toast-icon */ "../assets/js/app/components/ui/toast/toast-icon.js");
-/* harmony import */ var _toast_close__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./toast-close */ "../assets/js/app/components/ui/toast/toast-close.js");
-/* harmony import */ var _toast_viewport__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./toast-viewport */ "../assets/js/app/components/ui/toast/toast-viewport.js");
-/* harmony import */ var _styles_animation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../styles/animation */ "../assets/js/app/styles/animation.js");
+/* harmony import */ var _toast_icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./toast-icon */ "../assets/js/app/components/ui/toast/toast-icon.js");
+/* harmony import */ var _styles_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../styles/animation */ "../assets/js/app/styles/animation.js");
 /* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../../../node_modules/prop-types/index.js");
 
 var _templateObject;
-
-
-
-
 
 
 
@@ -4464,22 +4448,16 @@ var colorsMap = {
     action: '#b92136'
   }
 };
-var Toast = (0,styled_components__WEBPACK_IMPORTED_MODULE_8__["default"])(_radix_ui_react_toast__WEBPACK_IMPORTED_MODULE_9__.Toast)(_templateObject || (_templateObject = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  display: flex !important;\n  gap: 8px !important;\n  align-items: center !important;\n  width: 100% !important;\n  box-sizing: border-box !important;\n  padding: 12px 16px !important;\n  font-size: 14px !important;\n  line-height: normal !important;\n  color: #3a3f45 !important;\n  text-align: start !important;\n  border-radius: 6px !important;\n  box-shadow: 0 0 15px 0 rgba( 0,0,0,.2 ) !important;\n  animation-duration: 400ms !important;\n  animation-timing-function: cubic-bezier( 0.16, 1, 0.3, 1 ) !important;\n  background-color: ", " !important;\n\n\t&[data-state=\"open\"] {\n\t  animation-name: ", " !important;\n\t}\n\n\t&[data-state=\"closed\"] {\n\t  animation-name: ", " !important;\n\t}\n\n\t", " {\n\t  --color: ", " !important;\n\t}\n\n\t", " {\n\t  --color: ", " !important;\n\t}\n"])), function (_ref) {
+var Toast = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__["default"])(_radix_ui_react_toast__WEBPACK_IMPORTED_MODULE_5__.Toast)(_templateObject || (_templateObject = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  display: flex !important;\n  gap: 8px !important;\n  align-items: center !important;\n  width: 100% !important;\n  box-sizing: border-box !important;\n  padding: 12px 16px !important;\n  font-size: 14px !important;\n  line-height: normal !important;\n  color: #3a3f45 !important;\n  text-align: start !important;\n  border-radius: 6px !important;\n  box-shadow: 0 0 15px 0 rgba( 0,0,0,.2 ) !important;\n  animation-duration: 400ms !important;\n  animation-timing-function: cubic-bezier( 0.16, 1, 0.3, 1 ) !important;\n  background-color: ", " !important;\n\n\t&[data-state=\"open\"] {\n\t  animation-name: ", " !important;\n\t}\n\n\t&[data-state=\"closed\"] {\n\t  animation-name: ", " !important;\n\t}\n\n\t", " {\n\t  --color: ", " !important;\n\t}\n\n\t", " {\n\t  --color: ", " !important;\n\t}\n"])), function (_ref) {
   var variant = _ref.variant;
   return colorsMap[variant].background;
-}, _styles_animation__WEBPACK_IMPORTED_MODULE_7__.slideUpAndFade, _styles_animation__WEBPACK_IMPORTED_MODULE_7__.fadeOut, _toast_icon__WEBPACK_IMPORTED_MODULE_4__["default"], function (_ref2) {
+}, _styles_animation__WEBPACK_IMPORTED_MODULE_3__.slideUpAndFade, _styles_animation__WEBPACK_IMPORTED_MODULE_3__.fadeOut, _toast_icon__WEBPACK_IMPORTED_MODULE_2__["default"], function (_ref2) {
   var variant = _ref2.variant;
   return colorsMap[variant].icon;
 }, _toast_action__WEBPACK_IMPORTED_MODULE_1__["default"], function (_ref3) {
   var variant = _ref3.variant;
   return colorsMap[variant].icon;
 });
-Toast.Icon = _toast_icon__WEBPACK_IMPORTED_MODULE_4__["default"];
-Toast.Title = _toast_title__WEBPACK_IMPORTED_MODULE_3__["default"];
-Toast.Description = _toast_description__WEBPACK_IMPORTED_MODULE_2__["default"];
-Toast.Action = _toast_action__WEBPACK_IMPORTED_MODULE_1__["default"];
-Toast.Close = _toast_close__WEBPACK_IMPORTED_MODULE_5__["default"];
-Toast.Viewport = _toast_viewport__WEBPACK_IMPORTED_MODULE_6__["default"];
 Toast.propTypes = {
   variant: PropTypes.oneOf(['default', 'success', 'warning', 'info', 'danger']).isRequired
 };
@@ -5216,25 +5194,23 @@ function useNote(noteId) {
     var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(_ref) {
       var _ref$queryKey, id, signal, _yield$window$top$$e$, data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _ref$queryKey = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref.queryKey, 2), id = _ref$queryKey[1], signal = _ref.signal;
-              _context.next = 3;
-              return window.top.$e.data.get('notes/index', {
-                id: id
-              }, {
-                refresh: true,
-                signal: signal
-              });
-            case 3:
-              _yield$window$top$$e$ = _context.sent;
-              data = _yield$window$top$$e$.data;
-              return _context.abrupt("return", _models_note__WEBPACK_IMPORTED_MODULE_3__["default"].createFromResponse(data.data));
-            case 6:
-            case "end":
-              return _context.stop();
-          }
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _ref$queryKey = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref.queryKey, 2), id = _ref$queryKey[1], signal = _ref.signal;
+            _context.next = 3;
+            return window.top.$e.data.get('notes/index', {
+              id: id
+            }, {
+              refresh: true,
+              signal: signal
+            });
+          case 3:
+            _yield$window$top$$e$ = _context.sent;
+            data = _yield$window$top$$e$.data;
+            return _context.abrupt("return", _models_note__WEBPACK_IMPORTED_MODULE_3__["default"].createFromResponse(data.data));
+          case 6:
+          case "end":
+            return _context.stop();
         }
       }, _callee);
     }));
@@ -5399,39 +5375,37 @@ function useCreateMutation() {
     var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee(_ref) {
       var postId, elementId, content, _ref$position, position, _ref$routeUrl, routeUrl, _ref$routeTitle, routeTitle, _ref$routePostId, routePostId, _ref$status, status, parentId, _ref$isPublic, isPublic, _yield$window$top$$e$, data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              postId = _ref.postId, elementId = _ref.elementId, content = _ref.content, _ref$position = _ref.position, position = _ref$position === void 0 ? {
-                x: 0,
-                y: 0
-              } : _ref$position, _ref$routeUrl = _ref.routeUrl, routeUrl = _ref$routeUrl === void 0 ? config.route.url : _ref$routeUrl, _ref$routeTitle = _ref.routeTitle, routeTitle = _ref$routeTitle === void 0 ? config.route.title : _ref$routeTitle, _ref$routePostId = _ref.routePostId, routePostId = _ref$routePostId === void 0 ? config.route.post_id : _ref$routePostId, _ref$status = _ref.status, status = _ref$status === void 0 ? 'publish' : _ref$status, parentId = _ref.parentId, _ref$isPublic = _ref.isPublic, isPublic = _ref$isPublic === void 0 ? null : _ref$isPublic;
-              if (!postId) {
-                postId = getDocumentIdByElement(elementId);
-              }
-              _context.next = 4;
-              return window.top.$e.data.create('notes/index', _objectSpread({
-                post_id: postId,
-                element_id: elementId,
-                content: content,
-                position: position,
-                route_post_id: routePostId,
-                route_url: routeUrl,
-                route_title: routeTitle,
-                status: status,
-                parent_id: parentId,
-                mentioned_usernames: (0,_utils__WEBPACK_IMPORTED_MODULE_6__.extractMentions)(content)
-              }, null !== isPublic ? {
-                is_public: isPublic
-              } : {}));
-            case 4:
-              _yield$window$top$$e$ = _context.sent;
-              data = _yield$window$top$$e$.data;
-              return _context.abrupt("return", _models_note__WEBPACK_IMPORTED_MODULE_4__["default"].createFromResponse(data.data));
-            case 7:
-            case "end":
-              return _context.stop();
-          }
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            postId = _ref.postId, elementId = _ref.elementId, content = _ref.content, _ref$position = _ref.position, position = _ref$position === void 0 ? {
+              x: 0,
+              y: 0
+            } : _ref$position, _ref$routeUrl = _ref.routeUrl, routeUrl = _ref$routeUrl === void 0 ? config.route.url : _ref$routeUrl, _ref$routeTitle = _ref.routeTitle, routeTitle = _ref$routeTitle === void 0 ? config.route.title : _ref$routeTitle, _ref$routePostId = _ref.routePostId, routePostId = _ref$routePostId === void 0 ? config.route.post_id : _ref$routePostId, _ref$status = _ref.status, status = _ref$status === void 0 ? 'publish' : _ref$status, parentId = _ref.parentId, _ref$isPublic = _ref.isPublic, isPublic = _ref$isPublic === void 0 ? null : _ref$isPublic;
+            if (!postId) {
+              postId = getDocumentIdByElement(elementId);
+            }
+            _context.next = 4;
+            return window.top.$e.data.create('notes/index', _objectSpread({
+              post_id: postId,
+              element_id: elementId,
+              content: content,
+              position: position,
+              route_post_id: routePostId,
+              route_url: routeUrl,
+              route_title: routeTitle,
+              status: status,
+              parent_id: parentId,
+              mentioned_usernames: (0,_utils__WEBPACK_IMPORTED_MODULE_6__.extractMentions)(content)
+            }, null !== isPublic ? {
+              is_public: isPublic
+            } : {}));
+          case 4:
+            _yield$window$top$$e$ = _context.sent;
+            data = _yield$window$top$$e$.data;
+            return _context.abrupt("return", _models_note__WEBPACK_IMPORTED_MODULE_4__["default"].createFromResponse(data.data));
+          case 7:
+          case "end":
+            return _context.stop();
         }
       }, _callee);
     }));
@@ -5456,25 +5430,23 @@ function useUpdateMutation() {
     var _ref4 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee2(_ref3) {
       var id, content, _yield$window$top$$e$2, data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              id = _ref3.id, content = _ref3.values.content;
-              _context2.next = 3;
-              return window.top.$e.data.update('notes/index', {
-                content: content,
-                mentioned_usernames: (0,_utils__WEBPACK_IMPORTED_MODULE_6__.extractMentions)(content)
-              }, {
-                id: id
-              });
-            case 3:
-              _yield$window$top$$e$2 = _context2.sent;
-              data = _yield$window$top$$e$2.data;
-              return _context2.abrupt("return", _models_note__WEBPACK_IMPORTED_MODULE_4__["default"].createFromResponse(data.data));
-            case 6:
-            case "end":
-              return _context2.stop();
-          }
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            id = _ref3.id, content = _ref3.values.content;
+            _context2.next = 3;
+            return window.top.$e.data.update('notes/index', {
+              content: content,
+              mentioned_usernames: (0,_utils__WEBPACK_IMPORTED_MODULE_6__.extractMentions)(content)
+            }, {
+              id: id
+            });
+          case 3:
+            _yield$window$top$$e$2 = _context2.sent;
+            data = _yield$window$top$$e$2.data;
+            return _context2.abrupt("return", _models_note__WEBPACK_IMPORTED_MODULE_4__["default"].createFromResponse(data.data));
+          case 6:
+          case "end":
+            return _context2.stop();
         }
       }, _callee2);
     }));
@@ -5499,24 +5471,22 @@ function useDeleteMutation() {
     var _ref6 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee3(_ref5) {
       var id, parentId, _ref5$force, force;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              id = _ref5.id, parentId = _ref5.parentId, _ref5$force = _ref5.force, force = _ref5$force === void 0 ? false : _ref5$force;
-              _context3.next = 3;
-              return window.top.$e.data.delete('notes/index', (0,_utils__WEBPACK_IMPORTED_MODULE_6__.normalizeQueryParams)({
-                id: id,
-                force: force
-              }));
-            case 3:
-              return _context3.abrupt("return", {
-                id: id,
-                parentId: parentId
-              });
-            case 4:
-            case "end":
-              return _context3.stop();
-          }
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            id = _ref5.id, parentId = _ref5.parentId, _ref5$force = _ref5.force, force = _ref5$force === void 0 ? false : _ref5$force;
+            _context3.next = 3;
+            return window.top.$e.data.delete('notes/index', (0,_utils__WEBPACK_IMPORTED_MODULE_6__.normalizeQueryParams)({
+              id: id,
+              force: force
+            }));
+          case 3:
+            return _context3.abrupt("return", {
+              id: id,
+              parentId: parentId
+            });
+          case 4:
+          case "end":
+            return _context3.stop();
         }
       }, _callee3);
     }));
@@ -5547,24 +5517,22 @@ function useResolveMutation() {
     var _ref9 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee4(_ref8) {
       var id, isResolved, _yield$window$top$$e$3, data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              id = _ref8.id, isResolved = _ref8.isResolved;
-              _context4.next = 3;
-              return window.top.$e.data.update('notes/index', {
-                is_resolved: isResolved
-              }, {
-                id: id
-              });
-            case 3:
-              _yield$window$top$$e$3 = _context4.sent;
-              data = _yield$window$top$$e$3.data;
-              return _context4.abrupt("return", _models_note__WEBPACK_IMPORTED_MODULE_4__["default"].createFromResponse(data.data));
-            case 6:
-            case "end":
-              return _context4.stop();
-          }
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            id = _ref8.id, isResolved = _ref8.isResolved;
+            _context4.next = 3;
+            return window.top.$e.data.update('notes/index', {
+              is_resolved: isResolved
+            }, {
+              id: id
+            });
+          case 3:
+            _yield$window$top$$e$3 = _context4.sent;
+            data = _yield$window$top$$e$3.data;
+            return _context4.abrupt("return", _models_note__WEBPACK_IMPORTED_MODULE_4__["default"].createFromResponse(data.data));
+          case 6:
+          case "end":
+            return _context4.stop();
         }
       }, _callee4);
     }));
@@ -5596,23 +5564,21 @@ function useReadMutation() {
     var _ref12 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee5(_ref11) {
       var ids, isRead;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee5$(_context5) {
-        while (1) {
-          switch (_context5.prev = _context5.next) {
-            case 0:
-              ids = _ref11.ids, isRead = _ref11.isRead;
-              ids = ids.filter(function (id) {
-                return !!id && id > 0;
-              });
-              _context5.next = 4;
-              return window.top.$e.data[isRead ? 'create' : 'delete']('notes/read-status', {
-                ids: ids
-              });
-            case 4:
-              return _context5.abrupt("return", ids);
-            case 5:
-            case "end":
-              return _context5.stop();
-          }
+        while (1) switch (_context5.prev = _context5.next) {
+          case 0:
+            ids = _ref11.ids, isRead = _ref11.isRead;
+            ids = ids.filter(function (id) {
+              return !!id && id > 0;
+            });
+            _context5.next = 4;
+            return window.top.$e.data[isRead ? 'create' : 'delete']('notes/read-status', {
+              ids: ids
+            });
+          case 4:
+            return _context5.abrupt("return", ids);
+          case 5:
+          case "end":
+            return _context5.stop();
         }
       }, _callee5);
     }));
@@ -5782,27 +5748,25 @@ function useNotesSummary() {
     var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee(_ref) {
       var _ref$queryKey, params, signal, _yield$window$top$$e$, data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _ref$queryKey = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_ref.queryKey, 2), params = _ref$queryKey[1], signal = _ref.signal;
-              _context.next = 3;
-              return window.top.$e.data.get('notes/summary', _objectSpread({
-                parent_id: 0
-              }, params), {
-                refresh: true,
-                signal: signal
-              });
-            case 3:
-              _yield$window$top$$e$ = _context.sent;
-              data = _yield$window$top$$e$.data;
-              return _context.abrupt("return", data.data.map(function (rawNote) {
-                return _models_note_summary__WEBPACK_IMPORTED_MODULE_7__["default"].createFromResponse(rawNote);
-              }));
-            case 6:
-            case "end":
-              return _context.stop();
-          }
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _ref$queryKey = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_ref.queryKey, 2), params = _ref$queryKey[1], signal = _ref.signal;
+            _context.next = 3;
+            return window.top.$e.data.get('notes/summary', _objectSpread({
+              parent_id: 0
+            }, params), {
+              refresh: true,
+              signal: signal
+            });
+          case 3:
+            _yield$window$top$$e$ = _context.sent;
+            data = _yield$window$top$$e$.data;
+            return _context.abrupt("return", data.data.map(function (rawNote) {
+              return _models_note_summary__WEBPACK_IMPORTED_MODULE_7__["default"].createFromResponse(rawNote);
+            }));
+          case 6:
+          case "end":
+            return _context.stop();
         }
       }, _callee);
     }));
@@ -5881,25 +5845,23 @@ function useNotes() {
     var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee(_ref) {
       var _ref$queryKey, params, signal, _yield$window$top$$e$, data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _ref$queryKey = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_ref.queryKey, 2), params = _ref$queryKey[1], signal = _ref.signal;
-              _context.next = 3;
-              return window.top.$e.data.get('notes/index', params, {
-                refresh: true,
-                signal: signal
-              });
-            case 3:
-              _yield$window$top$$e$ = _context.sent;
-              data = _yield$window$top$$e$.data;
-              return _context.abrupt("return", data.data.map(function (rawNote) {
-                return _models_note__WEBPACK_IMPORTED_MODULE_4__["default"].createFromResponse(rawNote);
-              }));
-            case 6:
-            case "end":
-              return _context.stop();
-          }
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _ref$queryKey = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_ref.queryKey, 2), params = _ref$queryKey[1], signal = _ref.signal;
+            _context.next = 3;
+            return window.top.$e.data.get('notes/index', params, {
+              refresh: true,
+              signal: signal
+            });
+          case 3:
+            _yield$window$top$$e$ = _context.sent;
+            data = _yield$window$top$$e$.data;
+            return _context.abrupt("return", data.data.map(function (rawNote) {
+              return _models_note__WEBPACK_IMPORTED_MODULE_4__["default"].createFromResponse(rawNote);
+            }));
+          case 6:
+          case "end":
+            return _context.stop();
         }
       }, _callee);
     }));
@@ -6135,25 +6097,23 @@ function useUsers() {
     var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee(_ref) {
       var _ref$queryKey, params, signal, _yield$window$top$$e$, data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _ref$queryKey = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref.queryKey, 2), params = _ref$queryKey[1], signal = _ref.signal;
-              _context.next = 3;
-              return window.top.$e.data.get('notes/users', params, {
-                refresh: true,
-                signal: signal
-              });
-            case 3:
-              _yield$window$top$$e$ = _context.sent;
-              data = _yield$window$top$$e$.data;
-              return _context.abrupt("return", data.data.map(function (user) {
-                return _models_user__WEBPACK_IMPORTED_MODULE_7__["default"].createFromResponse(user);
-              }));
-            case 6:
-            case "end":
-              return _context.stop();
-          }
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _ref$queryKey = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref.queryKey, 2), params = _ref$queryKey[1], signal = _ref.signal;
+            _context.next = 3;
+            return window.top.$e.data.get('notes/users', params, {
+              refresh: true,
+              signal: signal
+            });
+          case 3:
+            _yield$window$top$$e$ = _context.sent;
+            data = _yield$window$top$$e$.data;
+            return _context.abrupt("return", data.data.map(function (user) {
+              return _models_user__WEBPACK_IMPORTED_MODULE_7__["default"].createFromResponse(user);
+            }));
+          case 6:
+          case "end":
+            return _context.stop();
         }
       }, _callee);
     }));
@@ -6493,6 +6453,7 @@ var Note = /*#__PURE__*/function (_BaseModel) {
     (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "createdAt", null);
     (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "updatedAt", null);
     (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "lastActivityAt", null);
+    // Private props
     (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "_formattedLastActivityAt", '');
     (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "_formattedCreatedAt", '');
     return _this;

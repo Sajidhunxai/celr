@@ -1,0 +1,21 @@
+div.media-toolbar-secondary button.bda-display.media-button.button-large {  
+  margin-left: 10px;
+  margin-top: 11px;
+}
+
+button.bda-display.media-button.button-large {
+  background-color: #F6F7F7;
+  border: 1px solid #3684B8;
+  border-radius: 3px;
+  color: #2271b1;
+  cursor: pointer;
+  display: inline-block;
+  padding: 6px 10px;
+  float: right;
+  margin-right: 10px;
+}
+
+.mlfp-protected {
+  outline: 2px solid red;
+  outline-offset: -2px;
+}

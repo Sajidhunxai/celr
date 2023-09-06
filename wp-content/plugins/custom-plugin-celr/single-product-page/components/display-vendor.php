@@ -134,7 +134,7 @@ function display_vendor_data($product_id)
                 // echo '<p>Purchase Price: ' . $vendor['vendor_email'] . '</p>';
                 echo '<p>Transfer Fee :  </p>  <span> £ ';
                 if ($warehouse_options[$warehouse_location]  ===  $vendor['location']) {
-                    echo "0 (per case) </span>';";
+                    echo "0 (per case) </span>";
                 } else {
                     echo  $warehouse_fee . ' (per case) </span>';
                 }
@@ -142,7 +142,6 @@ function display_vendor_data($product_id)
 
                 echo '</div>';
                 if (function_exists('custom_popup_render_popup_content')) {
-                    // Call the function and pass the vendor name
               
                     $vendor_transfer_fee = $warehouse_fee;
 

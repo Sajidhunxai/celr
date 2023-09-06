@@ -778,6 +778,41 @@ input[required]::before {
 }
 
 
+.change-my-location {
+  display: flex;
+  align-items: center;
+  font-size: 25px
+}
+
+.change-my-location h4 {
+  margin: 0;
+  display: flex;
+    font-family: 'Inter';
+    align-items: center;
+    font-size: 25px;
+    font-weight: 200;
+}
+.change-my-location a {
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+text-decoration: underline;
+
+color: #FE5757;
+
+    
+}
+.change-my-location strong {
+  margin-left: 5px;
+  margin-right: 10px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-size: 30px;
+  color: #1C4130;
+}
+
 
 
 /* media quiries  */
@@ -803,21 +838,30 @@ input[required]::before {
     display: block !important;
   }
   .offer-left p {
-    font-size: 14px;
-    line-height: 15px;
+    font-size: 12px;
   }
   .offer-left {
-  
+      flex-basis: 76%;
     grid-template-columns: 1fr;
 }
   .offer-left span {
-    font-size: 14px;
-    line-height: 15px;
+    font-size: 12px;
   }
+	.offer-right {
+		text-align: end;
+	}
+	.offer-header{
+		justify-content: space-around;
+	}
+	.vendor-price-sort{
+		width: 57%;
+	}
+	.offer-right .total-price {
+		font-size: 12px;
+	}
   .vintage-filter-form {
-    display: block !important;
-    gap: 20px;
-    padding: 20px;
+    gap: 10px;
+    padding: 10px;
   }
   .column-container {
     display: block !important;
@@ -828,6 +872,7 @@ input[required]::before {
   .product-image,
   .product-title {
     width: 100% !important;
+	text-align:center;
   }
   .column-container {
     display: inline-block;
@@ -846,6 +891,12 @@ input[required]::before {
   .vendor-listing .edit-popup{
     width: 80%;
   }
+	.change-my-location{
+		gap:30px;
+	}
+	.change-my-location h4{
+		font-size: 14px;
+	}
 }
 
 @media screen and (min-width: 601px) and (max-width: 900px) {
@@ -859,9 +910,8 @@ input[required]::before {
     width: 60%;
   }
   .vintage-filter-form {
-    display: block !important;
-    gap: 20px;
-    padding: 20px;
+    gap: 10px;
+    padding: 10px;
   }
   .single-product-main {
     display: block !important;
@@ -873,3 +923,7 @@ input[required]::before {
     width: 45.5%;
   }
 }
+
+ .woocommerce-form-register.register {
+            height: auto !important;
+        }

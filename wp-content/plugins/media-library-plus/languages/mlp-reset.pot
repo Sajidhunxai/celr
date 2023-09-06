@@ -1,0 +1,299 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mlp-reset\n"
+"POT-Creation-Date: 2023-07-24 09:10-0300\n"
+"PO-Revision-Date: 2023-07-24 09:10-0300\n"
+"Last-Translator: Alan Pasho <apasho@gmail.com>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.9\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../includes/media-folders.php:59
+msgid "Bulk Actions"
+msgstr ""
+
+#: ../includes/media-folders.php:60
+msgid ""
+"To use a bulk action, select an action from the dropdown list and click the "
+"Apply button."
+msgstr ""
+
+#: ../includes/media-folders.php:61
+msgid ""
+"Block/Unblock File Access, When the Block Direct Access feature is turned "
+"on, files in Media Library Folders Pro can be protected from direct access "
+"by checking the check boxes of one or more file's, selecting Block/Unblock "
+"File Access from the Bulk Actions dropdown list and clicking the Apply "
+"button. This action will move the file and its thumbnail files from the "
+"current folder to a folder under the protected-content folder though it "
+"still appears in the current folder. Links to media files embedded in posts "
+"and pages will be updated with the new file address. If a file is protected, "
+"it will be displayed surrounded by a red border in the media library and in "
+"Media Library Folders Pro."
+msgstr ""
+
+#: ../includes/media-folders.php:62
+msgid ""
+"In the standard Wordpress media library and media library popups, blocked "
+"files can be displayed by clicking the Display Blocked Files button."
+msgstr ""
+
+#: ../includes/media-folders.php:63
+msgid ""
+"Note that the action of displaying blocked files does not preform as fast as "
+"displaying unblocked as this is a manual process. The same applies to "
+"blocking or unblocking a target number of files at one time. It usually "
+"works better to block or unblock files in small batches rather than in one "
+"large group."
+msgstr ""
+
+#: ../includes/media-folders.php:64
+msgid ""
+"The same process can be used to unblock files. Check the check box of one or "
+"more protected files, select Block/Unblock File Access from the Bulk Actions "
+"dropdown list and clicking the Apply button which will move the selected "
+"files back to the current folder and links to those files embedded in posts "
+"and pages will be updated."
+msgstr ""
+
+#: ../includes/media-folders.php:65
+msgid ""
+"Configure Blocked Download Links, Links to download block files can be "
+"configured and generated via the Configure Blocked Download Links popup "
+"window. To view select one or more blocked files, up to twenty at at time, "
+"select Configure Blocked Download Links from the bulk actions dropdown list "
+"and click the Apply button. Any none blocked files selected will not appear "
+"in the list of files in the popup."
+msgstr ""
+
+#: ../includes/media-folders.php:66
+msgid ""
+"By default blocked file have a zero limit, meaning there is no downloading "
+"limit and no expiration date. A count of the number of times a file has been "
+"downloaded is also displayed. For any file a limit to the number of "
+"downloads and/or an expiration date can be entered. Or to enter the same "
+"download limit and expiration date for all files displayed in the list, use "
+"the bulk configure fields at the top of the list and click the Copy Fields "
+"button."
+msgstr ""
+
+#: ../includes/media-folders.php:67
+msgid ""
+"To copy a file's download link to the clipboard, chick the Copy Link button. "
+"To save the download limits and expiration dates, click the Save & Close "
+"button. To close without saving, click the close icon in the top right "
+"corner of the popup."
+msgstr ""
+
+#: ../includes/media-folders.php:68
+msgid ""
+"Note, for the download links to work, Media Library Folders Pro creates a "
+"new page on the site,  MLFP Download and copies a template file, page-mlfp-"
+"download.php, to the your site's current theme folder. The MLFP Download "
+"page should not be deleted. And if the theme is updated, be sure it contains "
+"a copy of the page-mlfp-download.php file which can be found in the Media "
+"Library Folders Pro plugin folder, media-library-plus-pro."
+msgstr ""
+
+#: ../includes/media-library.php:83
+msgid "Current PHP version, "
+msgstr ""
+
+#: ../includes/media-library.php:83
+msgid ", is outdated. Please upgrade to version 7.4."
+msgstr ""
+
+#: ../includes/media-library.php:105
+msgid "Location:"
+msgstr ""
+
+#: ../includes/mlf-settings.php:21
+msgid "Block Direct Access"
+msgstr ""
+
+#: ../includes/mlf-settings.php:37 ../includes/mlf-settings.php:59
+msgid "Add an index to the postmeta table"
+msgstr ""
+
+#: ../includes/mlf-settings.php:37 ../includes/mlf-settings.php:59
+msgid ""
+"For sites with a large number of media files, check this option to create a "
+"new index fro the postmeta table to speed by the loading of the Media "
+"Library Folders Pro page."
+msgstr ""
+
+#: ../includes/mlf-settings.php:38 ../includes/mlf-settings.php:60
+msgid "Skip .webp images when syncing media library files"
+msgstr ""
+
+#: ../includes/mlf-settings.php:38 ../includes/mlf-settings.php:60
+msgid ""
+"For sites that automatically generate .webp versions of their image files, "
+"check this option to prevent the .webp files from being added to the media "
+"library when syncing."
+msgstr ""
+
+#: ../includes/mlf-thumbnails.php:70 ../media-library-plus.php:4589
+#, php-format
+msgid ""
+"All done! %1$s image(s) were successfully resized in %2$s seconds and there "
+"were %3$s failure(s). To try regenerating the failed images again, <a href="
+"\"%4$s\">click here</a>. %5$s"
+msgstr ""
+
+#: ../includes/mlf-thumbnails.php:71 ../media-library-plus.php:4590
+#, php-format
+msgid ""
+"All done! %1$s image(s) were successfully resized in %2$s seconds and there "
+"were 0 failures. %3$s"
+msgstr ""
+
+#: ../includes/mlf-thumbnails.php:85 ../media-library-plus.php:4604
+msgid "Total Images: "
+msgstr ""
+
+#: ../includes/mlf-thumbnails.php:172 ../media-library-plus.php:4691
+#, php-format
+msgid ""
+"The resize request was abnormally terminated (ID %s). This is likely due to "
+"the image exceeding available memory or some other type of fatal error."
+msgstr ""
+
+#: ../media-library-plus.php:1249
+msgid "An unequal number of items were sent to update_links function."
+msgstr ""
+
+#: ../media-library-plus.php:2957
+#, fuzzy
+msgid "Media Library Folders Search Results"
+msgstr "Reset MLF"
+
+#: ../media-library-plus.php:2960
+msgid "Search"
+msgstr ""
+
+#: ../media-library-plus.php:2964
+msgid ""
+"Click on an image to go to its folder or a on folder to view its contents."
+msgstr ""
+
+#: ../media-library-plus.php:2966
+msgid "Search results for: "
+msgstr ""
+
+#: ../media-library-plus.php:3428
+msgid "Scanning for new folders in "
+msgstr ""
+
+#: ../media-library-plus.php:3453 ../media-library-plus.php:3487
+#: ../media-library-plus.php:3518 ../media-library-plus.php:3567
+msgid "Adding"
+msgstr ""
+
+#: ../media-library-plus.php:4360
+msgid ""
+"Add an index to the postmeta table. <em>Recommend for sites with a high "
+"number of media files. Uncheck to remove the index.</em>"
+msgstr ""
+
+#: ../media-library-plus.php:4364
+msgid ""
+"Skip WEBP images when syncing media library files. <em>For sites where WEBP "
+"files are automatically generated.</em>"
+msgstr ""
+
+#: ../media-library-plus.php:4819
+msgid "missing nonce!"
+msgstr ""
+
+#: ../media-library-plus.php:5776
+msgid "Unable to move "
+msgstr ""
+
+#: ../media-library-plus.php:5776
+msgid "; please check the folder and file permissions."
+msgstr ""
+
+#: ../media-library-plus.php:5782
+msgid "The destination is not a folder: "
+msgstr ""
+
+#: ../media-library-plus.php:5787
+msgid "Cannot find destination folder: "
+msgstr ""
+
+#: ../media-library-plus.php:5797
+msgid "Cannot find the file: "
+msgstr ""
+
+#: ../media-library-plus.php:5804
+msgid " was copied to "
+msgstr ""
+
+#: ../media-library-plus.php:5806
+msgid " was not copied."
+msgstr ""
+
+#: ../media-library-plus.php:5810
+msgid " was moved to "
+msgstr ""
+
+#: ../media-library-plus.php:5812
+msgid " was not moved."
+msgstr ""
+
+#: ../media-library-plus.php:6616
+msgid ""
+"IP addresses to private links to protected files can be blocked by adding "
+"them to the Block Access to Private Download Links."
+msgstr ""
+
+#: ../media-library-plus.php:6617
+msgid ""
+"A page can be created to display a no access message in place of the site's "
+"404 page. Under Custom No Access Page, an administrator can select and set "
+"the page to be used for this purpose."
+msgstr ""
+
+#: ../media-library-plus.php:6762
+msgid "Copy Link"
+msgstr ""
+
+#: ../media-library-plus.php:6774
+msgid "Missing nonce! Please refresh this page."
+msgstr ""
+
+#: ../mlp-reset.php:228
+msgid "Number of attachments"
+msgstr ""
+
+#: ../mlp-reset.php:480
+msgid "missing nonce! Please refresh this page."
+msgstr ""
+
+#, fuzzy
+#~ msgid "Media Library Folders"
+#~ msgstr "Reset MLF"
+
+#, fuzzy
+#~ msgid "Unable to Update Media Library Folders Reset"
+#~ msgstr "Reset MLF"
+
+#, fuzzy
+#~ msgid "Back to Media Library Folders"
+#~ msgstr "Reset MLF"
+
+#, fuzzy
+#~ msgid "Media Library Folders Settings"
+#~ msgstr "Reset MLF"
+
+#~ msgid "Media Library Folders Reset"
+#~ msgstr "Reset MLF"

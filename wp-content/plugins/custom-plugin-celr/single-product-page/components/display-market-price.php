@@ -304,7 +304,50 @@ function show_vintage_only($atts)
 }
 
 add_shortcode('show_vintage', 'show_vintage_only');
+function display_price_variation($atts)
+{
+    $atts = shortcode_atts(
+        array(
+            'product_id' => get_the_ID(),
+        ),
+        $atts
+    );
 
+    $product_id = intval($atts['product_id']);
+    $product = wc_get_product($product_id);
+
+    if ($product === false) {
+        return 'No product found';
+    }
+
+    // Check if the product is variable type
+    if ($product->is_type('variable')) {
+        $variations = $product->get_available_variations();
+
+        if (empty($variations)) {
+            return 'No variations available';
+        }
+
+        // Pick a random variation
+        $random_variation = $variations[array_rand($variations)];
+        $price = $random_variation['display_price'];
+        $attributes = array();
+
+        foreach ($random_variation['attributes'] as $taxonomy => $value) {
+            $attribute_label = wc_attribute_label($taxonomy);
+            $attribute_term = get_term_by('slug', $value, $taxonomy);
+            $attribute_value = $attribute_term ? $attribute_term->name : '';
+
+            $attributes[] = "$attribute_label: $attribute_value";
+        }
+
+        return '<span class="price">' . wc_price($price) . '</span>';
+    } else {
+        return 'Not a variable product';
+    }
+}
+
+add_shortcode('display_price_variation', 'display_price_variation');
 
 
 

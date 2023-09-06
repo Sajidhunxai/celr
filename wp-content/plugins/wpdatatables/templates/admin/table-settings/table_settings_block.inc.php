@@ -1925,6 +1925,7 @@ $globalAutoUpdateOption = get_option('wdtAutoUpdateOption');
                                                             <option value="dark"><?php esc_html_e('Dark', 'wpdatatables'); ?></option>
                                                             <option value="mojito"><?php esc_html_e('Mojito', 'wpdatatables'); ?></option>
                                                             <option value="raspberry-cream"><?php esc_html_e('Raspberry Cream', 'wpdatatables'); ?></option>
+                                                            <option value="dark-mojito"><?php esc_html_e('Dark Mojito', 'wpdatatables'); ?></option>
                                                         </select>
                                                     </div>
                                                 </div>

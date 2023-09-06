@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.10.3 - 29-01-2023 */
+/*! elementor-pro - v3.15.0 - 09-08-2023 */
 "use strict";
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["elements-handlers"],{
 
@@ -29,6 +29,9 @@ var _frontend15 = _interopRequireDefault(__webpack_require__(/*! modules/theme-b
 var _frontend16 = _interopRequireDefault(__webpack_require__(/*! modules/theme-elements/assets/js/frontend/frontend */ "../modules/theme-elements/assets/js/frontend/frontend.js"));
 var _frontend17 = _interopRequireDefault(__webpack_require__(/*! modules/woocommerce/assets/js/frontend/frontend */ "../modules/woocommerce/assets/js/frontend/frontend.js"));
 var _frontend18 = _interopRequireDefault(__webpack_require__(/*! modules/loop-builder/assets/js/frontend/frontend */ "../modules/loop-builder/assets/js/frontend/frontend.js"));
+var _frontend19 = _interopRequireDefault(__webpack_require__(/*! modules/mega-menu/assets/js/frontend/frontend */ "../modules/mega-menu/assets/js/frontend/frontend.js"));
+var _frontend20 = _interopRequireDefault(__webpack_require__(/*! modules/nested-carousel/assets/js/frontend/frontend */ "../modules/nested-carousel/assets/js/frontend/frontend.js"));
+var _frontend21 = _interopRequireDefault(__webpack_require__(/*! modules/loop-filter/assets/js/frontend/frontend */ "../modules/loop-filter/assets/js/frontend/frontend.js"));
 const extendDefaultHandlers = defaultHandlers => {
   const handlers = {
     animatedText: _frontend.default,
@@ -48,7 +51,10 @@ const extendDefaultHandlers = defaultHandlers => {
     themeElements: _frontend16.default,
     woocommerce: _frontend17.default,
     tableOfContents: _frontend14.default,
-    loopBuilder: _frontend18.default
+    loopBuilder: _frontend18.default,
+    megaMenu: _frontend19.default,
+    nestedCarousel: _frontend20.default,
+    taxonomyFilter: _frontend21.default
   };
   return {
     ...defaultHandlers,
@@ -149,6 +155,24 @@ class IconsManager {
 exports["default"] = IconsManager;
 (0, _defineProperty2.default)(IconsManager, "symbolsContainer", void 0);
 (0, _defineProperty2.default)(IconsManager, "iconsUsageList", []);
+
+/***/ }),
+
+/***/ "../assets/dev/js/frontend/utils/run-element-handlers.js":
+/*!***************************************************************!*\
+  !*** ../assets/dev/js/frontend/utils/run-element-handlers.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = runElementHandlers;
+function runElementHandlers(elements) {
+  [...elements].flatMap(el => [...el.querySelectorAll('.elementor-element')]).forEach(el => elementorFrontend.elementsHandler.runReadyTrigger(el));
+}
 
 /***/ }),
 
@@ -305,14 +329,308 @@ class _default extends elementorModules.Module {
     ['post', 'product'].forEach(skinName => {
       elementorFrontend.elementsHandler.attachHandler('loop-grid', () => __webpack_require__.e(/*! import() | load-more */ "load-more").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/load-more */ "../modules/loop-builder/assets/js/frontend/handlers/load-more.js")), skinName);
       elementorFrontend.elementsHandler.attachHandler('loop-grid', () => __webpack_require__.e(/*! import() | loop */ "loop").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/loop */ "../modules/loop-builder/assets/js/frontend/handlers/loop.js")), skinName);
-    });
-    ['carousel-post'].forEach(skinName => {
       elementorFrontend.elementsHandler.attachHandler('loop-carousel', () => __webpack_require__.e(/*! import() | loop */ "loop").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/loop */ "../modules/loop-builder/assets/js/frontend/handlers/loop.js")), skinName);
       elementorFrontend.elementsHandler.attachHandler('loop-carousel', () => __webpack_require__.e(/*! import() | loop-carousel */ "loop-carousel").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/loop-carousel */ "../modules/loop-builder/assets/js/frontend/handlers/loop-carousel.js")), skinName);
     });
   }
 }
 exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/loop-filter/assets/js/frontend/frontend-module-base.js":
+/*!*************************************************************************!*\
+  !*** ../modules/loop-filter/assets/js/frontend/frontend-module-base.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _runElementHandlers = _interopRequireDefault(__webpack_require__(/*! elementor-pro/frontend/utils/run-element-handlers */ "../assets/dev/js/frontend/utils/run-element-handlers.js"));
+class BaseFilterFrontendModule extends elementorModules.Module {
+  constructor() {
+    super();
+    this.loopWidgetsStore = {};
+  }
+  removeWidgetFromLoopWidgetsStore(widgetId) {
+    delete this.loopWidgetsStore[widgetId];
+  }
+  addWidgetToLoopWidgetsStore(widgetId) {
+    this.loopWidgetsStore[widgetId] = {
+      filters: {},
+      consolidatedFilters: {}
+    };
+  }
+  removeFilterFromLoopWidget(widgetId, filterId) {
+    if (!this.loopWidgetsStore[widgetId]) {
+      this.addWidgetToLoopWidgetsStore(widgetId);
+    }
+    delete this.loopWidgetsStore[widgetId].filters[filterId];
+    this.refreshLoopWidget(widgetId, filterId);
+  }
+
+  /**
+   * Sets the filter data for a loop widget.
+   *
+   * This function should trigger the following sequence:
+   * 1. Update the filter data for the passed ID in the loopElements object.
+   * 2. Trigger a consolidation of all filters belonging to the passed loop widget ID.
+   *   - This should create an object with filter type keys, and for each type, an object of filter IDs, which contain the filter values.
+   *   - This should also remove duplicates.
+   * 3. Trigger a rerender of the loop widget.
+   *
+   * @param {string}  widgetId
+   * @param {string}  filterId
+   * @param {Object}  filterData
+   * @param {boolean} refresh
+   */
+  setFilterDataForLoopWidget(widgetId, filterId, filterData) {
+    let refresh = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+    if (!this.loopWidgetsStore[widgetId]) {
+      this.addWidgetToLoopWidgetsStore(widgetId);
+    }
+    this.loopWidgetsStore[widgetId].filters[filterId] = filterData;
+    if (refresh) {
+      this.refreshLoopWidget(widgetId, filterId);
+    } else {
+      this.consolidateFiltersForLoopWidget(widgetId);
+    }
+  }
+
+  /**
+   * Consolidates all filters for a loop widget.
+   *
+   * @param {string} widgetId
+   */
+  consolidateFiltersForLoopWidget(widgetId) {
+    const loopWidgetFilters = this.loopWidgetsStore[widgetId].filters;
+    const consolidatedFilters = {};
+    for (const filterId in loopWidgetFilters) {
+      const filter = loopWidgetFilters[filterId],
+        filterType = filter.filterType,
+        filterData = filter.filterData;
+
+      // This part is non-generic. To expand this functionality to other filter types, we'll need to refactor and
+      // generalize this part.
+      if (!consolidatedFilters[filterType]) {
+        consolidatedFilters[filterType] = {};
+      }
+      if (!consolidatedFilters[filterType][filterData.selectedTaxonomy]) {
+        consolidatedFilters[filterType][filterData.selectedTaxonomy] = [];
+      }
+      if (!consolidatedFilters[filterType][filterData.selectedTaxonomy].includes(filterData.term)) {
+        consolidatedFilters[filterType][filterData.selectedTaxonomy].push(filterData.term);
+      }
+    }
+    this.loopWidgetsStore[widgetId].consolidatedFilters = consolidatedFilters;
+  }
+  getQueryStringInObjectForm() {
+    const queryString = {};
+    for (const widgetId in this.loopWidgetsStore) {
+      const loopWidget = this.loopWidgetsStore[widgetId];
+      for (const filterType in loopWidget.consolidatedFilters) {
+        const filterData = loopWidget.consolidatedFilters[filterType];
+        for (const filterName in filterData) {
+          // Add an `e-` prefix to the key to avoid clashes with other query strings.
+          // Filter values are arrays, to support multiple select.
+          queryString[`e-filter-${widgetId}-${filterName}`] = filterData[filterName].join(',');
+        }
+      }
+    }
+    return queryString;
+  }
+  updateURLQueryString(filterId) {
+    const currentUrl = new URL(window.location.href),
+      existingQueryString = currentUrl.searchParams,
+      queryStringObject = this.getQueryStringInObjectForm(),
+      updatedParams = new URLSearchParams(),
+      helpers = this.getFilterHelperAttributes(filterId);
+    existingQueryString.forEach((value, key) => {
+      if (!key.startsWith('e-filter')) {
+        updatedParams.append(key, value);
+      }
+    });
+    for (const key in queryStringObject) {
+      updatedParams.set(key, queryStringObject[key]);
+    }
+    let queryString = updatedParams.toString();
+    if (helpers.pageNum > 1) {
+      queryString = queryString ? this.formatQueryString(helpers.baseUrl, queryString) : helpers.baseUrl;
+    } else {
+      queryString = queryString ? `?${queryString}` : location.pathname;
+    }
+    history.pushState(null, null, queryString);
+  }
+  formatQueryString(baseURL, queryString) {
+    const baseURLParams = baseURL.includes('?') ? new URLSearchParams(baseURL.split('?')[1]) : new URLSearchParams(),
+      inputParams = new URLSearchParams(queryString);
+    for (const param of baseURLParams.keys()) {
+      if (inputParams.has(param)) {
+        inputParams.delete(param);
+      }
+    }
+    const excludedVariables = ['page', 'paged'];
+    for (const excludedVar of excludedVariables) {
+      baseURLParams.delete(excludedVar);
+      inputParams.delete(excludedVar);
+    }
+    const mergedParams = new URLSearchParams(baseURLParams.toString());
+    for (const [param, value] of inputParams.entries()) {
+      mergedParams.append(param, value);
+    }
+    const output = baseURL.split('?')[0] + (mergedParams.toString() ? `?${mergedParams.toString()}` : '');
+    return output;
+  }
+  getFilterHelperAttributes(filterId) {
+    const filterWidget = document.querySelector('[data-id="' + filterId + '"]');
+    if (!filterWidget) {
+      return {
+        baseUrl: location.href,
+        pageNum: 1
+      };
+    }
+    const filterBar = filterWidget.querySelector('.e-filter');
+    return filterBar.dataset;
+  }
+  prepareLoopUpdateRequestData(widgetId, filterId) {
+    const widgetFilters = this.loopWidgetsStore[widgetId].consolidatedFilters,
+      helpers = this.getFilterHelperAttributes(filterId);
+    const data = {
+      post_id: elementorFrontend.config.post.id || this.getClosestDataElementorId(document.querySelector(`.elementor-element-${widgetId}`)),
+      widget_filters: widgetFilters,
+      widget_id: widgetId,
+      pagination_base_url: helpers.baseUrl
+    };
+    if (elementorFrontend.isEditMode()) {
+      // In the editor, we have to support loop widgets that have been created but not saved to the database yet.
+      const widgetContainer = window.top.$e.components.get('document').utils.findContainerById(widgetId);
+      data.widget_model = widgetContainer.model.toJSON({
+        remove: ['default', 'editSettings', 'defaultEditSettings']
+      });
+      data.is_edit_mode = true;
+    }
+    return data;
+  }
+  getClosestDataElementorId(element) {
+    const closestParent = element.closest('[data-elementor-id]');
+    return closestParent ? closestParent.getAttribute('data-elementor-id') : 0;
+  }
+  getFetchArgumentsForLoopUpdate(widgetId, filterId) {
+    const data = this.prepareLoopUpdateRequestData(widgetId, filterId);
+    const args = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
+    if (elementorFrontend.isEditMode() && !!elementorPro.config.loopFilter?.nonce) {
+      args.headers['X-WP-Nonce'] = elementorPro.config.loopFilter?.nonce;
+    }
+    return args;
+  }
+  fetchUpdatedLoopWidgetMarkup(widgetId, filterId) {
+    return fetch(`${elementorProFrontend.config.urls.rest}elementor-pro/v1/refresh-loop`, this.getFetchArgumentsForLoopUpdate(widgetId, filterId));
+  }
+  createElementFromHTMLString(widgetContainerHTMLString) {
+    const div = document.createElement('div');
+    if (!widgetContainerHTMLString) {
+      div.classList.add('elementor-widget-container');
+      return div;
+    }
+    div.innerHTML = widgetContainerHTMLString.trim();
+    return div.firstElementChild;
+  }
+  addLoadingAnimationOverlay(widgetId) {
+    const widget = document.querySelector(`.elementor-element-${widgetId}`);
+    if (!widget) {
+      return;
+    }
+    const loadingAnimationOverlay = document.createElement('div');
+    loadingAnimationOverlay.classList.add('e-loading-overlay');
+    widget.appendChild(loadingAnimationOverlay);
+  }
+  removeLoadingAnimationOverlay(widgetId) {
+    const widget = document.querySelector(`.elementor-element-${widgetId}`);
+    if (!widget) {
+      return;
+    }
+    const loadingAnimationOverlay = widget.querySelector('.e-loading-overlay');
+    if (!loadingAnimationOverlay) {
+      return;
+    }
+    loadingAnimationOverlay.remove();
+  }
+  refreshLoopWidget(widgetId, filterId) {
+    this.consolidateFiltersForLoopWidget(widgetId);
+    this.updateURLQueryString(filterId);
+    const widget = document.querySelector(`.elementor-element-${widgetId}`);
+    if (!widget) {
+      return;
+    }
+    this.addLoadingAnimationOverlay(widgetId);
+    const fetchUpdatedLoopWidgetMarkup = this.fetchUpdatedLoopWidgetMarkup(widgetId, filterId).then(response => {
+      if (!(response instanceof Response) || !response?.ok || 400 <= response?.status) {
+        return {};
+      }
+      return response.json();
+    })
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    .catch(error => {
+      return {};
+    }).then(response => {
+      if (!response?.data && '' !== response?.data) {
+        return;
+      }
+      const existingWidgetContainer = widget.querySelector('.elementor-widget-container'),
+        newWidgetContainer = this.createElementFromHTMLString(response.data);
+      widget.replaceChild(newWidgetContainer, existingWidgetContainer);
+      this.handleElementHandlers(newWidgetContainer);
+      elementorFrontend.elementsHandler.runReadyTrigger(document.querySelector(`.elementor-element-${widgetId}`));
+      widget.classList.remove('e-loading');
+    }).finally(() => {
+      this.removeLoadingAnimationOverlay(widgetId);
+    });
+    return fetchUpdatedLoopWidgetMarkup;
+
+    // TODO: Deal with pagination. Do we need to manually add the query string to the pagination links?
+  }
+
+  handleElementHandlers(newWidgetMarkup) {
+    const loopItems = newWidgetMarkup.querySelectorAll('.e-loop-item');
+    (0, _runElementHandlers.default)(loopItems);
+  }
+}
+exports["default"] = BaseFilterFrontendModule;
+
+/***/ }),
+
+/***/ "../modules/loop-filter/assets/js/frontend/frontend.js":
+/*!*************************************************************!*\
+  !*** ../modules/loop-filter/assets/js/frontend/frontend.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _frontendModuleBase = _interopRequireDefault(__webpack_require__(/*! ./frontend-module-base */ "../modules/loop-filter/assets/js/frontend/frontend-module-base.js"));
+class LoopFilter extends _frontendModuleBase.default {
+  constructor() {
+    super();
+    elementorFrontend.elementsHandler.attachHandler('taxonomy-filter', () => __webpack_require__.e(/*! import() | taxonomy-filter */ "taxonomy-filter").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/taxonomy-filter */ "../modules/loop-filter/assets/js/frontend/handlers/taxonomy-filter.js")));
+  }
+}
+exports["default"] = LoopFilter;
 
 /***/ }),
 
@@ -332,6 +650,28 @@ class _default extends elementorModules.Module {
   constructor() {
     super();
     elementorFrontend.elementsHandler.attachHandler('lottie', () => __webpack_require__.e(/*! import() | lottie */ "lottie").then(__webpack_require__.bind(__webpack_require__, /*! ./handler */ "../modules/lottie/assets/js/frontend/handler.js")));
+  }
+}
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/mega-menu/assets/js/frontend/frontend.js":
+/*!***********************************************************!*\
+  !*** ../modules/mega-menu/assets/js/frontend/frontend.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+class _default extends elementorModules.Module {
+  constructor() {
+    super();
+    elementorFrontend.elementsHandler.attachHandler('mega-menu', [() => __webpack_require__.e(/*! import() | mega-menu */ "mega-menu").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/mega-menu */ "../modules/mega-menu/assets/js/frontend/handlers/mega-menu.js")), () => __webpack_require__.e(/*! import() | mega-menu-stretch-content */ "mega-menu-stretch-content").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/stretch-menu-item-content */ "../modules/mega-menu/assets/js/frontend/handlers/stretch-menu-item-content.js"))]);
   }
 }
 exports["default"] = _default;
@@ -363,6 +703,28 @@ class _default extends elementorModules.Module {
       }
     }
     elementorFrontend.elementsHandler.attachHandler('nav-menu', () => __webpack_require__.e(/*! import() | nav-menu */ "nav-menu").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/nav-menu */ "../modules/nav-menu/assets/js/frontend/handlers/nav-menu.js")));
+  }
+}
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/nested-carousel/assets/js/frontend/frontend.js":
+/*!*****************************************************************!*\
+  !*** ../modules/nested-carousel/assets/js/frontend/frontend.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+class _default extends elementorModules.Module {
+  constructor() {
+    super();
+    elementorFrontend.elementsHandler.attachHandler('nested-carousel', () => __webpack_require__.e(/*! import() | nested-carousel */ "nested-carousel").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/nested-carousel */ "../modules/nested-carousel/assets/js/frontend/handlers/nested-carousel.js")));
   }
 }
 exports["default"] = _default;
@@ -403,7 +765,7 @@ class _default extends elementorModules.frontend.Document {
   initTriggers() {
     this.triggers = new _triggers.default(this.getDocumentSettings('triggers'), this);
   }
-  showModal(avoidMultiple) {
+  showModal(avoidMultiple, event) {
     // eslint-disable-next-line @wordpress/no-unused-vars-before-return
     const settings = this.getDocumentSettings();
     if (!this.isEdit) {
@@ -436,6 +798,9 @@ class _default extends elementorModules.frontend.Document {
       this.countTimes();
     }
     elementorProFrontend.modules.popup.popupPopped = true;
+    if (!this.isEdit && settings.a11y_navigation) {
+      this.handleKeyboardA11y(event);
+    }
   }
   setEntranceAnimation() {
     const $widgetContent = this.getModal().getElements('widgetContent'),
@@ -451,6 +816,49 @@ class _default extends elementorModules.frontend.Document {
     const animationDuration = settings.entrance_animation_duration.size;
     $widgetContent.addClass(newAnimation);
     setTimeout(() => $widgetContent.removeClass(newAnimation), animationDuration * 1000);
+  }
+  handleKeyboardA11y(event) {
+    const selectorFocusedElements = ':focusable';
+    const $focusableElements = this.getModal().getElements('widgetContent').find(selectorFocusedElements);
+    if (!$focusableElements.length) {
+      return;
+    }
+    let $lastButtonClicked = null;
+    if (event?.currentTarget) {
+      $lastButtonClicked = jQuery(event.currentTarget);
+    }
+    const $lastFocusableElement = $focusableElements[$focusableElements.length - 1];
+    const $firstFocusableElement = $focusableElements[0];
+    const onKeyDownPressed = keyDownEvent => {
+      const TAB_KEY = 9;
+      const isShiftPressed = keyDownEvent.shiftKey;
+      const isTabPressed = 'Tab' === keyDownEvent.key || TAB_KEY === keyDownEvent.keyCode;
+      if (!isTabPressed) {
+        return;
+      }
+      const activeElement = elementorFrontend.elements.window.document.activeElement;
+      if (isShiftPressed) {
+        const isFocusOnFirstElement = activeElement === $firstFocusableElement;
+        if (isFocusOnFirstElement) {
+          $lastFocusableElement.focus();
+          keyDownEvent.preventDefault();
+        }
+      } else {
+        const isFocusOnLastElement = activeElement === $lastFocusableElement;
+        if (isFocusOnLastElement) {
+          $firstFocusableElement.focus();
+          keyDownEvent.preventDefault();
+        }
+      }
+    };
+    $firstFocusableElement.focus();
+    const $window = elementorFrontend.elements.$window;
+    $window.on('keydown', onKeyDownPressed).on('elementor/popup/hide', () => {
+      $window.off('keydown', onKeyDownPressed);
+      if ($lastButtonClicked) {
+        $lastButtonClicked.focus();
+      }
+    });
   }
   setExitAnimation() {
     const modal = this.getModal(),
@@ -642,7 +1050,7 @@ class _default extends elementorModules.Module {
       elementorFrontend.storage.set('sessions', sessions + 1);
     }
   }
-  showPopup(settings) {
+  showPopup(settings, event) {
     const popup = elementorFrontend.documentsManager.documents[settings.id];
     if (!popup) {
       return;
@@ -651,7 +1059,7 @@ class _default extends elementorModules.Module {
     if (settings.toggle && modal.isVisible()) {
       modal.hide();
     } else {
-      popup.showModal();
+      popup.showModal(null, event);
     }
   }
   closePopup(settings, event) {
@@ -666,7 +1074,7 @@ class _default extends elementorModules.Module {
     }
   }
   onFrontendComponentsInit() {
-    elementorFrontend.utils.urlActions.addAction('popup:open', settings => this.showPopup(settings));
+    elementorFrontend.utils.urlActions.addAction('popup:open', (settings, event) => this.showPopup(settings, event));
     elementorFrontend.utils.urlActions.addAction('popup:close', (settings, event) => this.closePopup(settings, event));
   }
 }
@@ -695,6 +1103,7 @@ var _loggedIn = _interopRequireDefault(__webpack_require__(/*! ./timing/logged-i
 var _devices = _interopRequireDefault(__webpack_require__(/*! ./timing/devices */ "../modules/popup/assets/js/frontend/timing/devices.js"));
 var _times = _interopRequireDefault(__webpack_require__(/*! ./timing/times */ "../modules/popup/assets/js/frontend/timing/times.js"));
 var _browsers = _interopRequireDefault(__webpack_require__(/*! ./timing/browsers */ "../modules/popup/assets/js/frontend/timing/browsers.js"));
+var _schedule = _interopRequireDefault(__webpack_require__(/*! ./timing/schedule */ "../modules/popup/assets/js/frontend/timing/schedule.js"));
 class _default extends elementorModules.Module {
   constructor(settings, document) {
     super(settings);
@@ -707,7 +1116,8 @@ class _default extends elementorModules.Module {
       logged_in: _loggedIn.default,
       devices: _devices.default,
       times: _times.default,
-      browsers: _browsers.default
+      browsers: _browsers.default,
+      schedule: _schedule.default
     };
   }
   check() {
@@ -872,6 +1282,91 @@ class _default extends _base.default {
       initialPageViews = pageViews;
     }
     return pageViews - initialPageViews >= this.getTimingSetting('views');
+  }
+}
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/popup/assets/js/frontend/timing/schedule-utils.js":
+/*!********************************************************************!*\
+  !*** ../modules/popup/assets/js/frontend/timing/schedule-utils.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+class ScheduleUtils {
+  constructor(args) {
+    (0, _defineProperty2.default)(this, "shouldDisplay", () => {
+      if (!this.settings.startDate && !this.settings.endDate) {
+        return true;
+      }
+      const now = this.getCurrentDateTime();
+      if ((!this.settings.startDate || now >= this.settings.startDate) && (!this.settings.endDate || now <= this.settings.endDate)) {
+        return true;
+      }
+      return false;
+    });
+    this.settings = args.settings;
+  }
+  getCurrentDateTime() {
+    let now = new Date();
+    if ('site' === this.settings.timezone && this.settings.serverDatetime) {
+      now = new Date(this.settings.serverDatetime);
+    }
+    return now;
+  }
+}
+exports["default"] = ScheduleUtils;
+
+/***/ }),
+
+/***/ "../modules/popup/assets/js/frontend/timing/schedule.js":
+/*!**************************************************************!*\
+  !*** ../modules/popup/assets/js/frontend/timing/schedule.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _base = _interopRequireDefault(__webpack_require__(/*! ./base */ "../modules/popup/assets/js/frontend/timing/base.js"));
+var _scheduleUtils = _interopRequireDefault(__webpack_require__(/*! ./schedule-utils */ "../modules/popup/assets/js/frontend/timing/schedule-utils.js"));
+class _default extends _base.default {
+  constructor() {
+    super(...arguments);
+    const {
+      schedule_timezone: timezone,
+      schedule_start_date: startDate,
+      schedule_end_date: endDate,
+      schedule_server_datetime: serverDatetime
+    } = this.getSettings();
+    this.settings = {
+      timezone,
+      startDate: startDate ? new Date(startDate) : false,
+      endDate: endDate ? new Date(endDate) : false,
+      serverDatetime: serverDatetime ? new Date(serverDatetime) : false
+    };
+    this.scheduleUtils = new _scheduleUtils.default({
+      settings: this.settings
+    });
+  }
+  getName() {
+    return 'schedule';
+  }
+  check() {
+    return this.scheduleUtils.shouldDisplay();
   }
 }
 exports["default"] = _default;
@@ -1584,7 +2079,7 @@ exports["default"] = void 0;
 class _default extends elementorModules.Module {
   constructor() {
     super();
-    elementorFrontend.elementsHandler.attachHandler('table-of-contents', () => __webpack_require__.e(/*! import() | table-of-contents */ "table-of-contents").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/table-of-contents */ "../modules/table-of-contents/assets/js/frontend/handlers/table-of-contents.js")));
+    elementorFrontend.elementsHandler.attachHandler('table-of-contents', () => Promise.all(/*! import() | table-of-contents */[__webpack_require__.e("vendors-node_modules_dompurify_dist_purify_js"), __webpack_require__.e("table-of-contents")]).then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/table-of-contents */ "../modules/table-of-contents/assets/js/frontend/handlers/table-of-contents.js")));
   }
 }
 exports["default"] = _default;

@@ -19,8 +19,8 @@ class Products_Renderer extends Base_Products_Renderer {
 		$this->settings = $settings;
 		$this->type = $type;
 		$this->attributes = $this->parse_attributes( [
-			'columns' => $settings['columns'],
-			'rows' => $settings['rows'],
+			'columns' => ! empty( $settings['columns'] ) ? $settings['columns'] : self::DEFAULT_COLUMNS_AND_ROWS,
+			'rows' => ! empty( $settings['rows'] ) ? $settings['rows'] : self::DEFAULT_COLUMNS_AND_ROWS,
 			'paginate' => $settings['paginate'],
 			'cache' => false,
 		] );
@@ -73,14 +73,20 @@ class Products_Renderer extends Base_Products_Renderer {
 
 		$query_args['orderby'] = $ordering_args['orderby'];
 		$query_args['order'] = $ordering_args['order'];
+
+		if ( $this->orderby_option_needs_meta_key( $query_args['orderby'] ) ) {
+			$ordering_args['meta_key'] = $this->get_orderby_meta_key( $query_args['orderby'] );
+			$query_args['orderby'] = 'meta_value_num';
+		}
+
 		if ( $ordering_args['meta_key'] ) {
 			$query_args['meta_key'] = $ordering_args['meta_key'];
 		}
 
 		// fallback to the widget's default settings in case settings was left empty:
-		$rows = ! empty( $settings['rows'] ) ? $settings['rows'] : self::DEFAULT_COLUMNS_AND_ROWS;
-		$columns = ! empty( $settings['columns'] ) ? $settings['columns'] : self::DEFAULT_COLUMNS_AND_ROWS;
-		$query_args['posts_per_page'] = intval( $columns * $rows );
+		$rows = $this->attributes['rows'];
+		$columns = $this->attributes['columns'];
+		$query_args['posts_per_page'] = $settings['posts_per_page'] ?? intval( $columns * $rows );
 
 		$this->set_visibility_query_args( $query_args );
 
@@ -111,6 +117,23 @@ class Products_Renderer extends Base_Products_Renderer {
 		$query_args['fields'] = 'ids';
 
 		return $query_args;
+	}
+
+	protected function orderby_option_needs_meta_key( $orderby ) {
+		return in_array( $orderby, [ 'price', 'rating', 'popularity' ] );
+	}
+
+	protected function get_orderby_meta_key( $orderby ) {
+		switch ( $orderby ) {
+			case 'price':
+				return '_price';
+			case 'rating':
+				return '_wc_average_rating';
+			case 'popularity':
+				return 'total_sales';
+			default:
+				return 'menu_order title';
+		}
 	}
 
 	protected function set_ids_query_args( &$query_args ) {

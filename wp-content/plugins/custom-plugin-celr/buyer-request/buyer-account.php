@@ -171,8 +171,11 @@ function custom_auth_profile_edit_page()
    
     
 ?>
+<div class="text-center
+"><h2> Buyer Account</h2></div>
 
 <div class="buyer-account-details">
+
         <h2>Account details</h2>
         <p><strong>Current email address:</strong> <?php echo esc_html($user_email); ?></p>
         <button type="button" onclick="document.getElementById('change_email_form').style.display = 'block';">Change Email</button>
@@ -290,11 +293,65 @@ function custom_auth_profile_edit_shortcode()
     if (is_user_logged_in()) {
         return custom_auth_profile_edit_page();
     } else {
-        return 'You must be logged in to edit your profile.';
-    }
+      ob_start();
+        ?>
+		<div class="text-center"><h2> Login</h2></div>	
+        <div class="non-logged-in-content">
+            <?php
+                 $args = array(
+                         'redirect' => admin_url(), // redirect to admin dashboard.
+                         'form_id' => 'custom_loginform',
+                         'label_username' => __( 'Username:' ),
+                        'label_password' => __( 'Password:' ),
+                        'label_remember' => __( 'Remember Me' ),
+                       'label_log_in' => __( 'Log In' ),
+                         'remember' => true
+                    );
+                
+                wp_login_form( $args );		
+            ?>
+        </div>
+		<div class="text-center"><a href="/registration"> Registor as Vendor</a></div>	
+
+        <?php
+        return ob_get_clean();
+
+	}
 }
 add_shortcode('custom_auth_profile_edit', 'custom_auth_profile_edit_shortcode');
+function load_wp_login_form_callback() {
+    ob_start();
+    wp_login_form();
+    $login_form_content = ob_get_clean();
 
+    // Add your custom redirection logic after login
+    if (isset($_POST['log']) && isset($_POST['pwd'])) {
+        $credentials = array(
+            'user_login'    => $_POST['log'],
+            'user_password' => $_POST['pwd'],
+            'remember'      => isset($_POST['rememberme']) ? $_POST['rememberme'] : false,
+        );
+
+        $user = wp_signon($credentials, false);
+
+        if (is_wp_error($user)) {
+            echo '<p class="login-error">' . esc_html($user->get_error_message()) . '</p>';
+        } else {
+            // Check if the user is logging in from the custom vendor registration form
+            if (isset($_POST['submit_vendor_registration'])) {
+                wp_redirect(home_url('/custom-vendor-registration-page')); // Replace with your desired URL
+                exit;
+            }
+            // Handle other redirections after login here if needed
+        }
+    }
+
+    echo '<div class="login-form-content">' . $login_form_content . '</div>';
+
+    die(); // Always exit after AJAX operations
+}
+add_action('wp_ajax_load_wp_login_form', 'load_wp_login_form_callback');
+add_action('wp_ajax_nopriv_load_wp_login_form', 'load_wp_login_form_callback'); // For non-logged-in us
 // Create an account for the user during checkout
 function custom_auth_create_account($order_id)
 {

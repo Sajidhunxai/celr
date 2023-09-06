@@ -10323,10 +10323,6 @@ select.input-group-lg > .input-group-btn > .btn {
     margin-top: 33px;
 }
 
-.wpdt-c .easy-pie:not(.main-pie) .percent:after {
-    font-size: 20px;
-}
-
 .wpdt-c .easy-pie .pie-title {
     position: absolute;
     width: 100%;

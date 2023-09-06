@@ -1852,7 +1852,7 @@ class WPDataTable
 	public static function serializedPhpRenderData($url, $id) {
 		$url = apply_filters('wpdatatables_filter_url_php_array', $url, $id);
 		$serialized_content = apply_filters('wpdatatables_filter_serialized', WDTTools::curlGetData($url), $id);
-		return unserialize($serialized_content);
+        return unserialize($serialized_content, ["allowed_classes" => false]);
 	}
 
 	/**
@@ -2055,6 +2055,9 @@ class WPDataTable
                 break;
             case "raspberry-cream":
                 $renderSkin = WDT_ASSETS_PATH . 'css/wdt-skins/raspberry-cream.css';
+                break;
+            case "dark-mojito":
+                $renderSkin = WDT_ASSETS_PATH . 'css/wdt-skins/darkmojito.css';
                 break;
             default:
                 $renderSkin = WDT_ASSETS_PATH . 'css/wdt-skins/material.css';
@@ -2567,7 +2570,7 @@ class WPDataTable
         $globalSearch = ($obj->globalSearch == true) ? 'f' : '';
         $showRowsPerPage = ($obj->showRowsPerPage == true) ? 'l' : '';
         $scrollable = ($this->isScrollable() == true) ? "<'wdtscroll't>" : 't';
-        if ($currentSkin === 'mojito') {
+        if (in_array($currentSkin, ['mojito', 'dark-mojito'])) {
             $obj->dataTableParams->sDom = "<'wdt_wrapper_for_buttons'{$globalSearch}{$showRowsPerPage}BT>{$scrollable}{$infoBlock}{$pagination}";
         } else {
             $obj->dataTableParams->sDom = "BT<'clear'>{$showRowsPerPage}{$globalSearch}{$scrollable}{$infoBlock}{$pagination}";
@@ -2627,14 +2630,14 @@ class WPDataTable
             }
         }
 
-        $skinsWithNewTableToolsButtons = ['aqua','purple','dark','raspberry-cream', 'mojito'];
+        $skinsWithNewTableToolsButtons = ['aqua','purple','dark','raspberry-cream', 'mojito', 'dark-mojito'];
         $tableToolsIncludeHTML = !$this->getTableToolsIncludeHTML();
-        $printBttnText = in_array($currentSkin, ['mojito','raspberry-cream']) ? '' : __('Print', 'wpdatatables');
+        $printBttnText = in_array($currentSkin, ['mojito','raspberry-cream', 'dark-mojito']) ? '' : __('Print', 'wpdatatables');
         $tableToolsExportTitle = $this->getTableToolsIncludeTitle() ? $this->getName() : null;
-        $exportBttnText = $currentSkin == 'mojito' ? '' : __('Export', 'wpdatatables');
+        $exportBttnText = $currentSkin == in_array($currentSkin, ['mojito', 'dark-mojito']) ? '' : __('Export', 'wpdatatables');
         $pdfPaperSize = $this->getPdfPaperSize();
         $pdfPageOrientation = $this->getPdfPageOrientation();
-        $columnsBttnText = $currentSkin == 'mojito' ? '' : __('Columns', 'wpdatatables');
+        $columnsBttnText = $currentSkin == in_array($currentSkin, ['mojito', 'dark-mojito']) ? '' : __('Columns', 'wpdatatables');
 
         if ($this->TTEnabled()) {
             (!isset($obj->dataTableParams->buttons)) ? $obj->dataTableParams->buttons = array() : '';

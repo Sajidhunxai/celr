@@ -293,7 +293,7 @@ class Controls_Manager {
 	/**
 	 * Has stacks cache been cleared.
 	 *
-	 * Boolean flag used to determine whether the controls manager stack cache has been cleared once during the current runtime.
+	 * Holds the list of all the control stacks that have been cleared.
 	 *
 	 * @since 3.13.0
 	 * @access private
@@ -301,7 +301,7 @@ class Controls_Manager {
 	 *
 	 * @var array
 	 */
-	private $has_stacks_cache_been_cleared = false;
+	private $has_post_stacks_cache_been_cleared = [];
 
 	/**
 	 * Init tabs.
@@ -504,7 +504,7 @@ class Controls_Manager {
 	 *
 	 * @since 1.0.0
 	 * @access public
-	 * @deprecated 3.5.0 Use `$this->register()` instead.
+	 * @deprecated 3.5.0 Use `register()` method instead.
 	 *
 	 * @param string       $control_id       Control ID.
 	 * @param Base_Control $control_instance Control instance, usually the
@@ -515,7 +515,7 @@ class Controls_Manager {
 		//Plugin::$instance->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_function(
 		//	__METHOD__,
 		//	'3.5.0',
-		//	'register'
+		//	'register()'
 		//);
 
 		$this->register( $control_instance, $control_id );
@@ -556,7 +556,7 @@ class Controls_Manager {
 	 *
 	 * @since 1.0.0
 	 * @access public
-	 * @deprecated 3.5.0 Use `$this->unregister()` instead.
+	 * @deprecated 3.5.0 Use `unregister()` method instead.
 	 *
 	 * @param string $control_id Control ID.
 	 *
@@ -566,7 +566,7 @@ class Controls_Manager {
 		Plugin::$instance->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_function(
 			__METHOD__,
 			'3.5.0',
-			'unregister'
+			'unregister()'
 		);
 
 		return $this->unregister( $control_id );
@@ -881,8 +881,8 @@ class Controls_Manager {
 	 * @access public
 	 * @return bool True if the CSS requires to clear the controls stack cache, False otherwise.
 	 */
-	public function has_stacks_cache_been_cleared() {
-		return $this->has_stacks_cache_been_cleared;
+	public function has_stacks_cache_been_cleared( $handle_id = 'default' ) {
+		return isset( $this->has_post_stacks_cache_been_cleared[ $handle_id ] );
 	}
 
 	/**
@@ -891,9 +891,10 @@ class Controls_Manager {
 	 * @since 3.13.0
 	 * @access public
 	 */
-	public function clear_stack_cache() {
+	public function clear_stack_cache( $handle_id = 'default' ) {
 		$this->stacks = [];
-		$this->has_stacks_cache_been_cleared = true;
+
+		$this->has_post_stacks_cache_been_cleared[ $handle_id ] = true;
 	}
 
 	/**
@@ -1173,5 +1174,24 @@ class Controls_Manager {
 		);
 
 		$controls_stack->end_controls_section();
+	}
+
+	/**
+	 * Clear stacks
+	 *
+	 * If a page contains templates, such as loop items, shortcodes, kits, or template widgets,
+	 * the templates responsive setting will not be updated unless the 'Regenerate CSS' option is used.
+	 * Reproduce only when additional breakpoints are active.
+	 *
+	 * @since 3.14.0
+	 *
+	 * @access private
+	 */
+	public function clear_stacks( $handle_id ) {
+		if ( $handle_id ) {
+			if ( ! $this->has_stacks_cache_been_cleared( $handle_id ) ) {
+				$this->clear_stack_cache( $handle_id );
+			}
+		}
 	}
 }

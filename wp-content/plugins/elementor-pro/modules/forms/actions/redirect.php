@@ -37,6 +37,9 @@ class Redirect extends Action_Base {
 				'label' => esc_html__( 'Redirect To', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'placeholder' => esc_html__( 'https://your-link.com', 'elementor-pro' ),
+				'ai' => [
+					'active' => false,
+				],
 				'dynamic' => [
 					'active' => true,
 					'categories' => [
@@ -66,6 +69,8 @@ class Redirect extends Action_Base {
 		$redirect_to = $record->get_form_settings( 'redirect_to' );
 
 		$redirect_to = $record->replace_setting_shortcodes( $redirect_to, true );
+
+		$redirect_to = esc_url_raw( $redirect_to );
 
 		if ( ! empty( $redirect_to ) && filter_var( $redirect_to, FILTER_VALIDATE_URL ) ) {
 			$ajax_handler->add_response_data( 'redirect_url', $redirect_to );

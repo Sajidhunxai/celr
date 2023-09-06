@@ -1,0 +1,188 @@
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: "woodmart-font";
+	src: url("//test.celr.co.uk/wp-content/themes/woodmart/woodmart/fonts/woodmart-font-1-400.woff2?v=7.2.3") format("woff2");
+}
+
+:is(.shop-content-area.wd-builder-off,.wd-wishlist-content,.related-and-upsells,.cart-collaterals,.wd-shop-product) .wd-products-with-bg, :is(.shop-content-area.wd-builder-off,.wd-wishlist-content,.related-and-upsells,.cart-collaterals,.wd-shop-product) .wd-products-with-bg .product-grid-item{
+	--wd-prod-bg:rgb(112,112,112); --wd-bordered-bg:rgb(112,112,112);
+}
+
+.wd-popup.wd-promo-popup{
+	background-color:#111111;
+	background-image: none;
+	background-repeat:no-repeat;
+	background-size:contain;
+	background-position:left center;
+}
+
+.page-title-default{
+	background-image: none;
+	background-size:cover;
+	background-position:center center;
+}
+
+.footer-container{
+	background-color:#ffffff;
+	background-image: none;
+}
+
+:root{
+--wd-text-font:"Lato", Arial, Helvetica, sans-serif;
+--wd-text-font-weight:400;
+--wd-text-color:#777777;
+--wd-text-font-size:14px;
+}
+:root{
+--wd-title-font:"Poppins", Arial, Helvetica, sans-serif;
+--wd-title-font-weight:600;
+--wd-title-color:#242424;
+}
+:root{
+--wd-entities-title-font:"Poppins", Arial, Helvetica, sans-serif;
+--wd-entities-title-font-weight:500;
+--wd-entities-title-color:#333333;
+--wd-entities-title-color-hover:rgb(51 51 51 / 65%);
+}
+:root{
+--wd-alternative-font:"Lato", Arial, Helvetica, sans-serif;
+}
+:root{
+--wd-widget-title-font:"Poppins", Arial, Helvetica, sans-serif;
+--wd-widget-title-font-weight:600;
+--wd-widget-title-transform:uppercase;
+--wd-widget-title-color:#333;
+--wd-widget-title-font-size:16px;
+}
+:root{
+--wd-header-el-font:"Lato", Arial, Helvetica, sans-serif;
+--wd-header-el-font-weight:700;
+--wd-header-el-transform:uppercase;
+--wd-header-el-font-size:13px;
+}
+:root{
+--wd-brd-radius: 54px;
+}:root{
+--wd-primary-color:#FE5757;
+}
+:root{
+--wd-alternative-color:#1C4130;
+}
+:root{
+--wd-link-color:rgb(254,87,87);
+--wd-link-color-hover:rgb(28,65,48);
+}
+:root{
+--btn-default-font-family:"Inter", Arial, Helvetica, sans-serif;
+--btn-default-font-weight:600;
+--btn-default-transform:lowercase;
+}
+:root{
+--btn-default-bgcolor:rgb(28,65,48);
+}
+:root{
+--btn-default-bgcolor-hover:rgb(254,87,87);
+}
+:root{
+--btn-accented-font-family:"Inter", Arial, Helvetica, sans-serif;
+--btn-accented-font-weight:600;
+}
+:root{
+--btn-accented-bgcolor:rgb(254,87,87);
+}
+:root{
+--btn-accented-bgcolor-hover:rgb(28,65,48);
+}
+:root{
+--notices-success-bg:#459647;
+}
+:root{
+--notices-success-color:#fff;
+}
+:root{
+--notices-warning-bg:#E0B252;
+}
+:root{
+--notices-warning-color:#fff;
+}
+	:root{
+					
+			
+							--wd-form-brd-radius: 0px;
+					
+					--wd-form-brd-width: 2px;
+		
+					--btn-default-color: #333;
+		
+					--btn-default-color-hover: #333;
+		
+					--btn-accented-color: #fff;
+		
+					--btn-accented-color-hover: #fff;
+		
+					
+			
+							--btn-default-brd-radius: 35px;
+				--btn-default-box-shadow: none;
+				--btn-default-box-shadow-hover: none;
+			
+					
+					
+			
+							--btn-accented-brd-radius: 35px;
+				--btn-accented-box-shadow: none;
+				--btn-accented-box-shadow-hover: none;
+			
+					
+							
+					--wd-brd-radius: 12px;
+			}
+
+	
+	
+			@media (min-width: 1025px) {
+			.whb-boxed:not(.whb-sticked):not(.whb-full-width) .whb-main-header {
+				max-width: 1192px;
+			}
+		}
+
+		.container {
+			max-width: 1222px;
+		}
+
+		:root{
+			--wd-container-w: 1222px;
+		}
+	
+			@media (min-width: 1239px) {
+			.platform-Windows .wd-section-stretch > .elementor-container {
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+		@media (min-width: 1222px) {
+			html:not(.platform-Windows) .wd-section-stretch > .elementor-container {
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+	
+			div.wd-popup.popup-quick-view {
+			max-width: 920px;
+		}
+	
+	
+	
+	
+	
+	
+	body, [class*=color-scheme-light], [class*=color-scheme-dark], .wd-search-form[class*="wd-header-search-form"] form.searchform, .wd-el-search .searchform {
+
+									--wd-form-color: rgb(0,0,0);
+					
+									--wd-form-placeholder-color: rgb(28,65,48);
+					
+							
+							
+								}

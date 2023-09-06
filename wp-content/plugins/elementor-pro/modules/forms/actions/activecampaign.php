@@ -267,8 +267,16 @@ class Activecampaign extends Integration_Base {
 		if ( ! isset( $_POST['api_key'] ) || ! isset( $_POST['api_url'] ) ) {
 			wp_send_json_error();
 		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( 'Permission denied' );
+		}
+
 		try {
-			new Classes\Activecampaign_Handler( $_POST['api_key'], $_POST['api_url'] );
+			new Classes\Activecampaign_Handler(
+				Utils::_unstable_get_super_global_value( $_POST, 'api_key' ),
+				Utils::_unstable_get_super_global_value( $_POST, 'api_url' )
+			);
 		} catch ( \Exception $exception ) {
 			wp_send_json_error();
 		}

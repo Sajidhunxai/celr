@@ -1175,10 +1175,6 @@ div#wpdatatable-preview-container.wpDataTablesWrapper .wpdt-c .wpDataTablesWrapp
 
 }
 
-.wpdt-c .modal#wdt-frontend-modal .modal-dialog .modal-content .modal-header button.close span{
-    display: none;
-}
-
 .wpdt-c .fg-line:not([class*=has-]):after {
     background: #F5DDEF;
 }
@@ -2522,4 +2518,8 @@ div.dt-button-collection button.dt-button.buttons-columnVisibility:before {
 
 .wpdt-c .wpDataTablesWrapper table.wpDataTable thead .noUi-tooltip {
     font-size: 10px;
+}
+
+.wpdt-c .wpDataTablesWrapper .dataTables_paginate a {
+    box-shadow: none !important;
 }

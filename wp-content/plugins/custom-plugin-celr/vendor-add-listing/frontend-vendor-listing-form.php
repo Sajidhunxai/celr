@@ -15,7 +15,7 @@ function vendor_form_shortcode($atts)
         $user_roles = $current_user->roles;
 
         // Check if the user has the 'vendor' or 'administrator' role
-        if (in_array('author', $user_roles) || in_array('administrator', $user_roles)|| in_array('seller', $user_roles)) {
+        if (in_array('author', $user_roles) || in_array('administrator', $user_roles)|| in_array('seller', $user_roles) || in_array('vendor', $user_roles)) {
 
             // User is logged in, show the form
 

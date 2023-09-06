@@ -133,7 +133,12 @@ function get_vendor_listings_for_current_user_shortcode($atts) {
       
         echo "</div>";
     } else {
-        echo "<p>Please log in to view vendor listings.</p>";
+        $redirect_script = '
+            <script>
+                window.location.href = "' . esc_url(home_url('/login')) . '";
+            </script>
+        ';
+     return $redirect_script;   
     }
 
     return ob_get_clean();

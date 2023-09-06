@@ -337,13 +337,13 @@ $tableChartsCount = (int)WDTTools::getTablesCount('chart');
                                  </span>
                         </p>
                         <p class="wpdt-text wpdt-font m-b-18">
-                            A minor update with some improvements:
+                            New, minor update:
                         </p>
                         <div class="alert alert-info m-b-0" role="alert">
                             <i class="wpdt-icon-info-circle-full"></i>
                             <ul>
-                                <li><strong>Improvement:</strong> Added a new hook, wpdatatables_before_render_table_config_data.</li>
-                                <li>Other small bug fixes.</li>
+                                <li>Compatibility with WordPress 6.3 approved.</li>
+                                <li><strong>Improvement:</strong>Removed unnecessary CSS.</li>
                             </ul>
                         </div>
 

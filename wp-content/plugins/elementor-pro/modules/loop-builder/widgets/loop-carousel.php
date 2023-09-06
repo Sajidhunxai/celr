@@ -1,14 +1,18 @@
 <?php
 namespace ElementorPro\Modules\LoopBuilder\Widgets;
 
-use ElementorPro\Modules\LoopBuilder\Skins\Skin_Loop_Carousel_Post;
+use ElementorPro\Modules\LoopBuilder\Documents\Loop as LoopDocument;
 use Elementor\Controls_Manager;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use ElementorPro\Plugin;
+use ElementorPro\Base\Base_Carousel_Trait;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
 class Loop_Carousel extends Base {
+	use Base_Carousel_Trait;
 
 	public function get_name() {
 		return 'loop-carousel';
@@ -23,237 +27,225 @@ class Loop_Carousel extends Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-loop-builder';
+		return 'eicon-carousel-loop';
 	}
 
-	protected function register_skins() {
-		$this->add_skin( new Skin_Loop_Carousel_Post( $this ) );
-	}
+	protected function get_initial_config() {
+		$config = parent::get_initial_config();
 
-	public function register_pagination_section_controls() {}
+		$config['add_parent_render_footer'] = false;
+
+		return $config;
+	}
 
 	public function register_settings_section_controls() {
-		$this->start_controls_section(
-			'section_carousel_settings',
-			[
-				'label' => esc_html__( 'Settings', 'elementor-pro' ),
-			]
-		);
-
-		$this->add_control(
-			'autoplay',
-			[
-				'label' => esc_html__( 'Autoplay', 'elementor-pro' ),
-				'type' => Controls_Manager::SWITCHER,
-				'default' => 'yes',
-				'options' => [
-					'yes' => esc_html__( 'On', 'elementor-pro' ),
-					'no' => esc_html__( 'Off', 'elementor-pro' ),
-				],
-				'frontend_available' => true,
-			]
-		);
-
-		$this->add_control(
-			'autoplay_speed',
-			[
-				'label' => esc_html__( 'Scroll Speed (ms)', 'elementor-pro' ),
-				'type' => Controls_Manager::NUMBER,
-				'default' => 5000,
-				'condition' => [
-					'autoplay' => 'yes',
-				],
-				'render_type' => 'none',
-				'frontend_available' => true,
-			]
-		);
-
-		$this->add_control(
-			'pause_on_hover',
-			[
-				'label' => esc_html__( 'Pause on hover', 'elementor-pro' ),
-				'type' => Controls_Manager::SWITCHER,
-				'default' => 'yes',
-				'options' => [
-					'yes' => esc_html__( 'On', 'elementor-pro' ),
-					'no' => esc_html__( 'Off', 'elementor-pro' ),
-				],
-				'condition' => [
-					'autoplay' => 'yes',
-				],
-				'render_type' => 'none',
-				'frontend_available' => true,
-			]
-		);
-
-		$this->add_control(
-			'pause_on_interaction',
-			[
-				'label' => esc_html__( 'Pause on interaction', 'elementor-pro' ),
-				'type' => Controls_Manager::SWITCHER,
-				'default' => 'yes',
-				'options' => [
-					'yes' => esc_html__( 'On', 'elementor-pro' ),
-					'no' => esc_html__( 'Off', 'elementor-pro' ),
-				],
-				'condition' => [
-					'autoplay' => 'yes',
-				],
-				'frontend_available' => true,
-			]
-		);
-
-		// Loop requires a re-render so no 'render_type = none'
-		$this->add_control(
-			'infinite',
-			[
-				'label' => esc_html__( 'Infinite scroll', 'elementor-pro' ),
-				'type' => Controls_Manager::SWITCHER,
-				'default' => 'yes',
-				'options' => [
-					'yes' => esc_html__( 'On', 'elementor-pro' ),
-					'no' => esc_html__( 'Off', 'elementor-pro' ),
-				],
-				'frontend_available' => true,
-			]
-		);
-
-		$this->add_control(
-			'speed',
-			[
-				'label' => esc_html__( 'Transition Duration (ms)', 'elementor-pro' ),
-				'type' => Controls_Manager::NUMBER,
-				'default' => 500,
-				'render_type' => 'none',
-				'frontend_available' => true,
-			]
-		);
-
-		$this->add_control(
-			'direction',
-			[
-				'label' => esc_html__( 'Direction', 'elementor-pro' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'ltr',
-				'options' => [
-					'ltr' => esc_html__( 'Left', 'elementor-pro' ),
-					'rtl' => esc_html__( 'Right', 'elementor-pro' ),
-				],
-			]
-		);
-
-		$this->end_controls_section();
+		$this->add_carousel_settings_controls( [
+			'css_prefix' => '',
+		] );
 	}
 
 	public function register_navigation_section_controls() {
-		$this->start_controls_section(
-			'section_navigation_settings',
-			[
-				'label' => esc_html__( 'Navigation', 'elementor-pro' ),
+		$this->add_carousel_navigation_controls( [
+			'css_prefix' => '',
+			'navigation_custom_settings' => [
 				'condition' => [
 					'template_id!' => '',
 				],
+			],
+		] );
+	}
+
+	public function register_pagination_section_controls() {
+		$this->add_carousel_pagination_controls( [
+			'css_prefix' => '',
+			'section_carousel_pagination' => [
+				'condition' => [
+					'template_id!' => '',
+				],
+			],
+		] );
+	}
+
+	public function register_design_layout_controls() {
+		$this->start_controls_section(
+			'section_layout_style',
+			[
+				'label' => esc_html__( 'Layout', 'elementor-pro' ),
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
-		$this->add_control(
-			'arrows',
+		$this->add_responsive_control(
+			'image_spacing_custom',
 			[
-				'label' => esc_html__( 'Arrows', 'elementor-pro' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_off' => esc_html__( 'Hide', 'elementor-pro' ),
-				'label_on' => esc_html__( 'Show', 'elementor-pro' ),
-				'default' => 'yes',
+				'label' => esc_html__( 'Gap between slides', 'elementor-pro' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 400,
+					],
+				],
+				'default' => [
+					'size' => 10,
+				],
 				'frontend_available' => true,
-			]
-		);
-
-		$this->add_control(
-			'navigation_previous_icon',
-			[
-				'label' => esc_html__( 'Previous Icon', 'elementor-pro' ),
-				'type' => Controls_Manager::ICONS,
-				'fa4compatibility' => 'icon',
-				'skin' => 'inline',
-				'label_block' => false,
-				'skin_settings' => [
-					'inline' => [
-						'icon' => [
-							'icon' => 'eicon-star',
-						],
-					],
-				],
-				'recommended' => [
-					'fa-regular' => [
-						'arrow-alt-circle-left',
-						'caret-square-left',
-					],
-					'fa-solid' => [
-						'angle-double-left',
-						'angle-left',
-						'arrow-alt-circle-left',
-						'arrow-circle-left',
-						'arrow-left',
-						'caret-left',
-						'caret-square-left',
-						'chevron-circle-left',
-						'chevron-left',
-						'long-arrow-alt-left',
-					],
-				],
-				'condition' => [
-					'arrows' => 'yes',
-				],
-				'default' => [
-					'value' => 'eicon-chevron-left',
-					'library' => 'eicons',
-				],
-			]
-		);
-
-		$this->add_control(
-			'navigation_next_icon',
-			[
-				'label' => esc_html__( 'Next Icon', 'elementor-pro' ),
-				'type' => Controls_Manager::ICONS,
-				'fa4compatibility' => 'icon',
-				'skin' => 'inline',
-				'label_block' => false,
-				'skin_settings' => [
-					'inline' => [
-						'icon' => [
-							'icon' => 'eicon-star',
-						],
-					],
-				],
-				'recommended' => [
-					'fa-regular' => [
-						'arrow-alt-circle-right',
-						'caret-square-right',
-					],
-					'fa-solid' => [
-						'angle-double-right',
-						'angle-right',
-						'arrow-alt-circle-right',
-						'arrow-circle-right',
-						'arrow-right',
-						'caret-right',
-						'caret-square-right',
-						'chevron-circle-right',
-						'chevron-right',
-						'long-arrow-alt-right',
-					],
-				],
-				'condition' => [
-					'arrows' => 'yes',
-				],
-				'default' => [
-					'value' => 'eicon-chevron-right',
-					'library' => 'eicons',
+				'render_type' => 'none',
+				'selectors' => [
+					'{{WRAPPER}}' => '--swiper-slides-gap: {{SIZE}}{{UNIT}}',
 				],
 			]
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function register_design_navigation_controls() {
+		$this->add_carousel_navigation_styling_controls( [
+			'css_prefix' => '',
+			'navigation_styling_custom_settings' => [
+				'condition' => [
+					'arrows' => 'yes',
+					'template_id!' => '',
+				],
+			],
+		] );
+	}
+
+	public function register_design_pagination_controls() {
+		$this->add_carousel_pagination_style_controls( [
+			'css_prefix' => '',
+		] );
+	}
+
+	public function render_loop_header() {
+		$has_autoplay_enabled = 'yes' === $this->get_settings_for_display( 'autoplay' );
+
+		$this->add_render_attribute( 'swiper-wrapper', [
+			'class' => 'swiper-wrapper',
+			'aria-live' => $has_autoplay_enabled ? 'off' : 'polite',
+		] );
+		?>
+		<div <?php $this->print_render_attribute_string( 'swiper-wrapper' ); ?>>
+		<?php
+	}
+
+	public function render_loop_footer() {
+		?>
+		</div>
+		</div>
+		<?php
+		$settings = $this->get_settings_for_display();
+		$this->render_carousel_footer( $settings );
+	}
+
+	public function add_swiper_slide_attributes_to_loop_item( $attributes, $document ) {
+		if ( LoopDocument::DOCUMENT_TYPE === $document::get_type() ) {
+			$attributes['class'] .= ' swiper-slide';
+			$attributes['role'] = 'group';
+			$attributes['aria-roledescription'] = 'slide';
+		}
+
+		return $attributes;
+	}
+
+	public function add_loop_header_attributes( $render_attributes ) {
+		$settings = $this->get_settings_for_display();
+
+		if ( ! empty( $settings['direction'] ) ) {
+			$render_attributes['dir'] = $settings['direction'];
+		}
+
+		return $render_attributes;
+	}
+
+
+	public function get_loop_header_widget_classes(): array {
+		$swiper_class = Plugin::elementor()->experiments->is_feature_active( 'e_swiper_latest' ) ? 'swiper' : 'swiper-container';
+		return [ $swiper_class ];
+	}
+
+	public function before_skin_render() {
+		add_filter( 'elementor/document/wrapper_attributes', [ $this, 'add_swiper_slide_attributes_to_loop_item' ], 10, 2 );
+		add_filter( 'elementor/skin/loop_header_attributes', [ $this, 'add_loop_header_attributes' ], 10, 1 );
+	}
+
+	public function after_skin_render() {
+		remove_filter( 'elementor/document/wrapper_attributes', [ $this, 'add_swiper_slide_attributes_to_loop_item' ] );
+		remove_filter( 'elementor/skin/loop_header_attributes', [ $this, 'add_loop_header_attributes' ] );
+	}
+
+	protected function register_layout_section() {
+		parent::register_layout_section();
+
+		$this->start_injection( [
+			'of' => 'template_id',
+		] );
+
+		$this->add_control(
+			'posts_per_page',
+			[
+				'label' => esc_html__( 'Number of slides', 'elementor-pro' ),
+				'type' => Controls_Manager::NUMBER,
+				'default' => 6,
+				'min' => 1,
+				'condition' => [
+					'template_id!' => '',
+				],
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_carousel_layout_controls( [
+			'css_prefix' => '',
+			'slides_to_show_custom_settings' => [
+				'default' => '3',
+				'widescreen_default' => '3',
+				'laptop_default' => '3',
+				'tablet_extra_default' => '3',
+				'tablet_default' => '2',
+				'mobile_extra_default' => '2',
+				'mobile_default' => '1',
+				'condition' => [
+					'posts_per_page!' => 1,
+					'template_id!' => '',
+				],
+				'selectors' => [
+					'{{WRAPPER}}' => '--swiper-slides-to-display: {{VALUE}}',
+				],
+			],
+			'slides_to_scroll_custom_settings' => [
+				'default' => '1',
+				'condition' => [
+					'posts_per_page!' => 1,
+					'template_id!' => '',
+				],
+			],
+			'equal_height_custom_settings' => [
+				'condition' => [
+					'posts_per_page!' => 1,
+					'template_id!' => '',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .swiper-slide > .elementor-element' => 'height: 100%',
+				],
+			],
+			'slides_on_display' => 8,
+		] );
+
+		// Location for the Edit handle.
+		$this->add_control(
+			'edit_handle_selector',
+			[
+				'label' => esc_html__( 'Edit Handle Selector', 'elementor-pro' ),
+				'type' => Controls_Manager::HIDDEN,
+				'default' => '.elementor-widget-container',
+				'render_type' => 'none',
+				'frontend_available' => true,
+			]
+		);
+
+		$this->end_injection();
 	}
 }

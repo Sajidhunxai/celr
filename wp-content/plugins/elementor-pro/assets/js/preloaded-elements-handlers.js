@@ -1,5 +1,4 @@
-/*! elementor-pro - v3.10.3 - 29-01-2023 */
-"use strict";
+/*! elementor-pro - v3.15.0 - 09-08-2023 */
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["preloaded-elements-handlers"],{
 
 /***/ "../assets/dev/js/frontend/preloaded-elements-handlers.js":
@@ -8,6 +7,7 @@
   \****************************************************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -29,6 +29,9 @@ var _frontendLegacy15 = _interopRequireDefault(__webpack_require__(/*! modules/t
 var _frontendLegacy16 = _interopRequireDefault(__webpack_require__(/*! modules/theme-elements/assets/js/frontend/frontend-legacy */ "../modules/theme-elements/assets/js/frontend/frontend-legacy.js"));
 var _frontendLegacy17 = _interopRequireDefault(__webpack_require__(/*! modules/woocommerce/assets/js/frontend/frontend-legacy */ "../modules/woocommerce/assets/js/frontend/frontend-legacy.js"));
 var _frontendLegacy18 = _interopRequireDefault(__webpack_require__(/*! modules/loop-builder/assets/js/frontend/frontend-legacy */ "../modules/loop-builder/assets/js/frontend/frontend-legacy.js"));
+var _frontendLegacy19 = _interopRequireDefault(__webpack_require__(/*! modules/mega-menu/assets/js/frontend/frontend-legacy */ "../modules/mega-menu/assets/js/frontend/frontend-legacy.js"));
+var _frontendLegacy20 = _interopRequireDefault(__webpack_require__(/*! modules/nested-carousel/assets/js/frontend/frontend-legacy */ "../modules/nested-carousel/assets/js/frontend/frontend-legacy.js"));
+var _frontendLegacy21 = _interopRequireDefault(__webpack_require__(/*! modules/loop-filter/assets/js/frontend/frontend-legacy */ "../modules/loop-filter/assets/js/frontend/frontend-legacy.js"));
 const extendDefaultHandlers = defaultHandlers => {
   const handlers = {
     animatedText: _frontendLegacy.default,
@@ -48,7 +51,10 @@ const extendDefaultHandlers = defaultHandlers => {
     themeElements: _frontendLegacy16.default,
     woocommerce: _frontendLegacy17.default,
     tableOfContents: _frontendLegacy14.default,
-    loopBuilder: _frontendLegacy18.default
+    loopBuilder: _frontendLegacy18.default,
+    megaMenu: _frontendLegacy19.default,
+    nestedCarousel: _frontendLegacy20.default,
+    taxonomyFilter: _frontendLegacy21.default
   };
   return {
     ...defaultHandlers,
@@ -61,12 +67,216 @@ elementorProFrontend.on('elementor-pro/modules/init:before', () => {
 
 /***/ }),
 
+/***/ "../assets/dev/js/frontend/utils/anchor-link.js":
+/*!******************************************************!*\
+  !*** ../assets/dev/js/frontend/utils/anchor-link.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+class AnchorLinks {
+  followMenuAnchors($anchorLinks, classes) {
+    $anchorLinks.each((index, anchorLink) => {
+      if (location.pathname === anchorLink.pathname && '' !== anchorLink.hash) {
+        this.followMenuAnchor(jQuery(anchorLink), classes);
+      }
+    });
+  }
+  followMenuAnchor($element, classes) {
+    const anchorSelector = $element[0].hash,
+      activeAnchorClass = classes.activeAnchorItem,
+      anchorClass = classes.anchorItem,
+      $targetElement = $element.hasClass(anchorClass) ? $element : $element.closest(`.${anchorClass}`);
+    let offset = -300,
+      $anchor;
+    try {
+      // `decodeURIComponent` for UTF8 characters in the hash.
+      $anchor = jQuery(decodeURIComponent(anchorSelector));
+    } catch (e) {
+      return;
+    }
+    if (!$anchor.length) {
+      return;
+    }
+    if (!$anchor.hasClass('elementor-menu-anchor')) {
+      const halfViewport = jQuery(window).height() / 2;
+      offset = -$anchor.outerHeight() + halfViewport;
+    }
+    elementorFrontend.waypoint($anchor, direction => {
+      if ('down' === direction) {
+        $targetElement.addClass(activeAnchorClass);
+        $element.attr('aria-current', 'location');
+      } else {
+        $targetElement.removeClass(activeAnchorClass);
+        $element.attr('aria-current', '');
+      }
+    }, {
+      offset: '50%',
+      triggerOnce: false
+    });
+    elementorFrontend.waypoint($anchor, direction => {
+      if ('down' === direction) {
+        $targetElement.removeClass(activeAnchorClass);
+        $element.attr('aria-current', '');
+      } else {
+        $targetElement.addClass(activeAnchorClass);
+        $element.attr('aria-current', 'location');
+      }
+    }, {
+      offset,
+      triggerOnce: false
+    });
+  }
+}
+exports["default"] = AnchorLinks;
+
+/***/ }),
+
+/***/ "../assets/dev/js/frontend/utils/flex-horizontal-scroll.js":
+/*!*****************************************************************!*\
+  !*** ../assets/dev/js/frontend/utils/flex-horizontal-scroll.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.changeScrollStatus = changeScrollStatus;
+exports.setHorizontalScrollAlignment = setHorizontalScrollAlignment;
+exports.setHorizontalTitleScrollValues = setHorizontalTitleScrollValues;
+function changeScrollStatus(element, event) {
+  if ('mousedown' === event.type) {
+    element.classList.add('e-scroll');
+    element.dataset.pageX = event.pageX;
+  } else {
+    element.classList.remove('e-scroll', 'e-scroll-active');
+    element.dataset.pageX = '';
+  }
+}
+
+// This function was written using this example https://codepen.io/thenutz/pen/VwYeYEE.
+function setHorizontalTitleScrollValues(element, horizontalScrollStatus, event) {
+  const isActiveScroll = element.classList.contains('e-scroll'),
+    isHorizontalScrollActive = 'enable' === horizontalScrollStatus,
+    headingContentIsWiderThanWrapper = element.scrollWidth > element.clientWidth;
+  if (!isActiveScroll || !isHorizontalScrollActive || !headingContentIsWiderThanWrapper) {
+    return;
+  }
+  event.preventDefault();
+  const previousPositionX = parseFloat(element.dataset.pageX),
+    mouseMoveX = event.pageX - previousPositionX,
+    maximumScrollValue = 5,
+    stepLimit = 20;
+  let toScrollDistanceX = 0;
+  if (stepLimit < mouseMoveX) {
+    toScrollDistanceX = maximumScrollValue;
+  } else if (stepLimit * -1 > mouseMoveX) {
+    toScrollDistanceX = -1 * maximumScrollValue;
+  } else {
+    toScrollDistanceX = mouseMoveX;
+  }
+  element.scrollLeft = element.scrollLeft - toScrollDistanceX;
+  element.classList.add('e-scroll-active');
+}
+function setHorizontalScrollAlignment(_ref) {
+  let {
+    element,
+    direction,
+    justifyCSSVariable,
+    horizontalScrollStatus
+  } = _ref;
+  if (!element) {
+    return;
+  }
+  if (isHorizontalScroll(element, horizontalScrollStatus)) {
+    initialScrollPosition(element, direction, justifyCSSVariable);
+  } else {
+    element.style.setProperty(justifyCSSVariable, '');
+  }
+}
+function isHorizontalScroll(element, horizontalScrollStatus) {
+  return element.clientWidth < getChildrenWidth(element.children) && 'enable' === horizontalScrollStatus;
+}
+function getChildrenWidth(children) {
+  let totalWidth = 0;
+  const parentContainer = children[0].parentNode,
+    computedStyles = getComputedStyle(parentContainer),
+    gap = parseFloat(computedStyles.gap) || 0; // Get the gap value or default to 0 if it's not specified
+
+  for (let i = 0; i < children.length; i++) {
+    totalWidth += children[i].offsetWidth + gap;
+  }
+  return totalWidth;
+}
+function initialScrollPosition(element, direction, justifyCSSVariable) {
+  const isRTL = elementorCommon.config.isRTL;
+  switch (direction) {
+    case 'end':
+      element.style.setProperty(justifyCSSVariable, 'start');
+      element.scrollLeft = isRTL ? -1 * getChildrenWidth(element.children) : getChildrenWidth(element.children);
+      break;
+    default:
+      element.style.setProperty(justifyCSSVariable, 'start');
+      element.scrollLeft = 0;
+  }
+}
+
+/***/ }),
+
+/***/ "../assets/dev/js/frontend/utils/handle-parameter-pollution.js":
+/*!*********************************************************************!*\
+  !*** ../assets/dev/js/frontend/utils/handle-parameter-pollution.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = handleParameterPollution;
+function handleParameterPollution(inputURL) {
+  const urlObject = new URL(inputURL),
+    mainDomain = urlObject.hostname,
+    params = new URLSearchParams(urlObject.search),
+    paramKeysToCheck = ['u']; // Can add more items if we find more problems with other social networks.
+
+  paramKeysToCheck.forEach(key => {
+    const paramValue = params.get(key);
+    if (paramValue) {
+      try {
+        const paramDomain = new URL(paramValue).hostname;
+        if (paramDomain !== mainDomain) {
+          params.delete(key);
+        }
+      } catch (error) {
+        params.delete(key);
+      }
+    }
+  });
+  urlObject.search = params.toString();
+  return urlObject.toString();
+}
+
+/***/ }),
+
 /***/ "../assets/dev/js/frontend/utils/icons/e-icons.js":
 /*!********************************************************!*\
   !*** ../assets/dev/js/frontend/utils/icons/e-icons.js ***!
   \********************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -98,6 +308,7 @@ exports.close = close;
   \********************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -152,12 +363,32 @@ exports["default"] = IconsManager;
 
 /***/ }),
 
+/***/ "../assets/dev/js/frontend/utils/run-element-handlers.js":
+/*!***************************************************************!*\
+  !*** ../assets/dev/js/frontend/utils/run-element-handlers.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = runElementHandlers;
+function runElementHandlers(elements) {
+  [...elements].flatMap(el => [...el.querySelectorAll('.elementor-element')]).forEach(el => elementorFrontend.elementsHandler.runReadyTrigger(el));
+}
+
+/***/ }),
+
 /***/ "../assets/dev/js/frontend/utils/scroll.js":
 /*!*************************************************!*\
   !*** ../assets/dev/js/frontend/utils/scroll.js ***!
   \*************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -178,6 +409,7 @@ exports["default"] = _default;
   \*********************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 /* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
 
 
@@ -224,7 +456,7 @@ function addDocumentHandle(_ref) {
   const handleElement = createHandleElement({
     title,
     onClick: () => onDocumentClick(id, context, onCloseDocument, selector)
-  }, context);
+  }, context, element);
   element.prepend(handleElement);
   if (EDIT_CONTEXT === context) {
     element.dataset.editableElementorDocument = id;
@@ -250,10 +482,11 @@ function hasHandle(element) {
 }
 
 /**
- * @param {Object}   handleProperties
- * @param {string}   handleProperties.title
- * @param {Function} handleProperties.onClick
- * @param {string}   context
+ * @param {Object}      handleProperties
+ * @param {string}      handleProperties.title
+ * @param {Function}    handleProperties.onClick
+ * @param {string}      context
+ * @param {HTMLElement} element
  *
  * @return {HTMLElement} The newly generated Handle element
  */
@@ -262,20 +495,31 @@ function createHandleElement(_ref2, context) {
     title,
     onClick
   } = _ref2;
-  const element = createElement({
+  let element = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  const handleTitle = ['header', 'footer'].includes(element?.dataset.elementorType) ? '%s' : __('Edit %s', 'elementor-pro');
+  const innerElement = createElement({
     tag: 'div',
-    classNames: EDIT_CONTEXT === context ? [EDIT_HANDLE_CLASS_NAME] : [EDIT_HANDLE_CLASS_NAME, SAVE_HANDLE_CLASS_NAME],
+    classNames: [`${EDIT_HANDLE_CLASS_NAME}__inner`],
     children: [createElement({
       tag: 'i',
       classNames: [getHandleIcon(context)]
     }), createElement({
       tag: 'div',
       classNames: [`${EDIT_CONTEXT === context ? EDIT_HANDLE_CLASS_NAME : SAVE_HANDLE_CLASS_NAME}__title`],
-      children: [document.createTextNode(EDIT_CONTEXT === context ? __('Edit %s', 'elementor-pro').replace('%s', title) : __('Save %s', 'elementor-pro').replace('%s', title))]
+      children: [document.createTextNode(EDIT_CONTEXT === context ? handleTitle.replace('%s', title) : __('Save %s', 'elementor-pro').replace('%s', title))]
     })]
   });
-  element.addEventListener('click', onClick);
-  return element;
+  const classNames = [EDIT_HANDLE_CLASS_NAME];
+  if (EDIT_CONTEXT !== context) {
+    classNames.push(SAVE_HANDLE_CLASS_NAME);
+  }
+  const containerElement = createElement({
+    tag: 'div',
+    classNames,
+    children: [innerElement]
+  });
+  containerElement.addEventListener('click', onClick);
+  return containerElement;
 }
 function getHandleIcon(context) {
   let icon = 'eicon-edit';
@@ -344,6 +588,7 @@ async function onDocumentClick(id, context) {
   \**************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -368,6 +613,7 @@ exports["default"] = _default;
   \**************************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -655,6 +901,7 @@ exports["default"] = _default;
   \*****************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -682,6 +929,7 @@ exports["default"] = _default;
   \***************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -934,6 +1182,7 @@ exports["default"] = CarouselBase;
   \*************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -1062,6 +1311,7 @@ exports["default"] = MediaCarousel;
   \*******************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -1098,6 +1348,7 @@ exports["default"] = TestimonialCarousel;
   \******************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -1122,6 +1373,7 @@ exports["default"] = _default;
   \*********************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -1265,6 +1517,7 @@ exports["default"] = _default;
   \**************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -1296,6 +1549,7 @@ exports["default"] = _default;
   \***********************************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -1346,6 +1600,7 @@ exports["default"] = DataTimeFieldBase;
   \*******************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -1377,6 +1632,7 @@ exports["default"] = DateField;
   \*******************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -1407,6 +1663,7 @@ exports["default"] = TimeField;
   \*********************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -1446,6 +1703,7 @@ exports["default"] = _default;
   \*******************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -1573,6 +1831,7 @@ exports["default"] = _default;
   \******************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -2140,6 +2399,7 @@ exports["default"] = FormSteps;
   \*****************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -2237,6 +2497,7 @@ exports["default"] = Recaptcha;
   \****************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -2261,6 +2522,7 @@ exports["default"] = _default;
   \********************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -2388,7 +2650,13 @@ class galleryHandler extends elementorModules.frontend.handlers.Base {
     this.gallery.setSettings('tags', 'all' === id ? [] : ['' + id]);
   }
   bindEvents() {
-    this.elements.$titles.on('click', this.galleriesNavigationListener.bind(this));
+    this.elements.$titles.on('click', this.galleriesNavigationListener.bind(this)).on('keyup', event => {
+      const ENTER_KEY = 13,
+        SPACE_KEY = 32;
+      if (ENTER_KEY === event.keyCode || SPACE_KEY === event.keyCode) {
+        event.currentTarget.click();
+      }
+    });
   }
   galleriesNavigationListener(event) {
     const classes = this.getSettings('classes'),
@@ -2478,6 +2746,7 @@ exports["default"] = galleryHandler;
   \****************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -2502,6 +2771,7 @@ exports["default"] = _default;
   \*****************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -2617,6 +2887,7 @@ exports["default"] = Hotspot;
   \*********************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -2633,8 +2904,6 @@ class _default extends elementorModules.Module {
     ['post', 'product'].forEach(skinName => {
       elementorFrontend.elementsHandler.attachHandler('loop-grid', _loadMore.default, skinName);
       elementorFrontend.elementsHandler.attachHandler('loop-grid', _loop.default, skinName);
-    });
-    ['carousel-post'].forEach(skinName => {
       elementorFrontend.elementsHandler.attachHandler('loop-carousel', _loop.default, skinName);
       elementorFrontend.elementsHandler.attachHandler('loop-carousel', _loopCarousel.default, skinName);
     });
@@ -2650,6 +2919,7 @@ exports["default"] = _default;
   \************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -2658,6 +2928,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _loadMore = _interopRequireDefault(__webpack_require__(/*! modules/posts/assets/js/frontend/handlers/load-more */ "../modules/posts/assets/js/frontend/handlers/load-more.js"));
+var _runElementHandlers = _interopRequireDefault(__webpack_require__(/*! elementor-pro/frontend/utils/run-element-handlers */ "../assets/dev/js/frontend/utils/run-element-handlers.js"));
 class LoopLoadMore extends _loadMore.default {
   getDefaultSettings() {
     const defaultSettings = super.getDefaultSettings();
@@ -2673,10 +2944,7 @@ class LoopLoadMore extends _loadMore.default {
       this.handleLazyloadBackgroundElements();
     }
     this.handleDynamicStyleElements(result);
-    this.runElementHandlers(postsElements);
-  }
-  runElementHandlers(postsElements) {
-    [...postsElements].flatMap(el => [...el.querySelectorAll('.elementor-element')]).forEach(el => elementorFrontend.elementsHandler.runReadyTrigger(el));
+    (0, _runElementHandlers.default)(postsElements);
   }
 
   /**
@@ -2714,6 +2982,8 @@ exports["default"] = LoopLoadMore;
   \****************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -2721,25 +2991,46 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
-var _imageCarousel = _interopRequireDefault(__webpack_require__(/*! elementor/assets/dev/js/frontend/handlers/image-carousel */ "../../elementor/assets/dev/js/frontend/handlers/image-carousel.js"));
-class LoopCarousel extends _imageCarousel.default {
+var _runElementHandlers = _interopRequireDefault(__webpack_require__(/*! elementor-pro/frontend/utils/run-element-handlers */ "../assets/dev/js/frontend/utils/run-element-handlers.js"));
+class LoopCarousel extends elementorModules.frontend.handlers.CarouselBase {
   getDefaultSettings() {
-    return {
-      selectors: {
-        carousel: '.elementor-loop-container',
-        slideContent: '.swiper-slide'
-      }
-    };
+    const defaultSettings = super.getDefaultSettings();
+    defaultSettings.selectors.carousel = '.elementor-loop-container';
+    return defaultSettings;
   }
   getSwiperSettings() {
-    const swiperOptions = super.getSwiperSettings();
-    if ('yes' === this.getElementSettings('arrows')) {
+    const swiperOptions = super.getSwiperSettings(),
+      elementSettings = this.getElementSettings(),
+      isRtl = elementorFrontend.config.is_rtl,
+      widgetSelector = `.elementor-element-${this.getID()}`;
+    if ('yes' === elementSettings.arrows) {
       swiperOptions.navigation = {
-        prevEl: '.elementor-swiper-button-prev',
-        nextEl: '.elementor-swiper-button-next'
+        prevEl: isRtl ? `${widgetSelector} .elementor-swiper-button-next` : `${widgetSelector} .elementor-swiper-button-prev`,
+        nextEl: isRtl ? `${widgetSelector} .elementor-swiper-button-prev` : `${widgetSelector} .elementor-swiper-button-next`
       };
     }
+    swiperOptions.on.beforeInit = () => {
+      this.a11ySetSlidesAriaLabels();
+    };
     return swiperOptions;
+  }
+  async onInit() {
+    super.onInit(...arguments);
+    this.ranElementHandlers = false;
+  }
+  handleElementHandlers() {
+    if (this.ranElementHandlers || !this.swiper) {
+      return;
+    }
+    const newSlides = Array.from(this.swiper.slides).slice(this.swiper.activeIndex - 1, this.swiper.slides.length);
+    (0, _runElementHandlers.default)(newSlides);
+    this.ranElementHandlers = true;
+  }
+  a11ySetSlidesAriaLabels() {
+    const slides = Array.from(this.elements.$slides);
+    slides.forEach((slide, index) => {
+      slide.setAttribute('aria-label', `${parseInt(index + 1)} ${__('of', 'elementor-pro')} ${slides.length}`);
+    });
   }
 }
 exports["default"] = LoopCarousel;
@@ -2752,6 +3043,7 @@ exports["default"] = LoopCarousel;
   \*******************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 /* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
 
 
@@ -2772,6 +3064,7 @@ class Loop extends _posts.default {
     const defaultSettings = super.getDefaultSettings();
     defaultSettings.selectors.post = '.elementor-loop-container .elementor';
     defaultSettings.selectors.postsContainer = '.elementor-loop-container';
+    defaultSettings.classes.inPlaceTemplateEditable = 'elementor-in-place-template-editable';
     return defaultSettings;
   }
 
@@ -2782,30 +3075,59 @@ class Loop extends _posts.default {
    */
   fitImages() {}
   getVerticalSpaceBetween() {
-    return this.getElementSettings(this.getSkinPrefix() + 'row_gap.size');
+    return elementorProFrontend.utils.controls.getResponsiveControlValue(this.getElementSettings(), 'row_gap', 'size');
   }
 
   /**
    * This is a callback that runs when the "Edit Template" document handle is clicked in the Editor.
    */
   onInPlaceEditTemplate() {
-    const templateID = this.getElementSettings('template_id'),
-      elementsToRemove = ['style#loop-' + templateID, 'link#font-loop-' + templateID, 'style#loop-dynamic-' + templateID];
-    elementsToRemove.forEach(elementToRemove => {
+    this.$element.addClass(this.getDefaultSettings().classes.inPlaceTemplateEditable);
+    this.elementsToRemove = [];
+    this.handleSwiper();
+    const templateID = this.getElementSettings('template_id');
+    this.elementsToRemove = [...this.elementsToRemove, 'style#loop-' + templateID, 'link#font-loop-' + templateID, 'style#loop-dynamic-' + templateID];
+    this.elementsToRemove.forEach(elementToRemove => {
       this.$element.find(elementToRemove).remove();
     });
   }
-  attachEditDocumentHandle() {
-    // eslint-disable-next-line computed-property-spacing
-    const element = this.$element.find('[data-elementor-type="loop-item"]').first()[0],
-      id = this.getElementSettings('template_id');
-    if (element && id) {
-      (0, _documentHandle.default)({
-        element,
-        title: __('Template', 'elementor-pro'),
-        id
-      }, _documentHandle.EDIT_CONTEXT, () => this.onInPlaceEditTemplate(), '.elementor-element-' + this.getID() + ' .elementor-' + id);
+  handleSwiper() {
+    const swiper = this.elements.$postsContainer.data('swiper');
+    if (!swiper) {
+      return;
     }
+    swiper.slideTo(0);
+    swiper.autoplay.pause();
+    swiper.allowTouchMove = false;
+    swiper.params.autoplay.delay = 1000000; // Add a long delay so that the Swiper does not move while editing the Template. Even though it was paused, it will start again on mouse leave.
+    swiper.update();
+    this.elementsToRemove = [...this.elementsToRemove, '.swiper-pagination', '.elementor-swiper-button', '.elementor-document-handle'];
+  }
+  attachEditDocumentHandle() {
+    const templateId = this.getElementSettings('template_id');
+    if (!templateId) {
+      return;
+    }
+    const elementSettings = this.getElementSettings(),
+      widgetSelector = `.elementor-element-${this.getID()}`,
+      editHandleSelector = elementSettings?.edit_handle_selector + ('[data-elementor-type="loop-item"]' === elementSettings?.edit_handle_selector ? `.elementor-${templateId}` : ''),
+      editHandleElement = this.$element.find(editHandleSelector).first()[0];
+    if (!editHandleElement) {
+      return;
+    }
+    if (this.isFirstEdit()) {
+      // TODO: refactor when CSS :has() is fully supported.
+      this.$element.find('.elementor-swiper-button').remove();
+      return;
+    }
+    (0, _documentHandle.default)({
+      element: editHandleElement,
+      title: __('Template', 'elementor-pro'),
+      id: templateId
+    }, _documentHandle.EDIT_CONTEXT, () => this.onInPlaceEditTemplate(), `${widgetSelector} .elementor-${templateId}`);
+  }
+  isFirstEdit() {
+    return this.$element.has('.e-loop-first-edit').length;
   }
   handleCTA() {
     const emptyViewContainer = document.querySelector(`[data-id="${this.getID()}"] .e-loop-empty-view__wrapper`);
@@ -2837,8 +3159,518 @@ class Loop extends _posts.default {
       this.handleCTA();
     }
   }
+  onDestroy() {
+    if (elementorCommon.config.experimentalFeatures['taxonomy-filter']) {
+      elementorProFrontend.modules.taxonomyFilter.removeWidgetFromLoopWidgetsStore(this.getID());
+    }
+    super.onDestroy();
+  }
 }
 exports["default"] = Loop;
+
+/***/ }),
+
+/***/ "../modules/loop-filter/assets/js/frontend/frontend-legacy.js":
+/*!********************************************************************!*\
+  !*** ../modules/loop-filter/assets/js/frontend/frontend-legacy.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _taxonomyFilter = _interopRequireDefault(__webpack_require__(/*! ./handlers/taxonomy-filter */ "../modules/loop-filter/assets/js/frontend/handlers/taxonomy-filter.js"));
+var _frontendModuleBase = _interopRequireDefault(__webpack_require__(/*! ./frontend-module-base */ "../modules/loop-filter/assets/js/frontend/frontend-module-base.js"));
+class LoopFilter extends _frontendModuleBase.default {
+  constructor() {
+    super();
+    elementorFrontend.elementsHandler.attachHandler('taxonomy-filter', _taxonomyFilter.default);
+  }
+}
+exports["default"] = LoopFilter;
+
+/***/ }),
+
+/***/ "../modules/loop-filter/assets/js/frontend/frontend-module-base.js":
+/*!*************************************************************************!*\
+  !*** ../modules/loop-filter/assets/js/frontend/frontend-module-base.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _runElementHandlers = _interopRequireDefault(__webpack_require__(/*! elementor-pro/frontend/utils/run-element-handlers */ "../assets/dev/js/frontend/utils/run-element-handlers.js"));
+class BaseFilterFrontendModule extends elementorModules.Module {
+  constructor() {
+    super();
+    this.loopWidgetsStore = {};
+  }
+  removeWidgetFromLoopWidgetsStore(widgetId) {
+    delete this.loopWidgetsStore[widgetId];
+  }
+  addWidgetToLoopWidgetsStore(widgetId) {
+    this.loopWidgetsStore[widgetId] = {
+      filters: {},
+      consolidatedFilters: {}
+    };
+  }
+  removeFilterFromLoopWidget(widgetId, filterId) {
+    if (!this.loopWidgetsStore[widgetId]) {
+      this.addWidgetToLoopWidgetsStore(widgetId);
+    }
+    delete this.loopWidgetsStore[widgetId].filters[filterId];
+    this.refreshLoopWidget(widgetId, filterId);
+  }
+
+  /**
+   * Sets the filter data for a loop widget.
+   *
+   * This function should trigger the following sequence:
+   * 1. Update the filter data for the passed ID in the loopElements object.
+   * 2. Trigger a consolidation of all filters belonging to the passed loop widget ID.
+   *   - This should create an object with filter type keys, and for each type, an object of filter IDs, which contain the filter values.
+   *   - This should also remove duplicates.
+   * 3. Trigger a rerender of the loop widget.
+   *
+   * @param {string}  widgetId
+   * @param {string}  filterId
+   * @param {Object}  filterData
+   * @param {boolean} refresh
+   */
+  setFilterDataForLoopWidget(widgetId, filterId, filterData) {
+    let refresh = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+    if (!this.loopWidgetsStore[widgetId]) {
+      this.addWidgetToLoopWidgetsStore(widgetId);
+    }
+    this.loopWidgetsStore[widgetId].filters[filterId] = filterData;
+    if (refresh) {
+      this.refreshLoopWidget(widgetId, filterId);
+    } else {
+      this.consolidateFiltersForLoopWidget(widgetId);
+    }
+  }
+
+  /**
+   * Consolidates all filters for a loop widget.
+   *
+   * @param {string} widgetId
+   */
+  consolidateFiltersForLoopWidget(widgetId) {
+    const loopWidgetFilters = this.loopWidgetsStore[widgetId].filters;
+    const consolidatedFilters = {};
+    for (const filterId in loopWidgetFilters) {
+      const filter = loopWidgetFilters[filterId],
+        filterType = filter.filterType,
+        filterData = filter.filterData;
+
+      // This part is non-generic. To expand this functionality to other filter types, we'll need to refactor and
+      // generalize this part.
+      if (!consolidatedFilters[filterType]) {
+        consolidatedFilters[filterType] = {};
+      }
+      if (!consolidatedFilters[filterType][filterData.selectedTaxonomy]) {
+        consolidatedFilters[filterType][filterData.selectedTaxonomy] = [];
+      }
+      if (!consolidatedFilters[filterType][filterData.selectedTaxonomy].includes(filterData.term)) {
+        consolidatedFilters[filterType][filterData.selectedTaxonomy].push(filterData.term);
+      }
+    }
+    this.loopWidgetsStore[widgetId].consolidatedFilters = consolidatedFilters;
+  }
+  getQueryStringInObjectForm() {
+    const queryString = {};
+    for (const widgetId in this.loopWidgetsStore) {
+      const loopWidget = this.loopWidgetsStore[widgetId];
+      for (const filterType in loopWidget.consolidatedFilters) {
+        const filterData = loopWidget.consolidatedFilters[filterType];
+        for (const filterName in filterData) {
+          // Add an `e-` prefix to the key to avoid clashes with other query strings.
+          // Filter values are arrays, to support multiple select.
+          queryString[`e-filter-${widgetId}-${filterName}`] = filterData[filterName].join(',');
+        }
+      }
+    }
+    return queryString;
+  }
+  updateURLQueryString(filterId) {
+    const currentUrl = new URL(window.location.href),
+      existingQueryString = currentUrl.searchParams,
+      queryStringObject = this.getQueryStringInObjectForm(),
+      updatedParams = new URLSearchParams(),
+      helpers = this.getFilterHelperAttributes(filterId);
+    existingQueryString.forEach((value, key) => {
+      if (!key.startsWith('e-filter')) {
+        updatedParams.append(key, value);
+      }
+    });
+    for (const key in queryStringObject) {
+      updatedParams.set(key, queryStringObject[key]);
+    }
+    let queryString = updatedParams.toString();
+    if (helpers.pageNum > 1) {
+      queryString = queryString ? this.formatQueryString(helpers.baseUrl, queryString) : helpers.baseUrl;
+    } else {
+      queryString = queryString ? `?${queryString}` : location.pathname;
+    }
+    history.pushState(null, null, queryString);
+  }
+  formatQueryString(baseURL, queryString) {
+    const baseURLParams = baseURL.includes('?') ? new URLSearchParams(baseURL.split('?')[1]) : new URLSearchParams(),
+      inputParams = new URLSearchParams(queryString);
+    for (const param of baseURLParams.keys()) {
+      if (inputParams.has(param)) {
+        inputParams.delete(param);
+      }
+    }
+    const excludedVariables = ['page', 'paged'];
+    for (const excludedVar of excludedVariables) {
+      baseURLParams.delete(excludedVar);
+      inputParams.delete(excludedVar);
+    }
+    const mergedParams = new URLSearchParams(baseURLParams.toString());
+    for (const [param, value] of inputParams.entries()) {
+      mergedParams.append(param, value);
+    }
+    const output = baseURL.split('?')[0] + (mergedParams.toString() ? `?${mergedParams.toString()}` : '');
+    return output;
+  }
+  getFilterHelperAttributes(filterId) {
+    const filterWidget = document.querySelector('[data-id="' + filterId + '"]');
+    if (!filterWidget) {
+      return {
+        baseUrl: location.href,
+        pageNum: 1
+      };
+    }
+    const filterBar = filterWidget.querySelector('.e-filter');
+    return filterBar.dataset;
+  }
+  prepareLoopUpdateRequestData(widgetId, filterId) {
+    const widgetFilters = this.loopWidgetsStore[widgetId].consolidatedFilters,
+      helpers = this.getFilterHelperAttributes(filterId);
+    const data = {
+      post_id: elementorFrontend.config.post.id || this.getClosestDataElementorId(document.querySelector(`.elementor-element-${widgetId}`)),
+      widget_filters: widgetFilters,
+      widget_id: widgetId,
+      pagination_base_url: helpers.baseUrl
+    };
+    if (elementorFrontend.isEditMode()) {
+      // In the editor, we have to support loop widgets that have been created but not saved to the database yet.
+      const widgetContainer = window.top.$e.components.get('document').utils.findContainerById(widgetId);
+      data.widget_model = widgetContainer.model.toJSON({
+        remove: ['default', 'editSettings', 'defaultEditSettings']
+      });
+      data.is_edit_mode = true;
+    }
+    return data;
+  }
+  getClosestDataElementorId(element) {
+    const closestParent = element.closest('[data-elementor-id]');
+    return closestParent ? closestParent.getAttribute('data-elementor-id') : 0;
+  }
+  getFetchArgumentsForLoopUpdate(widgetId, filterId) {
+    const data = this.prepareLoopUpdateRequestData(widgetId, filterId);
+    const args = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
+    if (elementorFrontend.isEditMode() && !!elementorPro.config.loopFilter?.nonce) {
+      args.headers['X-WP-Nonce'] = elementorPro.config.loopFilter?.nonce;
+    }
+    return args;
+  }
+  fetchUpdatedLoopWidgetMarkup(widgetId, filterId) {
+    return fetch(`${elementorProFrontend.config.urls.rest}elementor-pro/v1/refresh-loop`, this.getFetchArgumentsForLoopUpdate(widgetId, filterId));
+  }
+  createElementFromHTMLString(widgetContainerHTMLString) {
+    const div = document.createElement('div');
+    if (!widgetContainerHTMLString) {
+      div.classList.add('elementor-widget-container');
+      return div;
+    }
+    div.innerHTML = widgetContainerHTMLString.trim();
+    return div.firstElementChild;
+  }
+  addLoadingAnimationOverlay(widgetId) {
+    const widget = document.querySelector(`.elementor-element-${widgetId}`);
+    if (!widget) {
+      return;
+    }
+    const loadingAnimationOverlay = document.createElement('div');
+    loadingAnimationOverlay.classList.add('e-loading-overlay');
+    widget.appendChild(loadingAnimationOverlay);
+  }
+  removeLoadingAnimationOverlay(widgetId) {
+    const widget = document.querySelector(`.elementor-element-${widgetId}`);
+    if (!widget) {
+      return;
+    }
+    const loadingAnimationOverlay = widget.querySelector('.e-loading-overlay');
+    if (!loadingAnimationOverlay) {
+      return;
+    }
+    loadingAnimationOverlay.remove();
+  }
+  refreshLoopWidget(widgetId, filterId) {
+    this.consolidateFiltersForLoopWidget(widgetId);
+    this.updateURLQueryString(filterId);
+    const widget = document.querySelector(`.elementor-element-${widgetId}`);
+    if (!widget) {
+      return;
+    }
+    this.addLoadingAnimationOverlay(widgetId);
+    const fetchUpdatedLoopWidgetMarkup = this.fetchUpdatedLoopWidgetMarkup(widgetId, filterId).then(response => {
+      if (!(response instanceof Response) || !response?.ok || 400 <= response?.status) {
+        return {};
+      }
+      return response.json();
+    })
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    .catch(error => {
+      return {};
+    }).then(response => {
+      if (!response?.data && '' !== response?.data) {
+        return;
+      }
+      const existingWidgetContainer = widget.querySelector('.elementor-widget-container'),
+        newWidgetContainer = this.createElementFromHTMLString(response.data);
+      widget.replaceChild(newWidgetContainer, existingWidgetContainer);
+      this.handleElementHandlers(newWidgetContainer);
+      elementorFrontend.elementsHandler.runReadyTrigger(document.querySelector(`.elementor-element-${widgetId}`));
+      widget.classList.remove('e-loading');
+    }).finally(() => {
+      this.removeLoadingAnimationOverlay(widgetId);
+    });
+    return fetchUpdatedLoopWidgetMarkup;
+
+    // TODO: Deal with pagination. Do we need to manually add the query string to the pagination links?
+  }
+
+  handleElementHandlers(newWidgetMarkup) {
+    const loopItems = newWidgetMarkup.querySelectorAll('.e-loop-item');
+    (0, _runElementHandlers.default)(loopItems);
+  }
+}
+exports["default"] = BaseFilterFrontendModule;
+
+/***/ }),
+
+/***/ "../modules/loop-filter/assets/js/frontend/handlers/taxonomy-filter.js":
+/*!*****************************************************************************!*\
+  !*** ../modules/loop-filter/assets/js/frontend/handlers/taxonomy-filter.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _flexHorizontalScroll = __webpack_require__(/*! elementor-pro/frontend/utils/flex-horizontal-scroll */ "../assets/dev/js/frontend/utils/flex-horizontal-scroll.js");
+class TaxonomyFilter extends elementorModules.frontend.handlers.Base {
+  constructor() {
+    super(...arguments);
+    this.resizeListenerNestedTabs = null;
+  }
+  getDefaultSettings() {
+    return {
+      selectors: {
+        item: '.e-filter-item',
+        container: '.e-filter'
+      },
+      filterValues: {
+        default: '__all'
+      }
+    };
+  }
+  getDefaultElements() {
+    return {
+      $filterButtons: this.$element.find(this.getSettings('selectors.item')),
+      $container: this.$element.find(this.getSettings('selectors.container'))
+    };
+  }
+  getHeadingEvents(event) {
+    const container = this.elements.$container[0];
+    return {
+      mousedown: _flexHorizontalScroll.changeScrollStatus.bind(this, container),
+      mouseup: _flexHorizontalScroll.changeScrollStatus.bind(this, container),
+      mouseleave: _flexHorizontalScroll.changeScrollStatus.bind(this, container),
+      mousemove: _flexHorizontalScroll.setHorizontalTitleScrollValues.bind(this, container, this.getHorizontalScrollSetting())
+    };
+  }
+  bindEvents() {
+    this.elements.$filterButtons.on('click', this.onFilterButtonClick.bind(this));
+    this.elements.$container.on(this.getHeadingEvents());
+    const settingsObject = {
+      element: this.elements.$container[0],
+      direction: this.getItemsAlignment(),
+      justifyCSSVariable: '--e-filter-justify-content',
+      horizontalScrollStatus: this.getHorizontalScrollSetting()
+    };
+    this.resizeListenerNestedTabs = _flexHorizontalScroll.setHorizontalScrollAlignment.bind(this, settingsObject);
+    elementorFrontend.elements.$window.on('resize', this.resizeListenerNestedTabs);
+  }
+  onElementChange(propertyName) {
+    if (this.checkSliderPropsToWatch(propertyName)) {
+      const settingsObject = {
+        element: this.elements.$container[0],
+        direction: this.getItemsAlignment(),
+        justifyCSSVariable: '--e-filter-justify-content',
+        horizontalScrollStatus: this.getHorizontalScrollSetting()
+      };
+      (0, _flexHorizontalScroll.setHorizontalScrollAlignment)(settingsObject);
+    }
+  }
+  checkSliderPropsToWatch(propertyName) {
+    return 0 === propertyName.indexOf('horizontal_scroll') || 0 === propertyName.indexOf('item_alignment_horizontal');
+  }
+
+  /**
+   * Get the filter buttons elements.
+   *
+   * If the filter buttons weren't rendered when the handler was initialized, this method will cache the filter
+   * button elements and add the necessary event listeners.
+   *
+   * @return {*} jQuery collection of filter button elements. Might be empty.
+   */
+  getFilterButtonElements() {
+    if (this.elements?.$filterButtons.length) {
+      return this.elements.$filterButtons;
+    }
+    this.elements = this.getDefaultElements();
+    this.bindEvents();
+    return this.elements.$filterButtons;
+  }
+  activateFilterButton(selectedTermSlug) {
+    const $filterButtons = this.getFilterButtonElements();
+    if (!$filterButtons.length) {
+      return;
+    }
+    const $activeButton = $filterButtons.filter('[data-filter="' + selectedTermSlug + '"]');
+    $filterButtons.attr('aria-pressed', false);
+    $activeButton.attr('aria-pressed', true);
+  }
+  deactivateFilterButton(clickedFilter) {
+    const $filterButtons = this.getFilterButtonElements();
+    if (!$filterButtons.length) {
+      return;
+    }
+    const $activeButton = $filterButtons.filter('[data-filter="' + clickedFilter + '"]'),
+      $defaultButton = $filterButtons.filter('[data-filter="' + this.getSettings('filterValues.default') + '"]');
+    $activeButton.attr('aria-pressed', false);
+    $defaultButton.attr('aria-pressed', true);
+    elementorProFrontend.modules.taxonomyFilter.removeFilterFromLoopWidget(this.getElementSettings('selected_element'), this.getID());
+  }
+  getCurrentlyActiveFilter() {
+    const filterButtons = this.getFilterButtonElements(),
+      $activeButton = filterButtons.filter('[aria-pressed=true]');
+    if (!$activeButton.length) {
+      return this.getSettings('filterValues.default');
+    }
+    return $activeButton.data('filter');
+  }
+  filterItems(selectedTermSlug) {
+    const elementSettings = this.getElementSettings();
+    if (this.getSettings('filterValues.default') === selectedTermSlug) {
+      elementorProFrontend.modules.taxonomyFilter.removeFilterFromLoopWidget(elementSettings.selected_element, this.getID());
+      return;
+    }
+    elementorProFrontend.modules.taxonomyFilter.setFilterDataForLoopWidget(elementSettings.selected_element, this.getID(), {
+      filterType: 'taxonomy',
+      filterData: {
+        selectedTaxonomy: elementSettings.taxonomy,
+        term: selectedTermSlug
+      }
+    });
+  }
+  setFilter() {
+    let filter = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.getSettings('filterValues.default');
+    this.filterItems(filter);
+    this.activateFilterButton(filter);
+  }
+  onFilterButtonClick(event) {
+    this.removePaginationHiddenClassOnLoopWidgetContainer();
+    const currentlyActiveFilter = this.getCurrentlyActiveFilter(),
+      clickedFilter = event.currentTarget.dataset.filter;
+    if (this.userClickedOnAllWhileItWasActive(clickedFilter, currentlyActiveFilter)) {
+      return;
+    }
+    if (clickedFilter === currentlyActiveFilter) {
+      this.deactivateFilterButton(clickedFilter);
+      return;
+    }
+    this.setFilter(clickedFilter);
+  }
+  removePaginationHiddenClassOnLoopWidgetContainer() {
+    const elementSettings = this.getElementSettings();
+    const loopWidget = document.querySelector('.elementor-element-' + elementSettings.selected_element);
+    if (loopWidget) {
+      loopWidget.classList.remove('e-load-more-pagination-end');
+    }
+  }
+  userClickedOnAllWhileItWasActive(clickedFilter, currentlyActiveFilter) {
+    return clickedFilter === currentlyActiveFilter && clickedFilter === this.getSettings('filterValues.default');
+  }
+  onDestroy() {
+    const selectedElementId = this.getElementSettings('selected_element'),
+      selectedTaxonomy = this.getElementSettings('taxonomy'),
+      filterId = this.getID();
+    if (selectedElementId && selectedTaxonomy) {
+      elementorProFrontend.modules.taxonomyFilter.removeFilterFromLoopWidget(selectedElementId, filterId);
+    }
+    super.onDestroy();
+  }
+  populateLoopWidgetStoreOnInitialPageLoad() {
+    const elementSettings = this.getElementSettings();
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedTermSlug = urlParams.get('e-filter-' + elementSettings.selected_element + '-' + elementSettings.taxonomy);
+    if (selectedTermSlug) {
+      elementorProFrontend.modules.taxonomyFilter.setFilterDataForLoopWidget(elementSettings.selected_element, this.getID(), {
+        filterType: 'taxonomy',
+        filterData: {
+          selectedTaxonomy: elementSettings.taxonomy,
+          term: selectedTermSlug
+        }
+      }, false);
+    }
+  }
+  onInit() {
+    super.onInit();
+    this.populateLoopWidgetStoreOnInitialPageLoad();
+    const settingsObject = {
+      element: this.elements.$container[0],
+      direction: this.getItemsAlignment(),
+      justifyCSSVariable: '--e-filter-justify-content',
+      horizontalScrollStatus: this.getHorizontalScrollSetting()
+    };
+    (0, _flexHorizontalScroll.setHorizontalScrollAlignment)(settingsObject);
+  }
+  getHorizontalScrollSetting() {
+    const currentDevice = elementorFrontend.getCurrentDeviceMode();
+    return elementorFrontend.utils.controls.getResponsiveControlValue(this.getElementSettings(), 'horizontal_scroll', '', currentDevice);
+  }
+  getItemsAlignment() {
+    const currentDevice = elementorFrontend.getCurrentDeviceMode();
+    return elementorFrontend.utils.controls.getResponsiveControlValue(this.getElementSettings(), 'item_alignment_horizontal', '', currentDevice);
+  }
+}
+exports["default"] = TaxonomyFilter;
 
 /***/ }),
 
@@ -2848,6 +3680,7 @@ exports["default"] = Loop;
   \***************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -2872,6 +3705,7 @@ exports["default"] = _default;
   \*******************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -2903,7 +3737,8 @@ class lottieHandler extends elementorModules.frontend.handlers.Base {
       $animation: this.$element.find(selectors.animation),
       $caption: this.$element.find(selectors.caption),
       $sectionParent: this.$element.closest('.elementor-section'),
-      $columnParent: this.$element.closest('.elementor-column')
+      $columnParent: this.$element.closest('.elementor-column'),
+      $containerParent: this.$element.closest('.e-con')
     };
   }
   onInit() {
@@ -3294,10 +4129,13 @@ class lottieHandler extends elementorModules.frontend.handlers.Base {
   }
   getHoverAreaElement() {
     const lottieSettings = this.getLottieSettings();
-    if ('section' === lottieSettings.hover_area) {
-      return this.elements.$sectionParent;
-    } else if ('column' === lottieSettings.hover_area) {
-      return this.elements.$columnParent;
+    switch (lottieSettings.hover_area) {
+      case 'section':
+        return this.elements.$sectionParent;
+      case 'column':
+        return this.elements.$columnParent;
+      case 'container':
+        return this.elements.$containerParent;
     }
     return this.elements.$container;
   }
@@ -3518,12 +4356,579 @@ exports["default"] = lottieHandler;
 
 /***/ }),
 
+/***/ "../modules/mega-menu/assets/js/frontend/frontend-legacy.js":
+/*!******************************************************************!*\
+  !*** ../modules/mega-menu/assets/js/frontend/frontend-legacy.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _megaMenu = _interopRequireDefault(__webpack_require__(/*! ./handlers/mega-menu */ "../modules/mega-menu/assets/js/frontend/handlers/mega-menu.js"));
+var _stretchMenuItemContent = _interopRequireDefault(__webpack_require__(/*! ./handlers/stretch-menu-item-content */ "../modules/mega-menu/assets/js/frontend/handlers/stretch-menu-item-content.js"));
+class _default extends elementorModules.Module {
+  constructor() {
+    super();
+    elementorFrontend.elementsHandler.attachHandler('mega-menu', [_megaMenu.default, _stretchMenuItemContent.default]);
+  }
+}
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/mega-menu/assets/js/frontend/handlers/mega-menu.js":
+/*!*********************************************************************!*\
+  !*** ../modules/mega-menu/assets/js/frontend/handlers/mega-menu.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _utils = __webpack_require__(/*! ../utils */ "../modules/mega-menu/assets/js/frontend/utils.js");
+var _anchorLink = _interopRequireDefault(__webpack_require__(/*! ../../../../../../assets/dev/js/frontend/utils/anchor-link */ "../assets/dev/js/frontend/utils/anchor-link.js"));
+class MegaMenu extends elementorModules.frontend.handlers.NestedTabs {
+  constructor() {
+    super(...arguments);
+    if (elementorFrontend.isEditMode()) {
+      this.lifecycleChangeListener = null;
+    }
+    this.resizeListener = null;
+  }
+  getDefaultSettings() {
+    const settings = super.getDefaultSettings();
+    settings.selectors.menuContainer = '.e-n-menu';
+    settings.selectors.tabTitle = '.e-n-menu-item-title';
+    settings.selectors.desktopTabTitle = '.e-n-menu-items-heading .e-n-menu-item-title';
+    settings.selectors.mobileTabTitle = '.e-n-menu-items-content .e-n-menu-item-title';
+    settings.selectors.headingContainer = '.e-n-menu-items-heading';
+    settings.autoExpand = false;
+    settings.autoFocus = false;
+    settings.selectors.dropdownMenuToggle = '.e-n-menu-toggle';
+    settings.selectors.menuContent = '.e-n-menu-items-content';
+    settings.selectors.contentContainer = '.e-n-menu-items-content .e-con';
+    settings.selectors.anchorLink = '.e-anchor a';
+    settings.classes.anchorItem = 'e-anchor';
+    settings.classes.activeAnchorItem = 'e-current';
+    return settings;
+  }
+  getDefaultElements() {
+    const elements = super.getDefaultElements(),
+      selectors = this.getSettings('selectors');
+    elements.$menuContainer = this.$element.find(selectors.menuContainer);
+    elements.$dropdownMenuToggle = this.$element.find(selectors.dropdownMenuToggle);
+    elements.$menuContent = this.$element.find(selectors.menuContent);
+    elements.$headingContainer = this.$element.find(selectors.headingContainer);
+    elements.$desktopTabTitles = this.$element.find(selectors.desktopTabTitle);
+    elements.$mobileTabTitles = this.$element.find(selectors.mobileTabTitle);
+    elements.$contentContainers = this.$element.find(selectors.contentContainer);
+    elements.$anchorLink = this.$element.find(selectors.anchorLink);
+    return elements;
+  }
+  dropdownMenuHeightControllerConfig() {
+    const selectors = this.getSettings('selectors');
+    return {
+      elements: {
+        $element: this.$element,
+        $dropdownMenuContainer: this.$element.find(selectors.menuContent),
+        $menuToggle: this.$element.find(selectors.dropdownMenuToggle)
+      },
+      classes: {
+        menuToggleActiveClass: 'e-active'
+      },
+      settings: {
+        dropdownMenuContainerMaxHeight: 'auto',
+        menuHeightCssVarName: '--n-menu-dropdown-content-box-height'
+      }
+    };
+  }
+  handleContentContainerPosition() {
+    let $contentContainer = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    this.resetContentContainersPosition();
+
+    // If no container is passed as an argument, check if there is an active container.
+    $contentContainer = $contentContainer || this.elements.$contentContainers.filter('.e-active');
+    if (!$contentContainer.length) {
+      return;
+    }
+    this.setContentContainerAbsolutePosition($contentContainer);
+  }
+  setContentContainerAbsolutePosition($contentContainer) {
+    const elementSettings = this.getElementSettings(),
+      isFitToContent = 'fit_to_content' === elementSettings.content_width;
+    if ((0, _utils.isMenuInDropdownMode)(elementSettings)) {
+      return;
+    }
+    if (isFitToContent) {
+      const direction = elementorFrontend.config.is_rtl ? 'right' : 'left',
+        menuItemContainerOffset = 0 < this.getMenuItemContainerAbsolutePosition($contentContainer) ? this.getMenuItemContainerAbsolutePosition($contentContainer) : 0;
+      $contentContainer.css(direction, menuItemContainerOffset);
+    }
+    const headingsHeight = this.elements.$headingContainer[0].getBoundingClientRect().height;
+    if (this.shouldPositionContentAbove($contentContainer, headingsHeight)) {
+      const contentContainerBoundingBox = $contentContainer[0].getBoundingClientRect();
+      $contentContainer.css({
+        width: isFitToContent ? 'max-content' : '',
+        'max-width': contentContainerBoundingBox.width
+      });
+      this.elements.$menuContent.addClass('content-above');
+    }
+  }
+  getMenuItemContainerAbsolutePosition($contentContainer) {
+    const tabIndex = $contentContainer.data('content'),
+      $titleEl = this.elements.$tabTitles.filter(this.getTabTitleFilterSelector(tabIndex))[0],
+      titleBoundingBox = $titleEl.getBoundingClientRect(),
+      contentContainerWidth = $contentContainer[0].clientWidth;
+    let menuItemContainerOffset = null;
+    switch (this.getElementSettings('content_horizontal_position')) {
+      case 'left':
+        menuItemContainerOffset = this.getLeftDirectionContainerOffset(contentContainerWidth, titleBoundingBox);
+        break;
+      case 'right':
+        menuItemContainerOffset = this.getRightDirectionContainerOffset(contentContainerWidth, titleBoundingBox);
+        break;
+      default:
+        menuItemContainerOffset = this.getCenteredContainerOffset(contentContainerWidth, titleBoundingBox);
+    }
+    return menuItemContainerOffset;
+  }
+  getCenteredContainerOffset(contentContainerWidth, titleBoundingBox) {
+    const menuItemContentContainerHalfWidth = contentContainerWidth / 2,
+      bodyWidth = elementorFrontend.elements.$body[0].clientWidth;
+    let titleMiddleOffset = this.adjustForScrollbarIfNeeded(titleBoundingBox.left + titleBoundingBox.width / 2);
+    if (elementorFrontend.config.is_rtl) {
+      titleMiddleOffset = bodyWidth - titleMiddleOffset;
+    }
+    let offset = titleMiddleOffset - menuItemContentContainerHalfWidth;
+    if (titleMiddleOffset + menuItemContentContainerHalfWidth > bodyWidth) {
+      offset = bodyWidth - contentContainerWidth;
+    } else if (menuItemContentContainerHalfWidth > titleMiddleOffset) {
+      offset = 0;
+    }
+    return offset;
+  }
+  getLeftDirectionContainerOffset(contentContainerWidth, titleBoundingBox) {
+    return elementorFrontend.config.is_rtl ? this.getRtlLeftDirectionContainerOffset(contentContainerWidth, titleBoundingBox) : this.getLtrLeftDirectionContainerOffset(contentContainerWidth, titleBoundingBox);
+  }
+  getRtlLeftDirectionContainerOffset(contentContainerWidth, titleBoundingBox) {
+    const bodyWidth = elementorFrontend.elements.$body[0].clientWidth,
+      titleLeftOffset = this.adjustForScrollbarIfNeeded(titleBoundingBox.left);
+    let offset = bodyWidth - titleLeftOffset - contentContainerWidth;
+
+    // If the content container doesn't fit in the viewport, align its right edge with the viewport's right edge.
+    if (-offset + contentContainerWidth > bodyWidth) {
+      offset = 0;
+    }
+    return offset;
+  }
+  getLtrLeftDirectionContainerOffset(contentContainerWidth, titleBoundingBox) {
+    let offset = this.adjustForScrollbarIfNeeded(titleBoundingBox.left);
+    offset = this.adjustStartOffsetToViewport(offset, contentContainerWidth);
+    return offset;
+  }
+  getRightDirectionContainerOffset(contentContainerWidth, titleBoundingBox) {
+    return elementorFrontend.config.is_rtl ? this.getRtlRightDirectionContainerOffset(contentContainerWidth, titleBoundingBox) : this.getLtrRightDirectionContainerOffset(contentContainerWidth, titleBoundingBox);
+  }
+  getRtlRightDirectionContainerOffset(contentContainerWidth, titleBoundingBox) {
+    const bodyWidth = elementorFrontend.elements.$body[0].clientWidth;
+    let offset = bodyWidth - this.adjustForScrollbarIfNeeded(titleBoundingBox.right);
+    offset = this.adjustStartOffsetToViewport(offset, contentContainerWidth);
+    return offset;
+  }
+
+  /**
+   * If the content container doesn't fit in the viewport, align its right edge with the viewport's right edge.
+   *
+   * @param {number} offset
+   * @param {number} contentContainerWidth
+   */
+  adjustStartOffsetToViewport(offset, contentContainerWidth) {
+    const bodyWidth = elementorFrontend.elements.$body[0].clientWidth;
+    if (offset + contentContainerWidth > bodyWidth) {
+      offset = bodyWidth - contentContainerWidth;
+    }
+    return offset;
+  }
+  getLtrRightDirectionContainerOffset(contentContainerWidth, titleBoundingBox) {
+    return contentContainerWidth > titleBoundingBox.right ? 0 : titleBoundingBox.right - contentContainerWidth;
+  }
+  adjustForScrollbarIfNeeded(offset) {
+    if (elementorFrontend.config.is_rtl && elementorFrontend.isEditMode()) {
+      const scrollbarWidth = window.innerWidth - elementorFrontend.elements.$body[0].clientWidth;
+      offset -= scrollbarWidth;
+    }
+    return offset;
+  }
+  getMenuContainerOffset() {
+    const menuContainerBoundingBox = this.elements.$menuContainer[0].getBoundingClientRect();
+    return elementorFrontend.config.is_rtl ? this.getMenuContainerOffsetRtl(menuContainerBoundingBox) : menuContainerBoundingBox.left;
+  }
+  getMenuContainerOffsetRtl(menuContainerBoundingBox) {
+    const bodyWidth = elementorFrontend.elements.$body[0].clientWidth;
+    let menuContainerOffset = bodyWidth - menuContainerBoundingBox.right;
+    if (elementorFrontend.isEditMode()) {
+      // In RTL mode, the editor's scrollbar is on the left side, so we need to add its width to the offset.
+      const scrollbarWidth = window.innerWidth - bodyWidth;
+      menuContainerOffset += scrollbarWidth;
+    }
+    return menuContainerOffset;
+  }
+  resetContentContainersPosition() {
+    this.elements.$contentContainers.css({
+      left: '',
+      right: '',
+      bottom: '',
+      position: 'var(--position)',
+      'max-width': '',
+      width: 'var(--width)'
+    });
+    this.elements.$menuContent.removeClass('content-above');
+  }
+  getTabContentFilterSelector(tabIndex) {
+    return `[data-content="${tabIndex}"]`;
+  }
+  activateTab(tabIndex) {
+    const settings = this.getSettings(),
+      activeClass = settings.classes.active,
+      containerClass = settings.selectors.tabContent,
+      $requestedTitle = this.elements.$tabTitles.filter(this.getTabTitleFilterSelector(tabIndex)),
+      animationDuration = 'show' === settings.showTabFn ? 0 : 400,
+      $requestedContent = this.elements.$tabContents.filter(this.getTabContentFilterSelector(tabIndex));
+    this.addAnimationToContentIfNeeded(tabIndex);
+    if ($requestedContent.hasClass(containerClass.replace('.', ''))) {
+      $requestedContent[settings.showTabFn](animationDuration, () => this.onShowTabContent($requestedContent));
+      $requestedTitle.add($requestedContent).addClass(activeClass);
+      $requestedContent.css({
+        display: 'var(--display)'
+      });
+      $requestedContent.removeAttr('hidden display');
+      if (elementorFrontend.isEditMode()) {
+        this.activeContainerWidthListener($requestedContent);
+      }
+    }
+  }
+  deactivateActiveTab(tabIndex) {
+    const settings = this.getSettings(),
+      activeClass = settings.classes.active,
+      activeContentFilter = tabIndex ? this.getTabContentFilterSelector(tabIndex) : '.' + activeClass,
+      $activeContent = this.elements.$tabContents.filter(activeContentFilter);
+    super.deactivateActiveTab(tabIndex);
+    this.removeAnimationFromContentIfNeeded();
+    if (elementorFrontend.isEditMode() && !!$activeContent.length) {
+      this.observedContainer?.unobserve($activeContent[0]);
+    }
+  }
+  shouldPositionContentAbove($contentContainer) {
+    let offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    const contentDimensions = $contentContainer[0].getBoundingClientRect();
+    return this.isContentShorterThanItsTopOffset(contentDimensions, offset) && this.isContentTallerThanItsBottomOffset(contentDimensions);
+  }
+  isContentShorterThanItsTopOffset(contentDimensions, offset) {
+    return contentDimensions.height < contentDimensions.top - offset;
+  }
+  isContentTallerThanItsBottomOffset(contentDimensions) {
+    return window.innerHeight - contentDimensions.top < contentDimensions.height;
+  }
+  onShowTabContent($requestedContent) {
+    this.handleContentContainerPosition($requestedContent);
+    super.onShowTabContent($requestedContent);
+  }
+  onHideTabContent() {
+    if (this.elements.$menuContent.hasClass('content-above')) {
+      this.resetContentContainersPosition();
+    }
+  }
+  changeActiveTab(tabIndex) {
+    let fromUser = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+    const isActiveTab = this.isActiveTab(tabIndex);
+    this.deactivateActiveTab();
+    if (!isActiveTab || isActiveTab && !fromUser) {
+      this.activateTab(tabIndex);
+    }
+  }
+  onTabClick(event) {
+    if (event.currentTarget.classList.contains('link-only')) {
+      return;
+    }
+    this.changeActiveTab(event.currentTarget.getAttribute('data-tab'), true);
+  }
+  bindEvents() {
+    this.elements.$desktopTabTitles.on(this.getDesktopTabEvents());
+    this.elements.$mobileTabTitles.on(this.getTabEvents());
+    this.elements.$dropdownMenuToggle.on('click', this.onClickToggleDropdownMenu.bind(this));
+    this.elements.$tabContents.on(this.getContentEvents());
+    this.elements.$menuContent.on(this.getContentEvents());
+    elementorFrontend.addListenerOnce(this.getModelCID(), 'scroll', elementorFrontend.debounce(this.menuHeightController.reassignMobileMenuHeight.bind(this.menuHeightController), 250));
+    elementorFrontend.elements.$window.on('elementor/nested-tabs/activate', this.reInitSwipers);
+    this.resizeListener = this.handleContentContainerPosition.bind(this);
+    elementorFrontend.elements.$window.on('resize', this.resizeListener);
+    if (elementorFrontend.isEditMode()) {
+      this.addChildLifeCycleEventListeners();
+    }
+  }
+
+  /**
+   * Add Child Lifecycle Event Listeners
+   *
+   * This method adds event listeners for the elementor/editor/element-rendered and elementor/editor/element-destroyed
+   * events. These events are fired when an element is rendered or destroyed in the editor. The callback functions
+   * check if the rendered/destroyed element is nested in this mega-menu instance, and if it is, triggeres the
+   * recalculation of the mega-menu's content containers position.
+   */
+  addChildLifeCycleEventListeners() {
+    this.lifecycleChangeListener = this.handleContentContainerChildrenChanges.bind(this);
+    window.addEventListener('elementor/editor/element-rendered', this.lifecycleChangeListener);
+    window.addEventListener('elementor/editor/element-destroyed', this.lifecycleChangeListener);
+  }
+  removeChildLifeCycleEventListeners() {
+    window.removeEventListener('elementor/editor/element-rendered', this.lifecycleChangeListener);
+    window.removeEventListener('elementor/editor/element-destroyed', this.lifecycleChangeListener);
+  }
+  unbindEvents() {
+    this.elements.$desktopTabTitles.off();
+    this.elements.$mobileTabTitles.off();
+    this.elements.$menuContent.off();
+    this.elements.$tabContents.off();
+    elementorFrontend.elements.$window.off('resize', this.resizeListener);
+    if (elementorFrontend.isEditMode()) {
+      this.removeChildLifeCycleEventListeners();
+    }
+  }
+  handleContentContainerChildrenChanges(event) {
+    if (!this.isNestedElementRenderedInContentContainer(event.detail.elementView)) {
+      return;
+    }
+    this.handleContentContainerPosition();
+  }
+  isNestedElementRenderedInContentContainer(elementView) {
+    const elementContainer = elementView?.getContainer();
+    if (!elementContainer) {
+      return false;
+    }
+    const elementAncestors = elementContainer.getParentAncestry();
+    return elementAncestors.some(parent => this.getID() === parent.model.get('id'));
+  }
+  getDesktopTabEvents() {
+    const tabEvents = this.getTabEvents();
+    return this.isNeedToOpenOnClick() ? tabEvents : this.replaceClickWithHover(tabEvents);
+  }
+  getContentEvents() {
+    return this.isNeedToOpenOnClick() ? {} : {
+      mouseleave: this.onMouseLeave.bind(this)
+    };
+  }
+  isNeedToOpenOnClick() {
+    const elementSettings = this.getElementSettings();
+    return this.isEdit || this.isMobileDevice() || 'hover' !== elementSettings.open_on || 'dropdown' === elementSettings.item_layout;
+  }
+  isMobileDevice() {
+    const mobileDevices = ['mobile', 'mobile_extra', 'tablet', 'tablet_extra'];
+    return mobileDevices.includes(elementorFrontend.getCurrentDeviceMode());
+  }
+  replaceClickWithHover(tabEvents) {
+    delete tabEvents.click;
+    tabEvents.mouseenter = this.onMouseTitleEnter.bind(this);
+    tabEvents.mouseleave = this.onMouseLeave.bind(this);
+    return tabEvents;
+  }
+  onMouseTitleEnter(event) {
+    event.preventDefault();
+    const isActiveTabTitle = event.currentTarget.classList.contains(this.getActiveClass());
+    if (isActiveTabTitle) {
+      return;
+    }
+    this.changeActiveTab(event.currentTarget.getAttribute('data-tab'), true);
+  }
+  onClickToggleDropdownMenu(show) {
+    const settings = this.getSettings(),
+      activeClass = settings.classes.active,
+      isDropdownVisible = this.elements.$dropdownMenuToggle.hasClass(activeClass);
+    if ('boolean' !== typeof show) {
+      show = !isDropdownVisible;
+    }
+    this.elements.$dropdownMenuToggle.toggleClass(activeClass, show);
+    this.elements.$menuContent.toggleClass(activeClass, show);
+    elementorFrontend.utils.events.dispatch(window, 'elementor-pro/mega-menu/dropdown-open');
+    this.menuHeightController.reassignMobileMenuHeight();
+  }
+  addAnimationToContentIfNeeded(tabIndex) {
+    const openAnimation = this.getElementSettings('open_animation');
+    if ('none' === openAnimation) {
+      return;
+    }
+    const $requestedContent = this.elements.$tabContents.filter(this.getTabContentFilterSelector(tabIndex));
+    $requestedContent.addClass(`animated ${openAnimation}`);
+  }
+  removeAnimationFromContentIfNeeded() {
+    const openAnimation = this.getElementSettings('open_animation');
+    if ('none' === openAnimation) {
+      return;
+    }
+    this.elements.$tabContents.removeClass(`animated ${openAnimation}`);
+  }
+  isHoveredDropdownMenu(isMouseLeavingTabContent) {
+    const settings = this.getSettings(),
+      $widget = this.$element,
+      isMenuContentHover = 0 < $widget.find(`${settings.selectors.menuContent}:hover`).length,
+      isTabContentHover = 0 < $widget.find(`${settings.selectors.tabContent}:hover`).length;
+    return isTabContentHover || !isMouseLeavingTabContent && isMenuContentHover;
+  }
+  onMouseLeave(event) {
+    event.preventDefault();
+    const isMouseLeavingTabContent = event.currentTarget.classList.contains('e-con');
+    if (this.isHoveredDropdownMenu(isMouseLeavingTabContent)) {
+      return;
+    }
+    this.deactivateActiveTab();
+  }
+  createMobileTabs() {
+    const settings = this.getSettings();
+    if (elementorFrontend.isEditMode()) {
+      let index = 1;
+      const $widget = this.$element,
+        $contentAreaContainer = this.findElement('.e-n-menu-items-content');
+      this.findElement('.e-n-menu-items-heading > .e-n-menu-item-title').each(function () {
+        const $desktopTabTitle = $widget.find(`${settings.selectors.headingContainer} > *:nth-child( ${index})`).clone(),
+          $mobileTitleHTML = $desktopTabTitle.removeClass('e-normal').addClass('e-collapse');
+
+        // Avoid any possible duplication.
+        if ($widget.find(`#${$mobileTitleHTML[0].id}.e-collapse`).length > 0) {
+          return;
+        }
+        $contentAreaContainer.append($mobileTitleHTML);
+        const $currentContainer = $widget.find(`.e-con[data-content="${index}"]`);
+        if ($currentContainer[0]) {
+          $currentContainer.insertAfter($widget.find(`.e-n-menu-items-content > .e-collapse[data-tab="${index}"]`));
+        }
+        index++;
+      });
+    }
+  }
+  onInit() {
+    this.menuHeightController = new elementorProFrontend.utils.DropdownMenuHeightController(this.dropdownMenuHeightControllerConfig());
+    super.onInit(...arguments);
+    if (!elementorFrontend.isEditMode()) {
+      const classes = this.getSettings('classes');
+      this.anchorLinks = new _anchorLink.default();
+      this.anchorLinks.followMenuAnchors(this.elements.$anchorLink, classes);
+    }
+  }
+  getPropsThatTriggerContentPositionCalculations() {
+    return ['content_horizontal_position', 'content_position', 'item_position_horizontal', 'content_width', 'item_layout'];
+  }
+  activeContainerWidthListener($activeContainer) {
+    let previousWidth = 0;
+    this.observedContainer = new ResizeObserver(activeContainer => {
+      const currentWidth = activeContainer[0].borderBoxSize?.[0].inlineSize;
+      if (!!currentWidth && currentWidth !== previousWidth) {
+        previousWidth = currentWidth;
+        if (0 !== previousWidth) {
+          this.handleContentContainerPosition();
+        }
+      }
+    });
+    this.observedContainer.observe($activeContainer[0]);
+  }
+  onElementChange(propertyName) {
+    if (this.getPropsThatTriggerContentPositionCalculations().includes(propertyName)) {
+      this.handleContentContainerPosition();
+    }
+  }
+  onEditSettingsChange(propertyName, value) {
+    const settings = this.getSettings();
+    if (settings.autoFocus) {
+      super.onEditSettingsChange(propertyName, value);
+    }
+  }
+}
+exports["default"] = MegaMenu;
+
+/***/ }),
+
+/***/ "../modules/mega-menu/assets/js/frontend/handlers/stretch-menu-item-content.js":
+/*!*************************************************************************************!*\
+  !*** ../modules/mega-menu/assets/js/frontend/handlers/stretch-menu-item-content.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+class StretchedMenuItemContent extends elementorModules.frontend.handlers.StretchedElement {
+  getStretchedClass() {
+    return 'elementor-widget-n-menu';
+  }
+  getStretchElementForConfig() {
+    return this.$element.find('.e-n-menu-items-content');
+  }
+  bindEvents() {
+    super.bindEvents();
+    elementorFrontend.addListenerOnce(this.getUniqueHandlerID(), 'elementor-pro/mega-menu/dropdown-open', this.stretch);
+  }
+  unbindEvents() {
+    super.unbindEvents();
+    elementorFrontend.removeListeners(this.getUniqueHandlerID(), 'elementor-pro/mega-menu/dropdown-open', this.stretch);
+  }
+  isStretchSettingEnabled() {
+    return true;
+  }
+  isActive() {
+    return true;
+  }
+}
+exports["default"] = StretchedMenuItemContent;
+
+/***/ }),
+
+/***/ "../modules/mega-menu/assets/js/frontend/utils.js":
+/*!********************************************************!*\
+  !*** ../modules/mega-menu/assets/js/frontend/utils.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.isMenuInDropdownMode = isMenuInDropdownMode;
+function isMenuInDropdownMode(elementSettings) {
+  if ('dropdown' === elementSettings.item_layout) {
+    return true;
+  }
+  const activeBreakpointsList = elementorFrontend.breakpoints.getActiveBreakpointsList({
+      withDesktop: true
+    }),
+    breakpointIndex = activeBreakpointsList.indexOf(elementSettings.breakpoint_selector),
+    currentDeviceModeIndex = activeBreakpointsList.indexOf(elementorFrontend.getCurrentDeviceMode());
+  return currentDeviceModeIndex <= breakpointIndex;
+}
+
+/***/ }),
+
 /***/ "../modules/nav-menu/assets/js/frontend/frontend-legacy.js":
 /*!*****************************************************************!*\
   !*** ../modules/nav-menu/assets/js/frontend/frontend-legacy.js ***!
   \*****************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -3555,14 +4960,17 @@ exports["default"] = _default;
 /*!*******************************************************************!*\
   !*** ../modules/nav-menu/assets/js/frontend/handlers/nav-menu.js ***!
   \*******************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
 
 
-
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
+var _anchorLink = _interopRequireDefault(__webpack_require__(/*! ../../../../../../assets/dev/js/frontend/utils/anchor-link */ "../assets/dev/js/frontend/utils/anchor-link.js"));
 var _default = elementorModules.frontend.handlers.Base.extend({
   stretchElement: null,
   getDefaultSettings() {
@@ -3572,6 +4980,10 @@ var _default = elementorModules.frontend.handlers.Base.extend({
         anchorLink: '.elementor-nav-menu--main .elementor-item-anchor',
         dropdownMenu: '.elementor-nav-menu__container.elementor-nav-menu--dropdown',
         menuToggle: '.elementor-menu-toggle'
+      },
+      classes: {
+        anchorItem: 'elementor-item-anchor',
+        activeAnchorItem: 'elementor-item-active'
       }
     };
   },
@@ -3586,16 +4998,34 @@ var _default = elementorModules.frontend.handlers.Base.extend({
     elements.$links = elements.$dropdownMenu.find('a.elementor-item');
     return elements;
   },
+  dropdownMenuHeightControllerConfig() {
+    const selectors = this.getSettings('selectors');
+    return {
+      elements: {
+        $element: this.$element,
+        $dropdownMenuContainer: this.$element.find(selectors.dropdownMenu),
+        $menuToggle: this.$element.find(selectors.menuToggle)
+      },
+      classes: {
+        menuToggleActiveClass: 'elementor-active'
+      },
+      settings: {
+        dropdownMenuContainerMaxHeight: '1000vmax',
+        // Max-height value is fixed to 1000vmax in order to allow the mobile menu closing animation.
+        menuHeightCssVarName: '--menu-height'
+      }
+    };
+  },
   bindEvents() {
     if (!this.elements.$menu.length) {
       return;
     }
-    this.elements.$menuToggle.on('click', this.toggleMenu.bind(this));
+    this.elements.$menuToggle.on('click', this.toggleMenu.bind(this)).on('keyup', this.triggerClickOnEnterSpace.bind(this));
     if (this.getElementSettings('full_width')) {
-      this.elements.$dropdownMenuFinalItems.on('click', this.toggleMenu.bind(this, false));
+      this.elements.$dropdownMenuFinalItems.on('click', this.toggleMenu.bind(this, false)).on('keyup', this.triggerClickOnEnterSpace.bind(this));
     }
     elementorFrontend.addListenerOnce(this.$element.data('model-cid'), 'resize', this.stretchMenu);
-    elementorFrontend.addListenerOnce(this.$element.data('model-cid'), 'scroll', this.debounce(this.reassignMobileMenuHeight, 250));
+    elementorFrontend.addListenerOnce(this.$element.data('model-cid'), 'scroll', elementorFrontend.debounce(this.menuHeightController.reassignMobileMenuHeight.bind(this.menuHeightController), 250));
   },
   initStretchElement() {
     this.stretchElement = new elementorModules.frontend.tools.StretchElement({
@@ -3615,56 +5045,18 @@ var _default = elementorModules.frontend.handlers.Base.extend({
     this.elements.$dropdownMenu.attr('aria-hidden', !show);
     this.elements.$menuToggle.toggleClass('elementor-active', show);
     this.toggleNavLinksTabIndex(show);
-    this.reassignMobileMenuHeight(show);
+    this.menuHeightController.reassignMobileMenuHeight(this);
     if (show && this.getElementSettings('full_width')) {
       this.stretchElement.stretch();
     }
   },
-  followMenuAnchors() {
-    var self = this;
-    self.elements.$anchorLink.each(function () {
-      if (location.pathname === this.pathname && '' !== this.hash) {
-        self.followMenuAnchor(jQuery(this));
-      }
-    });
-  },
-  followMenuAnchor($element) {
-    const anchorSelector = $element[0].hash;
-    let offset = -300,
-      $anchor;
-    try {
-      // `decodeURIComponent` for UTF8 characters in the hash.
-      $anchor = jQuery(decodeURIComponent(anchorSelector));
-    } catch (e) {
-      return;
+  triggerClickOnEnterSpace(event) {
+    const ENTER_KEY = 13,
+      SPACE_KEY = 32;
+    if (ENTER_KEY === event.keyCode || SPACE_KEY === event.keyCode) {
+      event.currentTarget.click();
+      event.stopPropagation();
     }
-    if (!$anchor.length) {
-      return;
-    }
-    if (!$anchor.hasClass('elementor-menu-anchor')) {
-      var halfViewport = jQuery(window).height() / 2;
-      offset = -$anchor.outerHeight() + halfViewport;
-    }
-    elementorFrontend.waypoint($anchor, function (direction) {
-      if ('down' === direction) {
-        $element.addClass('elementor-item-active');
-      } else {
-        $element.removeClass('elementor-item-active');
-      }
-    }, {
-      offset: '50%',
-      triggerOnce: false
-    });
-    elementorFrontend.waypoint($anchor, function (direction) {
-      if ('down' === direction) {
-        $element.removeClass('elementor-item-active');
-      } else {
-        $element.addClass('elementor-item-active');
-      }
-    }, {
-      offset,
-      triggerOnce: false
-    });
   },
   stretchMenu() {
     if (this.getElementSettings('full_width')) {
@@ -3675,6 +5067,7 @@ var _default = elementorModules.frontend.handlers.Base.extend({
     }
   },
   onInit() {
+    this.menuHeightController = new elementorProFrontend.utils.DropdownMenuHeightController(this.dropdownMenuHeightControllerConfig());
     elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
     if (!this.elements.$menu.length) {
       return;
@@ -3698,45 +5091,158 @@ var _default = elementorModules.frontend.handlers.Base.extend({
     this.initStretchElement();
     this.stretchMenu();
     if (!elementorFrontend.isEditMode()) {
-      this.followMenuAnchors();
+      const classes = this.getSettings('classes');
+      this.anchorLinks = new _anchorLink.default();
+      this.anchorLinks.followMenuAnchors(this.elements.$anchorLink, classes);
     }
   },
   onElementChange(propertyName) {
     if ('full_width' === propertyName) {
       this.stretchMenu();
     }
-  },
-  calculateStickyMenuNavHeight() {
-    const menuToggleHeight = this.elements.$dropdownMenu?.offset().top - jQuery(window).scrollTop();
-    return elementorFrontend.elements.$window.height() - menuToggleHeight;
-  },
-  isElementSticky() {
-    return this.$element.hasClass('elementor-sticky') || this.$element.parents('.elementor-sticky').length;
-  },
-  getMenuHeight() {
-    // Max-height value is fixed to 1000vmax in order to allow the mobile menu closing animation.
-    return this.isElementSticky() ? this.calculateStickyMenuNavHeight() + 'px' : '1000vmax';
-  },
-  setMenuHeight(menuHeight) {
-    this.elements.$dropdownMenu.css('--menu-height', menuHeight);
-  },
-  reassignMobileMenuHeight() {
-    const menuHeight = this.elements.$menuToggle.hasClass('elementor-active') ? this.getMenuHeight() : 0;
-    return this.setMenuHeight(menuHeight);
-  },
-  debounce(fn, time) {
-    let timer;
-    return function () {
-      const context = this;
-      const args = arguments;
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        fn.apply(context, args);
-      }, time);
-    };
   }
 });
 exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/nested-carousel/assets/js/frontend/frontend-legacy.js":
+/*!************************************************************************!*\
+  !*** ../modules/nested-carousel/assets/js/frontend/frontend-legacy.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _nestedCarousel = _interopRequireDefault(__webpack_require__(/*! ./handlers/nested-carousel */ "../modules/nested-carousel/assets/js/frontend/handlers/nested-carousel.js"));
+class _default extends elementorModules.Module {
+  constructor() {
+    super();
+    elementorFrontend.elementsHandler.attachHandler('nested-carousel', _nestedCarousel.default);
+  }
+}
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/nested-carousel/assets/js/frontend/handlers/nested-carousel.js":
+/*!*********************************************************************************!*\
+  !*** ../modules/nested-carousel/assets/js/frontend/handlers/nested-carousel.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _runElementHandlers = _interopRequireDefault(__webpack_require__(/*! elementor-pro/frontend/utils/run-element-handlers */ "../assets/dev/js/frontend/utils/run-element-handlers.js"));
+class NestedCarousel extends elementorModules.frontend.handlers.CarouselBase {
+  getDefaultSettings() {
+    const defaultSettings = super.getDefaultSettings();
+    defaultSettings.selectors.carousel = '.e-n-carousel';
+    defaultSettings.selectors.slidesWrapper = '.e-n-carousel > .swiper-wrapper';
+    return defaultSettings;
+  }
+  getSwiperSettings() {
+    const swiperOptions = super.getSwiperSettings(),
+      elementSettings = this.getElementSettings(),
+      isRtl = elementorFrontend.config.is_rtl,
+      widgetSelector = `.elementor-element-${this.getID()}`;
+    if (elementorFrontend.isEditMode()) {
+      delete swiperOptions.autoplay;
+      swiperOptions.loop = false;
+      swiperOptions.noSwipingSelector = '.swiper-slide > .e-con .elementor-element';
+    }
+    if ('yes' === elementSettings.arrows) {
+      swiperOptions.navigation = {
+        prevEl: isRtl ? `${widgetSelector} .elementor-swiper-button-next` : `${widgetSelector} .elementor-swiper-button-prev`,
+        nextEl: isRtl ? `${widgetSelector} .elementor-swiper-button-prev` : `${widgetSelector} .elementor-swiper-button-next`
+      };
+    }
+    this.applySwipeOptions(swiperOptions);
+    return swiperOptions;
+  }
+  async onInit() {
+    this.wrapSlideContent();
+    super.onInit(...arguments);
+    if (!elementorFrontend.config.experimentalFeatures.e_swiper_latest) {
+      this.reInitBackgroundSlideshow();
+    }
+    this.ranElementHandlers = false;
+  }
+  handleElementHandlers() {
+    if (this.ranElementHandlers || !this.swiper) {
+      return;
+    }
+    const duplicatedSlides = Array.from(this.swiper.slides).filter(slide => slide.classList.contains(this.swiper.params.slideDuplicateClass));
+    (0, _runElementHandlers.default)(duplicatedSlides);
+    this.ranElementHandlers = true;
+  }
+  wrapSlideContent() {
+    if (!elementorFrontend.isEditMode()) {
+      return;
+    }
+    const settings = this.getSettings(),
+      slideContentClass = settings.selectors.slideContent.replace('.', ''),
+      $widget = this.$element;
+    let index = 1;
+    this.findElement(`${settings.selectors.slidesWrapper} > .e-con`).each(function () {
+      const $currentContainer = jQuery(this),
+        hasSwiperSlideWrapper = $currentContainer.closest('div').hasClass(slideContentClass),
+        $currentSlide = $widget.find(`${settings.selectors.slidesWrapper} > .${slideContentClass}:nth-child(${index})`);
+      if (!hasSwiperSlideWrapper) {
+        $currentSlide.append($currentContainer);
+      }
+      index++;
+    });
+  }
+  togglePauseOnHover(toggleOn) {
+    if (elementorFrontend.isEditMode()) {
+      return;
+    }
+    super.togglePauseOnHover(toggleOn);
+  }
+  getChangeableProperties() {
+    return {
+      arrows_position: 'arrows_position' // Not a Swiper setting.
+    };
+  }
+
+  applySwipeOptions(swiperOptions) {
+    if (!this.isTouchDevice()) {
+      swiperOptions.shortSwipes = false;
+    } else {
+      swiperOptions.touchRatio = 1;
+      swiperOptions.longSwipesRatio = 0.3;
+      swiperOptions.followFinger = true;
+      swiperOptions.threshold = 10;
+    }
+  }
+  isTouchDevice() {
+    return elementorFrontend.utils.environment.isTouchDevice;
+  }
+  reInitBackgroundSlideshow() {
+    const slideshows = this.elements.$swiperContainer.find('.elementor-background-slideshow');
+    for (const element of slideshows) {
+      if (!element.swiper) {
+        return;
+      }
+      element.swiper.initialized = false;
+      element.swiper.init();
+    }
+  }
+}
+exports["default"] = NestedCarousel;
 
 /***/ }),
 
@@ -3746,6 +5252,7 @@ exports["default"] = _default;
   \*******************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -3774,7 +5281,7 @@ class _default extends elementorModules.frontend.Document {
   initTriggers() {
     this.triggers = new _triggers.default(this.getDocumentSettings('triggers'), this);
   }
-  showModal(avoidMultiple) {
+  showModal(avoidMultiple, event) {
     // eslint-disable-next-line @wordpress/no-unused-vars-before-return
     const settings = this.getDocumentSettings();
     if (!this.isEdit) {
@@ -3807,6 +5314,9 @@ class _default extends elementorModules.frontend.Document {
       this.countTimes();
     }
     elementorProFrontend.modules.popup.popupPopped = true;
+    if (!this.isEdit && settings.a11y_navigation) {
+      this.handleKeyboardA11y(event);
+    }
   }
   setEntranceAnimation() {
     const $widgetContent = this.getModal().getElements('widgetContent'),
@@ -3822,6 +5332,49 @@ class _default extends elementorModules.frontend.Document {
     const animationDuration = settings.entrance_animation_duration.size;
     $widgetContent.addClass(newAnimation);
     setTimeout(() => $widgetContent.removeClass(newAnimation), animationDuration * 1000);
+  }
+  handleKeyboardA11y(event) {
+    const selectorFocusedElements = ':focusable';
+    const $focusableElements = this.getModal().getElements('widgetContent').find(selectorFocusedElements);
+    if (!$focusableElements.length) {
+      return;
+    }
+    let $lastButtonClicked = null;
+    if (event?.currentTarget) {
+      $lastButtonClicked = jQuery(event.currentTarget);
+    }
+    const $lastFocusableElement = $focusableElements[$focusableElements.length - 1];
+    const $firstFocusableElement = $focusableElements[0];
+    const onKeyDownPressed = keyDownEvent => {
+      const TAB_KEY = 9;
+      const isShiftPressed = keyDownEvent.shiftKey;
+      const isTabPressed = 'Tab' === keyDownEvent.key || TAB_KEY === keyDownEvent.keyCode;
+      if (!isTabPressed) {
+        return;
+      }
+      const activeElement = elementorFrontend.elements.window.document.activeElement;
+      if (isShiftPressed) {
+        const isFocusOnFirstElement = activeElement === $firstFocusableElement;
+        if (isFocusOnFirstElement) {
+          $lastFocusableElement.focus();
+          keyDownEvent.preventDefault();
+        }
+      } else {
+        const isFocusOnLastElement = activeElement === $lastFocusableElement;
+        if (isFocusOnLastElement) {
+          $firstFocusableElement.focus();
+          keyDownEvent.preventDefault();
+        }
+      }
+    };
+    $firstFocusableElement.focus();
+    const $window = elementorFrontend.elements.$window;
+    $window.on('keydown', onKeyDownPressed).on('elementor/popup/hide', () => {
+      $window.off('keydown', onKeyDownPressed);
+      if ($lastButtonClicked) {
+        $lastButtonClicked.focus();
+      }
+    });
   }
   setExitAnimation() {
     const modal = this.getModal(),
@@ -3978,6 +5531,7 @@ exports["default"] = _default;
   \**************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4052,6 +5606,7 @@ exports["default"] = _default;
   \********************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -4098,6 +5653,7 @@ exports["default"] = _default;
   \*****************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4113,6 +5669,7 @@ var _loggedIn = _interopRequireDefault(__webpack_require__(/*! ./timing/logged-i
 var _devices = _interopRequireDefault(__webpack_require__(/*! ./timing/devices */ "../modules/popup/assets/js/frontend/timing/devices.js"));
 var _times = _interopRequireDefault(__webpack_require__(/*! ./timing/times */ "../modules/popup/assets/js/frontend/timing/times.js"));
 var _browsers = _interopRequireDefault(__webpack_require__(/*! ./timing/browsers */ "../modules/popup/assets/js/frontend/timing/browsers.js"));
+var _schedule = _interopRequireDefault(__webpack_require__(/*! ./timing/schedule */ "../modules/popup/assets/js/frontend/timing/schedule.js"));
 class _default extends elementorModules.Module {
   constructor(settings, document) {
     super(settings);
@@ -4125,7 +5682,8 @@ class _default extends elementorModules.Module {
       logged_in: _loggedIn.default,
       devices: _devices.default,
       times: _times.default,
-      browsers: _browsers.default
+      browsers: _browsers.default,
+      schedule: _schedule.default
     };
   }
   check() {
@@ -4153,6 +5711,7 @@ exports["default"] = _default;
   \**********************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -4178,6 +5737,7 @@ exports["default"] = _default;
   \**************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4209,6 +5769,7 @@ exports["default"] = _default;
   \*************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4235,6 +5796,7 @@ exports["default"] = _default;
   \***************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4269,6 +5831,7 @@ exports["default"] = _default;
   \****************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4296,12 +5859,100 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ "../modules/popup/assets/js/frontend/timing/schedule-utils.js":
+/*!********************************************************************!*\
+  !*** ../modules/popup/assets/js/frontend/timing/schedule-utils.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+class ScheduleUtils {
+  constructor(args) {
+    (0, _defineProperty2.default)(this, "shouldDisplay", () => {
+      if (!this.settings.startDate && !this.settings.endDate) {
+        return true;
+      }
+      const now = this.getCurrentDateTime();
+      if ((!this.settings.startDate || now >= this.settings.startDate) && (!this.settings.endDate || now <= this.settings.endDate)) {
+        return true;
+      }
+      return false;
+    });
+    this.settings = args.settings;
+  }
+  getCurrentDateTime() {
+    let now = new Date();
+    if ('site' === this.settings.timezone && this.settings.serverDatetime) {
+      now = new Date(this.settings.serverDatetime);
+    }
+    return now;
+  }
+}
+exports["default"] = ScheduleUtils;
+
+/***/ }),
+
+/***/ "../modules/popup/assets/js/frontend/timing/schedule.js":
+/*!**************************************************************!*\
+  !*** ../modules/popup/assets/js/frontend/timing/schedule.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _base = _interopRequireDefault(__webpack_require__(/*! ./base */ "../modules/popup/assets/js/frontend/timing/base.js"));
+var _scheduleUtils = _interopRequireDefault(__webpack_require__(/*! ./schedule-utils */ "../modules/popup/assets/js/frontend/timing/schedule-utils.js"));
+class _default extends _base.default {
+  constructor() {
+    super(...arguments);
+    const {
+      schedule_timezone: timezone,
+      schedule_start_date: startDate,
+      schedule_end_date: endDate,
+      schedule_server_datetime: serverDatetime
+    } = this.getSettings();
+    this.settings = {
+      timezone,
+      startDate: startDate ? new Date(startDate) : false,
+      endDate: endDate ? new Date(endDate) : false,
+      serverDatetime: serverDatetime ? new Date(serverDatetime) : false
+    };
+    this.scheduleUtils = new _scheduleUtils.default({
+      settings: this.settings
+    });
+  }
+  getName() {
+    return 'schedule';
+  }
+  check() {
+    return this.scheduleUtils.shouldDisplay();
+  }
+}
+exports["default"] = _default;
+
+/***/ }),
+
 /***/ "../modules/popup/assets/js/frontend/timing/sessions.js":
 /*!**************************************************************!*\
   !*** ../modules/popup/assets/js/frontend/timing/sessions.js ***!
   \**************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4335,6 +5986,7 @@ exports["default"] = _default;
   \*************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4376,6 +6028,7 @@ exports["default"] = _default;
   \*****************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -4463,6 +6116,7 @@ exports["default"] = TimesUtils;
   \***********************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4535,6 +6189,7 @@ exports["default"] = _default;
   \*********************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4573,6 +6228,7 @@ exports["default"] = _default;
   \*******************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4631,6 +6287,7 @@ exports["default"] = _default;
   \************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -4656,6 +6313,7 @@ exports["default"] = _default;
   \*************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4696,6 +6354,7 @@ exports["default"] = _default;
   \*******************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4734,6 +6393,7 @@ exports["default"] = _default;
   \******************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4779,6 +6439,7 @@ exports["default"] = _default;
   \*****************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4808,6 +6469,7 @@ exports["default"] = _default;
   \********************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4845,6 +6507,7 @@ exports["default"] = _default;
   \*****************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4896,6 +6559,7 @@ exports["default"] = _default;
   \**************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4929,6 +6593,7 @@ exports["default"] = _default;
   \*************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -4952,6 +6617,7 @@ exports["default"] = _default;
   \*****************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -5091,7 +6757,7 @@ class LoadMore extends elementorModules.frontend.handlers.Base {
 
     // Grabbing only the new articles from the response without the existing ones (prevent posts duplication).
     const postsElements = result.querySelectorAll(`[data-id="${this.elementId}"] ${selectors.postsContainer} > ${selectors.postWrapperTag}`);
-    const nextPageUrl = result.querySelector('.e-load-more-anchor').getAttribute('data-next-page');
+    const nextPageUrl = result.querySelector(`[data-id="${this.elementId}"] .e-load-more-anchor`).getAttribute('data-next-page');
     postsElements.forEach(element => this.elements.postsContainer.append(element));
     this.elements.loadMoreAnchor.setAttribute('data-page', this.currentPage);
     this.elements.loadMoreAnchor.setAttribute('data-next-page', nextPageUrl);
@@ -5122,6 +6788,7 @@ exports["default"] = LoadMore;
   \*****************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -5333,6 +7000,7 @@ exports["default"] = _default;
   \*************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -5405,20 +7073,9 @@ var _default = elementorModules.frontend.handlers.Base.extend({
     });
   },
   setColsCountSettings() {
-    var currentDeviceMode = elementorFrontend.getCurrentDeviceMode(),
-      settings = this.getElementSettings(),
+    const settings = this.getElementSettings(),
       skinPrefix = this.getSkinPrefix(),
-      colsCount;
-    switch (currentDeviceMode) {
-      case 'mobile':
-        colsCount = settings[skinPrefix + 'columns_mobile'];
-        break;
-      case 'tablet':
-        colsCount = settings[skinPrefix + 'columns_tablet'];
-        break;
-      default:
-        colsCount = settings[skinPrefix + 'columns'];
-    }
+      colsCount = elementorProFrontend.utils.controls.getResponsiveControlValue(settings, `${skinPrefix}columns`);
     this.setSettings('colsCount', colsCount);
   },
   isMasonryEnabled() {
@@ -5428,10 +7085,10 @@ var _default = elementorModules.frontend.handlers.Base.extend({
     imagesLoaded(this.elements.$posts, this.runMasonry);
   },
   getVerticalSpaceBetween() {
-    /* The `verticalSpaceBetween` variable is setup in a way that supports older versions of the portfolio widget */
-    let verticalSpaceBetween = this.getElementSettings(this.getSkinPrefix() + 'row_gap.size');
+    /* The `verticalSpaceBetween` variable is set up in a way that supports older versions of the portfolio widget */
+    let verticalSpaceBetween = elementorProFrontend.utils.controls.getResponsiveControlValue(this.getElementSettings(), `${this.getSkinPrefix()}row_gap`, 'size');
     if ('' === this.getSkinPrefix() && '' === verticalSpaceBetween) {
-      verticalSpaceBetween = this.getElementSettings(this.getSkinPrefix() + 'item_gap.size');
+      verticalSpaceBetween = this.getElementSettings('item_gap.size');
     }
     return verticalSpaceBetween;
   },
@@ -5487,6 +7144,7 @@ exports["default"] = _default;
   \**********************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -5509,14 +7167,17 @@ exports["default"] = _default;
 /*!*****************************************************************************!*\
   !*** ../modules/share-buttons/assets/js/frontend/handlers/share-buttons.js ***!
   \*****************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
 
 
-
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
+var _handleParameterPollution = _interopRequireDefault(__webpack_require__(/*! elementor-pro/frontend/utils/handle-parameter-pollution */ "../assets/dev/js/frontend/utils/handle-parameter-pollution.js"));
 var _default = elementorModules.frontend.handlers.Base.extend({
   async onInit() {
     if (!this.isActive()) {
@@ -5532,7 +7193,7 @@ var _default = elementorModules.frontend.handlers.Base.extend({
     if (isCustomURL) {
       shareLinkSettings.url = elementSettings.share_url.url;
     } else {
-      shareLinkSettings.url = location.href;
+      shareLinkSettings.url = (0, _handleParameterPollution.default)(location.href);
       shareLinkSettings.title = elementorFrontend.config.post.title;
       shareLinkSettings.text = elementorFrontend.config.post.excerpt;
       shareLinkSettings.image = elementorFrontend.config.post.featuredImage;
@@ -5585,6 +7246,7 @@ exports["default"] = _default;
   \***************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -5609,6 +7271,7 @@ exports["default"] = _default;
   \***************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -5826,6 +7489,7 @@ exports["default"] = SlidesHandler;
   \***************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -5853,6 +7517,7 @@ exports["default"] = _default;
   \*****************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -5915,6 +7580,7 @@ exports["default"] = FacebookHandler;
   \**************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -5939,13 +7605,16 @@ exports["default"] = _default;
   \*************************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 /* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
+var _dompurify = _interopRequireDefault(__webpack_require__(/*! dompurify */ "../node_modules/dompurify/dist/purify.js"));
 class TOCHandler extends elementorModules.frontend.handlers.Base {
   getDefaultSettings() {
     const elementSettings = this.getElementSettings(),
@@ -5989,7 +7658,7 @@ class TOCHandler extends elementorModules.frontend.handlers.Base {
 
     // If there is a custom container defined by the user, use it as the headings-scan container
     if (elementSettings.container) {
-      return jQuery(elementSettings.container);
+      return jQuery(_dompurify.default.sanitize(elementSettings.container));
     }
 
     // Get the document wrapper element in which the TOC is located
@@ -6007,8 +7676,8 @@ class TOCHandler extends elementorModules.frontend.handlers.Base {
   bindEvents() {
     const elementSettings = this.getElementSettings();
     if (elementSettings.minimize_box) {
-      this.elements.$expandButton.on('click', () => this.expandBox());
-      this.elements.$collapseButton.on('click', () => this.collapseBox());
+      this.elements.$expandButton.on('click', () => this.expandBox()).on('keyup', event => this.triggerClickOnEnterSpace(event));
+      this.elements.$collapseButton.on('click', () => this.collapseBox()).on('keyup', event => this.triggerClickOnEnterSpace(event));
     }
     if (elementSettings.collapse_subitems) {
       this.elements.$listItems.on('hover', event => jQuery(event.target).slideToggle());
@@ -6218,10 +7887,10 @@ class TOCHandler extends elementorModules.frontend.handlers.Base {
     // If minimizedOn value is set to desktop, it applies for widescreen as well.
     if ('desktop' === minimizedOn || activeBreakpoints.indexOf(minimizedOn) >= activeBreakpoints.indexOf(currentDeviceMode)) {
       if (!isCollapsed) {
-        this.collapseBox();
+        this.collapseBox(false);
       }
     } else if (isCollapsed) {
-      this.expandBox();
+      this.expandBox(false);
     }
   }
   onElementChange(settings) {
@@ -6277,19 +7946,35 @@ class TOCHandler extends elementorModules.frontend.handlers.Base {
     }
   }
   expandBox() {
+    let changeFocus = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
     const boxHeight = this.getCurrentDeviceSetting('min_height');
     this.$element.removeClass(this.getSettings('classes.collapsed'));
-    this.elements.$tocBody.slideDown();
+    this.elements.$tocBody.attr('aria-expanded', 'true').slideDown();
 
     // Return container to the full height in case a min-height is defined by the user
     this.elements.$widgetContainer.css('min-height', boxHeight.size + boxHeight.unit);
+    if (changeFocus) {
+      this.elements.$collapseButton.trigger('focus');
+    }
   }
   collapseBox() {
+    let changeFocus = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
     this.$element.addClass(this.getSettings('classes.collapsed'));
-    this.elements.$tocBody.slideUp();
+    this.elements.$tocBody.attr('aria-expanded', 'false').slideUp();
 
     // Close container in case a min-height is defined by the user
     this.elements.$widgetContainer.css('min-height', '0px');
+    if (changeFocus) {
+      this.elements.$expandButton.trigger('focus');
+    }
+  }
+  triggerClickOnEnterSpace(event) {
+    const ENTER_KEY = 13,
+      SPACE_KEY = 32;
+    if (ENTER_KEY === event.keyCode || SPACE_KEY === event.keyCode) {
+      event.currentTarget.click();
+      event.stopPropagation();
+    }
   }
   onInit() {
     super.onInit(...arguments);
@@ -6324,6 +8009,7 @@ exports["default"] = TOCHandler;
   \**********************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -6365,6 +8051,7 @@ exports["default"] = _default;
   \***************************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -6384,6 +8071,7 @@ exports["default"] = ArchivePostsLoadMore;
   \****************************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -6407,6 +8095,7 @@ exports["default"] = _default;
   \******************************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -6430,6 +8119,7 @@ exports["default"] = _default;
   \***********************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -6454,6 +8144,7 @@ exports["default"] = _default;
   \****************************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -6498,26 +8189,42 @@ var _default = elementorModules.frontend.handlers.Base.extend({
       $input = self.elements.$input,
       $wrapper = self.elements.$wrapper,
       $icon = self.elements.$icon,
+      $toggle = self.elements.$toggle,
       skin = this.getElementSettings('skin'),
       classes = this.getSettings('classes');
+    const openFullScreenSearch = () => {
+      $container.addClass(classes.isFullScreen).addClass(classes.lightbox);
+      $input.trigger('focus');
+    };
+    const closeFullScreenSearch = () => {
+      $container.removeClass(classes.isFullScreen).removeClass(classes.lightbox);
+      $toggle.trigger('focus');
+    };
+    const triggerClickOnEnterSpace = event => {
+      const ENTER_KEY = 13,
+        SPACE_KEY = 32;
+      if (ENTER_KEY === event.keyCode || SPACE_KEY === event.keyCode) {
+        event.currentTarget.click();
+        event.stopPropagation();
+      }
+    };
     if ('full_screen' === skin) {
-      // Activate full-screen mode on click
-      self.elements.$toggle.on('click', function () {
-        $container.toggleClass(classes.isFullScreen).toggleClass(classes.lightbox);
-        $input.trigger('focus');
-      });
+      // Activate full-screen mode on mouse click or keyboard Enter & Space keyup.
+      $toggle.on('click', () => openFullScreenSearch()).on('keyup', event => triggerClickOnEnterSpace(event));
 
-      // Deactivate full-screen mode on click or on esc.
+      // Deactivate full-screen mode when clicking outside the container.
       $container.on('click', function (event) {
         if ($container.hasClass(classes.isFullScreen) && $container[0] === event.target) {
           $container.removeClass(classes.isFullScreen).removeClass(classes.lightbox);
         }
       });
-      $closeButton.on('click', function () {
-        $container.removeClass(classes.isFullScreen).removeClass(classes.lightbox);
-      });
+
+      // Deactivate full-screen mode on mouse click or keyboard Enter & Space keyup.
+      $closeButton.on('click', () => closeFullScreenSearch()).on('keyup', event => triggerClickOnEnterSpace(event));
+
+      // Deactivate full-screen mode on keyboard Esc keyup.
       elementorFrontend.elements.$document.on('keyup', function (event) {
-        var ESC_KEY = 27;
+        const ESC_KEY = 27;
         if (ESC_KEY === event.keyCode) {
           if ($container.hasClass(classes.isFullScreen)) {
             $container.trigger('click');
@@ -6554,6 +8261,7 @@ exports["default"] = _default;
   \********************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -6604,6 +8312,7 @@ exports["default"] = _default;
   \******************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -6737,6 +8446,7 @@ exports["default"] = Base;
   \******************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -6881,6 +8591,7 @@ exports["default"] = Cart;
   \***************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -7069,6 +8780,7 @@ exports["default"] = Checkout;
   \***********************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -7084,7 +8796,7 @@ class _default extends elementorModules.frontend.handlers.Base {
         toggle: '.elementor-menu-cart__toggle',
         toggleButton: '#elementor-menu-cart__toggle_button',
         toggleWrapper: '.elementor-menu-cart__toggle_wrapper',
-        closeButton: '.elementor-menu-cart__close-button',
+        closeButton: '.elementor-menu-cart__close-button, .elementor-menu-cart__close-button-custom',
         productList: '.elementor-menu-cart__products'
       },
       classes: {
@@ -7299,6 +9011,7 @@ exports["default"] = _default;
   \************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -7451,6 +9164,7 @@ exports["default"] = MyAccountHandler;
   \*********************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", ({
@@ -7521,6 +9235,7 @@ exports["default"] = _default;
   \*********************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -7578,6 +9293,7 @@ exports["default"] = ProductAddToCart;
   \******************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -7635,164 +9351,1645 @@ exports["default"] = PurchaseSummaryHandler;
 
 /***/ }),
 
-/***/ "../../elementor/assets/dev/js/frontend/handlers/image-carousel.js":
-/*!*************************************************************************!*\
-  !*** ../../elementor/assets/dev/js/frontend/handlers/image-carousel.js ***!
-  \*************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ "../node_modules/dompurify/dist/purify.js":
+/*!************************************************!*\
+  !*** ../node_modules/dompurify/dist/purify.js ***!
+  \************************************************/
+/***/ (function(module) {
 
+/*! @license DOMPurify 3.0.3 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.0.3/LICENSE */
 
+(function (global, factory) {
+   true ? module.exports = factory() :
+  0;
+})(this, (function () { 'use strict';
 
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-class ImageCarousel extends elementorModules.frontend.handlers.SwiperBase {
-  getDefaultSettings() {
-    return {
-      selectors: {
-        carousel: '.elementor-image-carousel-wrapper',
-        slideContent: '.swiper-slide'
+  const {
+    entries,
+    setPrototypeOf,
+    isFrozen,
+    getPrototypeOf,
+    getOwnPropertyDescriptor
+  } = Object;
+  let {
+    freeze,
+    seal,
+    create
+  } = Object; // eslint-disable-line import/no-mutable-exports
+
+  let {
+    apply,
+    construct
+  } = typeof Reflect !== 'undefined' && Reflect;
+
+  if (!apply) {
+    apply = function apply(fun, thisValue, args) {
+      return fun.apply(thisValue, args);
+    };
+  }
+
+  if (!freeze) {
+    freeze = function freeze(x) {
+      return x;
+    };
+  }
+
+  if (!seal) {
+    seal = function seal(x) {
+      return x;
+    };
+  }
+
+  if (!construct) {
+    construct = function construct(Func, args) {
+      return new Func(...args);
+    };
+  }
+
+  const arrayForEach = unapply(Array.prototype.forEach);
+  const arrayPop = unapply(Array.prototype.pop);
+  const arrayPush = unapply(Array.prototype.push);
+  const stringToLowerCase = unapply(String.prototype.toLowerCase);
+  const stringToString = unapply(String.prototype.toString);
+  const stringMatch = unapply(String.prototype.match);
+  const stringReplace = unapply(String.prototype.replace);
+  const stringIndexOf = unapply(String.prototype.indexOf);
+  const stringTrim = unapply(String.prototype.trim);
+  const regExpTest = unapply(RegExp.prototype.test);
+  const typeErrorCreate = unconstruct(TypeError);
+  function unapply(func) {
+    return function (thisArg) {
+      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        args[_key - 1] = arguments[_key];
       }
+
+      return apply(func, thisArg, args);
     };
   }
-  getDefaultElements() {
-    const selectors = this.getSettings('selectors');
-    const elements = {
-      $swiperContainer: this.$element.find(selectors.carousel)
+  function unconstruct(func) {
+    return function () {
+      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+
+      return construct(func, args);
     };
-    elements.$slides = elements.$swiperContainer.find(selectors.slideContent);
-    return elements;
   }
-  getSwiperSettings() {
-    const elementSettings = this.getElementSettings(),
-      slidesToShow = +elementSettings.slides_to_show || 3,
-      isSingleSlide = 1 === slidesToShow,
-      elementorBreakpoints = elementorFrontend.config.responsive.activeBreakpoints,
-      defaultSlidesToShowMap = {
-        mobile: 1,
-        tablet: isSingleSlide ? 1 : 2
-      };
-    const swiperOptions = {
-      slidesPerView: slidesToShow,
-      loop: 'yes' === elementSettings.infinite,
-      speed: elementSettings.speed,
-      handleElementorBreakpoints: true
-    };
-    swiperOptions.breakpoints = {};
-    let lastBreakpointSlidesToShowValue = slidesToShow;
-    Object.keys(elementorBreakpoints).reverse().forEach(breakpointName => {
-      // Tablet has a specific default `slides_to_show`.
-      const defaultSlidesToShow = defaultSlidesToShowMap[breakpointName] ? defaultSlidesToShowMap[breakpointName] : lastBreakpointSlidesToShowValue;
-      swiperOptions.breakpoints[elementorBreakpoints[breakpointName].value] = {
-        slidesPerView: +elementSettings['slides_to_show_' + breakpointName] || defaultSlidesToShow,
-        slidesPerGroup: +elementSettings['slides_to_scroll_' + breakpointName] || 1
-      };
-      lastBreakpointSlidesToShowValue = +elementSettings['slides_to_show_' + breakpointName] || defaultSlidesToShow;
-    });
-    if ('yes' === elementSettings.autoplay) {
-      swiperOptions.autoplay = {
-        delay: elementSettings.autoplay_speed,
-        disableOnInteraction: 'yes' === elementSettings.pause_on_interaction
-      };
+  /* Add properties to a lookup table */
+
+  function addToSet(set, array, transformCaseFunc) {
+    var _transformCaseFunc;
+
+    transformCaseFunc = (_transformCaseFunc = transformCaseFunc) !== null && _transformCaseFunc !== void 0 ? _transformCaseFunc : stringToLowerCase;
+
+    if (setPrototypeOf) {
+      // Make 'in' and truthy checks like Boolean(set.constructor)
+      // independent of any properties defined on Object.prototype.
+      // Prevent prototype setters from intercepting set as a this value.
+      setPrototypeOf(set, null);
     }
-    if (isSingleSlide) {
-      swiperOptions.effect = elementSettings.effect;
-      if ('fade' === elementSettings.effect) {
-        swiperOptions.fadeEffect = {
-          crossFade: true
+
+    let l = array.length;
+
+    while (l--) {
+      let element = array[l];
+
+      if (typeof element === 'string') {
+        const lcElement = transformCaseFunc(element);
+
+        if (lcElement !== element) {
+          // Config presets (e.g. tags.js, attrs.js) are immutable.
+          if (!isFrozen(array)) {
+            array[l] = lcElement;
+          }
+
+          element = lcElement;
+        }
+      }
+
+      set[element] = true;
+    }
+
+    return set;
+  }
+  /* Shallow clone an object */
+
+  function clone(object) {
+    const newObject = create(null);
+
+    for (const [property, value] of entries(object)) {
+      newObject[property] = value;
+    }
+
+    return newObject;
+  }
+  /* This method automatically checks if the prop is function
+   * or getter and behaves accordingly. */
+
+  function lookupGetter(object, prop) {
+    while (object !== null) {
+      const desc = getOwnPropertyDescriptor(object, prop);
+
+      if (desc) {
+        if (desc.get) {
+          return unapply(desc.get);
+        }
+
+        if (typeof desc.value === 'function') {
+          return unapply(desc.value);
+        }
+      }
+
+      object = getPrototypeOf(object);
+    }
+
+    function fallbackValue(element) {
+      console.warn('fallback value for', element);
+      return null;
+    }
+
+    return fallbackValue;
+  }
+
+  const html$1 = freeze(['a', 'abbr', 'acronym', 'address', 'area', 'article', 'aside', 'audio', 'b', 'bdi', 'bdo', 'big', 'blink', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'content', 'data', 'datalist', 'dd', 'decorator', 'del', 'details', 'dfn', 'dialog', 'dir', 'div', 'dl', 'dt', 'element', 'em', 'fieldset', 'figcaption', 'figure', 'font', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meter', 'nav', 'nobr', 'ol', 'optgroup', 'option', 'output', 'p', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'section', 'select', 'shadow', 'small', 'source', 'spacer', 'span', 'strike', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'tr', 'track', 'tt', 'u', 'ul', 'var', 'video', 'wbr']); // SVG
+
+  const svg$1 = freeze(['svg', 'a', 'altglyph', 'altglyphdef', 'altglyphitem', 'animatecolor', 'animatemotion', 'animatetransform', 'circle', 'clippath', 'defs', 'desc', 'ellipse', 'filter', 'font', 'g', 'glyph', 'glyphref', 'hkern', 'image', 'line', 'lineargradient', 'marker', 'mask', 'metadata', 'mpath', 'path', 'pattern', 'polygon', 'polyline', 'radialgradient', 'rect', 'stop', 'style', 'switch', 'symbol', 'text', 'textpath', 'title', 'tref', 'tspan', 'view', 'vkern']);
+  const svgFilters = freeze(['feBlend', 'feColorMatrix', 'feComponentTransfer', 'feComposite', 'feConvolveMatrix', 'feDiffuseLighting', 'feDisplacementMap', 'feDistantLight', 'feDropShadow', 'feFlood', 'feFuncA', 'feFuncB', 'feFuncG', 'feFuncR', 'feGaussianBlur', 'feImage', 'feMerge', 'feMergeNode', 'feMorphology', 'feOffset', 'fePointLight', 'feSpecularLighting', 'feSpotLight', 'feTile', 'feTurbulence']); // List of SVG elements that are disallowed by default.
+  // We still need to know them so that we can do namespace
+  // checks properly in case one wants to add them to
+  // allow-list.
+
+  const svgDisallowed = freeze(['animate', 'color-profile', 'cursor', 'discard', 'font-face', 'font-face-format', 'font-face-name', 'font-face-src', 'font-face-uri', 'foreignobject', 'hatch', 'hatchpath', 'mesh', 'meshgradient', 'meshpatch', 'meshrow', 'missing-glyph', 'script', 'set', 'solidcolor', 'unknown', 'use']);
+  const mathMl$1 = freeze(['math', 'menclose', 'merror', 'mfenced', 'mfrac', 'mglyph', 'mi', 'mlabeledtr', 'mmultiscripts', 'mn', 'mo', 'mover', 'mpadded', 'mphantom', 'mroot', 'mrow', 'ms', 'mspace', 'msqrt', 'mstyle', 'msub', 'msup', 'msubsup', 'mtable', 'mtd', 'mtext', 'mtr', 'munder', 'munderover', 'mprescripts']); // Similarly to SVG, we want to know all MathML elements,
+  // even those that we disallow by default.
+
+  const mathMlDisallowed = freeze(['maction', 'maligngroup', 'malignmark', 'mlongdiv', 'mscarries', 'mscarry', 'msgroup', 'mstack', 'msline', 'msrow', 'semantics', 'annotation', 'annotation-xml', 'mprescripts', 'none']);
+  const text = freeze(['#text']);
+
+  const html = freeze(['accept', 'action', 'align', 'alt', 'autocapitalize', 'autocomplete', 'autopictureinpicture', 'autoplay', 'background', 'bgcolor', 'border', 'capture', 'cellpadding', 'cellspacing', 'checked', 'cite', 'class', 'clear', 'color', 'cols', 'colspan', 'controls', 'controlslist', 'coords', 'crossorigin', 'datetime', 'decoding', 'default', 'dir', 'disabled', 'disablepictureinpicture', 'disableremoteplayback', 'download', 'draggable', 'enctype', 'enterkeyhint', 'face', 'for', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'id', 'inputmode', 'integrity', 'ismap', 'kind', 'label', 'lang', 'list', 'loading', 'loop', 'low', 'max', 'maxlength', 'media', 'method', 'min', 'minlength', 'multiple', 'muted', 'name', 'nonce', 'noshade', 'novalidate', 'nowrap', 'open', 'optimum', 'pattern', 'placeholder', 'playsinline', 'poster', 'preload', 'pubdate', 'radiogroup', 'readonly', 'rel', 'required', 'rev', 'reversed', 'role', 'rows', 'rowspan', 'spellcheck', 'scope', 'selected', 'shape', 'size', 'sizes', 'span', 'srclang', 'start', 'src', 'srcset', 'step', 'style', 'summary', 'tabindex', 'title', 'translate', 'type', 'usemap', 'valign', 'value', 'width', 'xmlns', 'slot']);
+  const svg = freeze(['accent-height', 'accumulate', 'additive', 'alignment-baseline', 'ascent', 'attributename', 'attributetype', 'azimuth', 'basefrequency', 'baseline-shift', 'begin', 'bias', 'by', 'class', 'clip', 'clippathunits', 'clip-path', 'clip-rule', 'color', 'color-interpolation', 'color-interpolation-filters', 'color-profile', 'color-rendering', 'cx', 'cy', 'd', 'dx', 'dy', 'diffuseconstant', 'direction', 'display', 'divisor', 'dur', 'edgemode', 'elevation', 'end', 'fill', 'fill-opacity', 'fill-rule', 'filter', 'filterunits', 'flood-color', 'flood-opacity', 'font-family', 'font-size', 'font-size-adjust', 'font-stretch', 'font-style', 'font-variant', 'font-weight', 'fx', 'fy', 'g1', 'g2', 'glyph-name', 'glyphref', 'gradientunits', 'gradienttransform', 'height', 'href', 'id', 'image-rendering', 'in', 'in2', 'k', 'k1', 'k2', 'k3', 'k4', 'kerning', 'keypoints', 'keysplines', 'keytimes', 'lang', 'lengthadjust', 'letter-spacing', 'kernelmatrix', 'kernelunitlength', 'lighting-color', 'local', 'marker-end', 'marker-mid', 'marker-start', 'markerheight', 'markerunits', 'markerwidth', 'maskcontentunits', 'maskunits', 'max', 'mask', 'media', 'method', 'mode', 'min', 'name', 'numoctaves', 'offset', 'operator', 'opacity', 'order', 'orient', 'orientation', 'origin', 'overflow', 'paint-order', 'path', 'pathlength', 'patterncontentunits', 'patterntransform', 'patternunits', 'points', 'preservealpha', 'preserveaspectratio', 'primitiveunits', 'r', 'rx', 'ry', 'radius', 'refx', 'refy', 'repeatcount', 'repeatdur', 'restart', 'result', 'rotate', 'scale', 'seed', 'shape-rendering', 'specularconstant', 'specularexponent', 'spreadmethod', 'startoffset', 'stddeviation', 'stitchtiles', 'stop-color', 'stop-opacity', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke', 'stroke-width', 'style', 'surfacescale', 'systemlanguage', 'tabindex', 'targetx', 'targety', 'transform', 'transform-origin', 'text-anchor', 'text-decoration', 'text-rendering', 'textlength', 'type', 'u1', 'u2', 'unicode', 'values', 'viewbox', 'visibility', 'version', 'vert-adv-y', 'vert-origin-x', 'vert-origin-y', 'width', 'word-spacing', 'wrap', 'writing-mode', 'xchannelselector', 'ychannelselector', 'x', 'x1', 'x2', 'xmlns', 'y', 'y1', 'y2', 'z', 'zoomandpan']);
+  const mathMl = freeze(['accent', 'accentunder', 'align', 'bevelled', 'close', 'columnsalign', 'columnlines', 'columnspan', 'denomalign', 'depth', 'dir', 'display', 'displaystyle', 'encoding', 'fence', 'frame', 'height', 'href', 'id', 'largeop', 'length', 'linethickness', 'lspace', 'lquote', 'mathbackground', 'mathcolor', 'mathsize', 'mathvariant', 'maxsize', 'minsize', 'movablelimits', 'notation', 'numalign', 'open', 'rowalign', 'rowlines', 'rowspacing', 'rowspan', 'rspace', 'rquote', 'scriptlevel', 'scriptminsize', 'scriptsizemultiplier', 'selection', 'separator', 'separators', 'stretchy', 'subscriptshift', 'supscriptshift', 'symmetric', 'voffset', 'width', 'xmlns']);
+  const xml = freeze(['xlink:href', 'xml:id', 'xlink:title', 'xml:space', 'xmlns:xlink']);
+
+  const MUSTACHE_EXPR = seal(/\{\{[\w\W]*|[\w\W]*\}\}/gm); // Specify template detection regex for SAFE_FOR_TEMPLATES mode
+
+  const ERB_EXPR = seal(/<%[\w\W]*|[\w\W]*%>/gm);
+  const TMPLIT_EXPR = seal(/\${[\w\W]*}/gm);
+  const DATA_ATTR = seal(/^data-[\-\w.\u00B7-\uFFFF]/); // eslint-disable-line no-useless-escape
+
+  const ARIA_ATTR = seal(/^aria-[\-\w]+$/); // eslint-disable-line no-useless-escape
+
+  const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i // eslint-disable-line no-useless-escape
+  );
+  const IS_SCRIPT_OR_DATA = seal(/^(?:\w+script|data):/i);
+  const ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g // eslint-disable-line no-control-regex
+  );
+  const DOCTYPE_NAME = seal(/^html$/i);
+
+  var EXPRESSIONS = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    MUSTACHE_EXPR: MUSTACHE_EXPR,
+    ERB_EXPR: ERB_EXPR,
+    TMPLIT_EXPR: TMPLIT_EXPR,
+    DATA_ATTR: DATA_ATTR,
+    ARIA_ATTR: ARIA_ATTR,
+    IS_ALLOWED_URI: IS_ALLOWED_URI,
+    IS_SCRIPT_OR_DATA: IS_SCRIPT_OR_DATA,
+    ATTR_WHITESPACE: ATTR_WHITESPACE,
+    DOCTYPE_NAME: DOCTYPE_NAME
+  });
+
+  const getGlobal = () => typeof window === 'undefined' ? null : window;
+  /**
+   * Creates a no-op policy for internal use only.
+   * Don't export this function outside this module!
+   * @param {?TrustedTypePolicyFactory} trustedTypes The policy factory.
+   * @param {HTMLScriptElement} purifyHostElement The Script element used to load DOMPurify (to determine policy name suffix).
+   * @return {?TrustedTypePolicy} The policy created (or null, if Trusted Types
+   * are not supported or creating the policy failed).
+   */
+
+
+  const _createTrustedTypesPolicy = function _createTrustedTypesPolicy(trustedTypes, purifyHostElement) {
+    if (typeof trustedTypes !== 'object' || typeof trustedTypes.createPolicy !== 'function') {
+      return null;
+    } // Allow the callers to control the unique policy name
+    // by adding a data-tt-policy-suffix to the script element with the DOMPurify.
+    // Policy creation with duplicate names throws in Trusted Types.
+
+
+    let suffix = null;
+    const ATTR_NAME = 'data-tt-policy-suffix';
+
+    if (purifyHostElement && purifyHostElement.hasAttribute(ATTR_NAME)) {
+      suffix = purifyHostElement.getAttribute(ATTR_NAME);
+    }
+
+    const policyName = 'dompurify' + (suffix ? '#' + suffix : '');
+
+    try {
+      return trustedTypes.createPolicy(policyName, {
+        createHTML(html) {
+          return html;
+        },
+
+        createScriptURL(scriptUrl) {
+          return scriptUrl;
+        }
+
+      });
+    } catch (_) {
+      // Policy creation failed (most likely another DOMPurify script has
+      // already run). Skip creating the policy, as this will only cause errors
+      // if TT are enforced.
+      console.warn('TrustedTypes policy ' + policyName + ' could not be created.');
+      return null;
+    }
+  };
+
+  function createDOMPurify() {
+    let window = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getGlobal();
+
+    const DOMPurify = root => createDOMPurify(root);
+    /**
+     * Version label, exposed for easier checks
+     * if DOMPurify is up to date or not
+     */
+
+
+    DOMPurify.version = '3.0.3';
+    /**
+     * Array of elements that DOMPurify removed during sanitation.
+     * Empty if nothing was removed.
+     */
+
+    DOMPurify.removed = [];
+
+    if (!window || !window.document || window.document.nodeType !== 9) {
+      // Not running in a browser, provide a factory function
+      // so that you can pass your own Window
+      DOMPurify.isSupported = false;
+      return DOMPurify;
+    }
+
+    const originalDocument = window.document;
+    const currentScript = originalDocument.currentScript;
+    let {
+      document
+    } = window;
+    const {
+      DocumentFragment,
+      HTMLTemplateElement,
+      Node,
+      Element,
+      NodeFilter,
+      NamedNodeMap = window.NamedNodeMap || window.MozNamedAttrMap,
+      HTMLFormElement,
+      DOMParser,
+      trustedTypes
+    } = window;
+    const ElementPrototype = Element.prototype;
+    const cloneNode = lookupGetter(ElementPrototype, 'cloneNode');
+    const getNextSibling = lookupGetter(ElementPrototype, 'nextSibling');
+    const getChildNodes = lookupGetter(ElementPrototype, 'childNodes');
+    const getParentNode = lookupGetter(ElementPrototype, 'parentNode'); // As per issue #47, the web-components registry is inherited by a
+    // new document created via createHTMLDocument. As per the spec
+    // (http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries)
+    // a new empty registry is used when creating a template contents owner
+    // document, so we use that as our parent document to ensure nothing
+    // is inherited.
+
+    if (typeof HTMLTemplateElement === 'function') {
+      const template = document.createElement('template');
+
+      if (template.content && template.content.ownerDocument) {
+        document = template.content.ownerDocument;
+      }
+    }
+
+    let trustedTypesPolicy;
+    let emptyHTML = '';
+    const {
+      implementation,
+      createNodeIterator,
+      createDocumentFragment,
+      getElementsByTagName
+    } = document;
+    const {
+      importNode
+    } = originalDocument;
+    let hooks = {};
+    /**
+     * Expose whether this browser supports running the full DOMPurify.
+     */
+
+    DOMPurify.isSupported = typeof entries === 'function' && typeof getParentNode === 'function' && implementation && implementation.createHTMLDocument !== undefined;
+    const {
+      MUSTACHE_EXPR,
+      ERB_EXPR,
+      TMPLIT_EXPR,
+      DATA_ATTR,
+      ARIA_ATTR,
+      IS_SCRIPT_OR_DATA,
+      ATTR_WHITESPACE
+    } = EXPRESSIONS;
+    let {
+      IS_ALLOWED_URI: IS_ALLOWED_URI$1
+    } = EXPRESSIONS;
+    /**
+     * We consider the elements and attributes below to be safe. Ideally
+     * don't add any new ones but feel free to remove unwanted ones.
+     */
+
+    /* allowed element names */
+
+    let ALLOWED_TAGS = null;
+    const DEFAULT_ALLOWED_TAGS = addToSet({}, [...html$1, ...svg$1, ...svgFilters, ...mathMl$1, ...text]);
+    /* Allowed attribute names */
+
+    let ALLOWED_ATTR = null;
+    const DEFAULT_ALLOWED_ATTR = addToSet({}, [...html, ...svg, ...mathMl, ...xml]);
+    /*
+     * Configure how DOMPUrify should handle custom elements and their attributes as well as customized built-in elements.
+     * @property {RegExp|Function|null} tagNameCheck one of [null, regexPattern, predicate]. Default: `null` (disallow any custom elements)
+     * @property {RegExp|Function|null} attributeNameCheck one of [null, regexPattern, predicate]. Default: `null` (disallow any attributes not on the allow list)
+     * @property {boolean} allowCustomizedBuiltInElements allow custom elements derived from built-ins if they pass CUSTOM_ELEMENT_HANDLING.tagNameCheck. Default: `false`.
+     */
+
+    let CUSTOM_ELEMENT_HANDLING = Object.seal(Object.create(null, {
+      tagNameCheck: {
+        writable: true,
+        configurable: false,
+        enumerable: true,
+        value: null
+      },
+      attributeNameCheck: {
+        writable: true,
+        configurable: false,
+        enumerable: true,
+        value: null
+      },
+      allowCustomizedBuiltInElements: {
+        writable: true,
+        configurable: false,
+        enumerable: true,
+        value: false
+      }
+    }));
+    /* Explicitly forbidden tags (overrides ALLOWED_TAGS/ADD_TAGS) */
+
+    let FORBID_TAGS = null;
+    /* Explicitly forbidden attributes (overrides ALLOWED_ATTR/ADD_ATTR) */
+
+    let FORBID_ATTR = null;
+    /* Decide if ARIA attributes are okay */
+
+    let ALLOW_ARIA_ATTR = true;
+    /* Decide if custom data attributes are okay */
+
+    let ALLOW_DATA_ATTR = true;
+    /* Decide if unknown protocols are okay */
+
+    let ALLOW_UNKNOWN_PROTOCOLS = false;
+    /* Decide if self-closing tags in attributes are allowed.
+     * Usually removed due to a mXSS issue in jQuery 3.0 */
+
+    let ALLOW_SELF_CLOSE_IN_ATTR = true;
+    /* Output should be safe for common template engines.
+     * This means, DOMPurify removes data attributes, mustaches and ERB
+     */
+
+    let SAFE_FOR_TEMPLATES = false;
+    /* Decide if document with <html>... should be returned */
+
+    let WHOLE_DOCUMENT = false;
+    /* Track whether config is already set on this instance of DOMPurify. */
+
+    let SET_CONFIG = false;
+    /* Decide if all elements (e.g. style, script) must be children of
+     * document.body. By default, browsers might move them to document.head */
+
+    let FORCE_BODY = false;
+    /* Decide if a DOM `HTMLBodyElement` should be returned, instead of a html
+     * string (or a TrustedHTML object if Trusted Types are supported).
+     * If `WHOLE_DOCUMENT` is enabled a `HTMLHtmlElement` will be returned instead
+     */
+
+    let RETURN_DOM = false;
+    /* Decide if a DOM `DocumentFragment` should be returned, instead of a html
+     * string  (or a TrustedHTML object if Trusted Types are supported) */
+
+    let RETURN_DOM_FRAGMENT = false;
+    /* Try to return a Trusted Type object instead of a string, return a string in
+     * case Trusted Types are not supported  */
+
+    let RETURN_TRUSTED_TYPE = false;
+    /* Output should be free from DOM clobbering attacks?
+     * This sanitizes markups named with colliding, clobberable built-in DOM APIs.
+     */
+
+    let SANITIZE_DOM = true;
+    /* Achieve full DOM Clobbering protection by isolating the namespace of named
+     * properties and JS variables, mitigating attacks that abuse the HTML/DOM spec rules.
+     *
+     * HTML/DOM spec rules that enable DOM Clobbering:
+     *   - Named Access on Window (§7.3.3)
+     *   - DOM Tree Accessors (§3.1.5)
+     *   - Form Element Parent-Child Relations (§4.10.3)
+     *   - Iframe srcdoc / Nested WindowProxies (§4.8.5)
+     *   - HTMLCollection (§4.2.10.2)
+     *
+     * Namespace isolation is implemented by prefixing `id` and `name` attributes
+     * with a constant string, i.e., `user-content-`
+     */
+
+    let SANITIZE_NAMED_PROPS = false;
+    const SANITIZE_NAMED_PROPS_PREFIX = 'user-content-';
+    /* Keep element content when removing element? */
+
+    let KEEP_CONTENT = true;
+    /* If a `Node` is passed to sanitize(), then performs sanitization in-place instead
+     * of importing it into a new Document and returning a sanitized copy */
+
+    let IN_PLACE = false;
+    /* Allow usage of profiles like html, svg and mathMl */
+
+    let USE_PROFILES = {};
+    /* Tags to ignore content of when KEEP_CONTENT is true */
+
+    let FORBID_CONTENTS = null;
+    const DEFAULT_FORBID_CONTENTS = addToSet({}, ['annotation-xml', 'audio', 'colgroup', 'desc', 'foreignobject', 'head', 'iframe', 'math', 'mi', 'mn', 'mo', 'ms', 'mtext', 'noembed', 'noframes', 'noscript', 'plaintext', 'script', 'style', 'svg', 'template', 'thead', 'title', 'video', 'xmp']);
+    /* Tags that are safe for data: URIs */
+
+    let DATA_URI_TAGS = null;
+    const DEFAULT_DATA_URI_TAGS = addToSet({}, ['audio', 'video', 'img', 'source', 'image', 'track']);
+    /* Attributes safe for values like "javascript:" */
+
+    let URI_SAFE_ATTRIBUTES = null;
+    const DEFAULT_URI_SAFE_ATTRIBUTES = addToSet({}, ['alt', 'class', 'for', 'id', 'label', 'name', 'pattern', 'placeholder', 'role', 'summary', 'title', 'value', 'style', 'xmlns']);
+    const MATHML_NAMESPACE = 'http://www.w3.org/1998/Math/MathML';
+    const SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
+    const HTML_NAMESPACE = 'http://www.w3.org/1999/xhtml';
+    /* Document namespace */
+
+    let NAMESPACE = HTML_NAMESPACE;
+    let IS_EMPTY_INPUT = false;
+    /* Allowed XHTML+XML namespaces */
+
+    let ALLOWED_NAMESPACES = null;
+    const DEFAULT_ALLOWED_NAMESPACES = addToSet({}, [MATHML_NAMESPACE, SVG_NAMESPACE, HTML_NAMESPACE], stringToString);
+    /* Parsing of strict XHTML documents */
+
+    let PARSER_MEDIA_TYPE;
+    const SUPPORTED_PARSER_MEDIA_TYPES = ['application/xhtml+xml', 'text/html'];
+    const DEFAULT_PARSER_MEDIA_TYPE = 'text/html';
+    let transformCaseFunc;
+    /* Keep a reference to config to pass to hooks */
+
+    let CONFIG = null;
+    /* Ideally, do not touch anything below this line */
+
+    /* ______________________________________________ */
+
+    const formElement = document.createElement('form');
+
+    const isRegexOrFunction = function isRegexOrFunction(testValue) {
+      return testValue instanceof RegExp || testValue instanceof Function;
+    };
+    /**
+     * _parseConfig
+     *
+     * @param  {Object} cfg optional config literal
+     */
+    // eslint-disable-next-line complexity
+
+
+    const _parseConfig = function _parseConfig(cfg) {
+      if (CONFIG && CONFIG === cfg) {
+        return;
+      }
+      /* Shield configuration object from tampering */
+
+
+      if (!cfg || typeof cfg !== 'object') {
+        cfg = {};
+      }
+      /* Shield configuration object from prototype pollution */
+
+
+      cfg = clone(cfg);
+      PARSER_MEDIA_TYPE = // eslint-disable-next-line unicorn/prefer-includes
+      SUPPORTED_PARSER_MEDIA_TYPES.indexOf(cfg.PARSER_MEDIA_TYPE) === -1 ? PARSER_MEDIA_TYPE = DEFAULT_PARSER_MEDIA_TYPE : PARSER_MEDIA_TYPE = cfg.PARSER_MEDIA_TYPE; // HTML tags and attributes are not case-sensitive, converting to lowercase. Keeping XHTML as is.
+
+      transformCaseFunc = PARSER_MEDIA_TYPE === 'application/xhtml+xml' ? stringToString : stringToLowerCase;
+      /* Set configuration parameters */
+
+      ALLOWED_TAGS = 'ALLOWED_TAGS' in cfg ? addToSet({}, cfg.ALLOWED_TAGS, transformCaseFunc) : DEFAULT_ALLOWED_TAGS;
+      ALLOWED_ATTR = 'ALLOWED_ATTR' in cfg ? addToSet({}, cfg.ALLOWED_ATTR, transformCaseFunc) : DEFAULT_ALLOWED_ATTR;
+      ALLOWED_NAMESPACES = 'ALLOWED_NAMESPACES' in cfg ? addToSet({}, cfg.ALLOWED_NAMESPACES, stringToString) : DEFAULT_ALLOWED_NAMESPACES;
+      URI_SAFE_ATTRIBUTES = 'ADD_URI_SAFE_ATTR' in cfg ? addToSet(clone(DEFAULT_URI_SAFE_ATTRIBUTES), // eslint-disable-line indent
+      cfg.ADD_URI_SAFE_ATTR, // eslint-disable-line indent
+      transformCaseFunc // eslint-disable-line indent
+      ) // eslint-disable-line indent
+      : DEFAULT_URI_SAFE_ATTRIBUTES;
+      DATA_URI_TAGS = 'ADD_DATA_URI_TAGS' in cfg ? addToSet(clone(DEFAULT_DATA_URI_TAGS), // eslint-disable-line indent
+      cfg.ADD_DATA_URI_TAGS, // eslint-disable-line indent
+      transformCaseFunc // eslint-disable-line indent
+      ) // eslint-disable-line indent
+      : DEFAULT_DATA_URI_TAGS;
+      FORBID_CONTENTS = 'FORBID_CONTENTS' in cfg ? addToSet({}, cfg.FORBID_CONTENTS, transformCaseFunc) : DEFAULT_FORBID_CONTENTS;
+      FORBID_TAGS = 'FORBID_TAGS' in cfg ? addToSet({}, cfg.FORBID_TAGS, transformCaseFunc) : {};
+      FORBID_ATTR = 'FORBID_ATTR' in cfg ? addToSet({}, cfg.FORBID_ATTR, transformCaseFunc) : {};
+      USE_PROFILES = 'USE_PROFILES' in cfg ? cfg.USE_PROFILES : false;
+      ALLOW_ARIA_ATTR = cfg.ALLOW_ARIA_ATTR !== false; // Default true
+
+      ALLOW_DATA_ATTR = cfg.ALLOW_DATA_ATTR !== false; // Default true
+
+      ALLOW_UNKNOWN_PROTOCOLS = cfg.ALLOW_UNKNOWN_PROTOCOLS || false; // Default false
+
+      ALLOW_SELF_CLOSE_IN_ATTR = cfg.ALLOW_SELF_CLOSE_IN_ATTR !== false; // Default true
+
+      SAFE_FOR_TEMPLATES = cfg.SAFE_FOR_TEMPLATES || false; // Default false
+
+      WHOLE_DOCUMENT = cfg.WHOLE_DOCUMENT || false; // Default false
+
+      RETURN_DOM = cfg.RETURN_DOM || false; // Default false
+
+      RETURN_DOM_FRAGMENT = cfg.RETURN_DOM_FRAGMENT || false; // Default false
+
+      RETURN_TRUSTED_TYPE = cfg.RETURN_TRUSTED_TYPE || false; // Default false
+
+      FORCE_BODY = cfg.FORCE_BODY || false; // Default false
+
+      SANITIZE_DOM = cfg.SANITIZE_DOM !== false; // Default true
+
+      SANITIZE_NAMED_PROPS = cfg.SANITIZE_NAMED_PROPS || false; // Default false
+
+      KEEP_CONTENT = cfg.KEEP_CONTENT !== false; // Default true
+
+      IN_PLACE = cfg.IN_PLACE || false; // Default false
+
+      IS_ALLOWED_URI$1 = cfg.ALLOWED_URI_REGEXP || IS_ALLOWED_URI;
+      NAMESPACE = cfg.NAMESPACE || HTML_NAMESPACE;
+      CUSTOM_ELEMENT_HANDLING = cfg.CUSTOM_ELEMENT_HANDLING || {};
+
+      if (cfg.CUSTOM_ELEMENT_HANDLING && isRegexOrFunction(cfg.CUSTOM_ELEMENT_HANDLING.tagNameCheck)) {
+        CUSTOM_ELEMENT_HANDLING.tagNameCheck = cfg.CUSTOM_ELEMENT_HANDLING.tagNameCheck;
+      }
+
+      if (cfg.CUSTOM_ELEMENT_HANDLING && isRegexOrFunction(cfg.CUSTOM_ELEMENT_HANDLING.attributeNameCheck)) {
+        CUSTOM_ELEMENT_HANDLING.attributeNameCheck = cfg.CUSTOM_ELEMENT_HANDLING.attributeNameCheck;
+      }
+
+      if (cfg.CUSTOM_ELEMENT_HANDLING && typeof cfg.CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements === 'boolean') {
+        CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements = cfg.CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements;
+      }
+
+      if (SAFE_FOR_TEMPLATES) {
+        ALLOW_DATA_ATTR = false;
+      }
+
+      if (RETURN_DOM_FRAGMENT) {
+        RETURN_DOM = true;
+      }
+      /* Parse profile info */
+
+
+      if (USE_PROFILES) {
+        ALLOWED_TAGS = addToSet({}, [...text]);
+        ALLOWED_ATTR = [];
+
+        if (USE_PROFILES.html === true) {
+          addToSet(ALLOWED_TAGS, html$1);
+          addToSet(ALLOWED_ATTR, html);
+        }
+
+        if (USE_PROFILES.svg === true) {
+          addToSet(ALLOWED_TAGS, svg$1);
+          addToSet(ALLOWED_ATTR, svg);
+          addToSet(ALLOWED_ATTR, xml);
+        }
+
+        if (USE_PROFILES.svgFilters === true) {
+          addToSet(ALLOWED_TAGS, svgFilters);
+          addToSet(ALLOWED_ATTR, svg);
+          addToSet(ALLOWED_ATTR, xml);
+        }
+
+        if (USE_PROFILES.mathMl === true) {
+          addToSet(ALLOWED_TAGS, mathMl$1);
+          addToSet(ALLOWED_ATTR, mathMl);
+          addToSet(ALLOWED_ATTR, xml);
+        }
+      }
+      /* Merge configuration parameters */
+
+
+      if (cfg.ADD_TAGS) {
+        if (ALLOWED_TAGS === DEFAULT_ALLOWED_TAGS) {
+          ALLOWED_TAGS = clone(ALLOWED_TAGS);
+        }
+
+        addToSet(ALLOWED_TAGS, cfg.ADD_TAGS, transformCaseFunc);
+      }
+
+      if (cfg.ADD_ATTR) {
+        if (ALLOWED_ATTR === DEFAULT_ALLOWED_ATTR) {
+          ALLOWED_ATTR = clone(ALLOWED_ATTR);
+        }
+
+        addToSet(ALLOWED_ATTR, cfg.ADD_ATTR, transformCaseFunc);
+      }
+
+      if (cfg.ADD_URI_SAFE_ATTR) {
+        addToSet(URI_SAFE_ATTRIBUTES, cfg.ADD_URI_SAFE_ATTR, transformCaseFunc);
+      }
+
+      if (cfg.FORBID_CONTENTS) {
+        if (FORBID_CONTENTS === DEFAULT_FORBID_CONTENTS) {
+          FORBID_CONTENTS = clone(FORBID_CONTENTS);
+        }
+
+        addToSet(FORBID_CONTENTS, cfg.FORBID_CONTENTS, transformCaseFunc);
+      }
+      /* Add #text in case KEEP_CONTENT is set to true */
+
+
+      if (KEEP_CONTENT) {
+        ALLOWED_TAGS['#text'] = true;
+      }
+      /* Add html, head and body to ALLOWED_TAGS in case WHOLE_DOCUMENT is true */
+
+
+      if (WHOLE_DOCUMENT) {
+        addToSet(ALLOWED_TAGS, ['html', 'head', 'body']);
+      }
+      /* Add tbody to ALLOWED_TAGS in case tables are permitted, see #286, #365 */
+
+
+      if (ALLOWED_TAGS.table) {
+        addToSet(ALLOWED_TAGS, ['tbody']);
+        delete FORBID_TAGS.tbody;
+      }
+
+      if (cfg.TRUSTED_TYPES_POLICY) {
+        if (typeof cfg.TRUSTED_TYPES_POLICY.createHTML !== 'function') {
+          throw typeErrorCreate('TRUSTED_TYPES_POLICY configuration option must provide a "createHTML" hook.');
+        }
+
+        if (typeof cfg.TRUSTED_TYPES_POLICY.createScriptURL !== 'function') {
+          throw typeErrorCreate('TRUSTED_TYPES_POLICY configuration option must provide a "createScriptURL" hook.');
+        } // Overwrite existing TrustedTypes policy.
+
+
+        trustedTypesPolicy = cfg.TRUSTED_TYPES_POLICY; // Sign local variables required by `sanitize`.
+
+        emptyHTML = trustedTypesPolicy.createHTML('');
+      } else {
+        // Uninitialized policy, attempt to initialize the internal dompurify policy.
+        if (trustedTypesPolicy === undefined) {
+          trustedTypesPolicy = _createTrustedTypesPolicy(trustedTypes, currentScript);
+        } // If creating the internal policy succeeded sign internal variables.
+
+
+        if (trustedTypesPolicy !== null && typeof emptyHTML === 'string') {
+          emptyHTML = trustedTypesPolicy.createHTML('');
+        }
+      } // Prevent further manipulation of configuration.
+      // Not available in IE8, Safari 5, etc.
+
+
+      if (freeze) {
+        freeze(cfg);
+      }
+
+      CONFIG = cfg;
+    };
+
+    const MATHML_TEXT_INTEGRATION_POINTS = addToSet({}, ['mi', 'mo', 'mn', 'ms', 'mtext']);
+    const HTML_INTEGRATION_POINTS = addToSet({}, ['foreignobject', 'desc', 'title', 'annotation-xml']); // Certain elements are allowed in both SVG and HTML
+    // namespace. We need to specify them explicitly
+    // so that they don't get erroneously deleted from
+    // HTML namespace.
+
+    const COMMON_SVG_AND_HTML_ELEMENTS = addToSet({}, ['title', 'style', 'font', 'a', 'script']);
+    /* Keep track of all possible SVG and MathML tags
+     * so that we can perform the namespace checks
+     * correctly. */
+
+    const ALL_SVG_TAGS = addToSet({}, svg$1);
+    addToSet(ALL_SVG_TAGS, svgFilters);
+    addToSet(ALL_SVG_TAGS, svgDisallowed);
+    const ALL_MATHML_TAGS = addToSet({}, mathMl$1);
+    addToSet(ALL_MATHML_TAGS, mathMlDisallowed);
+    /**
+     *
+     *
+     * @param  {Element} element a DOM element whose namespace is being checked
+     * @returns {boolean} Return false if the element has a
+     *  namespace that a spec-compliant parser would never
+     *  return. Return true otherwise.
+     */
+
+    const _checkValidNamespace = function _checkValidNamespace(element) {
+      let parent = getParentNode(element); // In JSDOM, if we're inside shadow DOM, then parentNode
+      // can be null. We just simulate parent in this case.
+
+      if (!parent || !parent.tagName) {
+        parent = {
+          namespaceURI: NAMESPACE,
+          tagName: 'template'
         };
       }
-    } else {
-      swiperOptions.slidesPerGroup = +elementSettings.slides_to_scroll || 1;
-    }
-    if (elementSettings.image_spacing_custom) {
-      swiperOptions.spaceBetween = elementSettings.image_spacing_custom.size;
-    }
-    const showArrows = 'arrows' === elementSettings.navigation || 'both' === elementSettings.navigation,
-      showDots = 'dots' === elementSettings.navigation || 'both' === elementSettings.navigation;
-    if (showArrows) {
-      swiperOptions.navigation = {
-        prevEl: '.elementor-swiper-button-prev',
-        nextEl: '.elementor-swiper-button-next'
-      };
-    }
-    if (showDots) {
-      swiperOptions.pagination = {
-        el: '.swiper-pagination',
-        type: 'bullets',
-        clickable: true
-      };
-    }
-    if ('yes' === elementSettings.lazyload) {
-      swiperOptions.lazy = {
-        loadPrevNext: true,
-        loadPrevNextAmount: 1
-      };
-    }
-    return swiperOptions;
-  }
-  async onInit() {
-    super.onInit(...arguments);
-    if (!this.elements.$swiperContainer.length || 2 > this.elements.$slides.length) {
-      return;
-    }
-    const Swiper = elementorFrontend.utils.swiper;
-    this.swiper = await new Swiper(this.elements.$swiperContainer, this.getSwiperSettings());
 
-    // Expose the swiper instance in the frontend
-    this.elements.$swiperContainer.data('swiper', this.swiper);
-    const elementSettings = this.getElementSettings();
-    if ('yes' === elementSettings.pause_on_hover) {
-      this.togglePauseOnHover(true);
-    }
-  }
-  updateSwiperOption(propertyName) {
-    const elementSettings = this.getElementSettings(),
-      newSettingValue = elementSettings[propertyName],
-      params = this.swiper.params;
+      const tagName = stringToLowerCase(element.tagName);
+      const parentTagName = stringToLowerCase(parent.tagName);
 
-    // Handle special cases where the value to update is not the value that the Swiper library accepts.
-    switch (propertyName) {
-      case 'image_spacing_custom':
-        params.spaceBetween = newSettingValue.size || 0;
-        break;
-      case 'autoplay_speed':
-        params.autoplay.delay = newSettingValue;
-        break;
-      case 'speed':
-        params.speed = newSettingValue;
-        break;
-    }
-    this.swiper.update();
-  }
-  getChangeableProperties() {
-    return {
-      pause_on_hover: 'pauseOnHover',
-      autoplay_speed: 'delay',
-      speed: 'speed',
-      image_spacing_custom: 'spaceBetween'
-    };
-  }
-  onElementChange(propertyName) {
-    const changeableProperties = this.getChangeableProperties();
-    if (changeableProperties[propertyName]) {
-      // 'pause_on_hover' is implemented by the handler with event listeners, not the Swiper library.
-      if ('pause_on_hover' === propertyName) {
-        const newSettingValue = this.getElementSettings('pause_on_hover');
-        this.togglePauseOnHover('yes' === newSettingValue);
-      } else {
-        this.updateSwiperOption(propertyName);
+      if (!ALLOWED_NAMESPACES[element.namespaceURI]) {
+        return false;
       }
-    }
+
+      if (element.namespaceURI === SVG_NAMESPACE) {
+        // The only way to switch from HTML namespace to SVG
+        // is via <svg>. If it happens via any other tag, then
+        // it should be killed.
+        if (parent.namespaceURI === HTML_NAMESPACE) {
+          return tagName === 'svg';
+        } // The only way to switch from MathML to SVG is via`
+        // svg if parent is either <annotation-xml> or MathML
+        // text integration points.
+
+
+        if (parent.namespaceURI === MATHML_NAMESPACE) {
+          return tagName === 'svg' && (parentTagName === 'annotation-xml' || MATHML_TEXT_INTEGRATION_POINTS[parentTagName]);
+        } // We only allow elements that are defined in SVG
+        // spec. All others are disallowed in SVG namespace.
+
+
+        return Boolean(ALL_SVG_TAGS[tagName]);
+      }
+
+      if (element.namespaceURI === MATHML_NAMESPACE) {
+        // The only way to switch from HTML namespace to MathML
+        // is via <math>. If it happens via any other tag, then
+        // it should be killed.
+        if (parent.namespaceURI === HTML_NAMESPACE) {
+          return tagName === 'math';
+        } // The only way to switch from SVG to MathML is via
+        // <math> and HTML integration points
+
+
+        if (parent.namespaceURI === SVG_NAMESPACE) {
+          return tagName === 'math' && HTML_INTEGRATION_POINTS[parentTagName];
+        } // We only allow elements that are defined in MathML
+        // spec. All others are disallowed in MathML namespace.
+
+
+        return Boolean(ALL_MATHML_TAGS[tagName]);
+      }
+
+      if (element.namespaceURI === HTML_NAMESPACE) {
+        // The only way to switch from SVG to HTML is via
+        // HTML integration points, and from MathML to HTML
+        // is via MathML text integration points
+        if (parent.namespaceURI === SVG_NAMESPACE && !HTML_INTEGRATION_POINTS[parentTagName]) {
+          return false;
+        }
+
+        if (parent.namespaceURI === MATHML_NAMESPACE && !MATHML_TEXT_INTEGRATION_POINTS[parentTagName]) {
+          return false;
+        } // We disallow tags that are specific for MathML
+        // or SVG and should never appear in HTML namespace
+
+
+        return !ALL_MATHML_TAGS[tagName] && (COMMON_SVG_AND_HTML_ELEMENTS[tagName] || !ALL_SVG_TAGS[tagName]);
+      } // For XHTML and XML documents that support custom namespaces
+
+
+      if (PARSER_MEDIA_TYPE === 'application/xhtml+xml' && ALLOWED_NAMESPACES[element.namespaceURI]) {
+        return true;
+      } // The code should never reach this place (this means
+      // that the element somehow got namespace that is not
+      // HTML, SVG, MathML or allowed via ALLOWED_NAMESPACES).
+      // Return false just in case.
+
+
+      return false;
+    };
+    /**
+     * _forceRemove
+     *
+     * @param  {Node} node a DOM node
+     */
+
+
+    const _forceRemove = function _forceRemove(node) {
+      arrayPush(DOMPurify.removed, {
+        element: node
+      });
+
+      try {
+        // eslint-disable-next-line unicorn/prefer-dom-node-remove
+        node.parentNode.removeChild(node);
+      } catch (_) {
+        node.remove();
+      }
+    };
+    /**
+     * _removeAttribute
+     *
+     * @param  {String} name an Attribute name
+     * @param  {Node} node a DOM node
+     */
+
+
+    const _removeAttribute = function _removeAttribute(name, node) {
+      try {
+        arrayPush(DOMPurify.removed, {
+          attribute: node.getAttributeNode(name),
+          from: node
+        });
+      } catch (_) {
+        arrayPush(DOMPurify.removed, {
+          attribute: null,
+          from: node
+        });
+      }
+
+      node.removeAttribute(name); // We void attribute values for unremovable "is"" attributes
+
+      if (name === 'is' && !ALLOWED_ATTR[name]) {
+        if (RETURN_DOM || RETURN_DOM_FRAGMENT) {
+          try {
+            _forceRemove(node);
+          } catch (_) {}
+        } else {
+          try {
+            node.setAttribute(name, '');
+          } catch (_) {}
+        }
+      }
+    };
+    /**
+     * _initDocument
+     *
+     * @param  {String} dirty a string of dirty markup
+     * @return {Document} a DOM, filled with the dirty markup
+     */
+
+
+    const _initDocument = function _initDocument(dirty) {
+      /* Create a HTML document */
+      let doc;
+      let leadingWhitespace;
+
+      if (FORCE_BODY) {
+        dirty = '<remove></remove>' + dirty;
+      } else {
+        /* If FORCE_BODY isn't used, leading whitespace needs to be preserved manually */
+        const matches = stringMatch(dirty, /^[\r\n\t ]+/);
+        leadingWhitespace = matches && matches[0];
+      }
+
+      if (PARSER_MEDIA_TYPE === 'application/xhtml+xml' && NAMESPACE === HTML_NAMESPACE) {
+        // Root of XHTML doc must contain xmlns declaration (see https://www.w3.org/TR/xhtml1/normative.html#strict)
+        dirty = '<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body>' + dirty + '</body></html>';
+      }
+
+      const dirtyPayload = trustedTypesPolicy ? trustedTypesPolicy.createHTML(dirty) : dirty;
+      /*
+       * Use the DOMParser API by default, fallback later if needs be
+       * DOMParser not work for svg when has multiple root element.
+       */
+
+      if (NAMESPACE === HTML_NAMESPACE) {
+        try {
+          doc = new DOMParser().parseFromString(dirtyPayload, PARSER_MEDIA_TYPE);
+        } catch (_) {}
+      }
+      /* Use createHTMLDocument in case DOMParser is not available */
+
+
+      if (!doc || !doc.documentElement) {
+        doc = implementation.createDocument(NAMESPACE, 'template', null);
+
+        try {
+          doc.documentElement.innerHTML = IS_EMPTY_INPUT ? emptyHTML : dirtyPayload;
+        } catch (_) {// Syntax error if dirtyPayload is invalid xml
+        }
+      }
+
+      const body = doc.body || doc.documentElement;
+
+      if (dirty && leadingWhitespace) {
+        body.insertBefore(document.createTextNode(leadingWhitespace), body.childNodes[0] || null);
+      }
+      /* Work on whole document or just its body */
+
+
+      if (NAMESPACE === HTML_NAMESPACE) {
+        return getElementsByTagName.call(doc, WHOLE_DOCUMENT ? 'html' : 'body')[0];
+      }
+
+      return WHOLE_DOCUMENT ? doc.documentElement : body;
+    };
+    /**
+     * _createIterator
+     *
+     * @param  {Document} root document/fragment to create iterator for
+     * @return {Iterator} iterator instance
+     */
+
+
+    const _createIterator = function _createIterator(root) {
+      return createNodeIterator.call(root.ownerDocument || root, root, // eslint-disable-next-line no-bitwise
+      NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_COMMENT | NodeFilter.SHOW_TEXT, null, false);
+    };
+    /**
+     * _isClobbered
+     *
+     * @param  {Node} elm element to check for clobbering attacks
+     * @return {Boolean} true if clobbered, false if safe
+     */
+
+
+    const _isClobbered = function _isClobbered(elm) {
+      return elm instanceof HTMLFormElement && (typeof elm.nodeName !== 'string' || typeof elm.textContent !== 'string' || typeof elm.removeChild !== 'function' || !(elm.attributes instanceof NamedNodeMap) || typeof elm.removeAttribute !== 'function' || typeof elm.setAttribute !== 'function' || typeof elm.namespaceURI !== 'string' || typeof elm.insertBefore !== 'function' || typeof elm.hasChildNodes !== 'function');
+    };
+    /**
+     * _isNode
+     *
+     * @param  {Node} obj object to check whether it's a DOM node
+     * @return {Boolean} true is object is a DOM node
+     */
+
+
+    const _isNode = function _isNode(object) {
+      return typeof Node === 'object' ? object instanceof Node : object && typeof object === 'object' && typeof object.nodeType === 'number' && typeof object.nodeName === 'string';
+    };
+    /**
+     * _executeHook
+     * Execute user configurable hooks
+     *
+     * @param  {String} entryPoint  Name of the hook's entry point
+     * @param  {Node} currentNode node to work on with the hook
+     * @param  {Object} data additional hook parameters
+     */
+
+
+    const _executeHook = function _executeHook(entryPoint, currentNode, data) {
+      if (!hooks[entryPoint]) {
+        return;
+      }
+
+      arrayForEach(hooks[entryPoint], hook => {
+        hook.call(DOMPurify, currentNode, data, CONFIG);
+      });
+    };
+    /**
+     * _sanitizeElements
+     *
+     * @protect nodeName
+     * @protect textContent
+     * @protect removeChild
+     *
+     * @param   {Node} currentNode to check for permission to exist
+     * @return  {Boolean} true if node was killed, false if left alive
+     */
+
+
+    const _sanitizeElements = function _sanitizeElements(currentNode) {
+      let content;
+      /* Execute a hook if present */
+
+      _executeHook('beforeSanitizeElements', currentNode, null);
+      /* Check if element is clobbered or can clobber */
+
+
+      if (_isClobbered(currentNode)) {
+        _forceRemove(currentNode);
+
+        return true;
+      }
+      /* Now let's check the element's type and name */
+
+
+      const tagName = transformCaseFunc(currentNode.nodeName);
+      /* Execute a hook if present */
+
+      _executeHook('uponSanitizeElement', currentNode, {
+        tagName,
+        allowedTags: ALLOWED_TAGS
+      });
+      /* Detect mXSS attempts abusing namespace confusion */
+
+
+      if (currentNode.hasChildNodes() && !_isNode(currentNode.firstElementChild) && (!_isNode(currentNode.content) || !_isNode(currentNode.content.firstElementChild)) && regExpTest(/<[/\w]/g, currentNode.innerHTML) && regExpTest(/<[/\w]/g, currentNode.textContent)) {
+        _forceRemove(currentNode);
+
+        return true;
+      }
+      /* Remove element if anything forbids its presence */
+
+
+      if (!ALLOWED_TAGS[tagName] || FORBID_TAGS[tagName]) {
+        /* Check if we have a custom element to handle */
+        if (!FORBID_TAGS[tagName] && _basicCustomElementTest(tagName)) {
+          if (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, tagName)) return false;
+          if (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(tagName)) return false;
+        }
+        /* Keep content except for bad-listed elements */
+
+
+        if (KEEP_CONTENT && !FORBID_CONTENTS[tagName]) {
+          const parentNode = getParentNode(currentNode) || currentNode.parentNode;
+          const childNodes = getChildNodes(currentNode) || currentNode.childNodes;
+
+          if (childNodes && parentNode) {
+            const childCount = childNodes.length;
+
+            for (let i = childCount - 1; i >= 0; --i) {
+              parentNode.insertBefore(cloneNode(childNodes[i], true), getNextSibling(currentNode));
+            }
+          }
+        }
+
+        _forceRemove(currentNode);
+
+        return true;
+      }
+      /* Check whether element has a valid namespace */
+
+
+      if (currentNode instanceof Element && !_checkValidNamespace(currentNode)) {
+        _forceRemove(currentNode);
+
+        return true;
+      }
+      /* Make sure that older browsers don't get noscript mXSS */
+
+
+      if ((tagName === 'noscript' || tagName === 'noembed') && regExpTest(/<\/no(script|embed)/i, currentNode.innerHTML)) {
+        _forceRemove(currentNode);
+
+        return true;
+      }
+      /* Sanitize element content to be template-safe */
+
+
+      if (SAFE_FOR_TEMPLATES && currentNode.nodeType === 3) {
+        /* Get the element's text content */
+        content = currentNode.textContent;
+        content = stringReplace(content, MUSTACHE_EXPR, ' ');
+        content = stringReplace(content, ERB_EXPR, ' ');
+        content = stringReplace(content, TMPLIT_EXPR, ' ');
+
+        if (currentNode.textContent !== content) {
+          arrayPush(DOMPurify.removed, {
+            element: currentNode.cloneNode()
+          });
+          currentNode.textContent = content;
+        }
+      }
+      /* Execute a hook if present */
+
+
+      _executeHook('afterSanitizeElements', currentNode, null);
+
+      return false;
+    };
+    /**
+     * _isValidAttribute
+     *
+     * @param  {string} lcTag Lowercase tag name of containing element.
+     * @param  {string} lcName Lowercase attribute name.
+     * @param  {string} value Attribute value.
+     * @return {Boolean} Returns true if `value` is valid, otherwise false.
+     */
+    // eslint-disable-next-line complexity
+
+
+    const _isValidAttribute = function _isValidAttribute(lcTag, lcName, value) {
+      /* Make sure attribute cannot clobber */
+      if (SANITIZE_DOM && (lcName === 'id' || lcName === 'name') && (value in document || value in formElement)) {
+        return false;
+      }
+      /* Allow valid data-* attributes: At least one character after "-"
+          (https://html.spec.whatwg.org/multipage/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes)
+          XML-compatible (https://html.spec.whatwg.org/multipage/infrastructure.html#xml-compatible and http://www.w3.org/TR/xml/#d0e804)
+          We don't need to check the value; it's always URI safe. */
+
+
+      if (ALLOW_DATA_ATTR && !FORBID_ATTR[lcName] && regExpTest(DATA_ATTR, lcName)) ; else if (ALLOW_ARIA_ATTR && regExpTest(ARIA_ATTR, lcName)) ; else if (!ALLOWED_ATTR[lcName] || FORBID_ATTR[lcName]) {
+        if ( // First condition does a very basic check if a) it's basically a valid custom element tagname AND
+        // b) if the tagName passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
+        // and c) if the attribute name passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.attributeNameCheck
+        _basicCustomElementTest(lcTag) && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, lcTag) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(lcTag)) && (CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.attributeNameCheck, lcName) || CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.attributeNameCheck(lcName)) || // Alternative, second condition checks if it's an `is`-attribute, AND
+        // the value passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
+        lcName === 'is' && CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, value) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(value))) ; else {
+          return false;
+        }
+        /* Check value is safe. First, is attr inert? If so, is safe */
+
+      } else if (URI_SAFE_ATTRIBUTES[lcName]) ; else if (regExpTest(IS_ALLOWED_URI$1, stringReplace(value, ATTR_WHITESPACE, ''))) ; else if ((lcName === 'src' || lcName === 'xlink:href' || lcName === 'href') && lcTag !== 'script' && stringIndexOf(value, 'data:') === 0 && DATA_URI_TAGS[lcTag]) ; else if (ALLOW_UNKNOWN_PROTOCOLS && !regExpTest(IS_SCRIPT_OR_DATA, stringReplace(value, ATTR_WHITESPACE, ''))) ; else if (value) {
+        return false;
+      } else ;
+
+      return true;
+    };
+    /**
+     * _basicCustomElementCheck
+     * checks if at least one dash is included in tagName, and it's not the first char
+     * for more sophisticated checking see https://github.com/sindresorhus/validate-element-name
+     * @param {string} tagName name of the tag of the node to sanitize
+     */
+
+
+    const _basicCustomElementTest = function _basicCustomElementTest(tagName) {
+      return tagName.indexOf('-') > 0;
+    };
+    /**
+     * _sanitizeAttributes
+     *
+     * @protect attributes
+     * @protect nodeName
+     * @protect removeAttribute
+     * @protect setAttribute
+     *
+     * @param  {Node} currentNode to sanitize
+     */
+
+
+    const _sanitizeAttributes = function _sanitizeAttributes(currentNode) {
+      let attr;
+      let value;
+      let lcName;
+      let l;
+      /* Execute a hook if present */
+
+      _executeHook('beforeSanitizeAttributes', currentNode, null);
+
+      const {
+        attributes
+      } = currentNode;
+      /* Check if we have attributes; if not we might have a text node */
+
+      if (!attributes) {
+        return;
+      }
+
+      const hookEvent = {
+        attrName: '',
+        attrValue: '',
+        keepAttr: true,
+        allowedAttributes: ALLOWED_ATTR
+      };
+      l = attributes.length;
+      /* Go backwards over all attributes; safely remove bad ones */
+
+      while (l--) {
+        attr = attributes[l];
+        const {
+          name,
+          namespaceURI
+        } = attr;
+        value = name === 'value' ? attr.value : stringTrim(attr.value);
+        lcName = transformCaseFunc(name);
+        /* Execute a hook if present */
+
+        hookEvent.attrName = lcName;
+        hookEvent.attrValue = value;
+        hookEvent.keepAttr = true;
+        hookEvent.forceKeepAttr = undefined; // Allows developers to see this is a property they can set
+
+        _executeHook('uponSanitizeAttribute', currentNode, hookEvent);
+
+        value = hookEvent.attrValue;
+        /* Did the hooks approve of the attribute? */
+
+        if (hookEvent.forceKeepAttr) {
+          continue;
+        }
+        /* Remove attribute */
+
+
+        _removeAttribute(name, currentNode);
+        /* Did the hooks approve of the attribute? */
+
+
+        if (!hookEvent.keepAttr) {
+          continue;
+        }
+        /* Work around a security issue in jQuery 3.0 */
+
+
+        if (!ALLOW_SELF_CLOSE_IN_ATTR && regExpTest(/\/>/i, value)) {
+          _removeAttribute(name, currentNode);
+
+          continue;
+        }
+        /* Sanitize attribute content to be template-safe */
+
+
+        if (SAFE_FOR_TEMPLATES) {
+          value = stringReplace(value, MUSTACHE_EXPR, ' ');
+          value = stringReplace(value, ERB_EXPR, ' ');
+          value = stringReplace(value, TMPLIT_EXPR, ' ');
+        }
+        /* Is `value` valid for this attribute? */
+
+
+        const lcTag = transformCaseFunc(currentNode.nodeName);
+
+        if (!_isValidAttribute(lcTag, lcName, value)) {
+          continue;
+        }
+        /* Full DOM Clobbering protection via namespace isolation,
+         * Prefix id and name attributes with `user-content-`
+         */
+
+
+        if (SANITIZE_NAMED_PROPS && (lcName === 'id' || lcName === 'name')) {
+          // Remove the attribute with this value
+          _removeAttribute(name, currentNode); // Prefix the value and later re-create the attribute with the sanitized value
+
+
+          value = SANITIZE_NAMED_PROPS_PREFIX + value;
+        }
+        /* Handle attributes that require Trusted Types */
+
+
+        if (trustedTypesPolicy && typeof trustedTypes === 'object' && typeof trustedTypes.getAttributeType === 'function') {
+          if (namespaceURI) ; else {
+            switch (trustedTypes.getAttributeType(lcTag, lcName)) {
+              case 'TrustedHTML':
+                {
+                  value = trustedTypesPolicy.createHTML(value);
+                  break;
+                }
+
+              case 'TrustedScriptURL':
+                {
+                  value = trustedTypesPolicy.createScriptURL(value);
+                  break;
+                }
+            }
+          }
+        }
+        /* Handle invalid data-* attribute set by try-catching it */
+
+
+        try {
+          if (namespaceURI) {
+            currentNode.setAttributeNS(namespaceURI, name, value);
+          } else {
+            /* Fallback to setAttribute() for browser-unrecognized namespaces e.g. "x-schema". */
+            currentNode.setAttribute(name, value);
+          }
+
+          arrayPop(DOMPurify.removed);
+        } catch (_) {}
+      }
+      /* Execute a hook if present */
+
+
+      _executeHook('afterSanitizeAttributes', currentNode, null);
+    };
+    /**
+     * _sanitizeShadowDOM
+     *
+     * @param  {DocumentFragment} fragment to iterate over recursively
+     */
+
+
+    const _sanitizeShadowDOM = function _sanitizeShadowDOM(fragment) {
+      let shadowNode;
+
+      const shadowIterator = _createIterator(fragment);
+      /* Execute a hook if present */
+
+
+      _executeHook('beforeSanitizeShadowDOM', fragment, null);
+
+      while (shadowNode = shadowIterator.nextNode()) {
+        /* Execute a hook if present */
+        _executeHook('uponSanitizeShadowNode', shadowNode, null);
+        /* Sanitize tags and elements */
+
+
+        if (_sanitizeElements(shadowNode)) {
+          continue;
+        }
+        /* Deep shadow DOM detected */
+
+
+        if (shadowNode.content instanceof DocumentFragment) {
+          _sanitizeShadowDOM(shadowNode.content);
+        }
+        /* Check attributes, sanitize if necessary */
+
+
+        _sanitizeAttributes(shadowNode);
+      }
+      /* Execute a hook if present */
+
+
+      _executeHook('afterSanitizeShadowDOM', fragment, null);
+    };
+    /**
+     * Sanitize
+     * Public method providing core sanitation functionality
+     *
+     * @param {String|Node} dirty string or DOM node
+     * @param {Object} configuration object
+     */
+    // eslint-disable-next-line complexity
+
+
+    DOMPurify.sanitize = function (dirty) {
+      let cfg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      let body;
+      let importedNode;
+      let currentNode;
+      let returnNode;
+      /* Make sure we have a string to sanitize.
+        DO NOT return early, as this will return the wrong type if
+        the user has requested a DOM object rather than a string */
+
+      IS_EMPTY_INPUT = !dirty;
+
+      if (IS_EMPTY_INPUT) {
+        dirty = '<!-->';
+      }
+      /* Stringify, in case dirty is an object */
+
+
+      if (typeof dirty !== 'string' && !_isNode(dirty)) {
+        if (typeof dirty.toString === 'function') {
+          dirty = dirty.toString();
+
+          if (typeof dirty !== 'string') {
+            throw typeErrorCreate('dirty is not a string, aborting');
+          }
+        } else {
+          throw typeErrorCreate('toString is not a function');
+        }
+      }
+      /* Return dirty HTML if DOMPurify cannot run */
+
+
+      if (!DOMPurify.isSupported) {
+        return dirty;
+      }
+      /* Assign config vars */
+
+
+      if (!SET_CONFIG) {
+        _parseConfig(cfg);
+      }
+      /* Clean up removed elements */
+
+
+      DOMPurify.removed = [];
+      /* Check if dirty is correctly typed for IN_PLACE */
+
+      if (typeof dirty === 'string') {
+        IN_PLACE = false;
+      }
+
+      if (IN_PLACE) {
+        /* Do some early pre-sanitization to avoid unsafe root nodes */
+        if (dirty.nodeName) {
+          const tagName = transformCaseFunc(dirty.nodeName);
+
+          if (!ALLOWED_TAGS[tagName] || FORBID_TAGS[tagName]) {
+            throw typeErrorCreate('root node is forbidden and cannot be sanitized in-place');
+          }
+        }
+      } else if (dirty instanceof Node) {
+        /* If dirty is a DOM element, append to an empty document to avoid
+           elements being stripped by the parser */
+        body = _initDocument('<!---->');
+        importedNode = body.ownerDocument.importNode(dirty, true);
+
+        if (importedNode.nodeType === 1 && importedNode.nodeName === 'BODY') {
+          /* Node is already a body, use as is */
+          body = importedNode;
+        } else if (importedNode.nodeName === 'HTML') {
+          body = importedNode;
+        } else {
+          // eslint-disable-next-line unicorn/prefer-dom-node-append
+          body.appendChild(importedNode);
+        }
+      } else {
+        /* Exit directly if we have nothing to do */
+        if (!RETURN_DOM && !SAFE_FOR_TEMPLATES && !WHOLE_DOCUMENT && // eslint-disable-next-line unicorn/prefer-includes
+        dirty.indexOf('<') === -1) {
+          return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML(dirty) : dirty;
+        }
+        /* Initialize the document to work on */
+
+
+        body = _initDocument(dirty);
+        /* Check we have a DOM node from the data */
+
+        if (!body) {
+          return RETURN_DOM ? null : RETURN_TRUSTED_TYPE ? emptyHTML : '';
+        }
+      }
+      /* Remove first element node (ours) if FORCE_BODY is set */
+
+
+      if (body && FORCE_BODY) {
+        _forceRemove(body.firstChild);
+      }
+      /* Get node iterator */
+
+
+      const nodeIterator = _createIterator(IN_PLACE ? dirty : body);
+      /* Now start iterating over the created document */
+
+
+      while (currentNode = nodeIterator.nextNode()) {
+        /* Sanitize tags and elements */
+        if (_sanitizeElements(currentNode)) {
+          continue;
+        }
+        /* Shadow DOM detected, sanitize it */
+
+
+        if (currentNode.content instanceof DocumentFragment) {
+          _sanitizeShadowDOM(currentNode.content);
+        }
+        /* Check attributes, sanitize if necessary */
+
+
+        _sanitizeAttributes(currentNode);
+      }
+      /* If we sanitized `dirty` in-place, return it. */
+
+
+      if (IN_PLACE) {
+        return dirty;
+      }
+      /* Return sanitized string or DOM */
+
+
+      if (RETURN_DOM) {
+        if (RETURN_DOM_FRAGMENT) {
+          returnNode = createDocumentFragment.call(body.ownerDocument);
+
+          while (body.firstChild) {
+            // eslint-disable-next-line unicorn/prefer-dom-node-append
+            returnNode.appendChild(body.firstChild);
+          }
+        } else {
+          returnNode = body;
+        }
+
+        if (ALLOWED_ATTR.shadowroot || ALLOWED_ATTR.shadowrootmod) {
+          /*
+            AdoptNode() is not used because internal state is not reset
+            (e.g. the past names map of a HTMLFormElement), this is safe
+            in theory but we would rather not risk another attack vector.
+            The state that is cloned by importNode() is explicitly defined
+            by the specs.
+          */
+          returnNode = importNode.call(originalDocument, returnNode, true);
+        }
+
+        return returnNode;
+      }
+
+      let serializedHTML = WHOLE_DOCUMENT ? body.outerHTML : body.innerHTML;
+      /* Serialize doctype if allowed */
+
+      if (WHOLE_DOCUMENT && ALLOWED_TAGS['!doctype'] && body.ownerDocument && body.ownerDocument.doctype && body.ownerDocument.doctype.name && regExpTest(DOCTYPE_NAME, body.ownerDocument.doctype.name)) {
+        serializedHTML = '<!DOCTYPE ' + body.ownerDocument.doctype.name + '>\n' + serializedHTML;
+      }
+      /* Sanitize final string template-safe */
+
+
+      if (SAFE_FOR_TEMPLATES) {
+        serializedHTML = stringReplace(serializedHTML, MUSTACHE_EXPR, ' ');
+        serializedHTML = stringReplace(serializedHTML, ERB_EXPR, ' ');
+        serializedHTML = stringReplace(serializedHTML, TMPLIT_EXPR, ' ');
+      }
+
+      return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML(serializedHTML) : serializedHTML;
+    };
+    /**
+     * Public method to set the configuration once
+     * setConfig
+     *
+     * @param {Object} cfg configuration object
+     */
+
+
+    DOMPurify.setConfig = function (cfg) {
+      _parseConfig(cfg);
+
+      SET_CONFIG = true;
+    };
+    /**
+     * Public method to remove the configuration
+     * clearConfig
+     *
+     */
+
+
+    DOMPurify.clearConfig = function () {
+      CONFIG = null;
+      SET_CONFIG = false;
+    };
+    /**
+     * Public method to check if an attribute value is valid.
+     * Uses last set config, if any. Otherwise, uses config defaults.
+     * isValidAttribute
+     *
+     * @param  {string} tag Tag name of containing element.
+     * @param  {string} attr Attribute name.
+     * @param  {string} value Attribute value.
+     * @return {Boolean} Returns true if `value` is valid. Otherwise, returns false.
+     */
+
+
+    DOMPurify.isValidAttribute = function (tag, attr, value) {
+      /* Initialize shared config vars if necessary. */
+      if (!CONFIG) {
+        _parseConfig({});
+      }
+
+      const lcTag = transformCaseFunc(tag);
+      const lcName = transformCaseFunc(attr);
+      return _isValidAttribute(lcTag, lcName, value);
+    };
+    /**
+     * AddHook
+     * Public method to add DOMPurify hooks
+     *
+     * @param {String} entryPoint entry point for the hook to add
+     * @param {Function} hookFunction function to execute
+     */
+
+
+    DOMPurify.addHook = function (entryPoint, hookFunction) {
+      if (typeof hookFunction !== 'function') {
+        return;
+      }
+
+      hooks[entryPoint] = hooks[entryPoint] || [];
+      arrayPush(hooks[entryPoint], hookFunction);
+    };
+    /**
+     * RemoveHook
+     * Public method to remove a DOMPurify hook at a given entryPoint
+     * (pops it from the stack of hooks if more are present)
+     *
+     * @param {String} entryPoint entry point for the hook to remove
+     * @return {Function} removed(popped) hook
+     */
+
+
+    DOMPurify.removeHook = function (entryPoint) {
+      if (hooks[entryPoint]) {
+        return arrayPop(hooks[entryPoint]);
+      }
+    };
+    /**
+     * RemoveHooks
+     * Public method to remove all DOMPurify hooks at a given entryPoint
+     *
+     * @param  {String} entryPoint entry point for the hooks to remove
+     */
+
+
+    DOMPurify.removeHooks = function (entryPoint) {
+      if (hooks[entryPoint]) {
+        hooks[entryPoint] = [];
+      }
+    };
+    /**
+     * RemoveAllHooks
+     * Public method to remove all DOMPurify hooks
+     *
+     */
+
+
+    DOMPurify.removeAllHooks = function () {
+      hooks = {};
+    };
+
+    return DOMPurify;
   }
-  onEditSettingsChange(propertyName) {
-    if ('activeItemIndex' === propertyName) {
-      this.swiper.slideToLoop(this.getEditSettings('activeItemIndex') - 1);
-    }
-  }
-}
-exports["default"] = ImageCarousel;
+
+  var purify = createDOMPurify();
+
+  return purify;
+
+}));
+//# sourceMappingURL=purify.js.map
+
 
 /***/ }),
 
@@ -7802,6 +10999,7 @@ exports["default"] = ImageCarousel;
   \**************************/
 /***/ ((module) => {
 
+"use strict";
 module.exports = wp.i18n;
 
 /***/ })
